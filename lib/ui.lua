@@ -891,6 +891,7 @@ local function load_action(ui, row, slot, action, player_vitals)
 			local slot_image = nil
 			if database[action.type][(action.action):lower()] ~= nil then
 				skill = database[action.type][(action.action):lower()]
+               
                 ui.hotbars[row].slot_icons[slot]:path(windower.addon_path .. '/images/icons/' .. (string.format("%s/%05d", action_map[action.type], skill.icon)) .. '.png')
                 if skill.mpcost ~= nil and skill.mpcost ~= 0 then
                     ui.hotbars[row].slot_cost[slot]:color(ui.theme.mp_cost_color_red, ui.theme.mp_cost_color_green, ui.theme.mp_cost_color_blue)
@@ -1163,7 +1164,7 @@ local function check_disable(database, action)
             elseif action.type == 'ws' and can_ws == false then
                 ui.disabled_slots.actions[action.action] = true
                 return true
-            elseif database[action.type][(action.action):lower()].id == "102" and not can_pet_ws then
+            elseif database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].id == "102" and not can_pet_ws then
                 -- disable sic when pet tp low
                 ui.disabled_slots.actions[action.action] = true
                 return true

@@ -153,13 +153,17 @@ end
 
 
 -- reload hotbar --
-function reload_hotbar()
+function reload_hotbar(using_pet_name)
 	
 	coroutine.sleep(1)
-	local pet = windower.ffxi.get_mob_by_target('pet') or nil
-	local pet_name = ''
-	if pet ~= nil then
-		pet_name = pet.name
+
+	-- the pet name tends to be unreliable, so we pass it in as a param when possible
+	local pet_name = using_pet_name or ''
+	if not using_pet_name then
+		local pet = windower.ffxi.get_mob_by_target('pet') or nil
+		if pet ~= nil then
+			pet_name = pet.name
+		end
 	end
 
 	if resources.jobs[windower.ffxi.get_player().sub_job_id] == nil then -- If character has no subjob
@@ -175,6 +179,7 @@ function reload_hotbar()
 		player:update_level(windower.ffxi.get_player().main_job_level,windower.ffxi.get_player().sub_job_level)
 		player:update_pet(pet_name)
 	end
+
 	player:load_hotbar()
    	ui:load_player_hotbar(player:get_hotbar_info())
 end
@@ -733,46 +738,29 @@ end
 
 --This event is reloading hotbar if a pet dies or released
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
-	
-		local packet = packets.parse('incoming', original)
-		local main_job = windower.ffxi.get_player().main_job
-		if id == 0x068 and pet_dead_update == true then -- Pet Status Packet Update
-			if packet['Owner ID'] == player.id then -- If player.id and pet owner ID are the same
-				if packet['Pet Index'] == 0 then -- If there is no pet. Meaning it died or was released.
-					if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
-					pet_dead_update = false
-					coroutine.sleep(.1)
-				    reload_hotbar()
-				end
+	local packet = packets.parse('incoming', original)
+	if id == 0x068 then -- Pet Status Packet Update
+		if packet['Owner ID'] == player.id then -- If player.id and pet owner ID are the same
+			if packet['Pet Index'] == 0 then -- If there is no pet. Meaning it died or was released.
+				if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
+				coroutine.sleep(.1)
+				reload_hotbar('')
 			end
-		elseif id == 0x068 then
-			pet_dead_update = true
 		end
-		
+	end
 end)
-
-local function successful_summon(summon_name)
-	coroutine.sleep(.1)
-	
-	local avatar_id = player:determine_summoner_id(summon_name) -- Gets the specifics summons id from the buff_table in action_manager
-	player:load_job_ability_actions(avatar_id)
-	ui:load_player_hotbar(player:get_hotbar_info())
-	
-end
 
 
 --This event is confirming that pet summons cast are not cancel/interupted and pet was succesfully summoned before updating the hotbar with specific pet abilities
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
 	if state.ready == true then
 		local packet = packets.parse('incoming', original)
-		local main_job = windower.ffxi.get_player().main_job
 		if id == 0x068 and no_pet == true then -- If the second pet update packet comes in
 			if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
 				if packet['Pet Index'] ~= 0 then -- If the pet has an index of non zero then pet summoned succesfully
 					if ui.theme.dev_mode then log("Pet Summoned " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
 					no_pet = false
-					coroutine.sleep(.1)
-					reload_hotbar()
+					reload_hotbar(packet['Pet Name'])
 				end
 			end
 			--no_pet = false

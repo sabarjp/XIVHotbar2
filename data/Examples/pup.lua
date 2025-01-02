@@ -2,7 +2,7 @@
 -- Load and initialize the include file.
  xivhotbar_keybinds_job['Base'] = {
      
-  -- Hotbar #1
+  -- Hotbar #1 Primary JAs
 	{'battle 1 1', 'ja', 'Deploy','t', 'Fight'},
 	{'battle 1 2', 'ja', 'Retrieve','t', 'Retrieve'},
 	
@@ -14,15 +14,15 @@
 	{'battle 1 8', 'ja', 'Water Maneuver','me', 'WtrMan'},
 	{'battle 1 9', 'ja', 'Light Maneuver','me', 'LghMan'},
 	{'battle 1 10', 'ja', 'Dark Maneuver','me', 'DrkMan'},
-  -- Hotbar #2
-  	{'battle 2 1', 'ws', 'Asuran Fists', 't', 'Asuran'},
-  	{'battle 2 1', 'ws', 'Raging Fists', 't', 'Raging'},
+  -- Hotbar #2 weapon skills
 	{'battle 2 1', 'ws', 'Combo', 't', 'Combo'},
+	{'battle 2 1', 'ws', 'Raging Fists', 't', 'Raging'},
+	{'battle 2 1', 'ws', 'Asuran Fists', 't', 'Asuran'},
 
 	{'battle 2 2', 'ws', 'Shoulder Tackle', 't', 'Stun'},
 
-	{'battle 2 3', 'ws', 'Howling Fist', 't', 'Howling'},
 	{'battle 2 3', 'ws', 'One Inch Punch', 't', 'OneInch'},
+	{'battle 2 3', 'ws', 'Howling Fist', 't', 'Howling'},
 
 	{'battle 2 4', 'ws', 'Dragon Kick', 't', 'DgnKick'},
 
@@ -37,10 +37,11 @@
 	{'battle 2 7', 'ws', 'Maru Kala', 't', 'M.Kala'},
 	{'battle 2 7', 'ws', 'Dragon Blow', 't', 'DgnBlow'},
 	
-	{'battle 2 12', 'ws', 'Spinning Attack', 't', 'Spinning'},  --aoe
+	 --aoe
+	{'battle 2 12', 'ws', 'Spinning Attack', 't', 'Spinning'}, 
 
-  -- Hotbar #3
- 	{'battle 3 3', 'ja', 'Activate', 'me', 'Activate'},
+  -- Hotbar #3 Pet stuff
+ 	{'battle 3 ', 'ja', 'Activate', 'me', 'Activate'},
 	{'battle 3 4', 'ja', 'Deus Ex Automata', 'me', 'DeusEx'},
 	{'battle 3 5', 'ja', 'Repair', 'me', 'Repair'},  --needs oil
 	{'battle 3 6', 'ja', 'Maintenance', 'me', 'Maintain'},  --needs oil
@@ -50,9 +51,9 @@
 	{'battle 3 10', 'ja', 'Cooldown', 'me', 'C.Down'},
 	{'battle 3 12', 'ja', 'Heady Artifice', 'me', 'Pet1HR'},
   
-  -- Hotbar #4
+  -- Hotbar #4 Mostly Subs
  	{'battle 4 11', 'ja', 'Deactivate','me', 'Deactvte'},
-  	{'battle 4 12', 'ja', 'Overdrive', 'me', '1HR','2HR'},
+  	{'battle 4 12', 'ja', 'Overdrive', 'me', 'O.Drive','2HR'},
 
   -- Hotbar #5
 	--{'battle 5 1', '', '', '', ''},
