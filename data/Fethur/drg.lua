@@ -111,32 +111,15 @@ xivhotbar_keybinds_job['SAM'] = {
  }
  
  xivhotbar_keybinds_job['WHM'] = {
-	-- Debuffs 
-	{'battle 3 1', 'ma', 'Dia', 't', 'Dia'},
-	{'battle 3 1', 'ma', 'Dia II', 't', 'Dia II'},
-	{'battle 3 2', 'ma', 'Paralyze', 't', 'Para'},
-	{'battle 3 3', 'ma', 'Slow', 't', 'Slow'},
-	{'battle 3 4', 'ma', 'Silence', 't', 'Silence'},
-	-- Support
-	{'battle 3 5', 'ma', 'Haste', 'stpc', 'Haste'},
-	{'battle 3 6', 'ma', 'Blink', 'me', 'Blink'},
-	{'battle 3 7', 'ma', 'Stoneskin', 'me', 'StnSkin'},
-	{'battle 3 8', 'ma', 'Erase', 'stpc', 'Erase'},
-	-- Healing
-	{'battle 3 9', 'ja', 'Divine Seal', 'me', 'Divine'},
-	-- Cure
-	{'battle 3 10', 'ma', 'Cure', 'stpc', 'Cure'},
-	{'battle 3 10', 'ma', 'Cure II', 'stpc', 'CurII'},
-	{'battle 3 10', 'ma', 'Cure III', 'stpc', 'CurIII'},
-	{'battle 3 10', 'ma', 'Cure IV', 'stpc', 'CurIV'},
-	-- Regen
-	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen'},
-	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen II'},
-	-- Curaga
-	{'battle 3 12', 'ma', 'Curaga', 'stpc', 'Curga'},
-	{'battle 3 12', 'ma', 'Curaga II', 'stpc', 'Curga II'},
-	{'battle 3 12', 'ma', 'Curaga III', 'stpc', 'Curga III'},
+	{'battle 3 1', 'ja', 'Divine Seal', 'me', 'Divine'},
+	{'battle 3 1', 'ma', 'Cure', 'stpc', 'Cure'},
+	{'battle 3 11', 'ma', 'Raise', 'stpc', 'Rez'},
+	{'battle 3 11', 'ma', 'Raise II', 'stpc', 'Rez II'},
+	{'battle 3 12', 'ma', 'Reraise', 'me', 'RRez'},
+	{'battle 3 12', 'ma', 'Reraise II', 'me', 'RRez II'},
  }
+
+
 
 -- Weaponskill sets
 -- 11 is always aoe
