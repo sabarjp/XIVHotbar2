@@ -79,8 +79,10 @@ local is_silenced = false
 local is_amnesiad = false
 local is_neutralized = false
 local can_ws = false
+local can_pet_ws = false
 local current_mp = 0
-
+local current_pet_mp = 0
+local bst_charge_time = 30  --default time per bst cmd charge
 
 -- ui metrics
 ui.hotbar_width = 0
@@ -817,7 +819,6 @@ end
 -- end
 -- load action into a hotbar slot
 local function load_action(ui, row, slot, action, player_vitals)
-
 	local action_map = { ['ma'] = 'spells', ['ja'] = 'abilities', ['ws'] = 'weaponskills'}
     local is_disabled = false
     spells = spell_list
@@ -894,7 +895,8 @@ local function load_action(ui, row, slot, action, player_vitals)
                 if skill.mpcost ~= nil and skill.mpcost ~= 0 then
                     ui.hotbars[row].slot_cost[slot]:color(ui.theme.mp_cost_color_red, ui.theme.mp_cost_color_green, ui.theme.mp_cost_color_blue)
                     ui.hotbars[row].slot_cost[slot]:text(tostring(skill.mpcost))
-					if player_vitals.mp < tonumber(skill.mpcost) then
+
+                    if player_vitals.mp < tonumber(skill.mpcost) then
 						ui.disabled_slots.no_vitals[action.action] = true
 						is_disabled = true
                     else
@@ -902,6 +904,11 @@ local function load_action(ui, row, slot, action, player_vitals)
 						is_disabled = false
 					end
 				end
+                 -- special disable for bst sic
+                 if skill.id == "102" and not can_pet_ws then
+                     ui.disabled_slots.actions[action.action] = true
+                     is_disabled = true
+                 end
 			end
 		    ui.hotbars[row].slot_icons[slot]:show()
             ui.hotbars[row].slot_overlay[slot]:show()
@@ -1116,6 +1123,14 @@ function ui:update_tp(current_tp)
 	if (current_tp < 1000) then can_ws = false else can_ws = true end
 end
 
+function ui:update_pet_tp(current_pet_tp)
+	if (current_pet_tp < 1000) then can_pet_ws = false else can_pet_ws = true end
+end
+
+function ui:update_pet_mp(new_pet_mp)
+	current_pet_mp = new_pet_mp
+end
+
 local function check_disable(database, action)
     local current_mp = windower.ffxi.get_player().vitals.mp
 
@@ -1148,6 +1163,10 @@ local function check_disable(database, action)
             elseif action.type == 'ws' and can_ws == false then
                 ui.disabled_slots.actions[action.action] = true
                 return true
+            elseif database[action.type][(action.action):lower()].id == "102" and not can_pet_ws then
+                -- disable sic when pet tp low
+                ui.disabled_slots.actions[action.action] = true
+                return true
             else
                 ui.disabled_slots.actions[action.action] = false
                 return false
@@ -1168,8 +1187,6 @@ end
 function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, slot)
 	local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. slot]
 	local is_disabled = check_disable(database, action)
-    
-    
 
     -- Disable Check --
     if action == nil then
@@ -1184,23 +1201,43 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
 		local action_recasts = nil
 		local in_cooldown = false
 		local is_in_seconds = false
+        local bst_charge = {}  -- hold data on bst charges
+        local recast_time = 0
+
 		-- if its magic, look for it in spells
 		if (action.type == 'ja' or action.type == 'ma') then
 			skill = database[action.type][(action.action):lower()]
 			action_recasts = self.recasts[action.type]
 		end
 
-		--check if skill is in cooldown
-		if skill ~= nil and action_recasts[tonumber(skill.icon)] ~= nil and action_recasts[tonumber(skill.icon)] > 0 then    
+        if skill ~= nil and skill.prefix == '/pet' and skill.type == 'Monster' then
+            --bstpet abilities "cooldown" depends on if charges exist
+            bst_charge.ready_cooldown = windower.ffxi.get_ability_recasts()[102]   -- all pet abilities share sic/ready cooldown
+            bst_charge.max_charge_time = bst_charge_time * 3
+            bst_charge.charges = math.floor((bst_charge.max_charge_time - bst_charge.ready_cooldown) / bst_charge_time)
+
+            --if we have enough charges then its not on "cooldown"
+            if bst_charge.charges >= skill.mpcost then
+                in_cooldown = false
+            else
+                self.disabled_slots.on_cooldown[action.action] = true
+                in_cooldown = true
+                -- determine remaining time to get enough charges
+                local required_charges = skill.mpcost - bst_charge.charges
+                recast_time = required_charges * bst_charge_time - (bst_charge_time - (bst_charge.ready_cooldown % bst_charge_time))
+            end
+        elseif skill ~= nil and action_recasts[tonumber(skill.icon)] ~= nil and action_recasts[tonumber(skill.icon)] > 0  then 
+            --check if skill is in cooldown
             self.disabled_slots.on_cooldown[action.action] = true
-			in_cooldown = true
+            in_cooldown = true
+            recast_time = action_recasts[tonumber(skill.icon)]
         else
             in_cooldown = false
 		end
 
-		if in_cooldown == true then
 
-            local recast_time = calc_recast_time(action_recasts[tonumber(skill.icon)], action.type)
+		if in_cooldown == true then
+            local recast_time = calc_recast_time(recast_time, action.type)
             show_recast(ui, row, slot, recast_time)
             disable_slot(self, row, slot, action)
         elseif is_disabled == true then
@@ -1413,5 +1450,7 @@ end
     Register events
 ]]--
 windower.register_event('incoming chunk', update_buffs)
+
+
 
 return ui

@@ -56,7 +56,7 @@ function player:get_hotbar_info()
 	local hotbar = action_manager.hotbar 
 	local active_environment = action_manager.hotbar_settings.active_environment
 	local vitals = windower.ffxi.get_player().vitals
-	return hotbar, active_environment, vitals
+    return hotbar, active_environment, vitals
 end
 
 -- initialize player
@@ -88,7 +88,6 @@ end
 
 -- update pet
 function player:update_pet(name)
-    --print("updating pet to " .. name)
     self.pet_name = name
 end
 

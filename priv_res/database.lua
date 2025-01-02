@@ -182,6 +182,8 @@ function database:parse_abilities_lua()
 		new_abil.cast    = tostring(0)
 		new_abil.recast  = tostring(0)
 		new_abil.element = tostring(contents[key].element)
+        new_abil.prefix  = contents[key].prefix  -- useful to detect pet abilities
+        new_abil.type    = contents[key].type    -- useful to detect pet abilities
 
         self.ja[(new_abil.name):lower()] = new_abil
     end

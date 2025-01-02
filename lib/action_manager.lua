@@ -240,9 +240,6 @@ local function add_action(am, action, environment, hotbar, slot)
     end
 end
 
-
-
-
 local function fill_table(file_table, file_key, actions_table)
 	-- Slot_key is 'battle 1 2' in a job/general file.
     -- file_table is each slot that contains a list of string. Example (First Key): file_table = {'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure'}
@@ -272,6 +269,10 @@ end
 
 function action_manager:update_stance(buff_id)  
 	current_stance = buff_id
+end
+
+function action_manager:get_stance()  
+	return current_stance or ""
 end
 
 -- create a default hotbar
@@ -431,13 +432,13 @@ function action_req_check(action_array)
     elseif action_array[2] == 'macro' then
         return true
     elseif action_array[2] == 'gs' then
-       
         return true
     else
         return false
     end
 
 end
+
 function check_spell_level(spell_name_en)
     for key,val in pairs(spells) do
         if spells[key]['en'] == spell_name_en then
@@ -468,7 +469,6 @@ function check_if_spell_learned(spell_name_en)
 
     return false
 end
-
 
 function check_if_ability_learned(ability_name_en)
    
@@ -542,7 +542,7 @@ local function parse_binds(theme_options, player, hotbar)
         end
     end
 
-    -- Create Pet Abilities List for BST pet command
+    -- Create Pet Abilities List specifically for the 'bstpet' command
     pet_abilities = ability_list
     for key,val in pairs(windower.ffxi.get_abilities().job_abilities) do
         for k,v in pairs(abilities) do
@@ -588,7 +588,6 @@ local function parse_binds(theme_options, player, hotbar)
 	end
 
     -- PET NAME -- FILL TABLE
-    --print("weee " .. player.pet_name)
 	if (hotbar[player.pet_name] ~= nil) then
 		for key, val in pairs(hotbar[player.pet_name]) do
             if action_req_check(hotbar[player.pet_name][key]) == true then 

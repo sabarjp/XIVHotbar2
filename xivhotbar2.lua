@@ -114,6 +114,10 @@ function initialize()
 	
 	ui:update_mp(current_mp)
 	ui:update_tp(current_tp)
+	local pet = windower.ffxi.get_mob_by_target('pet') or nil	
+	if pet ~= nil then
+		player:update_pet(pet.name)
+	end
     player:initialize(windower_player, server, theme_options)
     player:load_hotbar()
     keyboard:bind_keys(theme_options.rows, theme_options.columns)
@@ -152,21 +156,27 @@ end
 function reload_hotbar()
 	
 	coroutine.sleep(1)
-	
+	local pet = windower.ffxi.get_mob_by_target('pet') or nil
+	local pet_name = ''
+	if pet ~= nil then
+		pet_name = pet.name
+	end
+
 	if resources.jobs[windower.ffxi.get_player().sub_job_id] == nil then -- If character has no subjob
 		ui:update_mp(windower.ffxi.get_player().vitals.mp)
 		ui:update_tp(windower.ffxi.get_player().vitals.tp)
 		player:update_job(resources.jobs[windower.ffxi.get_player().main_job_id].ens, 'NON')
 		player:update_level(windower.ffxi.get_player().main_job_level,0)
+		player:update_pet(pet_name)
 	else
 		ui:update_mp(windower.ffxi.get_player().vitals.mp)
 		ui:update_tp(windower.ffxi.get_player().vitals.tp)
 		player:update_job(resources.jobs[windower.ffxi.get_player().main_job_id].ens, resources.jobs[windower.ffxi.get_player().sub_job_id].ens)
 		player:update_level(windower.ffxi.get_player().main_job_level,windower.ffxi.get_player().sub_job_level)
+		player:update_pet(pet_name)
 	end
 	player:load_hotbar()
    	ui:load_player_hotbar(player:get_hotbar_info())
-	
 end
 
 
@@ -523,13 +533,10 @@ windower.register_event('incoming chunk', function(id,data,modified)
 		ui:hide()
 	elseif zoning and id == 0x0AA then --0x0CA might also work here. 
 		zoning = false
+		main_job = windower.ffxi.get_player().main_job
 		if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
 		ui.hotbar.hide_hotbars = false
 		ui:show(player:get_hotbar_info())
-		if windower.ffxi.get_player().main_job == 'BST' then
-			-- update bar for bst
-			player:update_pet('')
-		end
 		reload_hotbar()
 	end
 	
@@ -728,18 +735,13 @@ end
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
 	
 		local packet = packets.parse('incoming', original)
+		local main_job = windower.ffxi.get_player().main_job
 		if id == 0x068 and pet_dead_update == true then -- Pet Status Packet Update
 			if packet['Owner ID'] == player.id then -- If player.id and pet owner ID are the same
 				if packet['Pet Index'] == 0 then -- If there is no pet. Meaning it died or was released.
 					if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
 					pet_dead_update = false
-					if windower.ffxi.get_player().main_job == 'BST' then
-						-- update bar for bst
-						player:update_pet('')
-					end
-					if windower.ffxi.get_player().main_job == 'PUP' then
-						-- update bar for pup
-					end
+					coroutine.sleep(.1)
 				    reload_hotbar()
 				end
 			end
@@ -758,29 +760,38 @@ local function successful_summon(summon_name)
 	
 end
 
+
 --This event is confirming that pet summons cast are not cancel/interupted and pet was succesfully summoned before updating the hotbar with specific pet abilities
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
 	if state.ready == true then
 		local packet = packets.parse('incoming', original)
+		local main_job = windower.ffxi.get_player().main_job
 		if id == 0x068 and no_pet == true then -- If the second pet update packet comes in
 			if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
 				if packet['Pet Index'] ~= 0 then -- If the pet has an index of non zero then pet summoned succesfully
 					if ui.theme.dev_mode then log("Pet Summoned " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
-					if windower.ffxi.get_player().main_job == 'BST' then
-						-- update bar for bst
-						player:update_pet(packet['Pet Name'])
-					end
-					if windower.ffxi.get_player().main_job == 'PUP' then
-						-- update bar for pup
-					end
-					successful_summon(packet['Pet Name'])
 					no_pet = false
+					coroutine.sleep(.1)
+					reload_hotbar()
 				end
 			end
 			--no_pet = false
 			--return
 		elseif packet['Pet Index'] == 0 then
 			no_pet = true
+		end
+	end	
+end)
+
+--Pet status update
+windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
+	if state.ready == true then
+		local packet = packets.parse('incoming', original)
+		if id == 0x068 then
+			if packet['Owner ID'] == windower.ffxi.get_player().id then 
+				ui:update_pet_tp(packet['Pet TP'])
+				ui:update_pet_mp(packet['Current MP%'])
+			end
 		end
 	end	
 end)

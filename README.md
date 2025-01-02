@@ -1,55 +1,16 @@
-##  Notice: HorizonXI Specifics
-
-Due to the HorizonXI private server changing the level requirements for some spells/abilities, this is going to cause conflicts with this addon.
-
-Currently as it stands right now I do believe the only issue will be with the level of spells changing. To combat this problem I have added a setting to the settings.xml 'PlayingOnHorizon'. This is false by default so as to not effect people who play elsewhere. If you play on horizon set this true!
-
-Setting 'PlayingOnHorizon' to true will tell addon to look at the horizon_spells.lua instead of spells.lua in the priv_res folder. This horizon_spells.lua file will need to be manually updated to reflect new levels of spells. I will update this as new levels are discovered and reported and push them to git as I find them. Then you can download and replace the old horizon_spells.lua. If you need to update this more urgently then you can also do this yourself. If you do this yourself be sure to change the level of the spell in the horizon_spells.lua that corresponds with the correct job_id. The top of the file has a list of all the job id's.  
-
-For example, if HorizonXI were to give Cure 1 to RDM at level 1 instead of level 3. You would determine RDM's Job ID # by looking at the top of the horizon_spells file. RDM Job ID is 5 so we would edit the value after the number 5 that is in brackets '[5]'.
-```lua
-Before
-{id=1,en="Cure",ja="ケアル",cast_time=2,element=6,icon_id=86,icon_id_nq=6,levels={[3]=1,[5]=3,[7]=5,[20]=5},mp_cost=8,prefix="/magic",range=12,recast=5,recast_id=1,requirements=1,skill=33,targets=63,type="WhiteMagic"},
-
-After
-{id=1,en="Cure",ja="ケアル",cast_time=2,element=6,icon_id=86,icon_id_nq=6,levels={[3]=1,[5]=1,[7]=5,[20]=5},mp_cost=8,prefix="/magic",range=12,recast=5,recast_id=1,requirements=1,skill=33,targets=63,type="WhiteMagic"},
-```
-
-
-Also some HorizonXI Custom Created Weapons have issues with Weaponswitching. Such as the Onion Greataxe. 
 ## Introduction
+This forked project continues the work of Technyze, SirEdeonX, and Akirane. It mainly contains features/bug fixes for retail FF11.
 
-First off, let me say that I absolutely love XIVHotbar and really appreciate the work that SirEdeonX and Akirane did. However, there were a few bugs that needed fixing and some features I wished it had, but it seems that project is no longer supported. That being said this is a heavily modified version of xivhotbar. I originally wanted to fix a few bugs and change some minor things, but one thing led to another and I ended up fixing a lot and adding several nice features. My initial intention was to do this for personal use, but now that I have added so much I want to make it public and see if anyone else likes what I have done. Thus, XIVHotbar2!
 
-Additionally, I also wanted to have this public so that it could get approved for a private server [HorizonXI.com](https://horizonxi.com/). Go check it out! 
+# Features
 
-## Why XIVHotbar2?
+## Hide Unusable skills
 
-While a considerable portion of this addon is the original code/design by SirEdeonX and Akirane. I have made some strict changes, including major features (see below) that have no enable/disable toggle and are forced. Additionally, I pretty much exclusively play 75 cap era private servers, and thus many design decisions have this in mind. Therefore, previous xivhotbar users might find that this addon is not for them.
-
-Please note, I have only tested this addon on private servers so there may be issues if this is used on retail. However, most of the private servers I have played on use the retail client. The bigger issue is potential problems with content beyond level 75. Please let me know of any issues you experience using this addon on retail.<br>
-<br>
-
-# New Features
-
-## Level Sync and Level Cap
-
-This is the main feature I wanted to add. Often on era private servers you are level syncing in parties or in level capped zones. It can be a bit annoying to constantly remember what spells and abilities you have available to you under capped level conditions. Thus, when being level sync'd or being in a level capped zone, any skill, ability, or weaponskill that is no longer available to you will be removed from the hotbar until the sync conditions are removed. 
+Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.
 
 Zoning into Promyvion-Dem (Level 30 Cap)           		|  Level Syncing to Level 40
 :-------------------------:								|:-------------------------:
 ![Level Capped Zone](images/readme/LevelCappedZone.gif) | ![Level Sync](images/readme/LevelSync.gif)
-
-## Unlearned Spells and Unacquired Abilities/Weaponskills:
-
-**Spells:**
-Previously, spells setup on the hotbar in a JOB.lua file that were not yet learned in-game would still show up on the hotbar and appear lit up and useable. Now in this situation spells will appear dimmed until they are learned. Additionally a glowing scroll icon will be overlayed in the top right of the icon. Upon learning a spell the spell will immediately appear lit and be useable and the scroll icon will disappear. Please note that when a player has not met the level requirement for a spell it will not show up on the hotbar at all. Also, the scroll icon can be disabled in the settings.
-
-Using a Scroll of Cure IV -> Scroll of Dia -> Scroll of Dia II. | <br>
-:-------------------------:	| :-------------------------:
-![Learning Spell](images/readme/LearningSpell.gif) |
-
-You may notice that when using the Scroll of Dia the (C-1) slot's name changes from "Dia II" to "Dia" and the scroll icon remains. This is explained below in the "Spells Sharing Hotbar Slots" and "Spell Learning Notificaiton" sections.
 
 **Abilities:**
 If an ability is added to a JOB.lua file it will not appear on the hotbar until the player has reached the required level to obtain the ability. In level capped situation if you lose access to the ability it will disappear from the hotbar.
@@ -57,51 +18,118 @@ If an ability is added to a JOB.lua file it will not appear on the hotbar until 
 **Weaponskills:**
 If a weaponskill is added to a JOB.lua file it will not show up on the hotbar unless that weaponskill has been learned in-game. In level capped situations if you lose access to the weaponskill it will disappear from the hotbar.
 
+## Dimmed Skills
 
-## Spells Sharing Hotbar Slots:
+**Spells**
+Spells on cooldown or that you do not have enough MP to cast will be dimmed.
 
-Another feature I wanted to add was having one hotbar slot hold multiple spells which would display depending on priority and level. For example, Dia is a commonly used spell, but once Dia II is acquired it is not used quite as often. Thus, when setup properly in the JOB.lua file Dia II will take priority over the slot Dia was originally in once you reach the appropriate level for Dia II, and assuming Dia II has been learned. 
+**Weaponskills**
+Weapon skills will be dimmed until you have enough TP.
 
-In order to set this up simply add all levels of a spell to the JOB.lua file with the same slot specified, in descending order of importance as seen below. By importance, I do not necessarily mean in order of highest tier to lowest tier of the same family of spell. This should still work fine with any combination of spells in any order, although I am not sure I see a reason to do this. The main purpose of this feature is to allow a higher tier spell to replace a lower tier spell once the higher tier spell has been acquired.
+**Abilities**
+Abilities on cooldown will be dimmed.
+
+## Unlearned Spells:
+Spells that are on the bar, but not known yet, are dimmed and have an icon to indicate they can be learned.
+
+Using a Scroll of Cure IV -> Scroll of Dia -> Scroll of Dia II. | <br>
+:-------------------------:	| :-------------------------:
+![Learning Spell](images/readme/LearningSpell.gif) |
+
+## Sharing Hotbar Slots:
+Abilities that share a hotbar slot will auto-select the first usable ability. For example, if Stone V and Stone IV share the same hotbar slot, then Stone V will have priority to appear, (unless it cannot be used due to level/etc), then Stone IV will appear instead, and so on.
  
 ![Tiered Spells](images/readme/TieredSpells.png)
 
-This works seamlessly with the level sync feature above as well. For example, syncing down to level 30 will turn Dia II (Level 31) back into Dia as you can see in the image above when zoning into Promyvion-Dem.
+This works seamlessly with the level syncing. For example, syncing down to level 30 will turn Dia II (Level 31) back into Dia as you can see in the image above when zoning into Promyvion-Dem.
 
 ## Spell Learning Notification
-
 As mentioned earlier, when a player has a spell setup on their hotbar, and are high enough level to use that spell, but have not learned that spell yet a small glowing scroll icon will appear in the top right corner of the spell. This disappears once learning that spell.
  
 The icon below is dimmed because the player is high enough level to use Cure 4 but has not learned it yet, additionally the scroll icon is displayed. <br>
 ![Scroll Icon 1](images/readme/scroll1.png)
 
-Furthermore, in reference to when spells have been setup in the same slots ("Spells Sharing Hotbar Slots" section) the glowing scroll icon will appear if any spell setup on that slot has not been learned yet (This only refers to spells you meet the level requirement for). Regardless if it is a spell above or below (in the JOB.lua) the current spell being displayed. Once all spells setup on that slot have been learned the glowing scroll icon will disappear. For example, in the image above showing the four levels of protect setup on the same slot, if you are not high enough level to learn protect 3 and protect 4, but you have learned protect, and protect 2 then there will be no scroll icon displayed until you've reached the appropriate level for protect 3.
-
 The icon below is lit up because the player has learned Dia and this slot is currently useable to cast Dia. However, Dia 2 is  also setup on this slot as well and the player is high enough level to obtain it, but has not learned it yet, so there is a scroll icon on it. <br>
 ![Tiered Spells](images/readme/scroll2.png)
 
-# Improved Features
+## Weaponswitching and Weaponskills:
+Hotbar skills can be conditionally bound based on equipped weapon. Note that this MUST be enabled in the settings.xml, and this is OFF BY DEFAULT since it can behave with some bugs.
 
-## Summoner Changes:
+Example
+```
+-- only show if a weapon is equipped
+xivhotbar_keybinds_job['Sword'] = {
+  {'battle 1 1', 'ws', 'Fast Blade', 't', 'FastBlade'},
+}
+```
 
-I ran into several issues with the summoner feature that was added to XIVHotbar such as the summons abilities getting out of sync and other various things.
+Note: Occasionally weapons and hotbar weaponskills might get out of sync. Easy fix for this is to unequip the weapon and reequip it.
 
-Now, a summon's abilities will only show up on the hotbar when the summon is successfully summoned. Additionally, the abilities will remove themself from the hotbar when the pet is released, dies or mp is insufficient. Also, pet commands: release, attack etc. do not appear on hotbar unless a summon is present.
+Note: If playing Ranger, XIVHotbar2 with prioritize weapon changes to the range slot over main slot. This is a temporary solution to allow rangers to use weaponswitching with Marksmanship and Archery and not have their main hand weapons interfere. 
+
+# Pet Jobs
+
+## Summoner
+A summon's abilities will only show up on the hotbar when the summon is successfully summoned. Additionally,  abilities will remove themself from the hotbar when the pet is released, dies or mp is insufficient. Also, pet commands: release, attack etc. do not appear on hotbar unless a summon is present.
 
 Summoning Garuda -> Using Hastega -> Releasing Garuda | <br>
 :-------------------------:	| :-------------------------:
 ![Summoning](images/readme/Summoning.gif)
 
-** All Blood Pact: Ward abilities share a cooldown and All Blood Pact: Rage abilities share a cooldown on the hotbar.<br>
+** All Blood Pact: Ward abilities share a cooldown and All Blood Pact: Rage abilities share a cooldown on the hotbar.
 ** Pet commands do not show up on hotbar unless player has an active pet.
+** If the hotbar slot uses `ja` to cast a pet ability, then it only show on the bar if its a usable skill.
+** If the hotbar slot uses `pet` to cast a pet ability, then it will always show on the bar, regardless if its a usable skill.
 
-** Beastmaster: Most of this applies to beastmaster pets as well. Although not as thoroughly tested. Please see the known issues below for a note about beastmaster actions in regards to this hotbar.
+Example:
+```
+-- only binds these slots if Carbuncle is out
+xivhotbar_keybinds_job['Carbuncle'] = {
+	-- uses ja, only appears on the bar if carbuncle knows the skill and you are the right level
+	{'battle 1 2', 'ja',  'Healing Ruby II', 'stpc', 'Heal2', 'summons/carbuncle'},
+	-- uses pet, always appears on the bar
+	{'battle 1 2', 'pet',  'Healing Ruby II', 'me', 'Heal2', 'summons/carbuncle'},
+}
+```
 
-## Weaponswitching and Weaponskills:
+NOTE: When reloading the hotbar, the game loses track of your summoned pet. When it engages an enemy or is re-summoned, it should re-detect.
 
-The weaponswitching feature that previously existed was a great idea, but I ran into several issues with it. It should work much better now with the added benefit of weaponskills not showing up on hotbar if they have not been learned yet. Occasionally weapons and hotbar weaponskills might get out of sync. Easy fix for this is to unequip the weapon and reequip it.
+## Beastmaster
+A beastmaster's pet abilities will only show up on the hotbar when the pet is successfully called or charmed. Additionally, abilities will remove themself from the hotbar when the pet is released, dies, or lost through zoning. Also, pet commands: release, attack etc. do not appear on hotbar unless a pet is present.
 
-Note: If playing Ranger, XIVHotbar2 with prioritize weapon changes to the range slot over main slot. This is a temporary solution to allow rangers to use weaponswitching with Marksmanship and Archery and not have their main hand weapons interfere. <br>
+** Pet commands do not show up on hotbar unless player has an active pet.
+** If the hotbar slot uses `bstpet` to cast a pet ability, then it only show on the bar if its a usable skill. `bstpet` is a special macro action for beastmaster, and will automatically change the icon and tooltip to match whatever the beastmaster jug pet knows.
+** If the hotbar slot uses `ja` to cast a pet ability, then it only show on the bar if its a usable skill.
+** If the hotbar slot uses `pet` to cast a pet ability, then it will always show on the bar, regardless if its a usable skill.
+
+Example:
+```
+-- always show these bindings
+xivhotbar_keybinds_job['Base'] = {
+	-- bstpet will automagically show the correct skills on the bar for different jug pets
+	{'battle 1 1', 'bstpet', '1', 'me', 'Ability 1'},
+	{'battle 1 2', 'bstpet', '2', 'me', 'Ability 2'},
+	{'battle 1 3', 'bstpet', '3', 'me', 'Ability 3'},
+	{'battle 1 4', 'bstpet', '4', 'me', 'Ability 4'},
+	{'battle 1 5', 'bstpet', '5', 'me', 'Ability 5'},
+	{'battle 1 6', 'bstpet', '6', 'me', 'Ability 6'},
+	-- uses pet, always appears on the bar
+	{'battle 1 7', 'pet',  'Foot Kick', 'me', 'Kick'},
+}
+
+-- only show these bindings for the "Carrot Broth" jug pet
+xivhotbar_keybinds_job['HareFamiliar'] = {
+	{'battle 1 1', 'ja', 'Wild Carrot', 'me', 'Carrot'},
+}
+
+-- only show these bindings if charming the monster named "Pugil"
+xivhotbar_keybinds_job['Pugil'] = {
+	{'battle 1 1', 'ja', 'Sic','me', 'Sic'},
+}
+```
+
+NOTE: When reloading the hotbar, the game loses track of your pet. When it engages an enemy, it should re-detect.
+
 
 # Getting Started
 The below image is the default layout and positioning on a game running in 1080p. Most of this layout can be adjusted in the settings.xml. <br>
