@@ -34,6 +34,7 @@ player.name = ''
 player.main_job = ''
 player.sub_job = ''
 player.server = ''
+player.pet_name = ''
 
 player.main_job_level = 0
 player.sub_job_level = 0
@@ -83,6 +84,12 @@ function player:update_job(main, sub)
     self.main_job = main
     self.sub_job = sub
 	action_manager:update_file_path(player.name, player.main_job)
+end
+
+-- update pet
+function player:update_pet(name)
+    --print("updating pet to " .. name)
+    self.pet_name = name
 end
 
 -- update player level

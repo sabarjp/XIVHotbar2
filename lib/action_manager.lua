@@ -5,6 +5,7 @@
         Redistribution and use in source and binary forms, with or without
         modification, are permitted provided that the following conditions are met:
 
+    
             * Redistributions of source code must retain the above copyright
               notice, this list of conditions and the following disclaimer.
             * Redistributions in binary form must reproduce the above copyright
@@ -37,6 +38,7 @@ local job_root = {}
 local action_manager = {}
 local mainjob_actions = {}
 local subjob_actions = {}
+local petname_actions = {}
 local general_actions = {}
 local stance_actions = {}
 local job_ability_actions = {}
@@ -45,6 +47,7 @@ local current_stance = nil
 local learned_spells_name = {}
 local learned_ws_id = {}
 local learned_abilities_id = {}
+local usable_pet_abilities_name = {}
 not_learned_spells = {}
 not_learned_spells_row_slot = {}
 tier_list = {}
@@ -72,6 +75,7 @@ buff_table = {
 
 weaponskill_actions.xivhotbar_keybinds_job = {}
 subjob_actions.xivhotbar_keybinds_job = {}
+petname_actions.xivhotbar_keybinds_job = {}
 
 action_manager.theme_options = {}
 action_manager.hotbar = {}
@@ -182,6 +186,7 @@ end
 function action_manager:init_action_tables()
     init_action_table(mainjob_actions)
     init_action_table(subjob_actions)
+    init_action_table(petname_actions)
     init_action_table(weaponskill_actions)
     init_action_table(general_actions)
     init_action_table(stance_actions)
@@ -243,6 +248,14 @@ local function fill_table(file_table, file_key, actions_table)
     -- file_table is each slot that contains a list of string. Example (First Key): file_table = {'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure'}
     -- file_key is the number for that slot. Example (First Key): 1
 	local slot_key = T(file_table[1]:split(' ')) -- Splits 'battle 1 1' into a list {'battle','1','1'}
+
+    -- convert bst cmds to real cmds
+    if (file_table[2] == "bstpet") then
+        local ability_name = usable_pet_abilities_name[tonumber(file_table[3])]
+        file_table[2] = "ja"
+        file_table[3] = ability_name
+        file_table[5] = ability_name
+    end
 
 	actions_table.environment[file_key] = slot_key[1] --environment is either battle or field
 	actions_table.hotbar[file_key]      = slot_key[2] --hotbar number
@@ -401,6 +414,11 @@ function action_req_check(action_array)
             return true
         end
         return false
+    elseif action_array[2] == 'bstpet' then
+        if check_if_pet_ability_usable(action_array[3]) == true then
+            return true
+        end
+        return false
     elseif action_array[2] == 'ws' then
         if check_if_ws_learned(action_array[3]) == true then
             return true
@@ -466,6 +484,15 @@ function check_if_ability_learned(ability_name_en)
     end
 end
 
+function check_if_pet_ability_usable(ability_index)
+    -- really just need to see if index exists
+    local ndx = tonumber(ability_index)
+    if ndx >= 1 and ndx <= #usable_pet_abilities_name then
+        return true
+    end
+    return false
+end
+
 function check_if_ws_learned(ws_name_en)
    
     for key,val in pairs(ws_list) do
@@ -486,6 +513,7 @@ local function parse_binds(theme_options, player, hotbar)
     learned_spells_name = {}
     learned_ws_id = {}
     missing_actions = {}
+    usable_pet_abilities_name = {}
 
     -- Create Learned Spells List
     if theme_options.playing_on_horizon == true then
@@ -510,6 +538,20 @@ local function parse_binds(theme_options, player, hotbar)
         for k,v in pairs(abilities) do
             if val == k then
                 table.insert(learned_abilities_id,abilities[k]['id'])  
+            end
+        end
+    end
+
+    -- Create Pet Abilities List for BST pet command
+    pet_abilities = ability_list
+    for key,val in pairs(windower.ffxi.get_abilities().job_abilities) do
+        for k,v in pairs(abilities) do
+            if val == k then
+                if abilities[k]['prefix'] == "/pet" then
+                    if abilities[k]['type'] ~= "PetCommand" then
+                        table.insert(usable_pet_abilities_name,abilities[k]['en'])  
+                    end
+                end 
             end
         end
     end
@@ -545,6 +587,21 @@ local function parse_binds(theme_options, player, hotbar)
 		subjob_actions = {}
 	end
 
+    -- PET NAME -- FILL TABLE
+    --print("weee " .. player.pet_name)
+	if (hotbar[player.pet_name] ~= nil) then
+		for key, val in pairs(hotbar[player.pet_name]) do
+            if action_req_check(hotbar[player.pet_name][key]) == true then 
+			    fill_table(hotbar[player.pet_name][key], key, petname_actions)
+            end
+		end
+    else
+		for key, val in pairs(petname_actions.environment) do
+			self:remove_action()
+		end
+		petname_actions = {}
+	end
+
     -- STANCE -- FILL TABLE
     if (hotbar[buff_table[current_stance]] ~= nil) then
         local stance_table = hotbar[buff_table[current_stance]]
@@ -556,7 +613,9 @@ local function parse_binds(theme_options, player, hotbar)
     end
 
     -- WEAPON SWITCHING -- FILL TABLE
+    --print(theme_options.enable_weapon_switching)
 	if (theme_options.enable_weapon_switching == true) then
+        --print(weaponskill_types[player.current_weapon])
 		if (weaponskill_types[player.current_weapon] ~= nil) then
 			if (hotbar[weaponskill_types[player.current_weapon]] ~= nil) then
 				for key, val in pairs(hotbar[weaponskill_types[player.current_weapon]]) do 
@@ -767,6 +826,9 @@ function action_manager:load(player)
     action_manager:add_actions(mainjob_actions)
     if (subjob_actions.environment ~= nil) then
         action_manager:add_actions(subjob_actions)
+    end
+    if (petname_actions.environment ~= nil) then
+        action_manager:add_actions(petname_actions)
     end
     if (stance_actions.environment ~= nil) then
         action_manager:add_actions(stance_actions)

@@ -502,8 +502,6 @@ windower.register_event('login', function()
 end)
 
 
-
-
 windower.register_event('action', function(act)
 	if state.ready == true then
 		if (act.param == 211 or act.param == 212) then 
@@ -514,9 +512,6 @@ windower.register_event('action', function(act)
 		end
 	end
 end)
-
-
-
 
 
 -- Reloads hotbar when zoning
@@ -531,11 +526,14 @@ windower.register_event('incoming chunk', function(id,data,modified)
 		if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
 		ui.hotbar.hide_hotbars = false
 		ui:show(player:get_hotbar_info())
+		if windower.ffxi.get_player().main_job == 'BST' then
+			-- update bar for bst
+			player:update_pet('')
+		end
 		reload_hotbar()
 	end
 	
 end)
-
 
 
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
@@ -554,10 +552,10 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 		if slot == 0 or (slot == 2 and on_rng) then
 			local inv_index = packet['Inventory Index']
 			local inv_bag = packet['Inventory Bag']
-			-- print("Inv Index: ", inv_index)
-			-- print("Inv Bag: ", inv_bag)
+			--print("Inv Index: ", inv_index)
+			--print("Inv Bag: ", inv_bag)
 			-- coroutine.sleep(6)
-			-- print(resources.items[windower.ffxi.get_items(inv_bag, inv_index).id].skill)
+			--print(resources.items[windower.ffxi.get_items(inv_bag, inv_index).id].skill)
 			if inv_index ~= 0 then
 				if windower.ffxi.get_player().main_job == 'RNG' then
 					inv_index = windower.ffxi.get_items().equipment.range
@@ -592,9 +590,10 @@ end)
 function get_weapon_type(bag,index)
 	
 	if zoning then
-		coroutine.sleep(6)
+		coroutine.sleep(10)
 	end
 
+	--print(resources.items[windower.ffxi.get_items(bag, index).id].skill)
 	new_skill_type = resources.items[windower.ffxi.get_items(bag, index).id].skill 
 	if theme_options.enable_weapon_switching == true then
 		if new_skill_type ~= nil then 
@@ -734,6 +733,13 @@ windower.register_event('incoming chunk', function(id,original,modified,injected
 				if packet['Pet Index'] == 0 then -- If there is no pet. Meaning it died or was released.
 					if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
 					pet_dead_update = false
+					if windower.ffxi.get_player().main_job == 'BST' then
+						-- update bar for bst
+						player:update_pet('')
+					end
+					if windower.ffxi.get_player().main_job == 'PUP' then
+						-- update bar for pup
+					end
 				    reload_hotbar()
 				end
 			end
@@ -759,7 +765,14 @@ windower.register_event('incoming chunk', function(id,original,modified,injected
 		if id == 0x068 and no_pet == true then -- If the second pet update packet comes in
 			if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
 				if packet['Pet Index'] ~= 0 then -- If the pet has an index of non zero then pet summoned succesfully
-					if ui.theme.dev_mode then log("Pet Summoned. Reloading Hotbar.") end
+					if ui.theme.dev_mode then log("Pet Summoned " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
+					if windower.ffxi.get_player().main_job == 'BST' then
+						-- update bar for bst
+						player:update_pet(packet['Pet Name'])
+					end
+					if windower.ffxi.get_player().main_job == 'PUP' then
+						-- update bar for pup
+					end
 					successful_summon(packet['Pet Name'])
 					no_pet = false
 				end
