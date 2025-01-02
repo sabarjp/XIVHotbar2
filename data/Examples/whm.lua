@@ -7,18 +7,21 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 1 3', 'ma', 'Cure III', 'stpc', 'Cure3'},
   {'battle 1 4', 'ma', 'Cure IV', 'stpc', 'Cure4'},
   {'battle 1 5', 'ma', 'Cure V', 'stpc', 'Cure5'},
-  {'battle 1 6', 'ma', 'Haste', 'stpc', 'Haste'},
+  {'battle 1 6', 'ma', 'Cure VI', 'stpc', 'Cure6'},
+  {'battle 1 7', 'ma', 'Haste', 'stpc', 'Haste'},
    --------------------------------------------------------------------------------------
-  {'battle 1 7', 'ma', 'Regen III', 'stpc', 'Regen3'},
-  {'battle 1 7', 'ma', 'Regen II', 'stpc', 'Regen2'},
-  {'battle 1 7', 'ma', 'Regen', 'stpc', 'Regen'},
+  {'battle 1 8', 'ma', 'Regen IV', 'stpc', 'Regen4'},
+  {'battle 1 8', 'ma', 'Regen III', 'stpc', 'Regen3'},
+  {'battle 1 8', 'ma', 'Regen II', 'stpc', 'Regen2'},
+  {'battle 1 8', 'ma', 'Regen', 'stpc', 'Regen'},
    --------------------------------------------------------------------------------------
-   {'battle 1 8', 'ma', 'Flash', 'stnpc', 'Flash'},
+  {'battle 1 9', 'ma', 'Flash', 'stnpc', 'Flash'},
 
-   
-  {'battle 1 10', 'ja', 'Afflatus Solace', 'me', 'Solace'},
-  {'battle 1 11', 'ja', 'Afflatus Misery', 'me', 'Misery'},
-  {'battle 1 12', 'macro', 'input /item "Ginger Cookie" <me>;wait 2;input /heal', '', 'Cookie', 'item'},
+  {'battle 1 10', 'ma', 'Cura III', 'me', 'Cura3'},
+  {'battle 1 10', 'ma', 'Cura II', 'me', 'Cura2'},
+  {'battle 1 10', 'ma', 'Cura', 'me', 'Cura'},
+  {'battle 1 11', 'ja', 'Afflatus Solace', 'me', 'Solace'},
+  {'battle 1 12', 'ja', 'Afflatus Misery', 'me', 'Misery'},
 
   
   
@@ -32,6 +35,7 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 2 7', 'ma', 'Erase', 'stpc', 'Erase'},
   {'battle 2 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
   --------------------------------------------------------------------------------------
+  {'battle 2 9', 'ma', 'Curaga V', 'stpc', 'Curaga5'},
   {'battle 2 9', 'ma', 'Curaga IV', 'stpc', 'Curaga4'},
   {'battle 2 9', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
   {'battle 2 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
@@ -63,7 +67,7 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 3 2', 'ma', 'Paralyze', 'stnpc', 'Paralyze'},
   {'battle 3 3', 'ma', 'Slow', 'stnpc', 'Slow'},
   {'battle 3 4', 'ma', 'Silence', 'stnpc', 'Silence'},
-  {'battle 3 5', 'ma', 'Repose', 'stnpc', 'Repose'},
+  {'battle 3 5', 'ma', 'Addle', 'stnpc', 'Addle'},
 
 
   
@@ -76,16 +80,23 @@ xivhotbar_keybinds_job['Base'] = {
 
   {'battle 4 4', 'ma', 'Sneak', 'stpc', 'Sneak'},
   {'battle 4 5', 'ma', 'Invisible', 'stpc', 'Invisible'},
+
+  {'battle 4 7', 'ma', 'Repose', 'stnpc', 'Repose'},
   --------------------------------------------------------------------------------------
   {'battle 4 8', 'ma', 'Raise III', 'stpc', 'Raise3'},
   {'battle 4 8', 'ma', 'Raise II', 'stpc', 'Raise2'},
   {'battle 4 8', 'ma', 'Raise', 'stpc', 'Raise'},
   --------------------------------------------------------------------------------------
+  {'battle 4 9', 'ma', 'Arise', 'stpc', 'Arise'},
+  {'battle 4 10', 'ma', 'Full Cure', 'stpc', 'Full Cure'},
+  --------------------------------------------------------------------------------------
+  {'battle 4 11', 'ma', 'Protect V', 'stpc', 'Prot5'},
   {'battle 4 11', 'ma', 'Protect IV', 'stpc', 'Prot4'},
   {'battle 4 11', 'ma', 'Protect III', 'stpc', 'Prot3'},
   {'battle 4 11', 'ma', 'Protect II', 'stpc', 'Prot2'},
   {'battle 4 11', 'ma', 'Protect', 'stpc', 'Prot'},
   --------------------------------------------------------------------------------------
+  {'battle 4 12', 'ma', 'Shell V', 'stpc', 'Shell5'},
   {'battle 4 12', 'ma', 'Shell IV', 'stpc', 'Shell4'},
   {'battle 4 12', 'ma', 'Shell III', 'stpc', 'Shell3'},
   {'battle 4 12', 'ma', 'Shell II', 'stpc', 'Shell2'},
@@ -99,12 +110,15 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 5 4', 'ma', 'Barfira', 'me', 'Fira', 'Barfira'},
   {'battle 5 5', 'ma', 'Barblizzara', 'me', 'Blizzara', 'Barblizzara'},
   {'battle 5 6', 'ma', 'Barthundra', 'me', 'Thundra', 'Barthundra'},
+  {'battle 5 7', 'ma', 'Banish III', 'stnpc', 'Banish3'},
+  {'battle 5 7', 'ma', 'Banish II', 'stnpc', 'Banish2'},
   {'battle 5 7', 'ma', 'Banish', 'stnpc', 'Banish'},
-  {'battle 5 8', 'ma', 'Banish II', 'stnpc', 'Banish2'},
-  {'battle 5 9', 'ma', 'Banish III', 'stnpc', 'Banish3'},
-  {'battle 5 10', 'ma', 'Holy', 'stnpc', 'Holy'},
+  {'battle 5 8', 'ma', 'Holy II', 'stnpc', 'Holy2'},
+  {'battle 5 8', 'ma', 'Holy', 'stnpc', 'Holy'},
   
-  
+  {'battle 5 10', 'ma', 'Boost-VIT', 'me', 'VIT++'},
+  {'battle 5 11', 'ma', 'Boost-MND', 'me', 'MND++'},
+  {'battle 5 12', 'ma', 'Boost-CHR', 'me', 'CHR++'},
 
 
   -- Hotbar #6 (Shift + QWERTY-ASDFGH)
@@ -116,7 +130,12 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 6 5', 'ma', 'Barsilencera', 'me', 'Silencera', ''},
   {'battle 6 6', 'ma', 'Barvira', 'me', 'Bira', ''},
   {'battle 6 7', 'ma', 'Barpetra', 'me', 'Petra', ''},
-  
+  {'battle 6 7', 'ma', 'Baramnesra', 'me', 'Amnes', ''},
+
+  {'battle 6 9', 'ma', 'Boost-STR', 'me', 'STR++'},
+  {'battle 6 10', 'ma', 'Boost-AGI', 'me', 'AGI++'},
+  {'battle 6 11', 'ma', 'Boost-DEX', 'me', 'DEX++'},
+  {'battle 6 12', 'ma', 'Boost-INT', 'me', 'INT++'},
  }
 
 
