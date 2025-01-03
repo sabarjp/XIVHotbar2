@@ -172,6 +172,7 @@ function database:parse_abilities_lua()
     for key, abil in pairs(contents) do
 
         local new_abil   = {}
+        new_abil.oid     = tostring(contents[key].id)
 		new_abil.id      = tostring(contents[key].recast_id)
 		new_abil.icon    = new_abil.id
 		new_abil.name    = contents[key].en

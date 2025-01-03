@@ -128,7 +128,8 @@ xivhotbar_keybinds_job['Pugil'] = {
 }
 ```
 
-NOTE: When reloading the hotbar, the game loses track of your pet. When it engages an enemy, it should re-detect.
+NOTE: When reloading the hotbar, the game may lose track of your pet. When it engages an enemy, it should re-detect.
+NOTE: Jug pet recast works off charges. Right now the code assumes a 30 second charge build time, making this dynamic is a future change.
 
 
 # Getting Started

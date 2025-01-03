@@ -2,6 +2,7 @@
 -- Load and initialize the include file.
  xivhotbar_keybinds_job['Base'] = {
      
+
   -- Hotbar #1  Mostly Pet Damage
   	{'battle 1 1', 'ja', 'Assault','t', 'Attack'},
   	{'battle 1 2', 'ja', 'Retreat','me', 'Retreat'},
@@ -12,16 +13,17 @@
 	{'battle 1 11', 'ja', 'Mana Cede', 'me', 'Cede'},
 	{'battle 1 12', 'ws', 'Earth Crusher', 't', 'Crusher'},
 
-  -- Hotbar #2 Mostly Pet Utility - Action11 is always pet ult
+-- Hotbar #2 Mostly Pet Utility - Action11 is always pet ult
+
   	{'battle 2 12', 'ja', 'Astral Conduit', 'me', 'Conduit'},
 	
 	
   -- Hotbar #3 Mostly Subs
-  
-  
+
   -- Hotbar #4  Mostly Subs
   {'battle 4 11', 'ja', 'Release','me', 'Release'},
   {'battle 4 12', 'ja', 'Astral Flow','me', 'Astral','2hr'},
+
 
   -- Hotbar #5 Summons
   {'b 5 1', 'ma', 'Titan','me', 'Titan','summons/titan'},
@@ -36,6 +38,7 @@
   {'b 5 10', 'ma', 'Cait Sith','me', 'CaitSith'},
   {'b 5 11', 'ma', 'Siren','me', 'Siren'},
   {'b 5 12', 'ma', 'Atomos','me', 'Atomos'},
+
 
   -- Hotbar #6 Spirits
   {'b 6 1', 'ma', 'Earth Spirit','me', 'Earth', 'summons/earthspirit'},
@@ -69,8 +72,7 @@ xivhotbar_keybinds_job['Carbuncle'] = {
 
 	-- Ultimate
 	{'battle 2 11', 'ja',  'Searing Light', 't', 'Searing'},
-}
-
+  
 xivhotbar_keybinds_job['Cait Sith'] = {
 	-- 1, 3-7   2 , 1-11 available
 
@@ -322,8 +324,7 @@ xivhotbar_keybinds_job['WHM'] = {
 	{'battle 4 5', 'ma', 'Cursna', 'stpc', 'Cursna'},
 	{'battle 4 6', 'ma', 'Viruna', 'stpc', 'Viruna'},
 	{'battle 4 7', 'ma', 'Erase', 'stpc', 'Erase'},
-	{'battle 4 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'}, --------------------------------------------------------------------------------------
-	 --------------------------------------------------------------------------------------
+	{'battle 4 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
 	{'battle 4 10', 'ma', 'Reraise', 'me', 'Reraise'},
   }
 

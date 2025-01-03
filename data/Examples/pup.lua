@@ -3,67 +3,57 @@
  xivhotbar_keybinds_job['Base'] = {
      
   -- Hotbar #1 Primary JAs
-	{'battle 1 1', 'ja', 'Fight','t', 'Fight'},
-	{'battle 1 2', 'ja', 'Heel','me', 'Heel'},
-	{'battle 1 3', 'ja', 'Stay','me', 'Stay'},
-
-	{'battle 1 4', 'ja', 'Sic','me', 'Sic'},
-	{'battle 1 4', 'bstpet', '1', 'me', 'Pet 1'},
-	{'battle 1 5', 'bstpet', '2', 'me', 'Pet 2'},
-	{'battle 1 6', 'bstpet', '3', 'me', 'Pet 3'},
-	{'battle 1 7', 'bstpet', '4', 'me', 'Pet 4'},
-	{'battle 1 8', 'bstpet', '5', 'me', 'Pet 5'},
-	{'battle 1 9', 'bstpet', '6', 'me', 'Pet 6'},
-
-	{'battle 1 10', 'ja', 'Feral Howl','t', 'Howl'},
-	{'battle 1 11', 'ja', 'Killer Instinct','me', 'Killer'},
-	{'battle 1 12', 'ja', 'Unleash','me', 'Unleash'},
-
+	{'battle 1 1', 'ja', 'Deploy','t', 'Fight'},
+	{'battle 1 2', 'ja', 'Retrieve','t', 'Retrieve'},
+	
+	{'battle 1 3', 'ja', 'Fire Maneuver','me', 'FireMan'},
+	{'battle 1 4', 'ja', 'Ice Maneuver','me', 'IceMan'},
+	{'battle 1 5', 'ja', 'Wind Maneuver','me', 'WndMan'},
+	{'battle 1 6', 'ja', 'Earth Maneuver','me', 'EthMan'},
+	{'battle 1 7', 'ja', 'Thunder Maneuver','me', 'ThrMan'},
+	{'battle 1 8', 'ja', 'Water Maneuver','me', 'WtrMan'},
+	{'battle 1 9', 'ja', 'Light Maneuver','me', 'LghMan'},
+	{'battle 1 10', 'ja', 'Dark Maneuver','me', 'DrkMan'},
   -- Hotbar #2 weapon skills
-  	-- multihit
-	{'battle 2 1', 'ws', 'Raging Axe', 't', 'Raging'},
-	{'battle 2 1', 'ws', 'Rampage', 't', 'Rampage'},
-	{'battle 2 1', 'ws', 'Ruinator', 't', 'Ruinator'},
+	{'battle 2 1', 'ws', 'Combo', 't', 'Combo'},
+	{'battle 2 1', 'ws', 'Raging Fists', 't', 'Raging'},
+	{'battle 2 1', 'ws', 'Asuran Fists', 't', 'Asuran'},
 
-	-- stun
-	{'battle 2 2', 'ws', 'Smash Axe', 't', 'Stun'},
+	{'battle 2 2', 'ws', 'Shoulder Tackle', 't', 'Stun'},
 
-	-- single hit
-	{'battle 2 3', 'ws', 'Avalanche Axe', 't', 'Avalanche'},
-	{'battle 2 3', 'ws', 'Calamity', 't', 'Calamity'},
+	{'battle 2 3', 'ws', 'One Inch Punch', 't', 'OneInch'},
+	{'battle 2 3', 'ws', 'Howling Fist', 't', 'Howling'},
 
-	{'battle 2 4', 'ws', 'Gale Axe', 't', 'Gale'},
-	{'battle 2 4', 'ws', 'Mistral Axe', 't', 'Mistral'},
+	{'battle 2 4', 'ws', 'Dragon Kick', 't', 'DgnKick'},
 
-	{'battle 2 5', 'ws', 'Decimation', 't', 'Decimate'},
+	{'battle 2 5', 'ws', 'Tornado Kick', 't', 'TdoKick'},
 
-	{'battle 2 6', 'ws', 'Bora Axe', 't', 'Bora'},
+	{'battle 2 6', 'ws', 'Shijin Spiral', 't', 'Shijin'},
 
 	-- relic/empy/mythic/prime weapon dependent
-	{'battle 2 7', 'ws', 'Onslaught', 't', 'Oslaught'},
-	{'battle 2 7', 'ws', 'Cloudsplitter', 't', 'CloudS'},
-	{'battle 2 7', 'ws', 'Primal Rend', 't', 'P.Rend'},
-
-	--aoe
-	--{'battle 2 12', 'ws', '', 't', ''}, 
-
-
-  -- Hotbar #3  Pet Specific
-	{'battle 3 1', 'ja', 'Call Beast', 'me', 'CallBeast'},
-	{'battle 3 2', 'ja', 'Bestial Loyalty', 'me', 'Loyalty'},
-	{'battle 3 3', 'ja', 'Spur','me', 'Spur'},
-	{'battle 3 4', 'ja', 'Snarl','me', 'Snarl'},
-	{'battle 3 5', 'ja', 'Reward', 'pet', 'Reward'},
-	{'battle 3 6', 'ja', 'Run Wild','me', 'R.Wild'},
-	{'battle 3 9', 'ja', 'Charm', 'stnpc', 'Charm'},
-	{'battle 3 10', 'ja', 'Gauge', 't', 'Gauge'},
-	{'battle 3 11', 'ja', 'Tame', 't', 'Tame'},
+	{'battle 2 7', 'ws', 'Final Heaven', 't', 'F.Hvn'},
+	{'battle 2 7', 'ws', 'Victory Smite', 't', 'V.Smite'},
+	{'battle 2 7', 'ws', 'Stringing Pummel', 't', 'S.Pummel'},
+	{'battle 2 7', 'ws', 'Maru Kala', 't', 'M.Kala'},
+	{'battle 2 7', 'ws', 'Dragon Blow', 't', 'DgnBlow'},
 	
-	{'battle 3 12', 'ja', 'Familiar', 'me', 'Familiar','2HR'},
+	 --aoe
+	{'battle 2 12', 'ws', 'Spinning Attack', 't', 'Spinning'}, 
+
+  -- Hotbar #3 Pet stuff
+ 	{'battle 3 ', 'ja', 'Activate', 'me', 'Activate'},
+	{'battle 3 4', 'ja', 'Deus Ex Automata', 'me', 'DeusEx'},
+	{'battle 3 5', 'ja', 'Repair', 'me', 'Repair'},  --needs oil
+	{'battle 3 6', 'ja', 'Maintenance', 'me', 'Maintain'},  --needs oil
+	{'battle 3 7', 'ja', 'Ventriloquy', 'me', 'Vent'},
+	{'battle 3 8', 'ja', 'Role Reversal', 'me', 'RoleRev'},
+	{'battle 3 9', 'ja', 'Tactical Switch', 'me', 'T.Switch'},
+	{'battle 3 10', 'ja', 'Cooldown', 'me', 'C.Down'},
+	{'battle 3 12', 'ja', 'Heady Artifice', 'me', 'Pet1HR'},
   
-  -- Hotbar #4  Mostly Subs
-	{'battle 4 11', 'ja', 'Leave','me', 'Leave'},
-	
+  -- Hotbar #4 Mostly Subs
+ 	{'battle 4 11', 'ja', 'Deactivate','me', 'Deactvte'},
+  	{'battle 4 12', 'ja', 'Overdrive', 'me', 'O.Drive','2HR'},
 
   -- Hotbar #5
 	--{'battle 5 1', '', '', '', ''},
@@ -95,33 +85,6 @@
 	
 }
 
-
-
-xivhotbar_keybinds_job['WHM'] = {
-
-	-- Hotbar #2 (ALT 1-0)
-	{'battle 2 1', 'ma', 'Poisona', 'stpc', 'Poisona'},
-	{'battle 2 2', 'ma', 'Paralyna', 'stpc', 'Paralyna'},
-	{'battle 2 3', 'ma', 'Blindna', 'stpc', 'Blindna'},
-	{'battle 2 4', 'ma', 'Silena', 'stpc', 'Silena'},
-	{'battle 2 5', 'ma', 'Cursna', 'stpc', 'Cursna'},
-	{'battle 2 6', 'ma', 'Viruna', 'stpc', 'Viruna'},
-	{'battle 2 7', 'ma', 'Erase', 'stpc', 'Erase'},
-	{'battle 2 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
-	--------------------------------------------------------------------------------------
-	{'battle 2 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
-	{'battle 2 9', 'ma', 'Curaga', 'stpc', 'Curaga'},
-	--------------------------------------------------------------------------------------
-	{'battle 2 10', 'ma', 'Reraise', 'me', 'Reraise'},
-	--------------------------------------------------------------------------------------
-	{'battle 2 11', 'ma', 'Protectra II', 'stpc', 'Protra2'},
-	{'battle 2 11', 'ma', 'Protectra', 'stpc', 'Protra'},
-	--------------------------------------------------------------------------------------
-	{'battle 2 12', 'ma', 'Shellra II', 'stpc', 'Shellra2'},
-	{'battle 2 12', 'ma', 'Shellra', 'stpc', 'Shellra'},
-	--------------------------------------------------------------------------------------
-}
-
 xivhotbar_keybinds_job['WHM'] = {
 	{'battle 4 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
 	{'battle 4 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
@@ -137,22 +100,6 @@ xivhotbar_keybinds_job['WHM'] = {
 	{'battle 4 9', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
 	{'battle 4 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
 	{'battle 4 9', 'ma', 'Curaga', 'stpc', 'Curaga1'},
-}
-
-xivhotbar_keybinds_job['RDM'] = {
-	{'battle 4 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
-	{'battle 4 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
-	{'battle 4 1', 'ma', 'Cure II', 'stpc', 'Cure 2'},
-	{'battle 4 1', 'ma', 'Cure', 'stpc', 'Cure 1'},
-	{'battle 4 2', 'ma', 'Refresh', 'stpc', 'Refresh'},
-	{'battle 4 3', 'ma', 'Sneak', 'stpc', 'Sneak'},
-	{'battle 4 4', 'ma', 'Invisible', 'stpc', 'Invis'},
-	{'battle 4 5', 'ma', 'Dispel', 't', 'Dispel'},
-	{'battle 4 6', 'ma', 'Phalanx', 'me', 'Phalanx'},
-	{'battle 4 7', 'ja', 'Haste', 'stpc', 'Haste'},
-	{'battle 4 8', 'ma', 'Ice Spikes', 'me', 'I.Spikes'},
-	{'battle 4 9', 'ma', 'Dia II', 't', 'Dia2'},
-	{'battle 4 9', 'ma', 'Dia', 't', 'Dia2'},
 }
 
 xivhotbar_keybinds_job['NIN'] = {
@@ -218,8 +165,5 @@ xivhotbar_keybinds_job['RUN'] = {
 	{'battle 4 9', 'ja', 'Lux', 'me', 'Light'},
 	{'battle 4 10', 'ja', 'Tenebrae', 'me', 'Dark'},
 }
-
-
-
 
 return xivhotbar_keybinds_job
