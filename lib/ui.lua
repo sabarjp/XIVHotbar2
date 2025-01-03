@@ -1164,7 +1164,7 @@ local function check_disable(database, action)
             elseif action.type == 'ws' and can_ws == false then
                 ui.disabled_slots.actions[action.action] = true
                 return true
-            elseif database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].id == "102" and not can_pet_ws then
+            elseif database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].oid == "72" and not can_pet_ws then
                 -- disable sic when pet tp low
                 ui.disabled_slots.actions[action.action] = true
                 return true

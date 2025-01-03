@@ -755,18 +755,13 @@ end)
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
 	if state.ready == true then
 		local packet = packets.parse('incoming', original)
-		if id == 0x068 and no_pet == true then -- If the second pet update packet comes in
+		if id == 0x068 then -- If the second pet update packet comes in
 			if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
 				if packet['Pet Index'] ~= 0 then -- If the pet has an index of non zero then pet summoned succesfully
 					if ui.theme.dev_mode then log("Pet Summoned " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
-					no_pet = false
 					reload_hotbar(packet['Pet Name'])
 				end
 			end
-			--no_pet = false
-			--return
-		elseif packet['Pet Index'] == 0 then
-			no_pet = true
 		end
 	end	
 end)
