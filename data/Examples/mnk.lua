@@ -36,6 +36,17 @@
 
 -- Subjobs
 -- Hotbar #3
+  xivhotbar_keybinds_job['NIN'] = {
+	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi'},
+	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni'},
+	{'battle 3 3', 'ma', 'Kurayami: Ichi', 't', 'Kurayami'},
+	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo'},
+	{'battle 3 5', 'ma', 'Dokumori: Ichi', 't', 'Dokumori'},
+	{'battle 3 6', 'ma', 'Jubaku: Ichi', 't', 'Jubaku'},
+	{'battle 3 11', 'ja', 'Yonin', 'me', 'Yonin'}, 
+	{'battle 3 12', 'ja', 'Innin', 'me', 'Innin'},
+ }
+
 xivhotbar_keybinds_job['PUP'] = {
 	{'battle 3 1', 'ja', 'Deploy','t', 'Fight'},
 	{'battle 3 2', 'ja', 'Retrieve','t', 'Retrieve'},
