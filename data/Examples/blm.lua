@@ -1,5 +1,5 @@
 
- xivhotbar_keybinds_job['Base'] = {
+xivhotbar_keybinds_job['Base'] = {
      
   -- Hotbar #
   {'battle 1 3', 'ma', 'Stun', 't', 'Stun'},
@@ -17,7 +17,7 @@
   {'battle 1 9', 'ma', 'Freeze', 'stnpc', 'Freeze'},
 	{'battle 1 10', 'ma', 'Burst II', 'stnpc', 'Burst2'},
   {'battle 1 10', 'ma', 'Burst', 'stnpc', 'Burst'},
-  {'battle 1 11', 'ja', 'Mana Wall', 'me', 'M.Wall'},
+  -- ws reserved
   {'battle 1 12', 'ja', 'Enmity Douse', 'stnpc', 'E.Douse'},
 
     
@@ -68,7 +68,7 @@
   {'battle 4 10', 'ma', 'Aspir III', 'stnpc', 'Aspir3'},
   {'battle 4 10', 'ma', 'Aspir II', 'stnpc', 'Aspir2'},
 	{'battle 4 10', 'ma', 'Aspir', 'stnpc', 'Aspir'},
-	{'battle 4 11', 'ma', 'Tractor', 'stnpc', 'Tractor'},
+  {'battle 4 11', 'ja', 'Mana Wall', 'me', 'M.Wall'},
 	{'battle 4 12', 'ja', 'Manafont', 'me', 'M.Font', '2Hr'},
 
 	-- Hotbar #5
@@ -253,7 +253,28 @@ xivhotbar_keybinds_job['SCH'] = {
 	{'battle 4 8', 'me', 'Thunderstorm', 'stpc', 'Thdr'},
 }
 
+xivhotbar_keybinds_job['Club'] = {
+  {'battle 1 11', 'ws', 'Shining Strike', 't', 'Shining'},
+  {'battle 1 11', 'ws', 'Starlight', 't', 'Star'},
+  {'battle 1 11', 'ws', 'True Strike', 't', 'True'},
+  {'battle 1 11', 'ws', 'Black Halo', 't', 'Halo'},
+  {'battle 1 11', 'ws', 'Realmrazer', 't', 'Razer'},
+}
 
+xivhotbar_keybinds_job['Staff'] = {
+	{'battle 1 11', 'ws', 'Heavy Swing', 't', 'Heavy'},
+	{'battle 1 11', 'ws', 'Rock Crusher', 't', 'Rock'},
+	{'battle 1 11', 'ws', 'Starburst', 't', 'Star'},
+	{'battle 1 11', 'ws', 'Full Swing', 't', 'Full'},
+	{'battle 1 11', 'ws', 'Spirit Taker', 't', 'Spirit'},
+	{'battle 1 11', 'ws', 'Retribution', 't', 'Retr'},
+	{'battle 1 11', 'ws', 'Shattersoul', 't', 'S.Soul'},
+	{'battle 1 11', 'ws', 'Gate of Tartarus', 't', 'Tarta'},
+	{'battle 1 11', 'ws', 'Vidohunir', 't', 'Vido'},
+	{'battle 1 11', 'ws', 'Myrkr', 't', 'Myrkr'},
+	{'battle 1 11', 'ws', 'Oshala', 't', 'Oshala'},
+	{'battle 1 11', 'ws', 'Tartarus Torpor', 't', 'Torpor'},
+}
 
 
 return xivhotbar_keybinds_job

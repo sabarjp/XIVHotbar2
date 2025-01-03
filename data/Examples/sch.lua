@@ -272,7 +272,7 @@ xivhotbar_keybinds_job['WHM'] = {
 
 xivhotbar_keybinds_job['BLM'] = {
 	-- BAR 1
-	{'battle 1 12', 'ma', 'Stun', 'stnpc', 'CuStunra'},
+	{'battle 1 12', 'ma', 'Stun', 't', 'Stun'},
 
 	-- BAR 2
 	{'battle 2 9', 'ja', 'Elemental Seal', 'me', 'E.Seal'},
@@ -321,5 +321,27 @@ xivhotbar_keybinds_job['RDM'] = {
 	{'battle 4 7', 'ma', 'Phalanx', 'me', 'Phalanx'},
 }
 
+xivhotbar_keybinds_job['Club'] = {
+	{'battle 5 12', 'ws', 'Shining Strike', 't', 'Shining'},
+	{'battle 5 12', 'ws', 'Starlight', 't', 'Star'},
+	{'battle 5 12', 'ws', 'True Strike', 't', 'True'},
+	{'battle 5 12', 'ws', 'Black Halo', 't', 'Halo'},
+	{'battle 5 12', 'ws', 'Realmrazer', 't', 'Razer'},
+	{'battle 5 12', 'ws', 'Randgrith', 't', 'RGrith'},
+}
+  
+  xivhotbar_keybinds_job['Staff'] = {
+	{'battle 5 12', 'ws', 'Heavy Swing', 't', 'Heavy'},
+	{'battle 5 12', 'ws', 'Rock Crusher', 't', 'Rock'},
+	{'battle 5 12', 'ws', 'Starburst', 't', 'Star'},
+	{'battle 5 12', 'ws', 'Full Swing', 't', 'Full'},
+	{'battle 5 12', 'ws', 'Spirit Taker', 't', 'Spirit'},
+	{'battle 5 12', 'ws', 'Retribution', 't', 'Retr'},
+	{'battle 5 12', 'ws', 'Shattersoul', 't', 'S.Soul'},
+	{'battle 5 12', 'ws', 'Omniscience', 't', 'Omni'},
+	{'battle 5 12', 'ws', 'Myrkr', 't', 'Myrkr'},
+	{'battle 5 12', 'ws', 'Oshala', 't', 'Oshala'},
+	{'battle 5 12', 'ws', 'Tartarus Torpor', 't', 'Torpor'},
+}
 
 return xivhotbar_keybinds_job
