@@ -35,7 +35,7 @@
 	{'battle 4 5', 'ja', 'Flee', 'me', 'Flee','ffxiv/nin/forked_raiju'},
 	{'battle 4 6', 'ja', 'Larceny', 't', 'Larceny', 'cog'},
 	{'battle 4 6', 'ja', 'Conspirator', 'me', 'Conspir'},
-	{'battle 4 12', 'ja', 'Perfect Dodge', 'me', 'P Dodge'},
+	{'battle 4 12', 'ja', 'Perfect Dodge', 'me', 'P Dodge', '2Hr'},
 
 -- Hotbar #5
 	{'battle 5 1', 'input', '/ra <t>', '', 'Pull', 'ra'},
@@ -206,7 +206,7 @@ xivhotbar_keybinds_job['Dagger'] = {
 	{'battle 1 7', 'ws', 'Ruthless Stroke', 't', 'Ruthless'}, -- prime
 	{'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'},
 	{'battle 1 11', 'ws', 'Cyclone', 't', 'Cyclone'},-- aoe ws
-	{'battle 1 12', 'ws', 'Shadowstitch', 't', 'Shadowstitch'}, -- Bind
+	{'battle 1 12', 'ws', 'Shadowstitch', 't', 'S.Stich'}, -- Bind
 }
 
 return xivhotbar_keybinds_job
