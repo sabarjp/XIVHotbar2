@@ -8,12 +8,12 @@
 --Hotbar #2 
 --main job abilities
 	-- SATA Single Hit
-	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 1;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataVB',''},
-	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 1;input /ja "Trick Attack" <me>;wait 1;input /ws "Viper Bite" <t>','','sataVB',''},
-	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 1;input /ja "Trick Attack" <me>;wait 1;input /ws "Shark Bite" <t>','','sataSB',''},
-	{'battle 2 1', 'macro',"input /ja 'Sneak Attack' <me>;wait 1;input /ja 'Trick Attack' <me>;wait 1;input /ws 'Rudra's Storm' <t>","","sataVB",""},
+	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataVB',''},
+	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Viper Bite" <t>','','sataVB',''},
+	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Shark Bite" <t>','','sataSB',''},
+	{'battle 2 1', 'macro',"input /ja 'Sneak Attack' <me>;wait 2;input /ja 'Trick Attack' <me>;wait 1;input /ws 'Rudra's Storm' <t>","","sataVB",""},
 	-- SATA Multi Hit
-	{'battle 2 2', 'macro','input /ja "Sneak Attack" <me>;wait 1;input /ja "Trick Attack" <me>;wait 1;/ws "Dancing Edge" <t>', '', 'sataDe'},
+	{'battle 2 2', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;/ws "Dancing Edge" <t>', '', 'sataDe'},
 	{'battle 2 3', 'ja', 'Sneak Attack', 'me', 'Sneak','ffxiv/nin/spinning_edge'},
 	{'battle 2 4', 'ja', 'Trick Attack', 'me', 'Trick','ffxiv/nin/trick_attack'},
 	{'battle 2 5', 'ja', 'Bully', 't', 'Bully'},
@@ -45,6 +45,25 @@
 
 -- Subjobs
 -- Hotbar #3
+xivhotbar_keybinds_job['COR'] = {
+	{'battle 3 1', 'ja', "Double-Up", 'me', 'Dbl Up'},
+	{'battle 3 2', 'ja', "Corsair's Roll", 'me', 'COR'}, -- exp
+	{'battle 3 3', 'ja', "Ninja Roll", 'me', 'NIN'}, -- eva
+	{'battle 3 4', 'ja', "Hunter's Roll", 'me', 'HUN'}, -- acc & ra acc
+	{'battle 3 5', 'ja', "Chaos Roll", 'me', 'CHS'}, -- phys atk
+	{'battle 3 6', 'ja', "Magus's Roll", 'me', 'MGS'}, -- mag def
+	{'battle 3 7', 'ja', "Healer's Roll", 'me', 'HLR'}, -- cure potency
+	{'battle 3 6', 'ja', "Drachen Roll", 'me', 'CHS'}, -- pet & ra acc 
+	{'battle 3 8', 'ja', "Choral Roll", 'me', 'CRL'}, -- spell interrupt
+	{'battle 3 7', 'ja', "Monk's Roll", 'me', 'MNK'}, -- subtle blow
+	{'battle 3 8', 'ja', "Beast Roll", 'me', 'BST'}, -- pet atk
+	{'battle 3 7', 'ja', "Samurai Roll", 'me', 'SAM'}, -- store TP
+	{'battle 3 8', 'ja', "Evoker's Roll", 'me', 'EVO'}, -- MP regen
+	{'battle 3 3', 'ja', "Rogue's Roll", 'me', 'RGE'}, -- crit
+	{'battle 3 9', 'ja', "Warlock's Roll", 'me', 'WLK'}, -- magic acc
+	{'battle 3 10', 'ja', "Fighter's Roll", 'me', 'SAM'}, -- double atk
+}
+
   xivhotbar_keybinds_job['NIN'] = {
 	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi'},
 	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni'},

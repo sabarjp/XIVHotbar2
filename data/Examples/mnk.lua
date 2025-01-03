@@ -36,6 +36,25 @@
 
 -- Subjobs
 -- Hotbar #3
+xivhotbar_keybinds_job['COR'] = {
+	{'battle 3 1', 'ja', "Double-Up", 'me', 'Dbl Up'},
+	{'battle 3 2', 'ja', "Corsair's Roll", 'me', 'COR'}, -- exp
+	{'battle 3 3', 'ja', "Ninja Roll", 'me', 'NIN'}, -- eva
+	{'battle 3 4', 'ja', "Hunter's Roll", 'me', 'HUN'}, -- acc & ra acc
+	{'battle 3 5', 'ja', "Chaos Roll", 'me', 'CHS'}, -- phys atk
+	{'battle 3 6', 'ja', "Magus's Roll", 'me', 'MGS'}, -- mag def
+	{'battle 3 7', 'ja', "Healer's Roll", 'me', 'HLR'}, -- cure potency
+	{'battle 3 6', 'ja', "Drachen Roll", 'me', 'CHS'}, -- pet & ra acc 
+	{'battle 3 8', 'ja', "Choral Roll", 'me', 'CRL'}, -- spell interrupt
+	{'battle 3 7', 'ja', "Monk's Roll", 'me', 'MNK'}, -- subtle blow
+	{'battle 3 8', 'ja', "Beast Roll", 'me', 'BST'}, -- pet atk
+	{'battle 3 7', 'ja', "Samurai Roll", 'me', 'SAM'}, -- store TP
+	{'battle 3 8', 'ja', "Evoker's Roll", 'me', 'EVO'}, -- MP regen
+	{'battle 3 3', 'ja', "Rogue's Roll", 'me', 'RGE'}, -- crit
+	{'battle 3 9', 'ja', "Warlock's Roll", 'me', 'WLK'}, -- magic acc
+	{'battle 3 10', 'ja', "Fighter's Roll", 'me', 'SAM'}, -- double atk
+}
+
   xivhotbar_keybinds_job['NIN'] = {
 	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi'},
 	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni'},
