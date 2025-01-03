@@ -70,18 +70,16 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 3 4', 'ma', 'Silence', 'stnpc', 'Silence'},
   {'battle 3 5', 'ma', 'Addle', 'stnpc', 'Addle'},
 
-
-  
   {'battle 3 11', 'ma', 'Dia', 't', 'Dia'},
-  {'battle 3 12', 'ma', 'Diaga', 'stnpc', 'Diaga'},
+  {'battle 3 12', 'ja', 'Asylum', 'me', 'Asylum'},
   
   -- Hotbar #4 (SHIFT 1-12)
   {'battle 4 1', 'ma', 'Blink', 'me', 'Blink'},
   {'battle 4 2', 'ma', 'Stoneskin', 'me', 'Stoneskin'},
-
-  --{'battle 4 4', '', '', '', ''},
-  --{'battle 4 5', '', '', '', ''},
-
+  {'battle 4 3', 'ja', 'Martyr', 'stpc', 'Martyr'},
+  {'battle 4 4', 'ja', 'Devotion', 'stpc', 'Devotion'},
+  {'battle 4 5', 'ja', 'Divine Caress', 'me', 'Caress'},
+  {'battle 4 6', 'ja', 'Sacrosanctity', 'me', 'Sanct'},
   {'battle 4 7', 'ma', 'Repose', 'stnpc', 'Repose'},
   --------------------------------------------------------------------------------------
   {'battle 4 8', 'ma', 'Raise III', 'stpc', 'Raise3'},
