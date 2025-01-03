@@ -64,7 +64,8 @@ xivhotbar_keybinds_job['Carbuncle'] = {
 
 	-- Ultimate
 	{'battle 2 11', 'ja',  'Searing Light', 't', 'Searing'},
-  
+}
+
 xivhotbar_keybinds_job['Cait Sith'] = {
 	-- 1, 3-7   2 , 1-11 available
 
