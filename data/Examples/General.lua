@@ -11,11 +11,11 @@ xivhotbar_keybinds_general['Root'] = {
 -- #2 Hotbar
     -- Sneak me
     {'field 2 1', 'ma', 'Sneak', 'me', 'Sneak'},
-    {'field 2 1', 'ma', 'Monomi: Ichi', 'me', 'Sneak'},
+    {'field 2 1', 'ma', 'Monomi: Ichi', 'me', 'Monomi'},
     {'field 2 1', 'ja', 'Spectral Jig', 'me', 'Spectral'},
     -- Invisible me
     {'field 2 2', 'ma', 'Invisible', 'me', 'Invis'},
-    {'field 2 2', 'ma', 'Tonko: Ichi', 'me', 'Sneak'},
+    {'field 2 2', 'ma', 'Tonko: Ichi', 'me', 'Tonko'},
     {'field 2 2', 'ja', 'Spectral Jig', 'me', 'Spectral'},
     -- Sneak/Invis others
     {'field 2 3', 'ma', 'Sneak', 'stpc', 'Snk Otr'},
