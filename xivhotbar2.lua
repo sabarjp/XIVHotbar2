@@ -404,7 +404,6 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
     return return_value
 end)
 
-
 -- ON PRERENDER --
 windower.register_event('prerender',function()
     if ui.hotbar.ready == false then
@@ -434,18 +433,15 @@ windower.register_event('prerender',function()
     end
 end)
 
-
 -- ON MP CHANGE --
 windower.register_event('mp change', function(new, old)
 	ui:update_mp(new)
 end)
 
-
 -- OM TP CHANGE --
 windower.register_event('tp change', function(new, old)
 	ui:update_tp(new)
 end)
-
 
 -- ON STATUS CHANGE --
 windower.register_event('status change', function(new_status_id)
@@ -458,7 +454,6 @@ windower.register_event('status change', function(new_status_id)
         ui:show(player:get_hotbar_info())
     end
 end)
-
 
 -- ON LOGIN/LOAD --
 windower.register_event('load', function()
@@ -516,10 +511,10 @@ windower.register_event('login', function()
 	end
 end)
 
-
+-- DARK ARTS / LIGHT ARTS / ADD:BLK / ADD:WHT  set "stance"
 windower.register_event('action', function(act)
 	if state.ready == true then
-		if (act.param == 211 or act.param == 212) then 
+		if (act.param == 211 or act.param == 212 or act.param == 234 or act.param == 235) then 
 			if (act.actor_id == player.id and act.category == 0x06) then
 				player:load_job_ability_actions(act.param)
 				ui:load_player_hotbar(player:get_hotbar_info())
@@ -527,7 +522,6 @@ windower.register_event('action', function(act)
 		end
 	end
 end)
-
 
 -- Reloads hotbar when zoning
 windower.register_event('incoming chunk', function(id,data,modified)
@@ -547,9 +541,7 @@ windower.register_event('incoming chunk', function(id,data,modified)
 	
 end)
 
-
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-	
 	if id == 0x050 then --Equip/Unequip
 		local packet = packets.parse('incoming', original)
 		local slot = packet['Equipment Slot']
@@ -618,16 +610,11 @@ function get_weapon_type(bag,index)
 	
 end
 
-
-
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
 	if state.ready == true then
 		ui:update_inventory_count()
 	end
 end)
-
-
-
 
 -- Updates on job change (moogle) and waits for abilities to be updated.
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
@@ -651,8 +638,6 @@ windower.register_event('incoming chunk', function(id,original,modified,injected
 		end
 	end
 end)
-
-
 
 -- Reloads hotbar if new weaponskill is learned. 
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
@@ -678,13 +663,16 @@ windower.register_event('action message', function(actor_id, target_id, actor_in
 	
 end)
 
-
 -- Reloads hotbar when gaining or losing specified buffs
 windower.register_event('gain buff', function(id)
 	if id == 143 or id == 269 then -- Level Cap / Level Sync, Status Effect
 		if ui.theme.dev_mode then log("Level Capped/Sync'd. Reloading Hotbar.") end
 		reload_hotbar()
 	elseif id == 55 then -- Astral Flow - Status Effect
+		reload_hotbar()
+	elseif id == 377 then -- Tabula Rasa- Status Effect
+		reload_hotbar()
+	elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White for stratagems
 		reload_hotbar()
 	end
 end)
@@ -695,9 +683,12 @@ windower.register_event('lose buff', function(id)
 		reload_hotbar()
 	elseif id == 55 then -- Astral Flow - Status Effect
 		reload_hotbar()
+	elseif id == 377 then -- Tabula Rasa - Status Effect
+		reload_hotbar()
+	elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White
+		reload_hotbar()
 	end
 end)
-
 
 -- This event updates hotbar when you level up or delevel
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
@@ -750,7 +741,6 @@ windower.register_event('incoming chunk', function(id,original,modified,injected
 	end
 end)
 
-
 --This event is confirming that pet summons cast are not cancel/interupted and pet was succesfully summoned before updating the hotbar with specific pet abilities
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
 	if state.ready == true then
@@ -779,8 +769,6 @@ windower.register_event('incoming chunk', function(id,original,modified,injected
 	end	
 end)
 
-
-
 --- Reloads hotbar when using GM command. ** For development only ** 
 windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
 	if ui.theme.dev_mode then
@@ -791,6 +779,7 @@ windower.register_event('incoming chunk', function(id,original,modified,injected
 		end
 	end
 end)
+
 windower.register_event('incoming text', function(text)
 	if ui.theme.dev_mode then
 		if string.find(text, "!changejob") or string.find(text, "!changesjob") then

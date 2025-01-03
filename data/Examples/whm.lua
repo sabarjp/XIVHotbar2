@@ -2,24 +2,30 @@
 xivhotbar_keybinds_job['Base'] = {
  
   -- Hotbar #1 (1-12)
+  {'battle 1 1', 'ma', 'Cure II', 'stpc', 'Cure2'},
   {'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure1'},
-  {'battle 1 2', 'ma', 'Cure II', 'stpc', 'Cure2'},
-  {'battle 1 3', 'ma', 'Cure III', 'stpc', 'Cure3'},
-  {'battle 1 4', 'ma', 'Cure IV', 'stpc', 'Cure4'},
-  {'battle 1 5', 'ma', 'Cure V', 'stpc', 'Cure5'},
-  {'battle 1 6', 'ma', 'Cure VI', 'stpc', 'Cure6'},
-  {'battle 1 7', 'ma', 'Haste', 'stpc', 'Haste'},
+  {'battle 1 2', 'ma', 'Cure III', 'stpc', 'Cure3'},
+  {'battle 1 2', 'ma', 'Cure IV', 'stpc', 'Cure4'},
+  {'battle 1 3', 'ma', 'Cure V', 'stpc', 'Cure5'},
+  {'battle 1 3', 'ma', 'Cure VI', 'stpc', 'Cure6'},
+  {'battle 1 4', 'ma', 'Haste', 'stpc', 'Haste'},
    --------------------------------------------------------------------------------------
-  {'battle 1 8', 'ma', 'Regen IV', 'stpc', 'Regen4'},
-  {'battle 1 8', 'ma', 'Regen III', 'stpc', 'Regen3'},
-  {'battle 1 8', 'ma', 'Regen II', 'stpc', 'Regen2'},
-  {'battle 1 8', 'ma', 'Regen', 'stpc', 'Regen'},
+  {'battle 1 5', 'ma', 'Regen IV', 'stpc', 'Regen4'},
+  {'battle 1 5', 'ma', 'Regen III', 'stpc', 'Regen3'},
+  {'battle 1 5', 'ma', 'Regen II', 'stpc', 'Regen2'},
+  {'battle 1 5', 'ma', 'Regen', 'stpc', 'Regen'},
    --------------------------------------------------------------------------------------
-  {'battle 1 9', 'ma', 'Flash', 'stnpc', 'Flash'},
+  {'battle 1 6', 'ma', 'Flash', 'stnpc', 'Flash'},
 
-  {'battle 1 10', 'ma', 'Cura III', 'me', 'Cura3'},
-  {'battle 1 10', 'ma', 'Cura II', 'me', 'Cura2'},
-  {'battle 1 10', 'ma', 'Cura', 'me', 'Cura'},
+  {'battle 1 7', 'ma', 'Curaga V', 'stpc', 'Curaga5'},
+  {'battle 1 7', 'ma', 'Curaga IV', 'stpc', 'Curaga4'},
+  {'battle 1 7', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
+  {'battle 1 7', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
+  {'battle 1 7', 'ma', 'Curaga', 'stpc', 'Curaga'},
+
+  {'battle 1 8', 'ma', 'Cura III', 'me', 'Cura3'},
+  {'battle 1 8', 'ma', 'Cura II', 'me', 'Cura2'},
+  {'battle 1 8', 'ma', 'Cura', 'me', 'Cura'},
   {'battle 1 11', 'ja', 'Afflatus Solace', 'me', 'Solace'},
   {'battle 1 12', 'ja', 'Afflatus Misery', 'me', 'Misery'},
 
@@ -32,14 +38,9 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 2 4', 'ma', 'Silena', 'stpc', 'Silena'},
   {'battle 2 5', 'ma', 'Cursna', 'stpc', 'Cursna'},
   {'battle 2 6', 'ma', 'Viruna', 'stpc', 'Viruna'},
-  {'battle 2 7', 'ma', 'Erase', 'stpc', 'Erase'},
-  {'battle 2 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
-  --------------------------------------------------------------------------------------
-  {'battle 2 9', 'ma', 'Curaga V', 'stpc', 'Curaga5'},
-  {'battle 2 9', 'ma', 'Curaga IV', 'stpc', 'Curaga4'},
-  {'battle 2 9', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
-  {'battle 2 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
-  {'battle 2 9', 'ma', 'Curaga', 'stpc', 'Curaga'},
+  {'battle 2 7', 'ma', 'Viruna', 'stpc', 'Viruna'},
+  {'battle 2 8', 'ma', 'Erase', 'stpc', 'Erase'},
+  {'battle 2 9', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
   --------------------------------------------------------------------------------------
   {'battle 2 10', 'ma', 'Reraise III', 'me', 'Reraise3'},
   {'battle 2 10', 'ma', 'Reraise II', 'me', 'Reraise2'},
@@ -69,18 +70,15 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 3 4', 'ma', 'Silence', 'stnpc', 'Silence'},
   {'battle 3 5', 'ma', 'Addle', 'stnpc', 'Addle'},
 
-
-  
-  {'battle 3 11', 'ma', 'Dia', 't', 'Dia'},
-  {'battle 3 12', 'ma', 'Diaga', 'stnpc', 'Diaga'},
+  {'battle 3 12', 'ja', 'Asylum', 'me', 'Asylum'},
   
   -- Hotbar #4 (SHIFT 1-12)
   {'battle 4 1', 'ma', 'Blink', 'me', 'Blink'},
   {'battle 4 2', 'ma', 'Stoneskin', 'me', 'Stoneskin'},
-
-  {'battle 4 4', 'ma', 'Sneak', 'stpc', 'Sneak'},
-  {'battle 4 5', 'ma', 'Invisible', 'stpc', 'Invisible'},
-
+  {'battle 4 3', 'ja', 'Martyr', 'stpc', 'Martyr'},
+  {'battle 4 4', 'ja', 'Devotion', 'stpc', 'Devotion'},
+  {'battle 4 5', 'ja', 'Divine Caress', 'me', 'Caress'},
+  {'battle 4 6', 'ja', 'Sacrosanctity', 'me', 'Sanct'},
   {'battle 4 7', 'ma', 'Repose', 'stnpc', 'Repose'},
   --------------------------------------------------------------------------------------
   {'battle 4 8', 'ma', 'Raise III', 'stpc', 'Raise3'},
@@ -139,55 +137,69 @@ xivhotbar_keybinds_job['Base'] = {
  }
 
 
-
-
 xivhotbar_keybinds_job['NIN'] = {
- 
   -- Hotbar #2 (ALT 1-0)
-  {'battle 2 1', 'ma', 'Utsusemi: Ni', 'me', 'Ni'},
-  {'battle 2 2', 'ma', 'Utsusemi: Ichi', 'me', 'Ichi'},
-
-
-
+  {'battle 3 6', 'ma', 'Utsusemi: Ni', 'me', 'Ni'},
+  {'battle 3 7', 'ma', 'Utsusemi: Ichi', 'me', 'Ichi'},
 }
+
 xivhotbar_keybinds_job['BLM'] = {
- 
   -- Hotbar #3 (CTRL 1-0)
   {'battle 3 6', 'ma', 'Blind', 'stnpc', 'Blind'},
   {'battle 3 7', 'ma', 'Bind', 'stnpc', 'Bind'},
   {'battle 3 8', 'ma', 'Sleep', 'stnpc', 'Sleep'},
-  {'battle 3 9', 'ma', 'Sleepga', 'stnpc', 'Sleepga'},
-  
-
+  {'battle 3 9', 'ma', 'Sleep II', 'stnpc', 'Sleep2'},
+  {'battle 3 10', 'ma', 'Sleepga', 'stnpc', 'Sleepga'},
+  {'battle 3 11', 'ma', 'Stun', 't', 'Stun'},
 }
 
-
 xivhotbar_keybinds_job['RDM'] = {
- 
   -- Hotbar #3 (CTRL 1-0)
   {'battle 3 6', 'ma', 'Blind', 'stnpc', 'Blind'},
   {'battle 3 7', 'ma', 'Bind', 'stnpc', 'Bind'},
   {'battle 3 8', 'ma', 'Sleep', 'stnpc', 'Sleep'},
   {'battle 3 9', 'ma', 'Gravity', 'stnpc', 'Gravity'},
-  {'battle 3 10', 'ma', 'Dispel', 'stnpc', 'Dispel'},
-
-
-}
-
-xivhotbar_keybinds_job['SMN'] = {
- 
-
+  {'battle 3 10', 'ma', 'Refresh', 'stnpc', 'Refresh'},
+  {'battle 3 11', 'ma', 'Dispel', 'stnpc', 'Dispel'},
 }
 
 xivhotbar_keybinds_job['SCH'] = {
- 
- 
+  {'battle 3 6', 'ja', 'Penury', 'me', 'Penury'},
+  {'battle 3 7', 'ja', 'Celerity', 'me', 'Celrty'},
+  {'battle 3 8', 'ja', 'Accession', 'me', 'Accssn'},
+  {'battle 3 9', 'ja', 'Rapture', 'me', 'Raptur'},
+  {'battle 3 10', 'ja', 'Sublimation', 'me', 'Sublim'},
+  {'battle 3 11', 'ja', 'Light Arts', 'me', 'Light'},
 }
 
 xivhotbar_keybinds_job['Club'] = {
   {'battle 1 9', 'ws', 'Shining Strike', 't', 'Shining'},
   {'battle 1 9', 'ws', 'Seraph Strike', 't', 'Seraph'},
+  {'battle 1 9', 'ws', 'Starlight', 't', 'Star'},
+  {'battle 1 9', 'ws', 'Moonlight', 't', 'Moon'},
+  {'battle 1 9', 'ws', 'True Strike', 't', 'True'},
+  {'battle 1 9', 'ws', 'Judgement', 't', 'Judge'},
+  {'battle 1 9', 'ws', 'Hexa Strike', 't', 'Hexa'},
+  {'battle 1 9', 'ws', 'Flash Nova', 't', 'F.Nova'},
+  {'battle 1 9', 'ws', 'Realmrazer', 't', 'Razer'},
+  {'battle 1 9', 'ws', 'Randgrith', 't', 'RGrith'},
+  {'battle 1 9', 'ws', 'Dagan', 't', 'Dagan'},
+  {'battle 1 9', 'ws', 'Mystic Boon', 't', 'M.Boon'},
+  {'battle 1 9', 'ws', 'Dagda', 't', 'Dagda'},
 }
 
+xivhotbar_keybinds_job['Staff'] = {
+  {'battle 1 9', 'ws', 'Heavy Swing', 't', 'Heavy'},
+  {'battle 1 9', 'ws', 'Rock Crusher', 't', 'Rock'},
+  {'battle 1 9', 'ws', 'Earth Crusher', 't', 'Earth'},
+  {'battle 1 9', 'ws', 'Starburst', 't', 'Star'},
+  {'battle 1 9', 'ws', 'Sunburst', 't', 'Sun'},
+  {'battle 1 9', 'ws', 'Full Swing', 't', 'Full'},
+  {'battle 1 9', 'ws', 'Spirit Taker', 't', 'Spirit'},
+  {'battle 1 9', 'ws', 'Retribution', 't', 'Retr'},
+  {'battle 1 9', 'ws', 'Cataclysm', 't', 'Cata'},
+  {'battle 1 9', 'ws', 'Shattersoul', 't', 'S.Soul'},
+  {'battle 1 9', 'ws', 'Tartarus Torpor', 't', 'Torpor'},
+}
 
 return xivhotbar_keybinds_job
