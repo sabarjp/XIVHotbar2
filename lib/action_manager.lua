@@ -53,8 +53,11 @@ not_learned_spells_row_slot = {}
 tier_list = {}
 
 buff_table = {
+    -- Scholar
     [211] = 'Light Arts',
     [212] = 'Dark Arts',
+    [234] = 'Addendum: White',
+    [235] = 'Addendum: Black',
 	-- Avatars
 	[1001] = 'Carbuncle',
 	[1002] = 'Ifrit',
@@ -470,6 +473,70 @@ function check_if_spell_learned(spell_name_en)
     return false
 end
 
+-- ONLY USED TO CHECK IF SPELL IS GREYED OUT
+-- helps determine which job or subjob is capable of casting a spell, this mostly applies
+-- to scholar which has spell casting restrictions due to the addenda.
+function check_if_spell_usable(spell_name_en)
+    for key,val in pairs(spells) do
+        if spells[key]['en'] == spell_name_en then
+            -- check if castable by main job
+            if spells[key]['levels'][windower.ffxi.get_player().main_job_id] ~= nil then
+                if windower.ffxi.get_player().main_job_level >= spells[key]['levels'][windower.ffxi.get_player().main_job_id] then
+                    if windower.ffxi.get_player().main_job_id ~= 20 then
+                        -- this is not a scholar spell, so it should be castable
+                        return true
+                    else
+                        -- this is a scholar spell, so we have to see if it requires addendum use
+                        if (spells[key]['requirements'] % 8) >= 4 then
+                            if current_stance == 234 and spells[key]['type'] == 'WhiteMagic' then
+                                -- we are in addendum white and the spell is white magic
+                                return true
+                            end
+
+                            if current_stance == 235 and spells[key]['type'] == 'BlackMagic' then
+                                -- we are in addendum black and the spell is black magic
+                                return true
+                            end
+                        else
+                            -- doesn't need addendum, castable!
+                            return true
+                        end
+                    end
+                end
+            end
+
+            -- check if castable by sub job
+            if spells[key]['levels'][windower.ffxi.get_player().sub_job_id] ~= nil then
+                if windower.ffxi.get_player().sub_job_level >= spells[key]['levels'][windower.ffxi.get_player().sub_job_id] then
+                    if windower.ffxi.get_player().sub_job_id ~= 20 then
+                        -- this is not a scholar spell, so it should be castable
+                        return true
+                    else
+                        -- this is a scholar spell, so we have to see if it requires addendum use
+                        if (spells[key]['requirements'] % 8) >= 4 then
+                            if current_stance == 234 and spells[key]['type'] == 'WhiteMagic' then
+                                -- we are in addendum white and the spell is white magic
+                                return true
+                            end
+
+                            if current_stance == 235 and spells[key]['type'] == 'BlackMagic' then
+                                -- we are in addendum black and the spell is black magic
+                                return true
+                            end
+                        else
+                            -- doesn't need addendum, castable!
+                            return true
+                        end
+                    end
+                end
+            end
+
+            -- not usable by either main job, sub job, or we're a scholar in the wrong addendum
+            return false
+        end
+    end
+end
+
 function check_if_ability_learned(ability_name_en)
    
     for key,val in pairs(ability_list) do
@@ -602,11 +669,23 @@ local function parse_binds(theme_options, player, hotbar)
 	end
 
     -- STANCE -- FILL TABLE
-    if (hotbar[buff_table[current_stance]] ~= nil) then
-        local stance_table = hotbar[buff_table[current_stance]]
-        for key, val in pairs(stance_table) do
-            if action_req_check(stance_table[key]) == true then 
-                fill_table(stance_table[key], key, stance_actions)
+    local stances = {}
+    table.insert(stances, current_stance)
+
+    -- special condition: SCH addenda active means light/dark arts also active!
+    if (current_stance == 234) then
+        table.insert(stances, 211)
+    elseif (current_stance == 235) then
+        table.insert(stances, 212)
+    end
+
+    for k, s in pairs(stances) do
+        if (hotbar[buff_table[s]] ~= nil) then
+            local stance_table = hotbar[buff_table[s]]
+            for key, val in pairs(stance_table) do
+                if action_req_check(stance_table[key]) == true then 
+                    fill_table(stance_table[key], key, stance_actions)
+                end
             end
         end
     end

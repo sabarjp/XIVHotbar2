@@ -2,20 +2,26 @@
 xivhotbar_keybinds_job['Base'] = {
  
   -- Hotbar #1 (1-12)
+  {'battle 1 1', 'ma', 'Cure II', 'stpc', 'Cure2'},
   {'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure1'},
-  {'battle 1 2', 'ma', 'Cure II', 'stpc', 'Cure2'},
-  {'battle 1 3', 'ma', 'Cure III', 'stpc', 'Cure3'},
-  {'battle 1 4', 'ma', 'Cure IV', 'stpc', 'Cure4'},
-  {'battle 1 5', 'ma', 'Cure V', 'stpc', 'Cure5'},
-  {'battle 1 6', 'ma', 'Cure VI', 'stpc', 'Cure6'},
-  {'battle 1 7', 'ma', 'Haste', 'stpc', 'Haste'},
+  {'battle 1 2', 'ma', 'Cure III', 'stpc', 'Cure3'},
+  {'battle 1 3', 'ma', 'Cure IV', 'stpc', 'Cure4'},
+  {'battle 1 4', 'ma', 'Cure V', 'stpc', 'Cure5'},
+  {'battle 1 5', 'ma', 'Cure VI', 'stpc', 'Cure6'},
+  {'battle 1 6', 'ma', 'Haste', 'stpc', 'Haste'},
    --------------------------------------------------------------------------------------
-  {'battle 1 8', 'ma', 'Regen IV', 'stpc', 'Regen4'},
-  {'battle 1 8', 'ma', 'Regen III', 'stpc', 'Regen3'},
-  {'battle 1 8', 'ma', 'Regen II', 'stpc', 'Regen2'},
-  {'battle 1 8', 'ma', 'Regen', 'stpc', 'Regen'},
+  {'battle 1 7', 'ma', 'Regen IV', 'stpc', 'Regen4'},
+  {'battle 1 7', 'ma', 'Regen III', 'stpc', 'Regen3'},
+  {'battle 1 7', 'ma', 'Regen II', 'stpc', 'Regen2'},
+  {'battle 1 7', 'ma', 'Regen', 'stpc', 'Regen'},
    --------------------------------------------------------------------------------------
-  {'battle 1 9', 'ma', 'Flash', 'stnpc', 'Flash'},
+  {'battle 1 8', 'ma', 'Flash', 'stnpc', 'Flash'},
+
+  {'battle 1 9', 'ma', 'Curaga V', 'stpc', 'Curaga5'},
+  {'battle 1 9', 'ma', 'Curaga IV', 'stpc', 'Curaga4'},
+  {'battle 1 9', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
+  {'battle 1 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
+  {'battle 1 9', 'ma', 'Curaga', 'stpc', 'Curaga'},
 
   {'battle 1 10', 'ma', 'Cura III', 'me', 'Cura3'},
   {'battle 1 10', 'ma', 'Cura II', 'me', 'Cura2'},
@@ -32,14 +38,9 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 2 4', 'ma', 'Silena', 'stpc', 'Silena'},
   {'battle 2 5', 'ma', 'Cursna', 'stpc', 'Cursna'},
   {'battle 2 6', 'ma', 'Viruna', 'stpc', 'Viruna'},
-  {'battle 2 7', 'ma', 'Erase', 'stpc', 'Erase'},
-  {'battle 2 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
-  --------------------------------------------------------------------------------------
-  {'battle 2 9', 'ma', 'Curaga V', 'stpc', 'Curaga5'},
-  {'battle 2 9', 'ma', 'Curaga IV', 'stpc', 'Curaga4'},
-  {'battle 2 9', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
-  {'battle 2 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
-  {'battle 2 9', 'ma', 'Curaga', 'stpc', 'Curaga'},
+  {'battle 2 7', 'ma', 'Viruna', 'stpc', 'Viruna'},
+  {'battle 2 8', 'ma', 'Erase', 'stpc', 'Erase'},
+  {'battle 2 9', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
   --------------------------------------------------------------------------------------
   {'battle 2 10', 'ma', 'Reraise III', 'me', 'Reraise3'},
   {'battle 2 10', 'ma', 'Reraise II', 'me', 'Reraise2'},
@@ -78,8 +79,8 @@ xivhotbar_keybinds_job['Base'] = {
   {'battle 4 1', 'ma', 'Blink', 'me', 'Blink'},
   {'battle 4 2', 'ma', 'Stoneskin', 'me', 'Stoneskin'},
 
-  {'battle 4 4', 'ma', 'Sneak', 'stpc', 'Sneak'},
-  {'battle 4 5', 'ma', 'Invisible', 'stpc', 'Invisible'},
+  --{'battle 4 4', '', '', '', ''},
+  --{'battle 4 5', '', '', '', ''},
 
   {'battle 4 7', 'ma', 'Repose', 'stnpc', 'Repose'},
   --------------------------------------------------------------------------------------

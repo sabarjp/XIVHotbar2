@@ -1134,6 +1134,7 @@ end
 
 local function check_disable(database, action)
     local current_mp = windower.ffxi.get_player().vitals.mp
+    local main_job
 
 	if action ~= nil and is_neutralized == true then 
         ui.disabled_slots.actions[action.action] = true
@@ -1146,12 +1147,15 @@ local function check_disable(database, action)
             elseif is_silenced == true then
                 ui.disabled_slots.actions[action.action] = true
                 return true
+            elseif check_if_spell_usable(action.action) ~= true then
+                ui.disabled_slots.actions[action.action] = true
+                return true
             elseif current_mp < database[action.type][(action.action):lower()].mpcost then
                 ui.disabled_slots.no_vitals[action.action] = true
                 return true
             elseif current_mp >= database[action.type][(action.action):lower()].mpcost then
                 ui.disabled_slots.no_vitals[action.action] = false
-                return false     
+                return false
             else
                 ui.disabled_slots.actions[action.action] = false
                 return false
@@ -1165,7 +1169,7 @@ local function check_disable(database, action)
                 ui.disabled_slots.actions[action.action] = true
                 return true
             elseif database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].oid == "72" and not can_pet_ws then
-                -- disable sic when pet tp low
+                -- disable sic when pet tp is too low
                 ui.disabled_slots.actions[action.action] = true
                 return true
             else
@@ -1181,9 +1185,6 @@ local function check_disable(database, action)
 	end
     return false
 end
-
-
-
 
 function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, slot)
 	local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. slot]
