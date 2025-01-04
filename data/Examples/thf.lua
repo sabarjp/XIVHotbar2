@@ -156,11 +156,33 @@ xivhotbar_keybinds_job['DRK'] = {
 	{'battle 3 4', 'ja', 'Weapon Bash', 't', 'Bash', 'ffxiv/drk/shadow_wall'},
 	{'battle 3 5', 'ja', 'Arcane Circle', 'me', 'Arcane', 'ffxiv/drk/salted_earth'},
 	{'battle 3 6', 'ma', 'Bio', 't', 'Bio','ffxiv/sch/bio'},
-	{'battle 3 6', 'ma', 'Bio II', 't', 'Bio II','ffxiv/sch/bio_II'},
+	{'battle 3 6', 'ma', 'Bio II', 't', 'Bio2','ffxiv/sch/bio_II'},
 	{'battle 3 7', 'ma', 'Sleep', 't', 'Sleep','ffxiv/role/sleep'},
-	{'battle 3 7', 'ma', 'Sleep II', 't', 'Sleep II','ffxiv/role/sleep'},
+	{'battle 3 7', 'ma', 'Sleep II', 't', 'Sleep2','ffxiv/role/sleep'},
 	{'battle 3 8', 'ma', 'Stun', 't', 'Stun','ffxiv/drk/unmend'},
  }
+
+xivhotbar_keybinds_job['RNG'] = {
+	{'battle 3 1', 'ja', 'Sharpshot', 'me', 'Sharp','ffxiv/brd/burst_shot'},
+	{'battle 3 5', 'ja', 'Scavenge', 'me', 'Scvnge','ffxiv/role/tactician'},
+	{'battle 3 4', 'ja', 'Camouflage', 'me', 'Camo','ffxiv/brd/iron_jaws'},
+	{'battle 3 2', 'ja', 'Barrage', 'me', 'Barrage','ffxiv/brd/barrage'},
+	{'battle 3 3', 'ja', 'Shadowbind', 'stnpc', 'Bind','ffxiv/brd/shadowbite'},
+-- Ranged Hotbar #5
+	{'battle 5 1', 'input', '/ra <t>', '', 'RA', 'ra'},
+-- Heavy Hit
+	{'battle 5 2', 'ws', 'Flaming Arrow', 't', 'Flame'},
+	{'battle 5 3', 'ws', 'Piercing Arrow', 't', 'Pierce'}, 
+	{'battle 5 4', 'ws', 'Sidewinder', 't', 'Sidewndr'}, 
+-- Multi-Hit
+	{'battle 5 5', 'ws', 'Refulgent Arrow', 't', 'Reflgnt'}, -- rng sub 
+-- Specials
+	{'battle 5 6', 'ws', 'Dulling Arrow', 't', 'Dull'}, -- rng sub
+-- Merit Point
+	{'battle 5 8', 'ws', 'Apex Arrow', 't', 'Apex'}, -- rng sam
+-- Relic (only usable with specific weapon equips)
+	{'battle 5 9', 'ws', 'Namas Arrow', 't', 'Namas'}, -- rng sam relic
+}
 
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Dagger'] = {

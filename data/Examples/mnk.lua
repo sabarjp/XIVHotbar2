@@ -139,21 +139,6 @@ xivhotbar_keybinds_job['DRG'] = {
 	{'battle 3 4', 'ja', 'Super Jump', 't', 'SuJump', 'ffxiv/drg/elusive_jump'}, -- mastery
  } 
 
-xivhotbar_keybinds_job['PUP'] = {
-	{'battle 3 1', 'ja', 'Deploy','t', 'Fight'},
-	{'battle 3 2', 'ja', 'Retrieve','t', 'Retrieve'},
-	{'battle 3 3', 'ja', 'Fire Maneuver','me', 'FireMan'},
-	{'battle 3 4', 'ja', 'Ice Maneuver','me', 'IceMan'},
-	{'battle 3 5', 'ja', 'Wind Maneuver','me', 'WndMan'},
-	{'battle 3 6', 'ja', 'Earth Maneuver','me', 'EthMan'},
-	{'battle 3 7', 'ja', 'Thunder Maneuver','me', 'ThrMan'},
-	{'battle 3 8', 'ja', 'Water Maneuver','me', 'WtrMan'},
-	{'battle 3 9', 'ja', 'Light Maneuver','me', 'LghMan'},
-	{'battle 3 10', 'ja', 'Dark Maneuver','me', 'DrkMan'},
-	{'battle 3 11', 'ja', 'Repair', 'me', 'Repair'},  --needs oil
-	{'battle 3 12', 'ja', 'Activate', 'me', 'Activate'},
-}
-
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Hand-to-hand'] = {
 -- Heavy Hit
