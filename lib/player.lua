@@ -35,6 +35,7 @@ player.main_job = ''
 player.sub_job = ''
 player.server = ''
 player.pet_name = ''
+player.finishing_moves = 0
 
 player.main_job_level = 0
 player.sub_job_level = 0
@@ -47,9 +48,8 @@ player.current_range_weapon = 0
 
 local debug = false
 
-
-function player:get_current_weapontype()
-	return current_weaponskill
+function player:get_finishing_moves()
+    return self.finishing_moves
 end
 
 function player:get_hotbar_info()
@@ -89,6 +89,27 @@ end
 -- update pet
 function player:update_pet(name)
     self.pet_name = name
+end
+
+-- update finishing moves
+function player:update_finishing_moves(buff_id)
+    if buff_id == 381 then
+        self.finishing_moves = 1
+    elseif buff_id == 382 then
+        self.finishing_moves = 2
+    elseif buff_id == 383 then
+        self.finishing_moves = 3
+    elseif buff_id == 384 then
+        self.finishing_moves = 4
+    elseif buff_id == 385 then
+        self.finishing_moves = 5
+    elseif buff_id == 588 then
+        self.finishing_moves = 6
+    end
+end
+
+function player:reset_finishing_moves()
+    self.finishing_moves = 0
 end
 
 -- update player level
