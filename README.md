@@ -1,13 +1,10 @@
 ## Introduction
 This forked project continues the work of Technyze, SirEdeonX, and Akirane. It mainly contains features/bug fixes for retail FF11.
 
-
 # Features
 
 ## Hide Unusable skills
-
 Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.
-
 
 **Abilities:**
 If an ability is added to a JOB.lua file it will not appear on the hotbar until the player has reached the required level to obtain the ability. In level capped situation if you lose access to the ability it will disappear from the hotbar.
@@ -114,9 +111,6 @@ NOTE: Jug pet recast works off charges. Right now the code assumes a 30 second c
 
 
 # Getting Started
-The below image is the default layout and positioning on a game running in 1080p. Most of this layout can be adjusted in the settings.xml. <br>
-![Default Layout Image](images/readme/DefaultLayout.png)
-
 1. Download the addon from here. Put the addon in your Windower 4/addons folder and make sure the addons folder name is jsut 'XIVHotbar2'. Next, inside the 'data' folder within the 'XIVHotbar2' folder create a folder with your character(s) name.
    
 2. Inside your 'name-of-character' folder create a general.lua and JOB.lua for each job you want to setup. Additionally, I have premade templates made for most jobs you can copy over to your character folder. The premade templates I have made are in the Data/Technyze folder. The RDM,WHM,THF,PLD are the more thorough jobs I have set up and should be the first ones to reference for any help. <br> 
