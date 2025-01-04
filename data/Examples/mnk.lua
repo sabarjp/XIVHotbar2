@@ -8,8 +8,8 @@
 --Hotbar #2 
 --main job abilities
 	{'battle 2 1', 'ja', 'Chi Blast', 'stnpc', 'Chi','ffxiv/mnk/elixir_field'},
-	{'battle 2 2', 'ja', 'Boost', 'me', 'Boost', 'Boost','ffxiv/mnk/riddle_of_fire'},
-	{'battle 2 3', 'ja', 'Focus', 'me', 'Focus', 'Boost','ffxiv/mnk/riddle_of_wind'},
+	{'battle 2 2', 'ja', 'Boost', 'me', 'Boost','ffxiv/mnk/riddle_of_fire'},
+	{'battle 2 3', 'ja', 'Focus', 'me', 'Focus','ffxiv/mnk/riddle_of_wind'},
 	{'battle 2 4', 'ja', 'Dodge', 'me', 'Dodge','ffxiv/mnk/riddle_of_earth'},
 	{'battle 2 5', 'ja', 'Counterstance', 'me', 'Ctr','ffxiv/mnk/arm_of_the_destroyer'},
 	{'battle 2 6', 'ja', 'Footwork', 'me', 'Footwk','ffxiv/mnk/six-sided_star'},
