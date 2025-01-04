@@ -8,9 +8,6 @@ This forked project continues the work of Technyze, SirEdeonX, and Akirane. It m
 
 Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.
 
-Zoning into Promyvion-Dem (Level 30 Cap)           		|  Level Syncing to Level 40
-:-------------------------:								|:-------------------------:
-![Level Capped Zone](images/readme/LevelCappedZone.gif) | ![Level Sync](images/readme/LevelSync.gif)
 
 **Abilities:**
 If an ability is added to a JOB.lua file it will not appear on the hotbar until the player has reached the required level to obtain the ability. In level capped situation if you lose access to the ability it will disappear from the hotbar.
@@ -21,7 +18,7 @@ If a weaponskill is added to a JOB.lua file it will not show up on the hotbar un
 ## Dimmed Skills
 
 **Spells**
-Spells on cooldown or that you do not have enough MP to cast will be dimmed.
+Spells on cooldown or that you do not have enough MP to cast will be dimmed. In addition, spells that are only available from scholar and that do not have an addendum requirement met will be dimmed as well.
 
 **Weaponskills**
 Weapon skills will be dimmed until you have enough TP.
@@ -32,25 +29,13 @@ Abilities on cooldown will be dimmed.
 ## Unlearned Spells:
 Spells that are on the bar, but not known yet, are dimmed and have an icon to indicate they can be learned.
 
-Using a Scroll of Cure IV -> Scroll of Dia -> Scroll of Dia II. | <br>
-:-------------------------:	| :-------------------------:
-![Learning Spell](images/readme/LearningSpell.gif) |
-
 ## Sharing Hotbar Slots:
 Abilities that share a hotbar slot will auto-select the first usable ability. For example, if Stone V and Stone IV share the same hotbar slot, then Stone V will have priority to appear, (unless it cannot be used due to level/etc), then Stone IV will appear instead, and so on.
- 
-![Tiered Spells](images/readme/TieredSpells.png)
 
 This works seamlessly with the level syncing. For example, syncing down to level 30 will turn Dia II (Level 31) back into Dia as you can see in the image above when zoning into Promyvion-Dem.
 
 ## Spell Learning Notification
-As mentioned earlier, when a player has a spell setup on their hotbar, and are high enough level to use that spell, but have not learned that spell yet a small glowing scroll icon will appear in the top right corner of the spell. This disappears once learning that spell.
- 
-The icon below is dimmed because the player is high enough level to use Cure 4 but has not learned it yet, additionally the scroll icon is displayed. <br>
-![Scroll Icon 1](images/readme/scroll1.png)
-
-The icon below is lit up because the player has learned Dia and this slot is currently useable to cast Dia. However, Dia 2 is  also setup on this slot as well and the player is high enough level to obtain it, but has not learned it yet, so there is a scroll icon on it. <br>
-![Tiered Spells](images/readme/scroll2.png)
+When a player has a spell setup on their hotbar, and are high enough level to use that spell, but have not learned that spell yet a small glowing scroll icon will appear in the top right corner of the spell. This disappears once learning that spell.
 
 ## Weaponswitching and Weaponskills:
 Hotbar skills can be conditionally bound based on equipped weapon. Note that this MUST be enabled in the settings.xml, and this is OFF BY DEFAULT since it can behave with some bugs.
@@ -72,14 +57,10 @@ Note: If playing Ranger, XIVHotbar2 with prioritize weapon changes to the range 
 ## Summoner
 A summon's abilities will only show up on the hotbar when the summon is successfully summoned. Additionally,  abilities will remove themself from the hotbar when the pet is released, dies or mp is insufficient. Also, pet commands: release, attack etc. do not appear on hotbar unless a summon is present.
 
-Summoning Garuda -> Using Hastega -> Releasing Garuda | <br>
-:-------------------------:	| :-------------------------:
-![Summoning](images/readme/Summoning.gif)
-
-** All Blood Pact: Ward abilities share a cooldown and All Blood Pact: Rage abilities share a cooldown on the hotbar.
-** Pet commands do not show up on hotbar unless player has an active pet.
-** If the hotbar slot uses `ja` to cast a pet ability, then it only show on the bar if its a usable skill.
-** If the hotbar slot uses `pet` to cast a pet ability, then it will always show on the bar, regardless if its a usable skill.
+* All Blood Pact: Ward abilities share a cooldown and All Blood Pact: Rage abilities share a cooldown on the hotbar.
+* Pet commands do not show up on hotbar unless player has an active pet.
+* If the hotbar slot uses `ja` to cast a pet ability, then it only show on the bar if its a usable skill.
+* If the hotbar slot uses `pet` to cast a pet ability, then it will always show on the bar, regardless if its a usable skill.
 
 Example:
 ```
@@ -97,10 +78,10 @@ NOTE: When reloading the hotbar, the game loses track of your summoned pet. When
 ## Beastmaster
 A beastmaster's pet abilities will only show up on the hotbar when the pet is successfully called or charmed. Additionally, abilities will remove themself from the hotbar when the pet is released, dies, or lost through zoning. Also, pet commands: release, attack etc. do not appear on hotbar unless a pet is present.
 
-** Pet commands do not show up on hotbar unless player has an active pet.
-** If the hotbar slot uses `bstpet` to cast a pet ability, then it only show on the bar if its a usable skill. `bstpet` is a special macro action for beastmaster, and will automatically change the icon and tooltip to match whatever the beastmaster jug pet knows.
-** If the hotbar slot uses `ja` to cast a pet ability, then it only show on the bar if its a usable skill.
-** If the hotbar slot uses `pet` to cast a pet ability, then it will always show on the bar, regardless if its a usable skill.
+* Pet commands do not show up on hotbar unless player has an active pet.
+* If the hotbar slot uses `bstpet` to cast a pet ability, then it only show on the bar if its a usable skill. `bstpet` is a special macro action for beastmaster, and will automatically change the icon and tooltip to match whatever the beastmaster jug pet knows.
+* If the hotbar slot uses `ja` to cast a pet ability, then it only show on the bar if its a usable skill.
+* If the hotbar slot uses `pet` to cast a pet ability, then it will always show on the bar, regardless if its a usable skill.
 
 Example:
 ```
@@ -128,7 +109,7 @@ xivhotbar_keybinds_job['Pugil'] = {
 }
 ```
 
-NOTE: When reloading the hotbar, the game may lose track of your pet. When it engages an enemy, it should re-detect.
+NOTE: When reloading the add-on, or if your pet dies far from you, the game may lose track of your pet.
 NOTE: Jug pet recast works off charges. Right now the code assumes a 30 second charge build time, making this dynamic is a future change.
 
 
@@ -185,10 +166,9 @@ I recommend after finalizing your hotbar posistions to copy them over to the off
 </your-character-name>										</Global>
 ```
 
-### Coming from XIVHotbar?
+## Migrating from XIVHotbar
 
-If you've used previous versions of XIVHotbar, simply download this version and transfer over your Data/Your-Character-Name folder. All your previous setup actions will load normally to their respective hotbars. However, prepare to setup hotbar locations and other various settings again.<br>
-<br>
+If you've used previous versions of XIVHotbar, simply download this version and transfer over your Data/Your-Character-Name folder. All your previous setup actions will load normally to their respective hotbars. However, prepare to setup hotbar locations and other various settings again.
 
 # Understanding the JOB.lua and General.lua files
 
@@ -205,7 +185,7 @@ xivhotbar_keybinds_job['Table Type'] = {
 ```
 1. **Table Type:** 
    - 'Base': Base is the name designation for a table that is associated with your current main job. Actions associated with your main job should be inside this table. 
-   - 'Root': Root is the name designatin for a table that is associated with your general hotbar. Actions you want shared between all jobs should be inside this table with the environment set to 'field' for each action.
+   - 'Root': Root is the name designation for a table that is associated with your general hotbar. Actions you want shared between all jobs should be inside this table with the environment set to 'field' for each action.
    - 'Job': If table name is a job abbreviation (WAR, WHM etc.) then this is a table designated for your sub job actions. Actions associated with your subjob should be inside this table.
    - 'Weapon Type': If table name is a weapon type then this table is designated for actions associated to your current main hand weapon equipped. Current supported weapon types names are: Hand-to-hand, Dagger, Sword, Great Sword, Axe, Great Axe, Scythe, Polearm, Katana, Great Katana, Club, Staff, Bow, Marksmanship. This is case-sensitive. Weaponswitching must be enabled in settings.xml.
    - 'Stances': Stances refer to various different modes that certain jobs can put themself in. Such as Scholar in Light-Arts mode versus Dark-Arts Mode or even for Summoner Carbuncle Mode, Ifrit Mode, etc. All summon names are supported but are case-sensitive. Other currently supported stances are Light-Arts and Dark-Arts for Scholar. 
@@ -213,61 +193,16 @@ xivhotbar_keybinds_job['Table Type'] = {
 	- Environment:[battle|b|field|f] - 'b' and 'f' can be used as shorthand. 'Battle' refers to the 'Main' hotbar bar and 'Field' refers to the 'General' hotbar.
 	- Hotbar#:[1|2|3|4|5|6] 
 	- Slot#[1|2|3|4|5|6|7|8|9|10|11|12]
-3. **Action Type:** [ma|ja|ws|input|macro] - Note: Use 'ja' for pet commands/actions. Not 'pet'.  
+3. **Action Type:** [ma|ja|ws|input|macro|bstpet|pet] - Note: Try to use 'ja' for pet commands/actions, as it will work with recast timers and such.S  
 4. **Action Name:** Exact spelling of Spell/Ability/Weaponskill etc in-game. Not case-sensitive. Cannot be blank. 
 5. **Target Type:** [me|t|st|stpc|stnpc|bt|pet] - Can be blank if action type is input/macro.
 6. **Action Title:** The name you want displayed on the hotbar slot for this specific action. Can be blank.
 7. **Action Image:** Can be blank/removed. If blank/removed action will display the default image if available in the images/icons folder. Otherwise specify the file name of the image in the images/icons/custom folder. 
 
-##### Example 1: Action for Main Job
-```lua
-xivhotbar_keybinds_job['Base'] = { 
-	{'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure'},
-}
-```
-This action will appear on the 'Main'/'Battle' Environment on the first hotbar in the first slot. Its targeting mode is set to stpc. It will have the text 'Cure' as a label, and it will use the default image for Cure because no custom image is specified at the end. 
-
-##### Example 2: Action for Sub Job
-```lua
-xivhotbar_keybinds_job['WHM'] = {
-  {'battle 2 1', 'ma', 'Poisona', 'stpc', 'Poisona'},
-}
-```
-This action will appear when your sub job in game is White Mage on the 'Main'/'Battle' Environment on the second hotbar in the first slot. It will have the text 'Poisona' as a label, and it will use the default image for Poisona because no custom image is specified at the end. 
-
-##### Example 3: Action for General/Field Environment
-```lua
-xivhotbar_keybinds_general['Root'] = {
-	{'field 5 7', 'input', '/sea Rolanberry', '', 'Rolan', 'check'},
-}
-```
-This action will appear on the 'General'/'Field' Environment on the fifth hotbar in the seventh slot. The action type is 'input' so the following command will be input into the in-game chat. There is no targeting type because input/macro does not need target specified. It will have text 'Rolan' as a label. Also, it will use the check.png file in the 'images/icons/custom' folder.
-
-##### Example 4: Action for a Summoner
-```lua
-xivhotbar_keybinds_job['Carbuncle'] = {
-	{'battle 3 1', 'ja',  'Poison Nails', 't', 'Nails','summons/carbuncle'}
-}
-```
-This action will appear on your 'Main'/'Battle' Environment on your third hotbar in the first slot when carbuncle has been summoned. The action type set here is 'ja' because pet abilities are job abilities. Recommended to use 'ja' for pet actions instead of 'pet'. The ability that is set here is 'Poison Nails' and the targeting type is target. The action will appear on the hotbar with the label 'Nails' and a custom image is set to reference the carbuncle.png in the 'images/icons/custom/summons' folder. This action will disappear from the hotbar when carbuncle dies or is released.
-
-
-##### Example 5: Action for a Weaponswitching
-```lua
-xivhotbar_keybinds_job['Sword'] = {
-  {'battle 1 8', 'ws', 'Savage Blade', 't', 'Savage', 'ws'},
-}
-```
-This action will appear on your 'Main'/'Battle' Environment on the first hotbar in the eighth slot when a Sword is equipped. The action type 'ws' is weaponskill and the action is 'Savage Blade' and the target is target. Action will have the label 'Savage' and the action's image is a custom image named ws.png is the 'images/icons/custom' folder. Note: This action will not appear if the specified weaponskill has not been learned yet ad it will not appear if weaponswitching is not enabled in settings.xml. 
-
-##### Example 6: Scripted Macro Action
-```lua
-{'battle 3 3', 'macro','input /ja "Sneak Attack" <me>;wait 1;input /ja "Trick Attack" <me>;wait 1;input /ws "Viper Bite" <t>','','sataVB',''},
-```
-This action will appear on your 'Main'/'Battle' Environment on your third hotbar in the third slot. The action type is a 'macro' which means you will be able to execute a series of actions in sequence similar to an in-game macro. The following command must follow this exact format to work. Each action seperated by a semicolon with no spaces between actions. Macros do not require a target to be specified so the quotation for target is empty. This macro will have the label 'sataVB' and it will use the default image for all macros because no custom image is specified. 
+##### Examples
+See the examples folder for many examples of various hotbars.
 
 # UI Changes 
-
 A bunch more settings have been made available, as well as some existing settings being moved and some removed.
 
 - <b>Costs:</b> Displays the MP cost of each action on each slot if it is a spell
@@ -346,30 +281,9 @@ You can currently change the following in the settings.xml file:<br>
 **Dev -> DevMode:** Set to true/false to allow additional functionality during development. Recommended to keep this false unless you want your chat spammed with messages. If you submit a bug report I may request you to enable this to help narrow down any issues.<br>
 <br>
 
-## Weapon Images
+## Images
 
-It would seem that previous versions of XIVHotbar did not have the in-game icons associated with weaponskills and/or the previous developers did not like them. Either way I also could not find those icons and they are pretty generic anyways. As a result of this I have brought in a bunch of job ability icons for FFXIV and cropped them to make them work nicely here. These can be looked at in the images/icons/custom/ffxiv folder. 
-
-There are a couple of different ways you can go about setting your images for your weaponskills.
-
-1. **Default (No Effort):**  If no custom image is specified in the JOB.lua file the weaponskill icon that will be chose by default comes from images/icons/weapons folder. I have changed these icons from previous version of XIVHotbar to be icons from FFXIV. I have chosen the most simple and fitting icons possible for each weapon. <br>
-   
-	These are the default icons for each weapon in this order: Hand-to-hand, Dagger, Sword, Great Sword, Axe, Great Axe, Scythe, Polearm, Katana, Great Katana, Club, Staff, Archery, Marksmanship.
-	![Default Weapons](images/readme/DefaultWeapons.png)
-
-2. **My Old Method (Minimal Effort):** Use the same icon or two for every weaponskill in the game. In images/icons/custom/ folder there is an icon called 'ws' and icon called 'wsaoe'. These are simple but nice looking icons. Simply specify 'ws' when setting up a weaponskill in a JOB.lua. Can also do 'wsaoe' to specify weaponskills that are aoe. 
-   
-   These weaponskills set up in this image are obviously sword weaponskills, but these icons would be used for all weapontypes.<br>
-   ![Same Weapon Icons](images/readme/SameWeaponIcons.png)
-
-   
-3. **My New Method (Moderate Effort):** As I stated above, I brought in a bunch of icons from all the jobs in FFXIV. If you so choose you can look through these icons and individually set different icons for each weaponskill. Many of the icons are actually very fitting with FFXI weaponskills. You can browse these icons in images/icons/custom/ffxiv. Simple browse this folder and specify 'ffxiv/[job]/[filename]' in the JOB.lua.
-   
-	This is an image of my customized THF Hotbar, I even chose custom icons for my macros that switch my equipped bolt type.  
-	![Custom Icons](images/readme/CustomIcons.png)
-
-4. **Original Method:** I kept all the generic weapon icons from the previous XIVHotbar for those that want to still use those. You can find these in images/icons/custom/old_weapons. <br>
-<br>
+The addon will try to use default images from FF11 when possible. The image icon used can be overwritten. Many images are provided with the addon, look at the example files to see how they are used.
 
 # Support
 
@@ -381,55 +295,10 @@ If you run into issues with weaponswitching: Unequip weapon and reequip your wea
 
 Otherwise please report the bug with as much details as possible so I can try to replicate it!
 
-## Bug Fixes
-
-- Setting the input type field in the JOB.lua to 'ws' now works properly. 
-- XIVHotbar2 now properly unloads and reloads when relogging or switching characters. Instead of loading a second hotbar on top of itself
-- Fixed issue where the environment labels weren't hooking onto the bar during the move command
-
-## Minor Changes/Additions
-
-- Changed hover icon to the ffxiv/theme icon
-- Actions that are not useable due to debuffs(sleep, silence, etc.) now dim and undim consistently and properly.
-- Spells that are not learned yet remain dimmed until spell is learned. 
-- Fixed spells not dimming consistently when mp was insufficient
-- Added back the ability to show MP cost on actions. This is disabled by default
-- Added the ability to unlock the inventory labels and move them to any location as well customize their size
-- Added the ability to hide hotbar numbers and also customize their location and size
-- Added the ability to hide environment labels and also customize their location and size.
-- When using weaponswitching, weaponskills that have not been learned yet will not show up on hotbar.
-- Changed the default icon that shows up when using the macro keyword.
-- Added a devmode to settings.xml which prints various log messages to chat and other functionality when using GM commands. 
-- Disabled the ability to click slots and swap them around during "move" command. This caused issues when trying to move the hotbar as a whole. Also, it's more reliable to do all your action editing inside the job.lua file itself.
-- Shifted the name of spells to be below each hotbar slot instead of on the bottom of each slot by default. 
-
-
-## Known Issues 
-- Weaponswitching skills show up after a delay sometimes, especially when logging in.
+# Known Issues 
+- Weapons may not be detected, especially on login. Change weapons to fix.
 - Sometimes when learning a spell the hotbar will make a brief flicker. 
-- Icons occasionally brifelyflicker after zoning
-- On beastmaster when releasing a charmed pet, pet commands dont clear from the hotbar. This appears to be related to the game/private servers. This issue does not appear to be a problem with jug pets/call beast.
-- Scroll icon overlay will sometimes display on all spells briefly after zoning/logging it. 
-
-
-## Encountered Bug or Feature Request?
-
-If you encounter a bug please make a bug report here on github with as much detail as you can possibly give. Additionally, if you have a feature you like to see added you can make a bug report as well. 
-
-## Frequently Asked Questions - FAQ
-
-Q: I added an action to my hotbar but it is not showing up in game.
-
-A: There are various reasons for this. Here a few things to try and look out for: <br>
-	1. Actions won't show up on the hotbar unless you do a '//htb reload' or reload the addon entirely '//lua reload xivhotbar2' <br>
-	2. If your character does not meet the level and/or skill level requirements for said action it will not appear on the hotbar until acquired. Spells will appear on hotbar once level requirement is reached, but they will be dimmed until learned.<br>
-	3. Another action may be overwriting it due to it being setup for the same hotbar# and slot#. Check your Subjob tables, Weaponswitching tables, or Stance tables.
-
-Q: Why get rid of click to move icon? <br>
-A: I personally found this issue to cause a lot of problems and personally preferred setting up all my actions in a text editor (notepad++ recommended) as it is no more cumbersome than setting up macros in-game. 
-
-## Contact Me
-
-First and foremost if you notice a bug with the hotbar please just go ahead and submit a bug report here!
-
-However, if you are you struggling to understand how something works with this hotbar feel free to message me on discord (Technyze#9008) or if you play on HorizonXI Private Server feel free to send me a /tell. My character name is Technyze! 
+- Icons occasionally flicker after zoning
+- Recast timers for scholar do not show the actual recast time, but instead show time until full charges available.
+- Beastmaster ready commands assume a 30 second charge, so the recast time is set accordingly. Icons can still be clicked if the timer is wrong.
+- Hotbar does not account for the scholar skills Tabula Rasa or Enlightenment, so the wrong spells may be dimmed. They can still be clicked, however.
