@@ -8,17 +8,17 @@
 --Hotbar #2 
 --main job abilities
 	-- SATA Single Hit
-	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataVB',''},
-	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Viper Bite" <t>','','sataVB',''},
-	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Shark Bite" <t>','','sataSB',''},
-	{'battle 2 1', 'macro',"input /ja 'Sneak Attack' <me>;wait 2;input /ja 'Trick Attack' <me>;wait 1;input /ws 'Rudra's Storm' <t>","","sataVB",""},
+	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataVB',"ffxiv/blu/sharpened_knife"},
+	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Viper Bite" <t>','','sataVB',"ffxiv/blu/sharpened_knife"},
+	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Shark Bite" <t>','','sataSB',"ffxiv/blu/sharpened_knife"},
+	{'battle 2 1', 'macro',"input /ja 'Sneak Attack' <me>;wait 2;input /ja 'Trick Attack' <me>;wait 1;input /ws 'Rudra's Storm' <t>","","sataVB","ffxiv/blu/sharpened_knife"},
 	-- SATA Multi Hit
-	{'battle 2 2', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;/ws "Dancing Edge" <t>', '', 'sataDe'},
+	{'battle 2 2', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;/ws "Dancing Edge" <t>', '', 'sataDe',"ffxiv/blu/sharpened_knife"},
 	{'battle 2 3', 'ja', 'Sneak Attack', 'me', 'Sneak','ffxiv/nin/spinning_edge'},
 	{'battle 2 4', 'ja', 'Trick Attack', 'me', 'Trick','ffxiv/nin/trick_attack'},
-	{'battle 2 5', 'ja', 'Bully', 't', 'Bully'},
-	{'battle 2 6', 'ja', 'Accomplice', 'st', 'Accomp'},
-	{'battle 2 7', 'ja', 'Collaborator', 'st', 'Collab'},
+	{'battle 2 5', 'ja', 'Bully', 't', 'Bully','ffxiv/role/true_north'},
+	{'battle 2 6', 'ja', 'Accomplice', 'st', 'Accomp',"ffxiv/blu/the_dragon's_voice"},
+	{'battle 2 7', 'ja', 'Collaborator', 'st', 'Collab',"ffxiv/blu/the_ram's_voice"},
 	
 
 --Hotbar #3
@@ -30,12 +30,12 @@
 	{'battle 4 1', 'ja', 'Steal', 't', 'Steal','ffxiv/nin/dream_within_a_dream'},
 	{'battle 4 2', 'ja', 'Despoil', 't', 'Despoil'},
 	{'battle 4 3', 'ja', 'Mug', 't', 'Mug','ffxiv/nin/mug'},
-	{'battle 4 2', 'ja', 'Feint', 'me', 'Feint'},
+	{'battle 4 2', 'ja', 'Feint', 'me', 'Feint', 'ffxiv/role/feint'},
 	{'battle 4 4', 'ja', 'Hide', 'me', 'Hide','ffxiv/nin/hide'},
-	{'battle 4 5', 'ja', 'Flee', 'me', 'Flee','ffxiv/nin/forked_raiju'},
-	{'battle 4 6', 'ja', 'Larceny', 't', 'Larceny', 'cog'},
+	{'battle 4 5', 'ja', 'Flee', 'me', 'Flee','ffxiv/role/peloton'},
+	{'battle 4 6', 'ja', 'Larceny', 't', 'Larceny'},
 	{'battle 4 6', 'ja', 'Conspirator', 'me', 'Conspir'},
-	{'battle 4 12', 'ja', 'Perfect Dodge', 'me', 'P Dodge'},
+	{'battle 4 12', 'ja', 'Perfect Dodge', 'me', 'P Dodge','ffxiv/mnk/anatman'},
 
 -- Hotbar #5
 	{'battle 5 1', 'input', '/ra <t>', '', 'Pull', 'ra'},
@@ -43,170 +43,190 @@
 -- Hotbar #6
 }
 
--- Subjobs
+-- SUBJOBS
 -- Hotbar #3
-xivhotbar_keybinds_job['COR'] = {
-	{'battle 3 1', 'ja', "Double-Up", 'me', 'Dbl Up'},
-	{'battle 3 2', 'ja', "Corsair's Roll", 'me', 'COR'}, -- exp
-	{'battle 3 3', 'ja', "Ninja Roll", 'me', 'NIN'}, -- eva
-	{'battle 3 4', 'ja', "Hunter's Roll", 'me', 'HUN'}, -- acc & ra acc
-	{'battle 3 5', 'ja', "Chaos Roll", 'me', 'CHS'}, -- phys atk
-	{'battle 3 6', 'ja', "Magus's Roll", 'me', 'MGS'}, -- mag def
-	{'battle 3 7', 'ja', "Healer's Roll", 'me', 'HLR'}, -- cure potency
-	{'battle 3 6', 'ja', "Drachen Roll", 'me', 'CHS'}, -- pet & ra acc 
-	{'battle 3 8', 'ja', "Choral Roll", 'me', 'CRL'}, -- spell interrupt
-	{'battle 3 7', 'ja', "Monk's Roll", 'me', 'MNK'}, -- subtle blow
-	{'battle 3 8', 'ja', "Beast Roll", 'me', 'BST'}, -- pet atk
-	{'battle 3 7', 'ja', "Samurai Roll", 'me', 'SAM'}, -- store TP
-	{'battle 3 8', 'ja', "Evoker's Roll", 'me', 'EVO'}, -- MP regen
-	{'battle 3 3', 'ja', "Rogue's Roll", 'me', 'RGE'}, -- crit
-	{'battle 3 9', 'ja', "Warlock's Roll", 'me', 'WLK'}, -- magic acc
-	{'battle 3 10', 'ja', "Fighter's Roll", 'me', 'SAM'}, -- double atk
+xivhotbar_keybinds_job['MNK'] = {
+	{'battle 3 1', 'ja', 'Boost', 'me', 'Boost','ffxiv/mnk/riddle_of_fire'},
+	{'battle 3 2', 'ja', 'Dodge', 'me', 'Dodge','ffxiv/mnk/riddle_of_earth'},
+	{'battle 3 3', 'ja', 'Focus', 'me', 'Focus','ffxiv/mnk/riddle_of_wind'},
+	{'battle 3 4', 'ja', 'Chakra', 'me', 'Chakra','ffxiv/mnk/meditation'},
+	{'battle 3 5', 'ja', 'Chi Blast', 'stnpc', 'Chi','ffxiv/mnk/elixir_field'},
+	{'battle 3 6', 'ja', 'Counterstance', 'me', 'Ctr','ffxiv/mnk/arm_of_the_destroyer'},
 }
 
-  xivhotbar_keybinds_job['NIN'] = {
-	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi'},
-	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni'},
-	{'battle 3 3', 'ma', 'Kurayami: Ichi', 't', 'Kurayami'},
-	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo'},
-	{'battle 3 5', 'ma', 'Dokumori: Ichi', 't', 'Dokumori'},
-	{'battle 3 6', 'ma', 'Jubaku: Ichi', 't', 'Jubaku'},
-	{'battle 3 11', 'ja', 'Yonin', 'me', 'Yonin'}, 
-	{'battle 3 12', 'ja', 'Innin', 'me', 'Innin'},
+xivhotbar_keybinds_job['WAR'] = {
+	{'battle 3 1', 'ja', 'Provoke', 'stnpc', 'Voke','ffxiv/war/defiance'},
+	{'battle 3 2', 'ja', 'Berserk', 'me', 'Brsrk','ffxiv/war/berserk'},
+	{'battle 3 3', 'ja', 'Defender', 'me', 'Dfnd','ffxiv/war/shake_it_off'},
+	{'battle 3 4', 'ja', 'Warcry', 'me', 'Wrcry','ffxiv/war/inner_beast'},
+	{'battle 3 5', 'ja', 'Aggressor', 'me', 'Aggrsr','ffxiv/war/onslaught'},
  }
 
-xivhotbar_keybinds_job['PUP'] = {
-	{'battle 3 1', 'ja', 'Deploy','t', 'Fight'},
-	{'battle 3 2', 'ja', 'Retrieve','t', 'Retrieve'},
-	{'battle 3 3', 'ja', 'Fire Maneuver','me', 'FireMan'},
-	{'battle 3 4', 'ja', 'Ice Maneuver','me', 'IceMan'},
-	{'battle 3 5', 'ja', 'Wind Maneuver','me', 'WndMan'},
-	{'battle 3 6', 'ja', 'Earth Maneuver','me', 'EthMan'},
-	{'battle 3 7', 'ja', 'Thunder Maneuver','me', 'ThrMan'},
-	{'battle 3 8', 'ja', 'Water Maneuver','me', 'WtrMan'},
-	{'battle 3 9', 'ja', 'Light Maneuver','me', 'LghMan'},
-	{'battle 3 10', 'ja', 'Dark Maneuver','me', 'DrkMan'},
-	{'battle 3 11', 'ja', 'Repair', 'me', 'Repair'},  --needs oil
-	{'battle 3 12', 'ja', 'Activate', 'me', 'Activate'},
+xivhotbar_keybinds_job['COR'] = {
+	{'battle 3 1', 'ja', "Double-Up", 'me', 'Dbl Up','ffxiv/ast/play'},
+	{'battle 3 2', 'ja', "Corsair's Roll", 'me', 'COR','classes/ast'}, -- exp
+	{'battle 3 3', 'ja', "Ninja Roll", 'me', 'NIN','classes/nin'}, -- eva
+	{'battle 3 4', 'ja', "Hunter's Roll", 'me', 'HUN','classes/acr'}, -- acc & ra acc
+	{'battle 3 5', 'ja', "Chaos Roll", 'me', 'CHS','classes/rpr'}, -- phys atk
+	{'battle 3 7', 'ja', "Magus's Roll", 'me', 'MGS','classes/whm'}, -- mag def
+	-- {'battle 3 7', 'ja', "Healer's Roll", 'me', 'HLR','classes/hlr'}, -- cure potency
+	-- {'battle 3 8', 'ja', "Drachen Roll", 'me', 'DRC','classes/lnc'}, -- pet & ra acc 
+	-- {'battle 3 9', 'ja', "Choral Roll", 'me', 'CRL','classes/brd'}, -- spell interrupt
+	-- {'battle 3 10', 'ja', "Monk's Roll", 'me', 'MNK','classes/mnk'}, -- subtle blow
+	-- {'battle 3 11', 'ja', "Beast Roll", 'me', 'BST','classes/war'}, -- pet atk
+	{'battle 3 3', 'ja', "Samurai Roll", 'me', 'SAM','classes/sam'}, -- store TP
+	-- {'battle 3 3', 'ja', "Quick Draw", 'me', 'QkDraw','classes/mch'},
+	{'battle 3 9', 'ja', "Evoker's Roll", 'me', 'EVO','classes/smn'}, -- MP regen
+	{'battle 3 6', 'ja', "Rogue's Roll", 'me', 'RGE','classes/rge'}, -- crit
+	-- {'battle 3 4', 'ja', "Warlock's Roll", 'me', 'WLK','classes/thm'}, -- magic acc
+	{'battle 3 2', 'ja', "Fighter's Roll", 'me', 'FTR','classes/mar'}, -- double atk
+-- Mastery only
+	-- {'battle 3 6', 'ja', "Puppet Roll", 'me', 'PUP','classes/pug'}, -- pet matk & pet macc
+	{'battle 3 8', 'ja', "Gallant's Roll", 'me', 'GAL','classes/pld'}, -- def
+	-- {'battle 3 8', 'ja', "Wizard's Roll", 'me', 'WIZ','classes/blm'}, -- matk
+	{'battle 3 12', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/undraw'}, 
 }
+
+xivhotbar_keybinds_job['NIN'] = {
+-- Shadows
+	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi','ffxiv/nin/dream_within_a_dream'},
+	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni','ffxiv/nin/phantom_kamaitachi'},
+-- Elements
+	{'battle 3 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
+	{'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
+	{'battle 3 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
+	{'battle 3 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
+	{'battle 3 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
+	{'battle 3 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
+	{'battle 3 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
+	{'battle 3 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
+	{'battle 3 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
+	{'battle 3 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
+	{'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
+	{'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
+-- Enfeeblement
+	{'battle 3 3', 'ma', 'Kurayami: Ichi', 'stnpc', 'Kura','ffxiv/blu/glower'}, -- blind
+	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 3 4', 'ma', 'Hojo: Ni', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 3 5', 'ma', 'Dokumori: Ichi', 'stnpc', 'Doku','ffxiv/blu/exuviation'}, -- poison
+	{'battle 3 6', 'ma', 'Jubaku: Ichi', 'stnpc', 'Jubaku','ffxiv/blu/faze'}, -- paralyze
+-- Stances
+	{'battle 3 11', 'ja', 'Yonin', 'me', 'Yonin','ffxiv/nin/shade_shift'}, -- tanky
+	{'battle 3 12', 'ja', 'Innin', 'me', 'Innin','ffxiv/nin/assassinate'}, -- dps
+ }
+
+xivhotbar_keybinds_job['DNC'] = {
+-- Sambas
+	{'battle 3 1', 'ja', 'Haste Samba', 'me', 'Haste','ffxiv/dnc/pirouette'},
+	{'battle 3 2', 'ja', 'Drain Samba', 'me', 'Drain','ffxiv/dnc/emboite'},
+	{'battle 3 2', 'ja', 'Drain Samba II', 'me', 'Drain2','ffxiv/dnc/emboite'},
+	-- {'battle 3 3', 'ja', 'Aspir Samba', 'me', 'Aspir','ffxiv/dnc/jete'},
+-- Waltzes
+	{'battle 3 3', 'ja', 'Curing Waltz', 'stpc', 'CurW','ffxiv/dnc/curing_waltz'},
+	{'battle 3 3', 'ja', 'Curing Waltz II', 'stpc', 'CurW2','ffxiv/dnc/curing_waltz'},
+	{'battle 3 3', 'ja', 'Curing Waltz III', 'stpc', 'CurW3','ffxiv/dnc/curing_waltz'},
+	{'battle 3 4', 'ja', 'Divine Waltz', 'stpc', 'Divine','ffxiv/dnc/improvised_finish'},
+	{'battle 3 5', 'ja', 'Healing Waltz', 'stpc', 'Healing','ffxiv/dnc/shield_samba'},
+	{'battle 3 8', 'ja', 'Contradance', 'me', 'Contra','ffxiv/dnc/tillana'}, -- mastery
+-- Steps
+	{'battle 3 6', 'ja', 'Quickstep', 'stnpc', 'Quick','ffxiv/dnc/en_avant'},
+	{'battle 3 7', 'ja', 'Box Step', 'stnpc', 'Box','ffxiv/dnc/bladeshower'},
+	-- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
+-- Flourishes
+	{'battle 3 12', 'ja', 'Animated Flourish', 'stnpc', 'Voke','ffxiv/dnc/closed_position'},
+	{'battle 3 9', 'ja', 'Violent Flourish', 'stnpc', 'Stun','ffxiv/dnc/starfall_dance'},
+	{'battle 3 10', 'ja', 'Reverse Flourish', 'me', 'Reverse','ffxiv/dnc/reverse_cascade'},
+	{'battle 3 11', 'ja', 'Building Flourish', 'me', 'Building','ffxiv/dnc/flourish'},
+-- Jigs
+	-- {'battle 3 8', 'ja', 'Spectral Jig', 'me', 'Spectral','ffxiv/dnc/fan_dance_IV'},
+	-- {'battle 3 8', 'ja', 'Chocobo Jig', 'me', 'Chocobo','ffxiv/dnc/entrechat'}, -- mastery
+ }
 
 xivhotbar_keybinds_job['DRG'] = {
 	{'battle 3 1', 'ja', 'Jump', 't', 'Jump', 'ffxiv/drg/jump'},
-	{'battle 3 2', 'ja', 'High Jump', 't', 'Hi Jump', 'ffxiv/drg/high_jump'},
+	{'battle 3 2', 'ja', 'High Jump', 't', 'HiJump', 'ffxiv/drg/high_jump'},
 	{'battle 3 3', 'ja', 'Ancient Circle', 'me', 'Ancient', 'ffxiv/rpr/arcane_crest'},
-	{'battle 3 4', 'ja', 'Super Jump', 't', 'Su Jump', 'ffxiv/drg/elusive_jump'},
+	{'battle 3 4', 'ja', 'Super Jump', 't', 'SuJump', 'ffxiv/drg/elusive_jump'}, -- mastery
  }
 
-xivhotbar_keybinds_job['SAM'] = {
-	{'battle 3 1', 'ja', 'Hasso', 'me', 'Hasso', 'ffxiv/sam/ikishoten'},
-	{'battle 3 2', 'ja', 'Meditate', 'me', 'Mdtate', 'ffxiv/sam/meditate'},
-	{'battle 3 3', 'ja', 'Sekkanoki', 'me', 'Sekka', 'ffxiv/sam/meikyo_shisui'},
-	{'battle 3 4', 'ja', 'Seigan', 'me', 'Seigan', 'ffxiv/sam/tengentsu'},
-	{'battle 3 5', 'ja', 'Third Eye', 'me', '3rd Eye', 'ffxiv/sam/third_eye'},
-	{'battle 3 6', 'ja', 'Warding Circle', 'me', 'Warding', 'ffxiv/gnb/demon_slaughter'},
- }
- 
- xivhotbar_keybinds_job['DRK'] = {
+xivhotbar_keybinds_job['DRK'] = {
 	{'battle 3 1', 'ja', 'Last Resort', 'me', 'LResort', 'ffxiv/drk/grit'},
 	{'battle 3 2', 'ja', 'Souleater', 'me', 'SEater', 'ffxiv/drk/souleater'},
 	{'battle 3 3', 'ja', 'Consume Mana', 'me', 'Consume', 'ffxiv/drk/syphon_strike'},
 	{'battle 3 4', 'ja', 'Weapon Bash', 't', 'Bash', 'ffxiv/drk/shadow_wall'},
 	{'battle 3 5', 'ja', 'Arcane Circle', 'me', 'Arcane', 'ffxiv/drk/salted_earth'},
-	{'battle 3 6', 'ma', 'Bio', 't', 'Bio'},
-	{'battle 3 6', 'ma', 'Bio II', 't', 'Bio II'},
-	{'battle 3 7', 'ma', 'Sleep', 't', 'Sleep'},
-	{'battle 3 7', 'ma', 'Sleep II', 't', 'Sleep II'},
-	{'battle 3 8', 'ma', 'Stun', 't', 'Stun'},
- }
- 
-  xivhotbar_keybinds_job['WAR'] = {
-	{'battle 3 1', 'ja', 'Berserk', 'me', 'Berserk'},
-	{'battle 3 2', 'ja', 'Warcry', 'me', 'Warcry'},
-	{'battle 3 3', 'ja', 'Aggressor', 'me', 'Aggrssr'},
-	{'battle 3 4', 'ja', 'Defender', 'me', 'Defend'},
-	{'battle 3 5', 'ja', 'Provoke', 't', 'Voke'},
- }
- 
-  xivhotbar_keybinds_job['DNC'] = {
--- Sambas
-	{'battle 3 1', 'ja', 'Haste Samba', 'me', 'Haste'},
-	{'battle 3 2', 'ja', 'Drain Samba', 'me', 'Drain'},
-	{'battle 3 2', 'ja', 'Drain Samba II', 'me', 'Drain II'},
-	{'battle 3 3', 'ja', 'Aspir Samba', 'me', 'Aspir'},
--- Waltzes
-	{'battle 3 4', 'ja', 'Curing Waltz', 'stpc', 'Curing'},
-	{'battle 3 4', 'ja', 'Curing Waltz II', 'stpc', 'Curing II'},
-	{'battle 3 4', 'ja', 'Curing Waltz III', 'stpc', 'Curing III'},
-	{'battle 3 5', 'ja', 'Divine Waltz', 'stpc', 'Divine'},
-	{'battle 3 6', 'ja', 'Healing Waltz', 'stpc', 'Healing'},
-	{'battle 3 6', 'ja', 'Contradance', 'me', 'Contradnc'},
--- Steps
-	{'battle 3 7', 'ja', 'Quickstep', 't', 'Quick'},
-	{'battle 3 8', 'ja', 'Box Step', 't', 'Box'},
-	{'battle 3 9', 'ja', 'Stutter Step', 't', 'Stutter'},
--- Flourishes
-	{'battle 3 10', 'ja', 'Animated Flourish', 't', 'Voke'},
-	{'battle 3 11', 'ja', 'Violent Flourish', 't', 'Stun'},
-	{'battle 3 12', 'ja', 'Reverse Flourish', 'me', 'Reverse'},
- }
- 
- xivhotbar_keybinds_job['THF'] = {
-	{'battle 3 1', 'ja', 'Sneak Attack', 'me', 'S Atk'},
-	{'battle 3 2', 'ja', 'Trick Attack', 'me', 'T Atk'},
-	{'battle 3 3', 'ja', 'Steal', 't', 'Steal'},
-	{'battle 3 4', 'ja', 'Mug', 't', 'Mug'},
-	{'battle 3 5', 'ja', 'Hide', 'me', 'Hide'},
-	{'battle 3 6', 'ja', 'Flee', 'me', 'Flee'},
- }
- 
- xivhotbar_keybinds_job['WHM'] = {
-	-- Debuffs 
-	{'battle 3 1', 'ma', 'Dia', 't', 'Dia'},
-	{'battle 3 1', 'ma', 'Dia II', 't', 'Dia II'},
-	{'battle 3 2', 'ma', 'Paralyze', 't', 'Para'},
-	{'battle 3 3', 'ma', 'Slow', 't', 'Slow'},
-	{'battle 3 4', 'ma', 'Silence', 't', 'Silence'},
-	-- Support
-	{'battle 3 5', 'ma', 'Haste', 'stpc', 'Haste'},
-	{'battle 3 6', 'ma', 'Blink', 'me', 'Blink'},
-	{'battle 3 7', 'ma', 'Stoneskin', 'me', 'StnSkin'},
-	{'battle 3 8', 'ma', 'Erase', 'stpc', 'Erase'},
-	-- Healing
-	{'battle 3 9', 'ja', 'Divine Seal', 'me', 'Divine'},
-	-- Cure
-	{'battle 3 10', 'ma', 'Cure', 'stpc', 'Cure'},
-	{'battle 3 10', 'ma', 'Cure II', 'stpc', 'CurII'},
-	{'battle 3 10', 'ma', 'Cure III', 'stpc', 'CurIII'},
-	{'battle 3 10', 'ma', 'Cure IV', 'stpc', 'CurIV'},
-	-- Regen
-	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen'},
-	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen II'},
-	-- Curaga
-	{'battle 3 12', 'ma', 'Curaga', 'stpc', 'Curga'},
-	{'battle 3 12', 'ma', 'Curaga II', 'stpc', 'Curga II'},
-	{'battle 3 12', 'ma', 'Curaga III', 'stpc', 'Curga III'},
+	{'battle 3 6', 'ma', 'Bio', 't', 'Bio','ffxiv/sch/bio'},
+	{'battle 3 6', 'ma', 'Bio II', 't', 'Bio II','ffxiv/sch/bio_II'},
+	{'battle 3 7', 'ma', 'Sleep', 't', 'Sleep','ffxiv/role/sleep'},
+	{'battle 3 7', 'ma', 'Sleep II', 't', 'Sleep II','ffxiv/role/sleep'},
+	{'battle 3 8', 'ma', 'Stun', 't', 'Stun','ffxiv/drk/unmend'},
  }
 
--- Weaponskill sets
--- 11 is always aoe
--- 12 is always stun
+-- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Dagger'] = {
+-- Heavy Hit
 	{'battle 1 1', 'ws', 'Wasp Sting', 't', 'Wasp'},
-	{'battle 1 1', 'ws', 'Viber Bite', 't', 'Viper'},
-	{'battle 1 1', 'ws', 'Shark Bite', 't', 'Shark'},
-	{'battle 1 1', 'ws', "Rudra's Storm", 't', 'Rudra'},
-	{'battle 1 2', 'ws', 'Gust Slash', 't', 'Gust'},
-	{'battle 1 2', 'ws', 'Aeolian Edge', 't', 'Aeolian'}, -- rdm thf brd rng nin dnc
-	{'battle 1 3', 'ws', 'Dancing Edge', 't', 'Dancing E'},
-	{'battle 1 4', 'ws', 'Evisceration', 't', 'Eviscrtn'}, -- war rdm thf bst brd rng nin cor dnc
-	{'battle 1 5', 'ws', 'Energy Steal', 't', 'Energy'},
-	{'battle 1 5', 'ws', 'Energy Drain', 't', 'Energy'}, -- rdm thf brd rng nin dnc
-	{'battle 1 5', 'ws', 'Exenterator', 't', 'Exentrtr'}, -- merit
-	{'battle 1 6', 'ws', 'Mandalic Stab', 't', 'Mandalic'}, -- mythic
-	{'battle 1 7', 'ws', 'Ruthless Stroke', 't', 'Ruthless'}, -- prime
-	{'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'},
-	{'battle 1 11', 'ws', 'Cyclone', 't', 'Cyclone'},-- aoe ws
-	{'battle 1 12', 'ws', 'Shadowstitch', 't', 'Shadowstitch'}, -- Bind
+	{'battle 1 1', 'ws', 'Viper Bite', 't', 'Viper'}, -- rdm thf brd rng nin dnc
+	{'battle 1 1', 'ws', 'Shark Bite', 't', 'Shark'}, -- thf dnc
+-- Multi-Hit
+	{'battle 1 2', 'ws', 'Dancing Edge', 't', 'DncEdge'}, -- thf dnc
+	{'battle 1 2', 'ws', 'Evisceration', 't', 'Evisc'}, -- war rdm thf bst brd rng nin cor dnc
+-- Wind
+	{'battle 1 3', 'ws', 'Gust Slash', 't', 'Gust'},
+-- Specials
+	{'battle 1 4', 'ws', 'Energy Steal', 't', 'Energy'},
+	{'battle 1 4', 'ws', 'Energy Drain', 't', 'Energy'}, -- rdm thf brd rng nin dnc
+-- Prime #6
+	{'battle 1 6', 'ws', 'Ruthless Stroke', 't', 'Ruthless'},
+-- Class Specific #7
+	{'battle 1 7', 'ws', 'Mandalic Stab', 't', 'Mandalic'}, -- thf
+	-- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
+	-- {'battle 1 7', 'ws', 'Pyrrhic Kleos', 't', 'Pyrrhic'}, -- dnc
+-- Merit Point #8
+	{'battle 1 8', 'ws', 'Exenterator', 't', 'Exent'}, -- war rdm thf bst brd rng nin cor dnc
+-- Empyrean (Abyssea only)  #9
+	{'battle 1 9', 'ws', "Rudra's Storm", 't', 'Rudra'}, -- thf brd dnc
+-- Relic (only usable with specific weapon equips) #10
+	{'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'}, -- rdm thf brd dnc relic
+-- AoE Ws #11
+	{'battle 1 11', 'ws', 'Cyclone', 't', 'Cyclone'}, -- rdm thf brd rng nin cor dnc
+	{'battle 1 11', 'ws', 'Aeolian Edge', 't', 'Aeoln'}, -- rdm thf brd rng nin dnc
+-- Bind WS #12
+	{'battle 1 12', 'ws', 'Shadowstitch', 't', 'ShdSt'},
+}
+
+xivhotbar_keybinds_job['Sword'] = {
+-- Heavy Hit
+	{'battle 1 1', 'ws', 'Fast Blade', 't', 'Fast'},
+	{'battle 1 1', 'ws', 'Spirits Within', 't', 'Spirits'},
+-- Multi-Hit
+	-- {'battle 1 2', 'ws', 'Vorpal Blade', 't', 'Vorpal'}, -- war rdm pld drk blu run
+	-- {'battle 1 2', 'ws', 'Swift Blade', 't', 'Swift'}, -- pld run
+	-- {'battle 1 2', 'ws', 'Savage Blade', 't', 'Savage'}, -- war rdm pld drk blu cor run
+-- Fire
+	{'battle 1 3', 'ws', 'Burning Blade', 't', 'Burning'},
+	-- {'battle 1 3', 'ws', 'Red Lotus Blade', 't', 'RLotus'}, -- war rdm pld drk blu
+-- Light
+	{'battle 1 4', 'ws', 'Shining Blade', 't', 'Shining'},
+	-- {'battle 1 4', 'ws', 'Seraph Blade', 't', 'Seraph'}, -- war rdm pld drk blu run
+-- Specials
+	-- {'battle 1 5', 'ws', 'Sanguine Blade', 't', 'Sanguine'}, -- war rdm pld drk blu run
+-- Prime #6
+	{'battle 1 6', 'ws', 'Imperator', 't', 'Imperator'},
+-- Class Specific #7
+	-- {'battle 1 7', 'ws', 'Death Blossom', 't', 'D Blsm'}, -- rdm
+	-- {'battle 1 7', 'ws', 'Atonement', 't', 'Atone'}, -- pld
+	-- {'battle 1 7', 'ws', 'Expiacion', 't', 'Expiacn'}, -- blu
+-- Merit Point #8
+	-- {'battle 1 8', 'ws', 'Requiescat', 't', 'Requisct'}, -- war rdm pld drk sam blu cor run
+-- Empyrean (Abyssea only)  #9
+	{'battle 1 9', 'ws', 'Chant du Cygne', 't', 'duCygne'},
+-- Relic (only usable with specific weapon equips) #10
+	-- {'battle 1 10', 'ws', 'Knights of Round', 't', 'KotR'}, -- rdm pld blu relic
+-- AoE Ws #11
+	{'battle 1 11', 'ws', 'Circle Blade', 't', 'Circle'},
+-- Stun WS #12
+	{'battle 1 12', 'ws', 'Flat Blade', 't', 'Flat'},
 }
 
 return xivhotbar_keybinds_job
