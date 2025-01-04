@@ -71,10 +71,10 @@ xivhotbar_keybinds_general['Root'] = {
 	{'field 4 7', 'ma', 'Shellra IV', 'me', 'Shellra IV'},
 	{'field 4 7', 'ma', 'Shellra V', 'me', 'Shellra V'},
 	-- trusts
-	-- {'field 4 11', 'macro', 'input /echo Trust Summon;input /ma "Valaineral" <me>;wait 6;input /ma "Mihli Aliapoh" <me>;wait 6;input /ma "Shantotto II" <me>;wait 6;input /ma "Semih Lafihna" <me>;wait 6;input /ma "Mayakov" <me>;wait 6', '', 'Summon', '2hr'},
-	{'field 4 9', 'input', '//tru martial', '', 'Martial', '2hr'},
-	{'field 4 10', 'input', '//tru caster', '', 'Caster', '2hr'},
-	{'field 4 11', 'input', '//tru op', '', 'Op', '2hr'}, -- trust mod template
+	{'field 4 11', 'macro', 'input /echo Trust Summon;input /ma "Valaineral" <me>;wait 6;input /ma "Mihli Aliapoh" <me>;wait 6;input /ma "Shantotto II" <me>;wait 6;input /ma "Semih Lafihna" <me>;wait 6;input /ma "Mayakov" <me>;wait 6', '', 'Summon', '2hr'},
+	-- {'field 4 9', 'input', '//tru martial', '', 'Martial', '2hr'},
+	-- {'field 4 10', 'input', '//tru caster', '', 'Caster', '2hr'},
+	-- {'field 4 11', 'input', '//tru op', '', 'Op', '2hr'}, -- trust mod template
 	{'field 4 12', 'input', '/refa all', '', 'Rtn Trust', 'return-trust'},
 
 -- #5 Hotbar
