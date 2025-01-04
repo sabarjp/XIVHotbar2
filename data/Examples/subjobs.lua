@@ -171,6 +171,7 @@ xivhotbar_keybinds_job['RNG'] = {
 	{'battle 3 3', 'ja', 'Shadowbind', 'stnpc', 'Bind','ffxiv/brd/shadowbite'},
 -- Ranged Hotbar #5
 	{'battle 5 1', 'input', '/ra <t>', '', 'RA', 'ra'},
+	{'battle 5 7', 'input', '/equip ammo "Wooden Arrow"', '', 'Ammo', 'classes/phy_rng'},
 -- Heavy Hit
 	{'battle 5 2', 'ws', 'Flaming Arrow', 't', 'Flame'},
 	{'battle 5 3', 'ws', 'Piercing Arrow', 't', 'Pierce'}, 
