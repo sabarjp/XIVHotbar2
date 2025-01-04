@@ -160,6 +160,36 @@ xivhotbar_keybinds_job['SAM'] = {
  }
  
 -- WEAPONSKILL SETS
+xivhotbar_keybinds_job['Hand-to-hand'] = {
+-- Heavy Hit
+	{'battle 1 1', 'ws', 'One Inch Punch', 't', '1Inch'}, -- mnk pup
+	{'battle 1 1', 'ws', 'Backhand Blow', 't', 'Backhand'},
+	{'battle 1 1', 'ws', 'Dragon Kick', 't', 'Dragon'}, -- mmk pup
+-- Multi-Hit
+	{'battle 1 2', 'ws', 'Combo', 't', 'Combo'},
+	{'battle 1 2', 'ws', 'Raging Fists', 't', 'Raging'}, -- mnk pup
+	{'battle 1 2', 'ws', 'Asuran Fists', 't', 'Asuran'}, -- mnk pup
+-- Specials
+	{'battle 1 3', 'ws', 'Howling Fist', 't', 'Howling'}, -- mnk pup
+	{'battle 1 4', 'ws', 'Tornado Kick', 't', 'Tornado'}, -- mnk pup
+-- Prime #6
+	{'battle 1 6', 'ws', 'Maru Kala', 't', 'Maru'},
+-- Class Specific #7
+	{'battle 1 7', 'ws', "Ascetic's Fury", 't', 'Ascetic'}, -- mnk
+	{'battle 1 7', 'ws', 'Stringing Pummel', 't', 'String'}, -- pup
+-- Merit Point #8
+	{'battle 1 8', 'ws', 'Shijin Spiral', 't', 'Shijin'}, -- mnk pup
+-- Empyrean (Abyssea only)  #9
+	{'battle 1 9', 'ws', 'Victory Smite', 't', 'Victory'}, -- mnk pup
+-- Relic (only usable with specific weapon equips) #10
+	{'battle 1 10', 'ws', 'Final Heaven', 't', 'FinHvn'}, -- mnk
+	{'battle 1 10', 'ws', 'Dragon Blow', 't', 'DragonB'}, -- bonanza
+-- AoE Ws #11
+	{'battle 1 11', 'ws', 'Spinning Attack', 't', 'Spinning'},
+-- Stun WS #12
+	{'battle 1 12', 'ws', 'Shoulder Tackle', 't', 'Tackle'},
+}
+
 xivhotbar_keybinds_job['Sword'] = {
 -- Heavy Hit
 	{'battle 1 1', 'ws', 'Fast Blade', 't', 'Fast'},

@@ -1,13 +1,16 @@
 xivhotbar_keybinds_general['Root'] = {
 -- #1 Hotbar
 	{'field 1 1', 'macro', 'input /dismount;wait 2;input /mount ixion', '', 'Mount', 'Mount'},
-	-- Warps
-	{'field 1 2', 'macro', 'input /equip ring1 "Warp Ring";wait 10;input /item "Warp Ring" <me>', '', 'Warp R.'},
-	{'field 1 2', 'ma', 'Warp', 'stpt', 'Warp'},
-	{'field 1 3', 'ma', 'Escape', 'me', 'Escape'},
+-- Jig
+	{'field 1 2', 'ja', 'Flee', 'me', 'Flee','ffxiv/nin/forked_raiju'},
+	{'field 1 3', 'ja', 'Chocobo Jig', 'me', 'Chocobo','ffxiv/dnc/entrechat'},
+-- Warps
+	{'field 1 8', 'macro', 'input /equip ring1 "Warp Ring";wait 10;input /item "Warp Ring" <me>', '', 'Warp R.'},
+	{'field 1 8', 'ma', 'Warp', 'me', 'Warp'},
+	{'field 1 9', 'ma', 'Warp2', 'stpt', 'Warp2'},
+	{'field 1 10', 'ma', 'Escape', 'me', 'Escape'},
 	{'field 1 11', 'input', '/rmap', '', 'R. Map', 'crafting_log'},
 	{'field 1 12', 'input', '/map', '', 'Map', 'crafting_log'},
-
 -- #2 Hotbar
     -- Sneak me
     {'field 2 1', 'ma', 'Sneak', 'me', 'Sneak'},
@@ -68,9 +71,10 @@ xivhotbar_keybinds_general['Root'] = {
 	{'field 4 7', 'ma', 'Shellra IV', 'me', 'Shellra IV'},
 	{'field 4 7', 'ma', 'Shellra V', 'me', 'Shellra V'},
 	-- trusts
-	{'field 4 12', 'input', '/refa all', '', 'Rtn Trust', 'return-trust'},
 	{'field 4 11', 'macro', 'input /echo Trust Summon;input /ma "Valaineral" <me>;wait 6;input /ma "Mihli Aliapoh" <me>;wait 6;input /ma "Shantotto II" <me>;wait 6;input /ma "Semih Lafihna" <me>;wait 6;input /ma "Mayakov" <me>;wait 6', '', 'Summon', '2hr'},
-	-- {'field 4 11', 'input', '//tru name', '', 'Summon', '2hr'}, -- trust mod template
+	-- {'field 4 9', 'input', '//tru martial', '', 'Martial', '2hr'},
+	-- {'field 4 10', 'input', '//tru caster', '', 'Caster', '2hr'},
+	-- {'field 4 11', 'input', '//tru op', '', 'Op', '2hr'}, -- trust mod template
 	{'field 4 12', 'input', '/refa all', '', 'Rtn Trust', 'return-trust'},
 
 -- #5 Hotbar
