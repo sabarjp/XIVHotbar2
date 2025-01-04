@@ -594,7 +594,6 @@ function check_if_pet_ability_usable(ability_index)
 end
 
 function check_if_ws_learned(ws_name_en)
-   
     for key,val in pairs(ws_list) do
         if ws_list[key]['en'] == ws_name_en then
             for k,v in pairs(learned_ws_id) do
@@ -659,9 +658,10 @@ local function parse_binds(theme_options, player, hotbar)
     -- Create Learned Weaponskills List
     weaponskills = ws_list
     for key,val in pairs(windower.ffxi.get_abilities().weapon_skills) do
+        
         for k,v in pairs(weaponskills) do
             if val == k then
-                table.insert(learned_ws_id,weaponskills[k]['id'])  
+                table.insert(learned_ws_id, weaponskills[k]['id'])
             end
         end
     end
@@ -712,30 +712,38 @@ local function parse_binds(theme_options, player, hotbar)
         table.insert(stances, 212)
     end
 
+    local stance_ndx = 1
     for k, s in pairs(stances) do
         if (hotbar[buff_table[s]] ~= nil) then
             local stance_table = hotbar[buff_table[s]]
             for key, val in pairs(stance_table) do
                 if action_req_check(stance_table[key]) == true then 
-                    fill_table(stance_table[key], key, stance_actions)
+                    fill_table(stance_table[key], stance_ndx, stance_actions)
+                    stance_ndx = stance_ndx + 1
                 end
             end
         end
     end
 
     -- WEAPON SWITCHING -- FILL TABLE
-    --print(theme_options.enable_weapon_switching)
+    local weapons = {}
+    table.insert(weapons, player.current_weapon)
+    table.insert(weapons, player.current_range_weapon)
+
 	if (theme_options.enable_weapon_switching == true) then
-        --print(weaponskill_types[player.current_weapon])
-		if (weaponskill_types[player.current_weapon] ~= nil) then
-			if (hotbar[weaponskill_types[player.current_weapon]] ~= nil) then
-				for key, val in pairs(hotbar[weaponskill_types[player.current_weapon]]) do 
-                    if action_req_check(hotbar[weaponskill_types[player.current_weapon]][key]) == true then
-					    fill_table(hotbar[weaponskill_types[player.current_weapon]][key], key, weaponskill_actions)
+        local weaponskill_ndx = 1
+        for k, w in ipairs(weapons) do
+            if (weaponskill_types[w] ~= nil) then
+                if (hotbar[weaponskill_types[w]] ~= nil) then
+                    for key, val in ipairs(hotbar[weaponskill_types[w]]) do
+                        if action_req_check(hotbar[weaponskill_types[w]][key]) == true then
+                            fill_table(hotbar[weaponskill_types[w]][key], weaponskill_ndx , weaponskill_actions)
+                            weaponskill_ndx = weaponskill_ndx + 1
+                        end
                     end
-				end
-			end
-		end
+                end
+            end
+        end
 	end
 end
 

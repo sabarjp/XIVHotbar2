@@ -3,6 +3,16 @@ This forked project continues the work of Technyze, SirEdeonX, and Akirane. It m
 
 # Features
 
+## Improvements
+Why use this fork over any other hotbar?
+
+* Updated through 2025
+* More complete examples
+* Beastmaster pet ability support (autodetect jug pet skills, track charges)
+* Robust Dancer support (shows usability of TP moves)
+* Robust Scholar arts support (shows usability of addendum spells, better stance detection)
+* Robust Beastmaster support (show usability of sic, support /bstpet)
+
 ## Hide Unusable skills
 Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.
 
@@ -296,3 +306,4 @@ Otherwise please report the bug with as much details as possible so I can try to
 - Recast timers for scholar do not show the actual recast time, but instead show time until full charges available.
 - Beastmaster ready commands assume a 30 second charge, so the recast time is set accordingly. Icons can still be clicked if the timer is wrong.
 - Hotbar does not account for the scholar skills Tabula Rasa or Enlightenment, so the wrong spells may be dimmed. They can still be clicked, however.
+- TP moves, dancer moves, and charges do not show a spell cost
