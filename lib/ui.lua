@@ -104,6 +104,7 @@ ui.image_height = 40
 ui.image_width = 40
 ui.overlay_image_height = 24
 ui.overlay_image_width = 24
+ui.player = {}
 ui.recasts = {}
 
 local images_setup = {
@@ -649,6 +650,9 @@ local function setup_environment(ui)
 end
 
 
+function ui:set_player(player)
+    self.player = player
+end
 
 -- setup positions and dimensions for ui
 function setup_metrics(ui)
@@ -1132,63 +1136,64 @@ function ui:update_pet_mp(new_pet_mp)
 	current_pet_mp = new_pet_mp
 end
 
-local function check_disable(database, action)
-    local current_mp = windower.ffxi.get_player().vitals.mp
-    local main_job
+function ui:check_disable(db, act)
+    local mp = windower.ffxi.get_player().vitals.mp
 
-	if action ~= nil and is_neutralized == true then 
-        ui.disabled_slots.actions[action.action] = true
+	if act ~= nil and is_neutralized == true then 
+        self.disabled_slots.actions[act.action] = true
 		return true
-	elseif action ~= nil then
-		if action.type == 'ma' then
-            if check_if_spell_learned(action.action) ~= true then
-                ui.disabled_slots.actions[action.action] = true
+	elseif act ~= nil then
+		if act.type == 'ma' then
+            if check_if_spell_learned(act.action) ~= true then
+                self.disabled_slots.actions[act.action] = true
                 return true
             elseif is_silenced == true then
-                ui.disabled_slots.actions[action.action] = true
+                self.disabled_slots.actions[act.action] = true
                 return true
-            elseif check_if_spell_usable(action.action) ~= true then
-                ui.disabled_slots.actions[action.action] = true
+            elseif check_if_spell_usable(act.action) ~= true then
+                self.disabled_slots.actions[act.action] = true
                 return true
-            elseif current_mp < database[action.type][(action.action):lower()].mpcost then
-                ui.disabled_slots.no_vitals[action.action] = true
+            elseif mp < db[act.type][(act.action):lower()].mpcost then
+                self.disabled_slots.no_vitals[act.action] = true
                 return true
-            elseif current_mp >= database[action.type][(action.action):lower()].mpcost then
-                ui.disabled_slots.no_vitals[action.action] = false
+            elseif mp >= db[act.type][(act.action):lower()].mpcost then
+                self.disabled_slots.no_vitals[act.action] = false
                 return false
             else
-                ui.disabled_slots.actions[action.action] = false
+                self.disabled_slots.actions[act.action] = false
                 return false
             end
 		end
-        if action.type == 'ws' or action.type == 'ja' or action.type == 'pet' then
+        if act.type == 'ws' or act.type == 'ja' or act.type == 'pet' then
             if is_amnesiad == true then
-                ui.disabled_slots.actions[action.action] = true
+                self.disabled_slots.actions[act.action] = true
                 return true
-            elseif action.type == 'ws' and can_ws == false then
-                ui.disabled_slots.actions[action.action] = true
+            elseif act.type == 'ws' and can_ws == false then
+                self.disabled_slots.actions[act.action] = true
                 return true
-            elseif database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].oid == "72" and not can_pet_ws then
+            elseif check_if_ability_usable(act.action, self.player) ~= true then
+                self.disabled_slots.actions[act.action] = true
+                return true
+            elseif db[act.type] and db[act.type][(act.action):lower()] and db[act.type][(act.action):lower()].oid == "72" and not can_pet_ws then
                 -- disable sic when pet tp is too low
-                ui.disabled_slots.actions[action.action] = true
+                self.disabled_slots.actions[act.action] = true
                 return true
             else
-                ui.disabled_slots.actions[action.action] = false
+                self.disabled_slots.actions[act.action] = false
                 return false
             end
         else
-            ui.disabled_slots.actions[action.action] = false
+            self.disabled_slots.actions[act.action] = false
             return false
         end
-    else
-        return false 
 	end
+
     return false
 end
 
 function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, slot)
 	local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. slot]
-	local is_disabled = check_disable(database, action)
+	local is_disabled = self:check_disable(database, action)
 
     -- Disable Check --
     if action == nil then

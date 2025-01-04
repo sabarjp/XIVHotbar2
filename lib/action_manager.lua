@@ -551,6 +551,39 @@ function check_if_ability_learned(ability_name_en)
     end
 end
 
+-- ONLY USED TO CHECK IF SPELL IS GREYED OUT
+-- helps determine if an ability can be used, for abilities that are conditional. example are dancer tp moves, dancer finishers.
+function check_if_ability_usable(ability_name_en, player)
+    local current_tp = windower.ffxi.get_player().vitals.tp
+
+    for key,val in pairs(ability_list) do
+        if ability_list[key]['en'] == ability_name_en then
+            if ability_list[key]['tp_cost'] >= 0 then
+                -- this has a tp cost, so need to see if we have enough!
+                if current_tp < ability_list[key]['tp_cost'] then
+                    return false
+                end
+            end
+            
+            if ability_list[key]['id'] == 209 or ability_list[key]['id'] == 313 then -- wild flourish/striking flourish
+                if player:get_finishing_moves() < 2 then
+                    return false
+                end
+            elseif ability_list[key]['id'] == 314 then  -- ternary flourish
+                if player:get_finishing_moves() < 3 then
+                    return false
+                end
+            elseif ability_list[key]['type'] == 'Flourish1' or ability_list[key]['type'] == 'Flourish2' or ability_list[key]['type'] == 'Flourish3' then -- other flourishes
+                if player:get_finishing_moves() < 1 then
+                    return false
+                end
+            end
+        end
+    end
+
+    return true  --assume otherwise we are OK
+end
+
 function check_if_pet_ability_usable(ability_index)
     -- really just need to see if index exists
     local ndx = tonumber(ability_index)

@@ -88,6 +88,7 @@ function initialize()
     keyboard:parse_keybinds()
 	
     ui:setup(theme_options)
+	ui:set_player(player)
 	
 	box:init(theme_options)
     windower_player = windower.ffxi.get_player()
@@ -109,8 +110,9 @@ function initialize()
 		end
 		player:update_weapon_type(skill_type)
 	end
-	current_mp = windower_player.vitals.mp
-	current_tp = windower_player.vitals.tp
+
+	local current_mp = windower_player.vitals.mp
+	local current_tp = windower_player.vitals.tp
 	
 	ui:update_mp(current_mp)
 	ui:update_tp(current_tp)
@@ -674,6 +676,9 @@ windower.register_event('gain buff', function(id)
 		reload_hotbar()
 	elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White for stratagems
 		reload_hotbar()
+	elseif (id >= 381 and id <= 385) or id == 588 then -- finishing move 1/2/3/4/5/6+
+		player:update_finishing_moves(id)
+		reload_hotbar()
 	end
 end)
 
@@ -686,6 +691,9 @@ windower.register_event('lose buff', function(id)
 	elseif id == 377 then -- Tabula Rasa - Status Effect
 		reload_hotbar()
 	elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White
+		reload_hotbar()
+	elseif (id >= 381 and id <= 385) or id == 588 then -- finishing move 1/2/3/4/5/6+
+		player:reset_finishing_moves()
 		reload_hotbar()
 	end
 end)
