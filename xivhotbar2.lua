@@ -76,6 +76,8 @@ local state = {
 	inventory_ready = false,
 	inventory_loading = false
 }
+local loaded = windower.ffxi.get_info().logged_in
+local first_load_done = false
 
 -------
 -- Main
@@ -84,7 +86,6 @@ nil_equip_bool = false
 
 -- initialize addon --
 function initialize()
-
     keyboard:parse_keybinds()
 	
     ui:setup(theme_options)
@@ -92,14 +93,21 @@ function initialize()
 	
 	box:init(theme_options)
     windower_player = windower.ffxi.get_player()
-	
+
 	local server = resources.servers[windower.ffxi.get_info().server]
 		and resources.servers[windower.ffxi.get_info().server].en 
 		or "PrivateServer_"..tostring(windower.ffxi.get_info().server)
 
 	if theme_options.enable_weapon_switching == true then
-		set_weapon_type(false, 0, windower.ffxi.get_items().equipment.main)
-		set_weapon_type(true, 0, windower.ffxi.get_items().equipment.range)
+		-- unlikely to be available unless the world has already been loaded in
+		if windower.ffxi.get_items() ~= nil then
+			if not (windower.ffxi.get_items().equipment.main_bag == 0 and windower.ffxi.get_items().equipment.main == 0) then
+				set_weapon_type(false, windower.ffxi.get_items().equipment.main_bag, windower.ffxi.get_items().equipment.main)
+			end
+			if not (windower.ffxi.get_items().equipment.range_bag == 0 and windower.ffxi.get_items().equipment.range == 0) then
+				set_weapon_type(true, windower.ffxi.get_items().equipment.range_bag, windower.ffxi.get_items().equipment.range)
+			end
+		end
 	end
 
 	local current_mp = windower_player.vitals.mp
@@ -122,6 +130,20 @@ function initialize()
 	state.ready = true
 end
 
+-- some things can't be accessed until world is loaded
+function on_world_load()
+	if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
+
+	if theme_options.enable_weapon_switching == true then
+		set_weapon_type(false, windower.ffxi.get_items().equipment.main_bag, windower.ffxi.get_items().equipment.main)
+		set_weapon_type(true, windower.ffxi.get_items().equipment.range_bag, windower.ffxi.get_items().equipment.range)
+	end
+
+	ui.hotbar.hide_hotbars = false
+	ui:show(player:get_hotbar_info())
+
+	reload_hotbar()
+end
 
 
 -- trigger hotbar action --
@@ -451,7 +473,6 @@ end)
 
 -- ON LOGIN/LOAD --
 windower.register_event('load', function()
-	
     if windower.ffxi.get_player() ~= nil then
 		defaults = require('defaults')
 		settings = config.load(defaults)
@@ -464,8 +485,6 @@ windower.register_event('load', function()
         player.id = windower.ffxi.get_player().id
         initialize()
 		coroutine.sleep(2)
-	
-			
 	end
 end)
 
@@ -483,25 +502,6 @@ windower.register_event('login', function()
         player.id = windower.ffxi.get_player().id
 		
         initialize()
-
-
-		--Coroutine to setup weaponswitching skills after packet 0x050 is received.
-		ui.hotbar.hide_hotbars = true
-		ui:hide()
-		coroutine.sleep(6)
-		inv_index = windower.ffxi.get_items().equipment.main
-		if windower.ffxi.get_player().main_job == 'RNG' then
-			inv_index = windower.ffxi.get_items().equipment.range
-			if windower.ffxi.get_items().equipment.range == 0 then
-				inv_index = windower.ffxi.get_items().equipment.main
-			end
-		end
-		get_weapon_type(0,inv_index)
-		reload_hotbar()
-		ui.hotbar.hide_hotbars = false
-	
-		
-			
 	end
 end)
 
@@ -517,22 +517,37 @@ windower.register_event('action', function(act)
 	end
 end)
 
--- Reloads hotbar when zoning
-windower.register_event('incoming chunk', function(id,data,modified)
-	if id == 0x00A then
-        zoning = true
-	elseif id == 0x00B then
+-- World is loaded or zoning
+windower.register_event('incoming chunk', function(id,original,modified,injected,blocked)
+    local seq = original:unpack('H',3)
+
+	if (next_sequence and seq >= next_sequence) and loaded then
+		next_sequence = nil
+		first_load_done = true
+		on_world_load()
+	end
+
+	if id == 0x00B then -- unload old zone
+		--print("dezone")
+        loaded = false
 		ui.hotbar.hide_hotbars = true
 		ui:hide()
-	elseif zoning and id == 0x0AA then --0x0CA might also work here. 
+    elseif id == 0x00A then -- load new zone
+		--print("begin load")
+		loaded = false
+		zoning = true
+	elseif id == 0x01D and not loaded then
+		--print("complete load")
+		loaded = true
 		zoning = false
-		main_job = windower.ffxi.get_player().main_job
-		if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
-		ui.hotbar.hide_hotbars = false
-		ui:show(player:get_hotbar_info())
-		reload_hotbar()
+
+		if first_load_done == false then
+			-- first time load is significantly slower
+			next_sequence = (seq+18)%0x10000
+		else
+			on_world_load()
+		end
 	end
-	
 end)
 
 -- Equip / Unequip
@@ -544,17 +559,20 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 		-- slot 0 main, slot 2 ranged
 		if slot == 0 or slot == 2 then
 			local evt_inv_index = packet['Inventory Index']
+			local evt_bag_index = packet['Inventory Bag']
 
 			-- index > 0 means equipping
 			if evt_inv_index ~= 0 then
 				if slot == 0 then
-					set_weapon_type(false, 0, windower.ffxi.get_items().equipment.main)
+					set_weapon_type(false, evt_bag_index, windower.ffxi.get_items().equipment.main)
 				elseif slot == 2 then
-					set_weapon_type(true, 0, windower.ffxi.get_items().equipment.range)
+					set_weapon_type(true, evt_bag_index, windower.ffxi.get_items().equipment.range)
 				end
 
-				if ui.theme.dev_mode then log("Weapon Changed. Reloading Hotbar.") end
-				reload_hotbar()
+				if not zoning then
+					if ui.theme.dev_mode then log("Weapon Changed. Reloading Hotbar.") end
+					reload_hotbar()
+				end
 				
 				return
 			-- 0 index is unequipping
@@ -565,9 +583,10 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 					player:update_range_weapon_type(0)
 				end
 
-				if ui.theme.dev_mode then log("Weapon Unequiped. Reloading Hotbar.") end
-
-				reload_hotbar()
+				if not zoning then
+					if ui.theme.dev_mode then log("Weapon Unequiped. Reloading Hotbar.") end
+					reload_hotbar()
+				end
 				
 				return
 			end
@@ -576,18 +595,18 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 end)
 
 function set_weapon_type(is_ranged, bag, index)
-	if zoning then
-		coroutine.sleep(10)
-	end
+	local item = resources.items[windower.ffxi.get_items(bag, index).id]
 
-	local new_skill_type = resources.items[windower.ffxi.get_items(bag, index).id].skill
+	if item ~= nil then
+		local new_skill_type = resources.items[windower.ffxi.get_items(bag, index).id].skill
 
-	if theme_options.enable_weapon_switching == true then
-		if new_skill_type ~= nil then
-			if is_ranged then 
-				player:update_range_weapon_type(new_skill_type)
-			else
-				player:update_weapon_type(new_skill_type)
+		if theme_options.enable_weapon_switching == true then
+			if new_skill_type ~= nil then
+				if is_ranged then 
+					player:update_range_weapon_type(new_skill_type)
+				else
+					player:update_weapon_type(new_skill_type)
+				end
 			end
 		end
 	end

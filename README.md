@@ -12,6 +12,7 @@ Why use this fork over any other hotbar?
 * Robust Dancer support (shows usability of TP moves)
 * Robust Scholar arts support (shows usability of addendum spells, better stance detection)
 * Robust Beastmaster support (show usability of sic, support /bstpet)
+* Ranged and Melee WS both work for ranged jobs
 
 ## Hide Unusable skills
 Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.
