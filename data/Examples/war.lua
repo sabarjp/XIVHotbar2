@@ -46,18 +46,10 @@ xivhotbar_keybinds_job['MNK'] = {
 	{'battle 3 6', 'ja', 'Counterstance', 'me', 'Ctr','ffxiv/mnk/arm_of_the_destroyer'},
 }
 
-xivhotbar_keybinds_job['WAR'] = {
-	{'battle 3 1', 'ja', 'Provoke', 'stnpc', 'Voke','ffxiv/war/defiance'},
-	{'battle 3 2', 'ja', 'Berserk', 'me', 'Brsrk','ffxiv/war/berserk'},
-	{'battle 3 3', 'ja', 'Defender', 'me', 'Dfnd','ffxiv/war/shake_it_off'},
-	{'battle 3 4', 'ja', 'Warcry', 'me', 'Wrcry','ffxiv/war/inner_beast'},
-	{'battle 3 5', 'ja', 'Aggressor', 'me', 'Aggrsr','ffxiv/war/onslaught'},
- }
-
 xivhotbar_keybinds_job['THF'] = {
 	{'battle 3 3', 'ja', 'Steal', 't', 'Steal','ffxiv/nin/dream_within_a_dream'},
 	{'battle 3 1', 'ja', 'Sneak Attack', 'me', 'SAtk','ffxiv/nin/spinning_edge'},
-	{'battle 3 6', 'ja', 'Flee', 'me', 'Flee','ffxiv/nin/forked_raiju'},
+	{'battle 3 6', 'ja', 'Flee', 'me', 'Flee','ffxiv/nin/role/peloton'},
 	{'battle 3 2', 'ja', 'Trick Attack', 'me', 'TAtk','ffxiv/nin/trick_attack'},
 	{'battle 3 4', 'ja', 'Mug', 't', 'Mug','ffxiv/nin/mug'},
 	{'battle 3 5', 'ja', 'Hide', 'me', 'Hide','ffxiv/nin/hide'},
@@ -153,13 +145,65 @@ xivhotbar_keybinds_job['DRG'] = {
 xivhotbar_keybinds_job['SAM'] = {
 	{'battle 3 1', 'ja', 'Hasso', 'me', 'Hasso', 'ffxiv/sam/ikishoten'},
 	{'battle 3 2', 'ja', 'Meditate', 'me', 'Mdtate', 'ffxiv/sam/meditate'},
-	{'battle 3 3', 'ja', 'Sekkanoki', 'me', 'Sekka', 'ffxiv/sam/meikyo_shisui'},
+	{'battle 3 3', 'ja', 'Sekkanoki', 'me', 'Sekka', 'ffxiv/sam/higanbana'},
 	{'battle 3 4', 'ja', 'Seigan', 'me', 'Seigan', 'ffxiv/sam/tengentsu'},
 	{'battle 3 5', 'ja', 'Third Eye', 'me', '3rd Eye', 'ffxiv/sam/third_eye'},
 	{'battle 3 6', 'ja', 'Warding Circle', 'me', 'Warding', 'ffxiv/gnb/demon_slaughter'},
  }
- 
+
+xivhotbar_keybinds_job['RNG'] = {
+	{'battle 3 1', 'ja', 'Sharpshot', 'me', 'Sharp','ffxiv/brd/burst_shot'},
+	{'battle 3 5', 'ja', 'Scavenge', 'me', 'Scvnge','ffxiv/role/tactician'},
+	{'battle 3 4', 'ja', 'Camouflage', 'me', 'Camo','ffxiv/brd/iron_jaws'},
+	{'battle 3 2', 'ja', 'Barrage', 'me', 'Barrage','ffxiv/brd/barrage'},
+	{'battle 3 3', 'ja', 'Shadowbind', 'stnpc', 'Bind','ffxiv/brd/shadowbite'},
+-- Ranged Hotbar #5
+	{'battle 5 1', 'input', '/ra <t>', '', 'RA', 'ra'},
+-- Heavy Hit
+	{'battle 5 2', 'ws', 'Flaming Arrow', 't', 'Flame'},
+	{'battle 5 3', 'ws', 'Piercing Arrow', 't', 'Pierce'}, 
+	{'battle 5 4', 'ws', 'Sidewinder', 't', 'Sidewndr'}, 
+-- Multi-Hit
+	{'battle 5 5', 'ws', 'Refulgent Arrow', 't', 'Reflgnt'}, -- rng sub 
+-- Specials
+	{'battle 5 6', 'ws', 'Dulling Arrow', 't', 'Dull'}, -- rng sub
+-- Merit Point
+	{'battle 5 8', 'ws', 'Apex Arrow', 't', 'Apex'}, -- rng sam
+-- Relic (only usable with specific weapon equips)
+	{'battle 5 9', 'ws', 'Namas Arrow', 't', 'Namas'}, -- rng sam relic
+}
+
 -- WEAPONSKILL SETS
+xivhotbar_keybinds_job['Hand-to-hand'] = {
+-- Heavy Hit
+	{'battle 1 1', 'ws', 'One Inch Punch', 't', '1Inch'}, -- mnk pup
+	{'battle 1 1', 'ws', 'Backhand Blow', 't', 'Backhand'},
+	{'battle 1 1', 'ws', 'Dragon Kick', 't', 'Dragon'}, -- mmk pup
+-- Multi-Hit
+	{'battle 1 2', 'ws', 'Combo', 't', 'Combo'},
+	{'battle 1 2', 'ws', 'Raging Fists', 't', 'Raging'}, -- mnk pup
+	{'battle 1 2', 'ws', 'Asuran Fists', 't', 'Asuran'}, -- mnk pup
+-- Specials
+	{'battle 1 3', 'ws', 'Howling Fist', 't', 'Howling'}, -- mnk pup
+	{'battle 1 4', 'ws', 'Tornado Kick', 't', 'Tornado'}, -- mnk pup
+-- Prime #6
+	{'battle 1 6', 'ws', 'Maru Kala', 't', 'Maru'},
+-- Class Specific #7
+	{'battle 1 7', 'ws', "Ascetic's Fury", 't', 'Ascetic'}, -- mnk
+	{'battle 1 7', 'ws', 'Stringing Pummel', 't', 'String'}, -- pup
+-- Merit Point #8
+	{'battle 1 8', 'ws', 'Shijin Spiral', 't', 'Shijin'}, -- mnk pup
+-- Empyrean (Abyssea only)  #9
+	{'battle 1 9', 'ws', 'Victory Smite', 't', 'Victory'}, -- mnk pup
+-- Relic (only usable with specific weapon equips) #10
+	{'battle 1 10', 'ws', 'Final Heaven', 't', 'FinHvn'}, -- mnk
+	{'battle 1 10', 'ws', 'Dragon Blow', 't', 'DragonB'}, -- bonanza
+-- AoE Ws #11
+	{'battle 1 11', 'ws', 'Spinning Attack', 't', 'Spinning'},
+-- Stun WS #12
+	{'battle 1 12', 'ws', 'Shoulder Tackle', 't', 'Tackle'},
+}
+
 xivhotbar_keybinds_job['Sword'] = {
 -- Heavy Hit
 	{'battle 1 1', 'ws', 'Fast Blade', 't', 'Fast'},
