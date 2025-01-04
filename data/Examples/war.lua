@@ -159,6 +159,7 @@ xivhotbar_keybinds_job['RNG'] = {
 	{'battle 3 3', 'ja', 'Shadowbind', 'stnpc', 'Bind','ffxiv/brd/shadowbite'},
 -- Ranged Hotbar #5
 	{'battle 5 1', 'input', '/ra <t>', '', 'RA', 'ra'},
+	{'battle 5 7', 'input', '/equip ammo "Wooden Arrow"', '', 'Ammo', 'classes/phy_rng'},
 -- Heavy Hit
 	{'battle 5 2', 'ws', 'Flaming Arrow', 't', 'Flame'},
 	{'battle 5 3', 'ws', 'Piercing Arrow', 't', 'Pierce'}, 
@@ -174,6 +175,34 @@ xivhotbar_keybinds_job['RNG'] = {
 }
 
 -- WEAPONSKILL SETS
+xivhotbar_keybinds_job['Scythe'] = {
+-- Heavy Hit
+	{'battle 1 1', 'ws', 'Slice', 't', 'Slice'},
+	{'battle 1 1', 'ws', 'Vorpal Scythe', 't', 'Vorpal'},
+	{'battle 1 1', 'ws', 'Spiral Hell', 't', 'Spiral'}, -- war drk bst
+-- Multi-Hit
+	{'battle 1 2', 'ws', 'Cross Reaper', 't', 'Cross'},
+	-- {'battle 1 2', 'ws', 'Insurgency', 't', 'Insurge'}, -- drk
+-- Darkness
+	{'battle 1 3', 'ws', 'Dark Harvest', 't', 'DHvst'},
+	{'battle 1 3', 'ws', 'Shadow of Death', 't', 'Shadow'}, -- war drk
+	{'battle 1 3', 'ws', 'Infernal Scythe', 't', 'Infernal'}, -- war drk
+-- Specials
+	-- {'battle 1 4', 'ws', 'Guillotine', 't', 'Guill'}, -- drk
+-- Prime #6
+	-- {'battle 1 6', 'ws', 'Origin', 't', 'Origin'}, -- drk
+-- Merit Point #8
+	{'battle 1 8', 'ws', 'Entropy', 't', 'Entropy'}, -- war drk bst
+-- Empyrean (Abyssea only)  #9
+	{'battle 1 9', 'ws', 'Quietus', 't', 'Quietus'},
+-- Relic (only usable with specific weapon equips) #10
+	-- {'battle 1 10', 'ws', 'Catastrophe', 't', 'Cata'}, -- drk relic
+-- AoE Ws #11
+	{'battle 1 11', 'ws', 'Spinning Scythe', 't', 'Spinning'},
+-- Stun WS #12
+	{'battle 1 12', 'ws', 'Nightmare Scythe', 't', 'Nmare'},
+}
+
 xivhotbar_keybinds_job['Hand-to-hand'] = {
 -- Heavy Hit
 	{'battle 1 1', 'ws', 'One Inch Punch', 't', '1Inch'}, -- mnk pup
