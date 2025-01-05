@@ -28,6 +28,8 @@ SMN
 -- WAR
 -- WHM
 
+-- {'battle 3 7', 'ja', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/'},
+-- {'battle 3 7', 'ma', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/'},
 -- ,'ffxiv/drk/unmend'
 
 xivhotbar_keybinds_job['COR'] = {
@@ -52,7 +54,7 @@ xivhotbar_keybinds_job['COR'] = {
 	{'battle 3 6', 'ja', "Puppet Roll", 'me', 'PUP','classes/pug'}, -- pet matk & pet macc
 	{'battle 3 7', 'ja', "Gallant's Roll", 'me', 'GAL','classes/pld'}, -- def
 	{'battle 3 8', 'ja', "Wizard's Roll", 'me', 'WIZ','classes/blm'}, -- matk
-	{'battle 3 9', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/undraw'}, 
+	{'battle 3 9', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/draw'}, 
 }
 
 xivhotbar_keybinds_job['DNC'] = {
@@ -195,6 +197,50 @@ xivhotbar_keybinds_job['SAM'] = {
 	{'battle 3 5', 'ja', 'Third Eye', 'me', '3rd Eye', 'ffxiv/sam/third_eye'},
 	{'battle 3 6', 'ja', 'Warding Circle', 'me', 'Warding', 'ffxiv/gnb/demon_slaughter'},
  }
+
+-- note: SCH is way too specific to each job to be copied
+-- this is an example from BLM subjob
+xivhotbar_keybinds_job['SCH'] = {
+  -- BAR 1
+  {'battle 1 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
+	{'battle 1 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
+	{'battle 1 1', 'ma', 'Cure II', 'stpc', 'Cure 2'},
+	{'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure 1'},
+	-- BAR 2
+  {'battle 2 1', 'ma', 'Poisona', 'stpc', 'Poisona'},
+  {'battle 2 2', 'ma', 'Paralyna', 'stpc', 'Paralyna'},
+  {'battle 2 3', 'ma', 'Blindna', 'stpc', 'Blindna'},
+  {'battle 2 4', 'ma', 'Silena', 'stpc', 'Silena'},
+
+  {'battle 2 5', 'ja', 'Penury', 'me', 'Penury'},
+	{'battle 2 5', 'ja', 'Parsimony', 'me', 'Parsmy'},
+	{'battle 2 6', 'ja', 'Celerity', 'me', 'Celrty'},
+	{'battle 2 6', 'ja', 'Alacrity', 'me', 'Alacty'},
+	{'battle 2 7', 'ja', 'Accession', 'me', 'Accssn'},
+	{'battle 2 7', 'ja', 'Manifestation', 'me', 'Manifst'},
+	{'battle 2 8', 'ja', 'Rapture', 'me', 'Raptur'},
+	{'battle 2 8', 'ja', 'Ebullience', 'me', 'Ebull'},
+  {'battle 2 9', 'ja', 'Sublimation', 'me', 'Sublim'},
+  {'battle 2 10', 'ja', 'Addendum: White', 'me', 'Add.Wht'},
+	{'battle 2 10', 'ja', 'Addendum: Black', 'me', 'Add.Blk'},
+	{'battle 2 11', 'ja', 'Light Arts', 'me', 'Light'},
+	{'battle 2 12', 'ja', 'Dark Arts', 'me', 'Dark'},
+
+  -- BAR 3
+  {'battle 3 1', 'ma', 'Cursna', 'stpc', 'Cursna'},
+  {'battle 3 2', 'ma', 'Viruna', 'stpc', 'Viruna'},
+  {'battle 3 3', 'ma', 'Stona', 'stpc', 'Stona'},
+  {'battle 3 4', 'ma', 'Erase', 'stpc', 'Erase'},
+  {'battle 3 5', 'ma', 'Klimaform', 'me', 'Klima'},
+
+  -- OVERWRITE THE ELEMENTAL DEBUFFS IF SCH
+	{'battle 4 3', 'me', 'Sandstorm', 'stpc', 'Sand'},
+	{'battle 4 4', 'me', 'Rainstorm', 'stpc', 'Rain'},
+	{'battle 4 5', 'me', 'Windstorm', 'stpc', 'Wind'},
+	{'battle 4 6', 'me', 'Firestorm', 'stpc', 'Fire'},
+	{'battle 4 7', 'me', 'Hailstorm', 'stpc', 'Hail'},
+	{'battle 4 8', 'me', 'Thunderstorm', 'stpc', 'Thdr'},
+}
 
 xivhotbar_keybinds_job['WAR'] = {
 	{'battle 3 1', 'ja', 'Provoke', 'stnpc', 'Voke','ffxiv/war/defiance'},
