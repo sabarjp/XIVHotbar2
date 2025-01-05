@@ -41,7 +41,7 @@
 	{'battle 2 12', 'ws', 'Spinning Attack', 't', 'Spinning'}, 
 
   -- Hotbar #3 Pet stuff
- 	{'battle 3 ', 'ja', 'Activate', 'me', 'Activate'},
+ 	{'battle 3 3', 'ja', 'Activate', 'me', 'Activate'},
 	{'battle 3 4', 'ja', 'Deus Ex Automata', 'me', 'DeusEx'},
 	{'battle 3 5', 'ja', 'Repair', 'me', 'Repair'},  --needs oil
 	{'battle 3 6', 'ja', 'Maintenance', 'me', 'Maintain'},  --needs oil
