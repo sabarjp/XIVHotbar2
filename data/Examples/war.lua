@@ -77,7 +77,7 @@ xivhotbar_keybinds_job['COR'] = {
 	-- {'battle 3 6', 'ja', "Puppet Roll", 'me', 'PUP','classes/pug'}, -- pet matk & pet macc
 	{'battle 3 8', 'ja', "Gallant's Roll", 'me', 'GAL','classes/pld'}, -- def
 	-- {'battle 3 8', 'ja', "Wizard's Roll", 'me', 'WIZ','classes/blm'}, -- matk
-	{'battle 3 12', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/undraw'}, 
+	{'battle 3 12', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/draw'}, 
 }
 
 xivhotbar_keybinds_job['NIN'] = {
@@ -85,22 +85,22 @@ xivhotbar_keybinds_job['NIN'] = {
 	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi','ffxiv/nin/dream_within_a_dream'},
 	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni','ffxiv/nin/phantom_kamaitachi'},
 -- Elements
-	{'battle 3 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
-	{'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
-	{'battle 3 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
-	{'battle 3 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
-	{'battle 3 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
-	{'battle 3 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
-	{'battle 3 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
-	{'battle 3 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
-	{'battle 3 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
-	{'battle 3 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
-	{'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
-	{'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
+	-- {'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon2','ffxiv/nin/katon'}, -- fire
+	-- {'battle 3 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
+	-- {'battle 3 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton2','ffxiv/nin/suiton'}, -- water
+	-- {'battle 3 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
+	-- {'battle 3 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton2','ffxiv/nin/doton'}, -- earth
+	-- {'battle 3 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
+	-- {'battle 3 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton2','ffxiv/nin/hyoton'}, -- ice
+	-- {'battle 3 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
+	-- {'battle 3 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton2','ffxiv/nin/huton'}, -- wind
+	-- {'battle 3 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
+	-- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
+	-- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
 -- Enfeeblement
 	{'battle 3 3', 'ma', 'Kurayami: Ichi', 'stnpc', 'Kura','ffxiv/blu/glower'}, -- blind
-	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
 	{'battle 3 4', 'ma', 'Hojo: Ni', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
 	{'battle 3 5', 'ma', 'Dokumori: Ichi', 'stnpc', 'Doku','ffxiv/blu/exuviation'}, -- poison
 	{'battle 3 6', 'ma', 'Jubaku: Ichi', 'stnpc', 'Jubaku','ffxiv/blu/faze'}, -- paralyze
 -- Stances
@@ -299,7 +299,7 @@ xivhotbar_keybinds_job['Club'] = {
 	{'battle 1 12', 'ws', 'Brainshaker', 't', 'Brainshkr'},
 }
 
-xivhotbar_keybinds_job['Axe'] = {
+xivhotbar_keybinds_job['Axe'] = { 
 -- Heavy Hit
 	{'battle 1 1', 'ws', 'Avalanche Axe', 't', 'Avlnche'},
 	{'battle 1 1', 'ws', 'Spinning Axe', 't', 'Spinning'}, -- war drk run bst
@@ -313,19 +313,19 @@ xivhotbar_keybinds_job['Axe'] = {
 -- Specials
 	{'battle 1 4', 'ws', 'Mistral Axe', 't', 'Mistral'}, -- war bst
 -- Prime #6
-	-- {'battle 1 6', 'ws', 'Blitz', 't', 'Blitz'}, -- bst
+	{'battle 1 6', 'ws', 'Blitz', 't', 'Blitz'}, -- bst
 -- Class Specific #7
-	-- {'battle 1 7', 'ws', 'Primal Rend', 't', 'Primal'}, -- bst
+	{'battle 1 7', 'ws', 'Primal Rend', 't', 'Primal'}, -- bst
 -- Merit Point #8
 	{'battle 1 8', 'ws', 'Ruinator', 't', 'Ruinator'}, -- war drk bst rng run
 -- Empyrean (Abyssea only)  #9
 	{'battle 1 9', 'ws', 'Cloudsplitter', 't', 'Cloudsplt'}, -- war bst
 -- Relic (only usable with specific weapon equips) #10
-	-- {'battle 1 10', 'ws', 'Onslaught', 't', 'Onslaught'}, -- bst relic
--- AoE Ws #11
-	-- none
--- Bind WS #12
+	{'battle 1 10', 'ws', 'Onslaught', 't', 'Onslaught'}, -- bst relic
+-- Bind WS #11
 	{'battle 1 12', 'ws', 'Bora Axe', 't', 'Bora'}, -- war drk run bst
+-- Bind WS #12
+	{'battle 1 12', 'ws', 'Smash Axe', 't', 'Smash'},
 }
 
 xivhotbar_keybinds_job['Great Sword'] = {

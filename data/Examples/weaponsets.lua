@@ -132,7 +132,7 @@ xivhotbar_keybinds_job['Great Sword'] = {
 	{'battle 1 12', 'ws', 'Shockwave', 't', 'Shockwave'},
 }
 
-xivhotbar_keybinds_job['Axe'] = {
+xivhotbar_keybinds_job['Axe'] = { 
 -- Heavy Hit
 	{'battle 1 1', 'ws', 'Avalanche Axe', 't', 'Avlnche'},
 	{'battle 1 1', 'ws', 'Spinning Axe', 't', 'Spinning'}, -- war drk run bst
@@ -155,10 +155,10 @@ xivhotbar_keybinds_job['Axe'] = {
 	{'battle 1 9', 'ws', 'Cloudsplitter', 't', 'Cloudsplt'}, -- war bst
 -- Relic (only usable with specific weapon equips) #10
 	{'battle 1 10', 'ws', 'Onslaught', 't', 'Onslaught'}, -- bst relic
--- AoE Ws #11
-	-- none
--- Bind WS #12
+-- Bind WS #11
 	{'battle 1 12', 'ws', 'Bora Axe', 't', 'Bora'}, -- war drk run bst
+-- Bind WS #12
+	{'battle 1 12', 'ws', 'Smash Axe', 't', 'Smash'},
 }
 
 xivhotbar_keybinds_job['Great Axe'] = {

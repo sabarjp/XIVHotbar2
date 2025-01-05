@@ -28,6 +28,8 @@ SMN
 -- WAR
 -- WHM
 
+-- {'battle 3 7', 'ja', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/'},
+-- {'battle 3 7', 'ma', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/'},
 -- ,'ffxiv/drk/unmend'
 
 xivhotbar_keybinds_job['COR'] = {
@@ -52,7 +54,7 @@ xivhotbar_keybinds_job['COR'] = {
 	{'battle 3 6', 'ja', "Puppet Roll", 'me', 'PUP','classes/pug'}, -- pet matk & pet macc
 	{'battle 3 7', 'ja', "Gallant's Roll", 'me', 'GAL','classes/pld'}, -- def
 	{'battle 3 8', 'ja', "Wizard's Roll", 'me', 'WIZ','classes/blm'}, -- matk
-	{'battle 3 9', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/undraw'}, 
+	{'battle 3 9', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/draw'}, 
 }
 
 xivhotbar_keybinds_job['DNC'] = {
@@ -88,11 +90,11 @@ xivhotbar_keybinds_job['DRK'] = {
 	{'battle 3 3', 'ja', 'Consume Mana', 'me', 'Consume', 'ffxiv/drk/syphon_strike'},
 	{'battle 3 4', 'ja', 'Weapon Bash', 't', 'Bash', 'ffxiv/drk/shadow_wall'},
 	{'battle 3 5', 'ja', 'Arcane Circle', 'me', 'Arcane', 'ffxiv/drk/salted_earth'},
-	{'battle 3 6', 'ma', 'Bio', 'stnpc', 'Bio','ffxiv/sch/bio'},
 	{'battle 3 6', 'ma', 'Bio II', 'stnpc', 'Bio2','ffxiv/sch/bio_II'},
+	{'battle 3 6', 'ma', 'Bio', 'stnpc', 'Bio','ffxiv/sch/bio'},
+	{'battle 3 7', 'ma', 'Sleep II', 'stnpc', 'Sleep2','ffxiv/role/sleep'}
 	{'battle 3 7', 'ma', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/sleep'},
-	{'battle 3 7', 'ma', 'Sleep II', 'stnpc', 'Sleep2','ffxiv/role/sleep'},
-	{'battle 3 8', 'ma', 'Stun', 'stnpc', 'Stun','ffxiv/drk/unmend'},
+	{'battle 3 8', 'ma', 'Stun', 't', 'Stun','ffxiv/drk/unmend'},
  }
  
 xivhotbar_keybinds_job['DRG'] = {
@@ -125,22 +127,23 @@ xivhotbar_keybinds_job['NIN'] = {
 	{'battle 3 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi','ffxiv/nin/dream_within_a_dream'},
 	{'battle 3 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni','ffxiv/nin/phantom_kamaitachi'},
 -- Elements
+	{'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon2','ffxiv/nin/katon'}, -- fire
 	{'battle 3 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
-	{'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
+	{'battle 3 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton2','ffxiv/nin/suiton'}, -- water
 	{'battle 3 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
-	{'battle 3 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
+	{'battle 3 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton2','ffxiv/nin/doton'}, -- earth
 	{'battle 3 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
-	{'battle 3 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
+	{'battle 3 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton2','ffxiv/nin/hyoton'}, -- ice
 	{'battle 3 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
-	{'battle 3 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
+	{'battle 3 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton2','ffxiv/nin/huton'}, -- wind
 	{'battle 3 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
-	{'battle 3 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
+	{'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
 	{'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
-	{'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
+	
 -- Enfeeblement
 	{'battle 3 3', 'ma', 'Kurayami: Ichi', 'stnpc', 'Kura','ffxiv/blu/glower'}, -- blind
-	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
 	{'battle 3 4', 'ma', 'Hojo: Ni', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 3 4', 'ma', 'Hojo: Ichi', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
 	{'battle 3 5', 'ma', 'Dokumori: Ichi', 'stnpc', 'Doku','ffxiv/blu/exuviation'}, -- poison
 	{'battle 3 6', 'ma', 'Jubaku: Ichi', 'stnpc', 'Jubaku','ffxiv/blu/faze'}, -- paralyze
 -- Stances
@@ -195,6 +198,50 @@ xivhotbar_keybinds_job['SAM'] = {
 	{'battle 3 6', 'ja', 'Warding Circle', 'me', 'Warding', 'ffxiv/gnb/demon_slaughter'},
  }
 
+-- note: SCH is way too specific to each job to be copied
+-- this is an example from BLM subjob
+xivhotbar_keybinds_job['SCH'] = {
+  -- BAR 1
+  {'battle 1 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
+	{'battle 1 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
+	{'battle 1 1', 'ma', 'Cure II', 'stpc', 'Cure 2'},
+	{'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure 1'},
+	-- BAR 2
+  {'battle 2 1', 'ma', 'Poisona', 'stpc', 'Poisona'},
+  {'battle 2 2', 'ma', 'Paralyna', 'stpc', 'Paralyna'},
+  {'battle 2 3', 'ma', 'Blindna', 'stpc', 'Blindna'},
+  {'battle 2 4', 'ma', 'Silena', 'stpc', 'Silena'},
+
+  {'battle 2 5', 'ja', 'Penury', 'me', 'Penury'},
+	{'battle 2 5', 'ja', 'Parsimony', 'me', 'Parsmy'},
+	{'battle 2 6', 'ja', 'Celerity', 'me', 'Celrty'},
+	{'battle 2 6', 'ja', 'Alacrity', 'me', 'Alacty'},
+	{'battle 2 7', 'ja', 'Accession', 'me', 'Accssn'},
+	{'battle 2 7', 'ja', 'Manifestation', 'me', 'Manifst'},
+	{'battle 2 8', 'ja', 'Rapture', 'me', 'Raptur'},
+	{'battle 2 8', 'ja', 'Ebullience', 'me', 'Ebull'},
+  {'battle 2 9', 'ja', 'Sublimation', 'me', 'Sublim'},
+  {'battle 2 10', 'ja', 'Addendum: White', 'me', 'Add.Wht'},
+	{'battle 2 10', 'ja', 'Addendum: Black', 'me', 'Add.Blk'},
+	{'battle 2 11', 'ja', 'Light Arts', 'me', 'Light'},
+	{'battle 2 12', 'ja', 'Dark Arts', 'me', 'Dark'},
+
+  -- BAR 3
+  {'battle 3 1', 'ma', 'Cursna', 'stpc', 'Cursna'},
+  {'battle 3 2', 'ma', 'Viruna', 'stpc', 'Viruna'},
+  {'battle 3 3', 'ma', 'Stona', 'stpc', 'Stona'},
+  {'battle 3 4', 'ma', 'Erase', 'stpc', 'Erase'},
+  {'battle 3 5', 'ma', 'Klimaform', 'me', 'Klima'},
+
+  -- OVERWRITE THE ELEMENTAL DEBUFFS IF SCH
+	{'battle 4 3', 'me', 'Sandstorm', 'stpc', 'Sand'},
+	{'battle 4 4', 'me', 'Rainstorm', 'stpc', 'Rain'},
+	{'battle 4 5', 'me', 'Windstorm', 'stpc', 'Wind'},
+	{'battle 4 6', 'me', 'Firestorm', 'stpc', 'Fire'},
+	{'battle 4 7', 'me', 'Hailstorm', 'stpc', 'Hail'},
+	{'battle 4 8', 'me', 'Thunderstorm', 'stpc', 'Thdr'},
+}
+
 xivhotbar_keybinds_job['WAR'] = {
 	{'battle 3 1', 'ja', 'Provoke', 'stnpc', 'Voke','ffxiv/war/defiance'},
 	{'battle 3 2', 'ja', 'Berserk', 'me', 'Brsrk','ffxiv/war/berserk'},
@@ -215,8 +262,8 @@ xivhotbar_keybinds_job['WHM'] = {
 	{'battle 3 2', 'ma', 'Paralyze', 'stnpc', 'Para','ffxiv/other/paralyze'},
 	{'battle 3 3', 'ma', 'Slow', 'stnpc', 'Slow','ffxiv/other/slow'},
 	{'battle 3 4', 'ma', 'Silence', 'stnpc', 'Silence','ffxiv/role/interject'},
-	{'battle 3 1', 'ma', 'Dia', 'stnpc', 'Dia','ffxiv/whm/dia'},
 	{'battle 3 1', 'ma', 'Dia II', 'stnpc', 'Dia II', 'Dia','ffxiv/whm/dia'},
+	{'battle 3 1', 'ma', 'Dia', 'stnpc', 'Dia','ffxiv/whm/dia'},
 	{'battle 3 9', 'ma', 'Repose', 'stnpc', 'Repose','ffxiv/role/repose'},
 	{'battle 3 9', 'ma', 'Flash', 'stnpc', 'Flash','ffxiv/pld/flash'},
 -- Barspells
@@ -236,33 +283,32 @@ xivhotbar_keybinds_job['WHM'] = {
 -- Atk
 	{'battle 3 9', 'ma', 'Holy', 'stnpc', 'Holy','ffxiv/whm/holy'}, -- mastery
 -- Regen
-	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen','ffxiv/whm/regen'},
 	{'battle 3 11', 'ma', 'Regen II', 'stpc', 'Regen2','ffxiv/whm/regen'},
+	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen','ffxiv/whm/regen'},
 -- Cure
-	{'battle 3 10', 'ma', 'Cure', 'stpc', 'Cure','ffxiv/whm/cure'},
-	{'battle 3 10', 'ma', 'Cure II', 'stpc', 'Cure2','ffxiv/whm/cure_II'},
-	{'battle 3 10', 'ma', 'Cure III', 'stpc', 'Cure3','ffxiv/whm/cure_III'},
 	{'battle 3 10', 'ma', 'Cure IV', 'stpc', 'Cure4','ffxiv/sch/physick'},
+	{'battle 3 10', 'ma', 'Cure III', 'stpc', 'Cure3','ffxiv/whm/cure_III'},
+	{'battle 3 10', 'ma', 'Cure II', 'stpc', 'Cure2','ffxiv/whm/cure_II'},
+	{'battle 3 10', 'ma', 'Cure', 'stpc', 'Cure','ffxiv/whm/cure'},
 -- Cura
 	{'battle 1 10', 'ma', 'Cura', 'me', 'Cura','ffxiv/whm/assize'},
 -- Curaga
-	{'battle 3 12', 'ma', 'Curaga', 'stpc', 'Curaga','ffxiv/whm/medica'},
-	{'battle 3 12', 'ma', 'Curaga II', 'stpc', 'Curaga2','ffxiv/whm/medica_II'},
 	{'battle 3 12', 'ma', 'Curaga III', 'stpc', 'Curaga3','ffxiv/whm/dia','ffxiv/whm/medica_III'}, -- mastery
+	{'battle 3 12', 'ma', 'Curaga II', 'stpc', 'Curaga2','ffxiv/whm/medica_II'},
+	{'battle 3 12', 'ma', 'Curaga', 'stpc', 'Curaga','ffxiv/whm/medica'},
 -- Supportive
-	{'battle 3 1', 'ma', 'Poisona', 'stpc', 'Poisona'},
-	{'battle 3 2', 'ma', 'Paralyna', 'stpc', 'Paralyna'},
-	{'battle 3 3', 'ma', 'Blindna', 'stpc', 'Blindna'},
-	{'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena'},
+	{'battle 3 1', 'ma', 'Poisona', 'stpc', 'Poisona','ffxiv/whm/003114'},
+	{'battle 3 2', 'ma', 'Paralyna', 'stpc', 'Paralyna','ffxiv/whm/003113'},
+	{'battle 3 3', 'ma', 'Blindna', 'stpc', 'Blindna','ffxiv/whm/003147'},
+	{'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena','ffxiv/whm/003111'},
 	{'battle 3 6', 'ma', 'Blink', 'me', 'Blink','ffxiv/whm/blink'},
 	{'battle 3 7', 'ma', 'Stoneskin', 'me', 'StnSkin','ffxiv/whm/stoneskin'},
-	{'battle 3 5', 'ma', 'Cursna', 'stpc', 'Cursna'},
+	{'battle 3 5', 'ma', 'Cursna', 'stpc', 'Cursna','ffxiv/whm/003146'},
 	{'battle 3 7', 'ma', 'Erase', 'stpc', 'Erase','ffxiv/role/erase'},
-	{'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna'},
-	{'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona'},
+	{'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna','ffxiv/whm/003112'},
+	{'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona','ffxiv/whm/003115'},
 	{'battle 3 5', 'ma', 'Haste', 'stpc', 'Haste','ffxiv/sge/krasis'},
 	{'battle 3 9', 'ma', 'Auspice', 'me', 'Ausp','ffxiv/whm/temperance'},  -- mastery
  }
-
 
 

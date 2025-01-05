@@ -16,8 +16,8 @@
 	{'battle 2 6', 'ma', 'Yain: Ichi', 'me', 'Yain','ffxiv/role/ten'}, -- enmity freeze
 -- Enfeeblement
 	{'battle 2 7', 'ma', 'Kurayami: Ichi', 'stnpc', 'Kura','ffxiv/blu/glower'}, -- blind
-	{'battle 2 8', 'ma', 'Hojo: Ichi', 'stnpc', 'Hojo','ffxiv/ast/redraw'}, -- slow
-	{'battle 2 9', 'ma', 'Hojo: Ni', 'stnpc', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 2 8', 'ma', 'Hojo: Ni', 'stnpc', 'Hojo2','ffxiv/ast/redraw'}, -- slow
+	{'battle 2 9', 'ma', 'Hojo: Ichi', 'stnpc', 'Hojo','ffxiv/ast/redraw'}, -- slow
 	{'battle 2 10', 'ma', 'Dokumori: Ichi', 'stnpc', 'Doku','ffxiv/blu/exuviation'}, -- poison
 	{'battle 2 11', 'ma', 'Jubaku: Ichi', 'stnpc', 'Jubaku','ffxiv/blu/faze'}, -- paralyze
 	{'battle 2 12', 'ma', 'Aisha: Ichi', 'stnpc', 'Aisha','ffxiv/role/break'}, -- weaken
@@ -42,29 +42,29 @@
 	{'battle 5 1', 'input', '/ra <t>', '', 'RA', 'ffxiv/nin/fuma_shuriken'},
 -- Elements
 -- Fire
-	{'battle 5 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'},
+	{'battle 5 7', 'ma', 'Katon: San', 'stnpc', 'Katon3','ffxiv/nin/katon'},
 	{'battle 5 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon2','ffxiv/nin/katon'},
-	{'battle 5 7', 'ma', 'Katon: San', 'stnpc', 'Katon3','ffxiv/nin/katon'},	
+	{'battle 5 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'},	
 -- Water
-	{'battle 5 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, 
-	{'battle 5 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton2','ffxiv/nin/suiton'}, 
 	{'battle 5 8', 'ma', 'Suiton: San', 'stnpc', 'Suiton3','ffxiv/nin/suiton'}, 
+	{'battle 5 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton2','ffxiv/nin/suiton'}, 
+	{'battle 5 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, 
 -- Earth
-	{'battle 5 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, 
-	{'battle 5 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton2','ffxiv/nin/doton'},
 	{'battle 5 9', 'ma', 'Doton: San', 'stnpc', 'Doton3','ffxiv/nin/doton'}, 
+	{'battle 5 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton2','ffxiv/nin/doton'},
+	{'battle 5 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, 
 -- Ice
-	{'battle 5 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, 
+	{'battle 5 10', 'ma', 'Hyoton: San', 'stnpc', 'Hyoton3','ffxiv/nin/hyoton'}, 
 	{'battle 5 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton2','ffxiv/nin/hyoton'},
-	{'battle 5 10', 'ma', 'Hyoton: San', 'stnpc', 'Hyoton3','ffxiv/nin/hyoton'},
+	{'battle 5 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'},
 -- Wind
-	{'battle 5 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'}, 
+	{'battle 5 11', 'ma', 'Huton: San', 'stnpc', 'Huton3','ffxiv/nin/huton'}, 
 	{'battle 5 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton2','ffxiv/nin/huton'}, 
-	{'battle 5 11', 'ma', 'Huton: San', 'stnpc', 'Huton3','ffxiv/nin/huton'},
+	{'battle 5 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'},
 -- Thunder
-	{'battle 5 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, 
-	{'battle 5 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'},
 	{'battle 5 12', 'ma', 'Raiton: San', 'stnpc', 'Raiton3','ffxiv/nin/raiton'}, 
+	{'battle 5 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'},
+	{'battle 5 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, 
 }
 
 -- SUBJOBS
@@ -140,7 +140,7 @@ xivhotbar_keybinds_job['COR'] = {
 	-- {'battle 3 6', 'ja', "Puppet Roll", 'me', 'PUP','classes/pug'}, -- pet matk & pet macc
 	{'battle 3 8', 'ja', "Gallant's Roll", 'me', 'GAL','classes/pld'}, -- def
 	-- {'battle 3 8', 'ja', "Wizard's Roll", 'me', 'WIZ','classes/blm'}, -- matk
-	{'battle 3 12', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/undraw'}, 
+	{'battle 3 12', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/draw'}, 
 }
 
 xivhotbar_keybinds_job['DNC'] = {
