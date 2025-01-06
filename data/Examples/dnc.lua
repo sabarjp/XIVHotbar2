@@ -18,7 +18,7 @@
 	{'battle 1 8', 'ja', 'Stutter Step', 't', 'Stutter','ffxiv/dnc/fountainfall'},
 	{'battle 1 9', 'ja', 'Feather Step', 't', 'Feathr','ffxiv/dnc/fan_dance'},
 
-Hotbar #2 
+-- Hotbar #2 
 --main job abilities
 -- Flourishes 1
 	{'battle 2 1', 'ja', 'Animated Flourish', 'stnpc', 'Anima','ffxiv/dnc/closed_position'}, --voke
