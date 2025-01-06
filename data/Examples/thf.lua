@@ -5,7 +5,7 @@
 --Hotbar #1
 -- Weaponskills; leave blank
 
-Hotbar #2 
+--Hotbar #2 
 --main job abilities
 	-- SATA Single Hit
 	-- {'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataVB',"ffxiv/blu/sharpened_knife"},
