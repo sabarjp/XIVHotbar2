@@ -30,7 +30,7 @@ local defaults = {}
 
 
 defaults.General = {}
-defaults.General.HideEnvironment = false 
+defaults.General.HideEnvironment = false
 defaults.General.HideInventoryCount = false
 defaults.General.EnableWeaponSwitching = false
 defaults.General.HideHotbarNumbers = false
@@ -46,116 +46,116 @@ defaults.Hotbar.HideActionCost = true
 
 
 
-defaults.Hotbar.Offsets = {}
-defaults.Hotbar.Offsets.First  = { Vertical = false, OffsetX = 675, OffsetY = 1010 }
-defaults.Hotbar.Offsets.Second = { Vertical = false, OffsetX = 675, OffsetY = 956 }
-defaults.Hotbar.Offsets.Third  = { Vertical = false, OffsetX = 675, OffsetY = 902 }
-defaults.Hotbar.Offsets.Fourth = { Vertical = false, OffsetX = 675, OffsetY = 848 }
-defaults.Hotbar.Offsets.Fifth  = { Vertical = true, OffsetX = 1380, OffsetY = 740 }
-defaults.Hotbar.Offsets.Sixth  = { Vertical = true, OffsetX = 1490, OffsetY = 740 }
+defaults.Hotbar.Offsets                      = {}
+defaults.Hotbar.Offsets.First                = { Vertical = false, OffsetX = 675, OffsetY = 1010 }
+defaults.Hotbar.Offsets.Second               = { Vertical = false, OffsetX = 675, OffsetY = 956 }
+defaults.Hotbar.Offsets.Third                = { Vertical = false, OffsetX = 675, OffsetY = 902 }
+defaults.Hotbar.Offsets.Fourth               = { Vertical = false, OffsetX = 675, OffsetY = 848 }
+defaults.Hotbar.Offsets.Fifth                = { Vertical = true, OffsetX = 1380, OffsetY = 740 }
+defaults.Hotbar.Offsets.Sixth                = { Vertical = true, OffsetX = 1490, OffsetY = 740 }
 
-defaults.Hotbar.Theme = {}
-defaults.Hotbar.Theme.Slot = 'ffxiv'
-defaults.Hotbar.Theme.Frame = 'ffxiv'
+defaults.Hotbar.Theme                        = {}
+defaults.Hotbar.Theme.Slot                   = 'ffxiv'
+defaults.Hotbar.Theme.Frame                  = 'ffxiv'
 
-defaults.Hotbar.Style = {}
-defaults.Hotbar.Style.HotbarCount = 6
-defaults.Hotbar.Style.HotbarLength = 12
-defaults.Hotbar.Style.SlotIconScale = 1
-defaults.Hotbar.Style.SlotAlpha = 100
-defaults.Hotbar.Style.SlotSpacing = 14
-defaults.Hotbar.Style.HotbarSpacing = 56
-defaults.Hotbar.Style.OffsetX = 0
-defaults.Hotbar.Style.OffsetY = 0
+defaults.Hotbar.Style                        = {}
+defaults.Hotbar.Style.HotbarCount            = 6
+defaults.Hotbar.Style.HotbarLength           = 12
+defaults.Hotbar.Style.SlotIconScale          = 1
+defaults.Hotbar.Style.SlotAlpha              = 100
+defaults.Hotbar.Style.SlotSpacing            = 14
+defaults.Hotbar.Style.HotbarSpacing          = 56
+defaults.Hotbar.Style.OffsetX                = 0
+defaults.Hotbar.Style.OffsetY                = 0
 
-defaults.Hotbar.Misc = {}
-defaults.Hotbar.Misc.Feedback = {}
-defaults.Hotbar.Misc.Feedback.Opacity = 150
-defaults.Hotbar.Misc.Feedback.Speed = 30
-defaults.Hotbar.Misc.Disabled = {}
-defaults.Hotbar.Misc.Disabled.Opacity = 50
+defaults.Hotbar.Misc                         = {}
+defaults.Hotbar.Misc.Feedback                = {}
+defaults.Hotbar.Misc.Feedback.Opacity        = 150
+defaults.Hotbar.Misc.Feedback.Speed          = 30
+defaults.Hotbar.Misc.Disabled                = {}
+defaults.Hotbar.Misc.Disabled.Opacity        = 50
 
 -- Texts [Base]
-defaults.Texts = {}
+defaults.Texts                               = {}
 
 -- Action Name
-defaults.Texts.ActionName = {}
-defaults.Texts.ActionName.Font = 'Calibri'
-defaults.Texts.ActionName.Size = 10
-defaults.Texts.ActionName.Pos = {}
-defaults.Texts.ActionName.Pos.OffsetX = -1
-defaults.Texts.ActionName.Pos.OffsetY = 37
-defaults.Texts.ActionName.Color = {}
-defaults.Texts.ActionName.Color.Alpha = 255
-defaults.Texts.ActionName.Color.Red = 255
-defaults.Texts.ActionName.Color.Green = 255
-defaults.Texts.ActionName.Color.Blue = 255
-defaults.Texts.ActionName.Stroke = {}
-defaults.Texts.ActionName.Stroke.Width = 2
-defaults.Texts.ActionName.Stroke.Alpha = 200
-defaults.Texts.ActionName.Stroke.Red = 20
-defaults.Texts.ActionName.Stroke.Green = 20
-defaults.Texts.ActionName.Stroke.Blue = 20
-defaults.Texts.ActionName.Background = {}
-defaults.Texts.ActionName.Background.Enable = false
+defaults.Texts.ActionName                    = {}
+defaults.Texts.ActionName.Font               = 'Calibri'
+defaults.Texts.ActionName.Size               = 10
+defaults.Texts.ActionName.Pos                = {}
+defaults.Texts.ActionName.Pos.OffsetX        = -1
+defaults.Texts.ActionName.Pos.OffsetY        = 37
+defaults.Texts.ActionName.Color              = {}
+defaults.Texts.ActionName.Color.Alpha        = 255
+defaults.Texts.ActionName.Color.Red          = 255
+defaults.Texts.ActionName.Color.Green        = 255
+defaults.Texts.ActionName.Color.Blue         = 255
+defaults.Texts.ActionName.Stroke             = {}
+defaults.Texts.ActionName.Stroke.Width       = 2
+defaults.Texts.ActionName.Stroke.Alpha       = 200
+defaults.Texts.ActionName.Stroke.Red         = 20
+defaults.Texts.ActionName.Stroke.Green       = 20
+defaults.Texts.ActionName.Stroke.Blue        = 20
+defaults.Texts.ActionName.Background         = {}
+defaults.Texts.ActionName.Background.Enable  = false
 defaults.Texts.ActionName.Background.Opacity = 100
 
 -- Keys
-defaults.Texts.Keys = {}
-defaults.Texts.Keys.Font = 'Calibri'
-defaults.Texts.Keys.Size = 9
-defaults.Texts.Keys.Pos = {}
-defaults.Texts.Keys.Pos.OffsetX = -1
-defaults.Texts.Keys.Pos.OffsetY = -4
-defaults.Texts.Keys.Color = {}
-defaults.Texts.Keys.Color.Alpha = 255
-defaults.Texts.Keys.Color.Red = 255
-defaults.Texts.Keys.Color.Green = 255
-defaults.Texts.Keys.Color.Blue = 255
-defaults.Texts.Keys.Stroke = {}
-defaults.Texts.Keys.Stroke.Width = 2
-defaults.Texts.Keys.Stroke.Alpha = 200
-defaults.Texts.Keys.Stroke.Red = 20
-defaults.Texts.Keys.Stroke.Green = 20
-defaults.Texts.Keys.Stroke.Blue = 20
+defaults.Texts.Keys                          = {}
+defaults.Texts.Keys.Font                     = 'Calibri'
+defaults.Texts.Keys.Size                     = 9
+defaults.Texts.Keys.Pos                      = {}
+defaults.Texts.Keys.Pos.OffsetX              = -1
+defaults.Texts.Keys.Pos.OffsetY              = -4
+defaults.Texts.Keys.Color                    = {}
+defaults.Texts.Keys.Color.Alpha              = 255
+defaults.Texts.Keys.Color.Red                = 255
+defaults.Texts.Keys.Color.Green              = 255
+defaults.Texts.Keys.Color.Blue               = 255
+defaults.Texts.Keys.Stroke                   = {}
+defaults.Texts.Keys.Stroke.Width             = 2
+defaults.Texts.Keys.Stroke.Alpha             = 200
+defaults.Texts.Keys.Stroke.Red               = 20
+defaults.Texts.Keys.Stroke.Green             = 20
+defaults.Texts.Keys.Stroke.Blue              = 20
 
 -- Costs
-defaults.Texts.Costs = {}
-defaults.Texts.Costs.Font = 'Calibri'
-defaults.Texts.Costs.Size = 10
-defaults.Texts.Costs.Pos = {}
-defaults.Texts.Costs.Pos.OffsetX = 1
-defaults.Texts.Costs.Pos.OffsetY = 24
-defaults.Texts.Costs.Color = {}
-defaults.Texts.Costs.Color.Alpha = 255
-defaults.Texts.Costs.Color.Red = 0
-defaults.Texts.Costs.Color.Green = 240
-defaults.Texts.Costs.Color.Blue = 120
-defaults.Texts.Costs.Stroke = {}
-defaults.Texts.Costs.Stroke.Width = 2
-defaults.Texts.Costs.Stroke.Alpha = 200
-defaults.Texts.Costs.Stroke.Red = 20
-defaults.Texts.Costs.Stroke.Green = 20
-defaults.Texts.Costs.Stroke.Blue = 20
+defaults.Texts.Costs                         = {}
+defaults.Texts.Costs.Font                    = 'Calibri'
+defaults.Texts.Costs.Size                    = 10
+defaults.Texts.Costs.Pos                     = {}
+defaults.Texts.Costs.Pos.OffsetX             = 1
+defaults.Texts.Costs.Pos.OffsetY             = 24
+defaults.Texts.Costs.Color                   = {}
+defaults.Texts.Costs.Color.Alpha             = 255
+defaults.Texts.Costs.Color.Red               = 0
+defaults.Texts.Costs.Color.Green             = 240
+defaults.Texts.Costs.Color.Blue              = 120
+defaults.Texts.Costs.Stroke                  = {}
+defaults.Texts.Costs.Stroke.Width            = 2
+defaults.Texts.Costs.Stroke.Alpha            = 200
+defaults.Texts.Costs.Stroke.Red              = 20
+defaults.Texts.Costs.Stroke.Green            = 20
+defaults.Texts.Costs.Stroke.Blue             = 20
 
 -- Recasts
-defaults.Texts.Recasts = {}
-defaults.Texts.Recasts.Font = 'Calibri'
-defaults.Texts.Recasts.Size = 9
-defaults.Texts.Recasts.Pos = {}
-defaults.Texts.Recasts.Pos.OffsetX = -1
-defaults.Texts.Recasts.Pos.OffsetY = -4
-defaults.Texts.Recasts.Color = {}
-defaults.Texts.Recasts.Color.Alpha = 255
-defaults.Texts.Recasts.Color.Red = 100
-defaults.Texts.Recasts.Color.Green = 200
-defaults.Texts.Recasts.Color.Blue = 255
-defaults.Texts.Recasts.Stroke = {}
-defaults.Texts.Recasts.Stroke.Width = 2
-defaults.Texts.Recasts.Stroke.Alpha = 200
-defaults.Texts.Recasts.Stroke.Red = 20
-defaults.Texts.Recasts.Stroke.Green = 20
-defaults.Texts.Recasts.Stroke.Blue = 20
+defaults.Texts.Recasts                       = {}
+defaults.Texts.Recasts.Font                  = 'Calibri'
+defaults.Texts.Recasts.Size                  = 9
+defaults.Texts.Recasts.Pos                   = {}
+defaults.Texts.Recasts.Pos.OffsetX           = -1
+defaults.Texts.Recasts.Pos.OffsetY           = -4
+defaults.Texts.Recasts.Color                 = {}
+defaults.Texts.Recasts.Color.Alpha           = 255
+defaults.Texts.Recasts.Color.Red             = 100
+defaults.Texts.Recasts.Color.Green           = 200
+defaults.Texts.Recasts.Color.Blue            = 255
+defaults.Texts.Recasts.Stroke                = {}
+defaults.Texts.Recasts.Stroke.Width          = 2
+defaults.Texts.Recasts.Stroke.Alpha          = 200
+defaults.Texts.Recasts.Stroke.Red            = 20
+defaults.Texts.Recasts.Stroke.Green          = 20
+defaults.Texts.Recasts.Stroke.Blue           = 20
 
 
 -- Hotbar Numbers
