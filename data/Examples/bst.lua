@@ -96,7 +96,7 @@ xivhotbar_keybinds_job['Base'] = {
 	-- Aquaveil
 	-- Sneak / Invisible / Deodorize
 -- Job Abilities
-	{'battle 3 9', 'ja', 'Divine Seal', 'me', 'Divine','ffxiv/whm/divine_benison'},
+	{'battle 4 9', 'ja', 'Divine Seal', 'me', 'Divine','ffxiv/whm/divine_benison'},
 -- Enfeeblement
 	-- {'battle 3 2', 'ma', 'Paralyze', 'stnpc', 'Para','ffxiv/other/paralyze'},
 	-- {'battle 3 3', 'ma', 'Slow', 'stnpc', 'Slow','ffxiv/other/slow'},
@@ -104,7 +104,7 @@ xivhotbar_keybinds_job['Base'] = {
 	-- {'battle 3 1', 'ma', 'Dia II', 'stnpc', 'Dia II', 'Dia','ffxiv/whm/dia'},
 	-- {'battle 3 1', 'ma', 'Dia', 'stnpc', 'Dia','ffxiv/whm/dia'},
 	-- {'battle 3 9', 'ma', 'Repose', 'stnpc', 'Repose','ffxiv/role/repose'},
-	{'battle 3 2', 'ma', 'Flash', 'stnpc', 'Flash','ffxiv/pld/flash'},
+	{'battle 4 2', 'ma', 'Flash', 'stnpc', 'Flash','ffxiv/pld/flash'},
 -- Barspells
 	-- {'battle 3 1', 'ma', 'Barsleepra', 'me', 'Sleepra', ''},
 	-- {'battle 3 2', 'ma', 'Barpoisonra', 'me', 'Poisonra', ''},
@@ -122,31 +122,31 @@ xivhotbar_keybinds_job['Base'] = {
 -- Atk
 	-- {'battle 3 9', 'ma', 'Holy', 'stnpc', 'Holy','ffxiv/whm/holy'}, -- mastery
 -- Regen
-	{'battle 3 11', 'ma', 'Regen II', 'stpc', 'Regen2','ffxiv/whm/regen'},
-	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen','ffxiv/whm/regen'},
+	{'battle 4 11', 'ma', 'Regen II', 'stpc', 'Regen2','ffxiv/whm/regen'},
+	{'battle 4 11', 'ma', 'Regen', 'stpc', 'Regen','ffxiv/whm/regen'},
 -- Cure
-	{'battle 3 1', 'ma', 'Cure IV', 'stpc', 'Cure4','ffxiv/sch/physick'},
-	{'battle 3 1', 'ma', 'Cure III', 'stpc', 'Cure3','ffxiv/whm/cure_III'},
-	{'battle 3 1', 'ma', 'Cure II', 'stpc', 'Cure2','ffxiv/whm/cure_II'},
-	{'battle 3 1', 'ma', 'Cure', 'stpc', 'Cure','ffxiv/whm/cure'},
+	{'battle 4 1', 'ma', 'Cure IV', 'stpc', 'Cure4','ffxiv/sch/physick'},
+	{'battle 4 1', 'ma', 'Cure III', 'stpc', 'Cure3','ffxiv/whm/cure_III'},
+	{'battle 4 1', 'ma', 'Cure II', 'stpc', 'Cure2','ffxiv/whm/cure_II'},
+	{'battle 4 1', 'ma', 'Cure', 'stpc', 'Cure','ffxiv/whm/cure'},
 -- Cura
 	-- {'battle 1 10', 'ma', 'Cura', 'me', 'Cura','ffxiv/whm/assize'},
 -- Curaga
-	{'battle 3 10', 'ma', 'Curaga III', 'stpc', 'Curaga3','ffxiv/whm/dia','ffxiv/whm/medica_III'}, -- mastery
-	{'battle 3 10', 'ma', 'Curaga II', 'stpc', 'Curaga2','ffxiv/whm/medica_II'},
-	{'battle 3 10', 'ma', 'Curaga', 'stpc', 'Curaga','ffxiv/whm/medica'},
+	{'battle 4 10', 'ma', 'Curaga III', 'stpc', 'Curaga3','ffxiv/whm/dia','ffxiv/whm/medica_III'}, -- mastery
+	{'battle 4 10', 'ma', 'Curaga II', 'stpc', 'Curaga2','ffxiv/whm/medica_II'},
+	{'battle 4 10', 'ma', 'Curaga', 'stpc', 'Curaga','ffxiv/whm/medica'},
 -- Supportive
-	{'battle 3 3', 'ma', 'Poisona', 'stpc', 'Poisona','ffxiv/whm/003114'},
-	{'battle 3 4', 'ma', 'Paralyna', 'stpc', 'Paralyna','ffxiv/whm/003113'},
-	{'battle 3 5', 'ma', 'Blindna', 'stpc', 'Blindna','ffxiv/whm/003147'},
+	{'battle 4 3', 'ma', 'Poisona', 'stpc', 'Poisona','ffxiv/whm/003114'},
+	{'battle 4 4', 'ma', 'Paralyna', 'stpc', 'Paralyna','ffxiv/whm/003113'},
+	{'battle 4 5', 'ma', 'Blindna', 'stpc', 'Blindna','ffxiv/whm/003147'},
 	-- {'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena','ffxiv/whm/003111'},
 	-- {'battle 3 6', 'ma', 'Blink', 'me', 'Blink','ffxiv/whm/blink'},
 	-- {'battle 3 7', 'ma', 'Stoneskin', 'me', 'StnSkin','ffxiv/whm/stoneskin'},
-	{'battle 3 6', 'ma', 'Cursna', 'stpc', 'Cursna','ffxiv/whm/003146'},
-	{'battle 3 7', 'ma', 'Erase', 'stpc', 'Erase','ffxiv/role/erase'},
+	{'battle 4 6', 'ma', 'Cursna', 'stpc', 'Cursna','ffxiv/whm/003146'},
+	{'battle 4 7', 'ma', 'Erase', 'stpc', 'Erase','ffxiv/role/erase'},
 	-- {'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna','ffxiv/whm/003112'},
 	-- {'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona','ffxiv/whm/003115'},
-	{'battle 3 12', 'ma', 'Haste', 'stpc', 'Haste','ffxiv/sge/krasis'},
+	{'battle 4 12', 'ma', 'Haste', 'stpc', 'Haste','ffxiv/sge/krasis'},
 	-- {'battle 3 9', 'ma', 'Auspice', 'me', 'Ausp','ffxiv/whm/temperance'},  -- mastery
  }
 
