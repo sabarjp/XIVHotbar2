@@ -19,11 +19,11 @@ GEO
 -- NIN
 PLD
 PUP
-RDM
+-- RDM
 -- RNG
 RUN
 -- SAM
-SCH
+-- SCH
 SMN
 -- WAR
 -- WHM
@@ -164,6 +164,31 @@ xivhotbar_keybinds_job['PUP'] = {
 	{'battle 3 10', 'ja', 'Dark Maneuver','me', 'DrkMan'},
 	{'battle 3 11', 'ja', 'Repair', 'me', 'Repair'},  --needs oil
 	{'battle 3 12', 'ja', 'Activate', 'me', 'Activate'},
+}
+
+xivhotbar_keybinds_job['RDM'] = {
+  -- BAR 1
+  {'battle 1 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
+	{'battle 1 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
+	{'battle 1 1', 'ma', 'Cure II', 'stpc', 'Cure 2'},
+	{'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure 1'},
+
+	-- BAR 2
+	{'battle 2 1', 'ma', 'Refresh', 'stpc', 'Refresh'},
+	{'battle 2 2', 'ma', 'Haste', 'stpc', 'Haste'},
+	{'battle 2 3', 'ma', 'Flurry', 'stpc', 'Flurry'},
+	{'battle 2 4', 'ma', 'Dia II', 'stnpc', 'Dia2'},
+	{'battle 2 4', 'ma', 'Dia', 'stnpc', 'Dia'},
+	
+	{'battle 2 5', 'ma', 'Paralyze', 't', 'Paralyze'},
+	{'battle 2 6', 'ma', 'Slow', 't', 'Slow'},
+	{'battle 2 7', 'ma', 'Silence', 'stnpc', 'Silence'},
+	{'battle 2 8', 'ma', 'Poison', 't', 'Paralyze'},
+	{'battle 2 9', 'ma', 'Blind', 't', 'Slow'},
+	{'battle 2 10', 'ma', 'Bind', 'stnpc', 'Bind'},
+	{'battle 2 11', 'ma', 'Frazzle', 't', 'Frazzle'},
+
+	{'battle 2 12', 'ma', 'Phalanx', 'me', 'Phalanx'},
 }
 
 xivhotbar_keybinds_job['RNG'] = {
