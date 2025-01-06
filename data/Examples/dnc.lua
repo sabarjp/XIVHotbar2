@@ -3,20 +3,20 @@
  xivhotbar_keybinds_job['Base'] = {
      
 --Hotbar #1
--- Weaponskills 8-12
+-- Weaponskills 10-12
 	{'battle 1 1', 'ja', 'Curing Waltz', 'stpc', 'CurW','ffxiv/dnc/curing_waltz'},
 	{'battle 1 1', 'ja', 'Curing Waltz II', 'stpc', 'CurW2','ffxiv/dnc/curing_waltz'},
-	{'battle 1 1', 'ja', 'Curing Waltz III', 'stpc', 'CurW3','ffxiv/dnc/curing_waltz'},
-	{'battle 1 1', 'ja', 'Curing Waltz IV', 'stpc', 'CurW4','ffxiv/dnc/curing_waltz'},
-	{'battle 1 1', 'ja', 'Curing Waltz V', 'stpc', 'CurW5','ffxiv/dnc/curing_waltz'},
-	{'battle 1 2', 'ja', 'Divine Waltz', 'stpc', 'Divine','ffxiv/dnc/improvised_finish'},
-	{'battle 1 2', 'ja', 'Divine Waltz II', 'stpc', 'Divine2','ffxiv/dnc/improvised_finish'},
-	{'battle 1 3', 'ja', 'Healing Waltz', 'stpc', 'Heal','ffxiv/dnc/shield_samba'},
+	{'battle 1 2', 'ja', 'Curing Waltz III', 'stpc', 'CurW3','ffxiv/dnc/curing_waltz'},
+	{'battle 1 2', 'ja', 'Curing Waltz IV', 'stpc', 'CurW4','ffxiv/dnc/curing_waltz'},
+	{'battle 1 3', 'ja', 'Curing Waltz V', 'stpc', 'CurW5','ffxiv/dnc/curing_waltz'},
+	{'battle 1 4', 'ja', 'Divine Waltz', 'stpc', 'Divine','ffxiv/dnc/improvised_finish'},
+	{'battle 1 4', 'ja', 'Divine Waltz II', 'stpc', 'Divine2','ffxiv/dnc/improvised_finish'},
+	{'battle 1 5', 'ja', 'Healing Waltz', 'stpc', 'Heal','ffxiv/dnc/shield_samba'},
 -- Steps
-	{'battle 3 4', 'ja', 'Quickstep', 't', 'Quick','ffxiv/dnc/en_avant'},
-	{'battle 3 5', 'ja', 'Box Step', 't', 'Box','ffxiv/dnc/bladeshower'},
-	{'battle 3 6', 'ja', 'Stutter Step', 't', 'Stutter','ffxiv/dnc/fountainfall'},
-	{'battle 3 7', 'ja', 'Feather Step', 't', 'Feathr','ffxiv/dnc/fan_dance'},
+	{'battle 1 6', 'ja', 'Quickstep', 't', 'Quick','ffxiv/dnc/en_avant'},
+	{'battle 1 7', 'ja', 'Box Step', 't', 'Box','ffxiv/dnc/bladeshower'},
+	{'battle 1 8', 'ja', 'Stutter Step', 't', 'Stutter','ffxiv/dnc/fountainfall'},
+	{'battle 1 9', 'ja', 'Feather Step', 't', 'Feathr','ffxiv/dnc/fan_dance'},
 
 Hotbar #2 
 --main job abilities
@@ -179,9 +179,9 @@ xivhotbar_keybinds_job['DRK'] = {
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Dagger'] = {
 -- Heavy Hit
-	{'battle 1 8', 'ws', 'Wasp Sting', 't', 'Wasp'},
-	{'battle 1 8', 'ws', 'Viper Bite', 't', 'Viper'}, -- rdm thf brd rng nin dnc
-	{'battle 1 8', 'ws', 'Shark Bite', 't', 'Shark'}, -- thf dnc
+	{'battle 1 9', 'ws', 'Wasp Sting', 't', 'Wasp'},
+	{'battle 1 9', 'ws', 'Viper Bite', 't', 'Viper'}, -- rdm thf brd rng nin dnc
+	{'battle 1 9', 'ws', 'Shark Bite', 't', 'Shark'}, -- thf dnc
 -- Multi-Hit
 	{'battle 1 9', 'ws', 'Dancing Edge', 't', 'DncEdge'}, -- thf dnc
 	{'battle 1 9', 'ws', 'Evisceration', 't', 'Evisc'}, -- war rdm thf bst brd rng nin cor dnc
@@ -195,16 +195,16 @@ xivhotbar_keybinds_job['Dagger'] = {
 -- Class Specific #7
 	-- {'battle 1 7', 'ws', 'Mandalic Stab', 't', 'Mandalic'}, -- thf
 	-- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
-	{'battle 1 12', 'ws', 'Pyrrhic Kleos', 't', 'Pyrrhic'}, -- dnc
+	{'battle 1 10', 'ws', 'Pyrrhic Kleos', 't', 'Pyrrhic'}, -- dnc
 -- Merit Point #8
-	{'battle 1 12', 'ws', 'Exenterator', 't', 'Exent'}, -- war rdm thf bst brd rng nin cor dnc
+	{'battle 1 10', 'ws', 'Exenterator', 't', 'Exent'}, -- war rdm thf bst brd rng nin cor dnc
 -- Empyrean (Abyssea only)  #9
-	{'battle 1 9', 'ws', "Rudra's Storm", 't', 'Rudra'}, -- thf brd dnc
+	{'battle 1 10', 'ws', "Rudra's Storm", 't', 'Rudra'}, -- thf brd dnc
 -- Relic (only usable with specific weapon equips) #10
 	{'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'}, -- rdm thf brd dnc relic
 -- AoE Ws #11
-	{'battle 1 11', 'ws', 'Cyclone', 't', 'Cyclone'}, -- rdm thf brd rng nin cor dnc
-	{'battle 1 11', 'ws', 'Aeolian Edge', 't', 'Aeoln'}, -- rdm thf brd rng nin dnc
+	{'battle 1 12', 'ws', 'Cyclone', 't', 'Cyclone'}, -- rdm thf brd rng nin cor dnc
+	{'battle 1 12', 'ws', 'Aeolian Edge', 't', 'Aeoln'}, -- rdm thf brd rng nin dnc
 -- Bind WS #12
 	-- {'battle 1 12', 'ws', 'Shadowstitch', 't', 'ShdSt'},
 }
