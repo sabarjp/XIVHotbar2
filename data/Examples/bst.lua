@@ -210,7 +210,7 @@ xivhotbar_keybinds_job['Axe'] = {
 -- Relic (only usable with specific weapon equips) #10
 	{'battle 2 10', 'ws', 'Onslaught', 't', 'Onslaught'}, -- bst relic
 -- Bind WS #11
-	{'battle 2 12', 'ws', 'Bora Axe', 't', 'Bora'}, -- war drk run bst
+	{'battle 2 11', 'ws', 'Bora Axe', 't', 'Bora'}, -- war drk run bst
 -- Bind WS #12
 	{'battle 2 12', 'ws', 'Smash Axe', 't', 'Smash'},
 }
