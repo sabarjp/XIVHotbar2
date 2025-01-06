@@ -6,7 +6,6 @@ xivhotbar_keybinds_job['Base'] = {
 	  {'battle 1 1', 'ja', 'Fight','t', 'Fight'},
 	  {'battle 1 2', 'ja', 'Heel','me', 'Heel'},
 	  {'battle 1 3', 'ja', 'Stay','me', 'Stay'},
-  
 	  {'battle 1 4', 'ja', 'Sic','me', 'Sic'},
 	  {'battle 1 4', 'bstpet', '1', 'me', 'Pet 1'},
 	  {'battle 1 5', 'bstpet', '2', 'me', 'Pet 2'},
