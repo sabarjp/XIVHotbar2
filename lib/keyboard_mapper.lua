@@ -31,8 +31,8 @@ local keyboard = {}
 keyboard.hotbar_rows = require('../data/keybinds')
 keyboard.parsed_keybinds = {}
 
---[[ 
-	Parse Keybinds: 
+--[[
+	Parse Keybinds:
 
 	Description:
 		Converts the keybinds in data/keybinds.lua into an input which can be used for
@@ -48,57 +48,57 @@ keyboard.parsed_keybinds = {}
 
 
 function keyboard:parse_keybinds()
-	for row_key,row_value in pairs(keyboard.hotbar_rows) do
-		for col_key,col_value in pairs(row_value) do
-			col_value = string.lower(col_value)
-			col_value = string.gsub(col_value, " ", "")
-			col_list = string.split(col_value, "+")
-			if table.getn(col_list) ~= 1 then
-				for string_value in ipairs(col_list) do
-					--print("string_value: " ..col_list[string_value])
-					if (col_list[string_value] ~= "number") then
-						if(col_list[string_value]:contains("ctrl")) then
-							col_list[string_value] = "^"
-						elseif(col_list[string_value]:contains("shift")) then
-							col_list[string_value] = "%~"
-						elseif(col_list[string_value]:contains("alt")) then
-							col_list[string_value] = "!"
-						end
-					end
-				end
-				col_value = table.concat((col_list), "")
-			else
-				if type(col_list[1]) == "number" then
-					col_value = "%" ..tostring(col_list[1])
-				else 
-					col_value = "%" .. col_value
-				end
-			end
-			row_value[col_key] = col_value
-		end
-		keyboard.hotbar_rows[row_key] = row_value
-	end
+  for row_key, row_value in pairs(keyboard.hotbar_rows) do
+    for col_key, col_value in pairs(row_value) do
+      col_value = string.lower(col_value)
+      col_value = string.gsub(col_value, " ", "")
+      col_list = string.split(col_value, "+")
+      if table.getn(col_list) ~= 1 then
+        for string_value in ipairs(col_list) do
+          --print("string_value: " ..col_list[string_value])
+          if (col_list[string_value] ~= "number") then
+            if (col_list[string_value]:contains("ctrl")) then
+              col_list[string_value] = "^"
+            elseif (col_list[string_value]:contains("shift")) then
+              col_list[string_value] = "%~"
+            elseif (col_list[string_value]:contains("alt")) then
+              col_list[string_value] = "!"
+            end
+          end
+        end
+        col_value = table.concat((col_list), "")
+      else
+        if type(col_list[1]) == "number" then
+          col_value = "%" .. tostring(col_list[1])
+        else
+          col_value = "%" .. col_value
+        end
+      end
+      row_value[col_key] = col_value
+    end
+    keyboard.hotbar_rows[row_key] = row_value
+  end
 end
 
 -- bind keys --
 function keyboard:bind_keys(rows, columns)
-    for r = 1, rows do 
-        for s = 1, columns do
-            if (self.hotbar_rows[r] ~= nil and self.hotbar_rows[r][s] ~= nil) then 
-    			windower.send_command('bind '..keyboard.hotbar_rows[r][s]..' htb execute '..r..' '..s)
-            end
-        end
+  for r = 1, rows do
+    for s = 1, columns do
+      if (self.hotbar_rows[r] ~= nil and self.hotbar_rows[r][s] ~= nil) then
+        windower.send_command('bind ' .. keyboard.hotbar_rows[r][s] .. ' htb execute ' .. r .. ' ' .. s)
+      end
     end
+  end
 end
 
 function keyboard:unbind_keys(rows, columns)
-    for r = 1, rows do 
-        for s = 1, columns do
-            if (keyboard.hotbar_rows[r] ~= nil and keyboard.hotbar_rows[r][s] ~= nil) then 
-    			windower.send_command('unbind '..keyboard.hotbar_rows[r][s])
-            end
-        end
+  for r = 1, rows do
+    for s = 1, columns do
+      if (keyboard.hotbar_rows[r] ~= nil and keyboard.hotbar_rows[r][s] ~= nil) then
+        windower.send_command('unbind ' .. keyboard.hotbar_rows[r][s])
+      end
     end
+  end
 end
 
 return keyboard
