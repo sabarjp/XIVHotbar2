@@ -165,58 +165,120 @@ xivhotbar_keybinds_job['RDM'] = {
 	  {'battle 4 9', 'ma', 'Dia II', 't', 'Dia2'},
 	  {'battle 4 9', 'ma', 'Dia', 't', 'Dia2'},
   }
-  
+
 xivhotbar_keybinds_job['NIN'] = {
-	  {'battle 4 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu1'},
-	  {'battle 4 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu2'},
-	  {'battle 4 3', 'ma', 'Tonko: Ni', 'me', 'Tonko'},
-	  {'battle 4 3', 'ma', 'Tonko: Ichi', 'me', 'Tonko'},
-	  {'battle 4 4', 'ma', 'Monomi: Ichi', 'me', 'Monomi'},
-  }
-  
+-- Shadows
+	{'battle 4 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi','ffxiv/nin/dream_within_a_dream'},
+	{'battle 4 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu:Ni','ffxiv/nin/phantom_kamaitachi'},
+-- Elements
+	-- {'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon2','ffxiv/nin/katon'}, -- fire
+	-- {'battle 3 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
+	-- {'battle 3 8', 'ma', 'Suiton: Ni', 'stnpc', 'Suiton2','ffxiv/nin/suiton'}, -- water
+	-- {'battle 3 8', 'ma', 'Suiton: Ichi', 'stnpc', 'Suiton','ffxiv/nin/suiton'}, -- water
+	-- {'battle 3 9', 'ma', 'Doton: Ni', 'stnpc', 'Doton2','ffxiv/nin/doton'}, -- earth
+	-- {'battle 3 9', 'ma', 'Doton: Ichi', 'stnpc', 'Doton','ffxiv/nin/doton'}, -- earth
+	-- {'battle 3 10', 'ma', 'Hyoton: Ni', 'stnpc', 'Hyoton2','ffxiv/nin/hyoton'}, -- ice
+	-- {'battle 3 10', 'ma', 'Hyoton: Ichi', 'stnpc', 'Hyoton','ffxiv/nin/hyoton'}, -- ice
+	-- {'battle 3 11', 'ma', 'Huton: Ni', 'stnpc', 'Huton2','ffxiv/nin/huton'}, -- wind
+	-- {'battle 3 11', 'ma', 'Huton: Ichi', 'stnpc', 'Huton','ffxiv/nin/huton'}, -- wind
+	-- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
+	-- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
+-- Enfeeblement
+	{'battle 4 3', 'ma', 'Kurayami: Ichi', 'stnpc', 'Kura','ffxiv/blu/glower'}, -- blind
+	{'battle 4 4', 'ma', 'Hojo: Ni', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 4 4', 'ma', 'Hojo: Ichi', 't', 'Hojo','ffxiv/ast/redraw'}, -- slow
+	{'battle 4 5', 'ma', 'Dokumori: Ichi', 'stnpc', 'Doku','ffxiv/blu/exuviation'}, -- poison
+	{'battle 4 6', 'ma', 'Jubaku: Ichi', 'stnpc', 'Jubaku','ffxiv/blu/faze'}, -- paralyze
+-- Stances
+	{'battle 4 11', 'ja', 'Yonin', 'me', 'Yonin','ffxiv/nin/shade_shift'}, -- tanky
+	{'battle 4 12', 'ja', 'Innin', 'me', 'Innin','ffxiv/nin/assassinate'}, -- dps
+ }
+
 xivhotbar_keybinds_job['WAR'] = {
-	  {'battle 4 1', 'ja', 'Provoke', 't', 'Voke'},
-	  {'battle 4 2', 'ja', 'Berserk', 'me', 'Zerk'},
-	  {'battle 4 3', 'ja', 'Warcry', 'me', 'W.Cry'},
-	  {'battle 4 5', 'ja', 'Aggressor', 'me', 'Aggressor'},
-	  {'battle 4 5', 'ja', 'Defender', 'me', 'Defender'},
-  }
-  
+	{'battle 4 1', 'ja', 'Provoke', 'stnpc', 'Voke','ffxiv/war/defiance'},
+	{'battle 4 2', 'ja', 'Berserk', 'me', 'Brsrk','ffxiv/war/berserk'},
+	{'battle 4 3', 'ja', 'Defender', 'me', 'Dfnd','ffxiv/war/shake_it_off'},
+	{'battle 4 4', 'ja', 'Warcry', 'me', 'Wrcry','ffxiv/war/inner_beast'},
+	{'battle 4 5', 'ja', 'Aggressor', 'me', 'Aggrsr','ffxiv/war/onslaught'},
+ }
+
 xivhotbar_keybinds_job['DRG'] = {
-	  {'battle 4 1', 'ja', 'Jump', 't', 'Jmp'},
-	  {'battle 4 2', 'ja', 'High Jump', 't', 'H.Jmp'},
-	  {'battle 4 3', 'ja', 'Ancient Circle', 'me', 'A.Circle'},
-  }
-  
+	{'battle 4 1', 'ja', 'Jump', 't', 'Jump', 'ffxiv/drg/jump'},
+	{'battle 4 2', 'ja', 'High Jump', 't', 'HiJump', 'ffxiv/drg/high_jump'},
+	{'battle 4 3', 'ja', 'Ancient Circle', 'me', 'Ancient', 'ffxiv/rpr/arcane_crest'},
+	{'battle 4 4', 'ja', 'Super Jump', 't', 'SuJump', 'ffxiv/drg/elusive_jump'}, -- mastery
+ }
+
 xivhotbar_keybinds_job['DNC'] = {
-	  {'battle 4 1', 'ja', 'Curing Waltz III', 'stpc', 'CureW3'},
-	  {'battle 4 1', 'ja', 'Curing Waltz II', 'stpc', 'CureW2'},
-	  {'battle 4 1', 'ja', 'Curing Waltz', 'stpc', 'CureW1'},
-	  {'battle 4 2', 'ja', 'Divine Waltz', 'stpc', 'DivineW'},
-	  {'battle 4 3', 'ja', 'Healing Waltz', 'stpc', 'HealW'},
-	  {'battle 4 4', 'ja', 'Quickstep', 't', 'Quick'},
-	  {'battle 4 5', 'ja', 'Box Step', 't', 'Box'},
-	  {'battle 4 6', 'ja', 'Stutter Step', 't', 'Stutter'},
-	  {'battle 4 7', 'ja', 'Building Flourish', 't', 'Build.F'},
-	  {'battle 4 7', 'ja', 'Reverse Flourish', 't', 'Rev.F'},
-	  {'battle 4 7', 'ja', 'Violent Flourish', 't', 'Violent.F'},
-	  {'battle 4 7', 'ja', 'Desperate Flourish', 't', 'Desp.F'},
-	  {'battle 4 7', 'ja', 'Animated Flourish', 't', 'Anim.F'},
-	  --{'battle 4 8', 'ja', 'Drain Samba II', 'me', 'DrainS2'},
-	  --{'battle 4 8', 'ja', 'Drain Samba', 'me', 'DrainS1'},
-	  {'battle 4 8', 'ja', 'Haste Samba', 'me', 'Haste'},
-	  {'battle 4 9', 'ja', 'Contradance', 'me', 'CtraDnc'},
-  }
-  
+-- Sambas
+	{'battle 4 10', 'ja', 'Haste Samba', 'me', 'Haste','ffxiv/dnc/pirouette'},
+	{'battle 4 11', 'ja', 'Drain Samba', 'me', 'Drain','ffxiv/dnc/emboite'},
+	{'battle 4 11', 'ja', 'Drain Samba II', 'me', 'Drain2','ffxiv/dnc/emboite'},
+	-- {'battle 3 3', 'ja', 'Aspir Samba', 'me', 'Aspir','ffxiv/dnc/jete'},
+-- Waltzes
+	{'battle 4 1', 'ja', 'Curing Waltz', 'stpc', 'CurW','ffxiv/dnc/curing_waltz'},
+	{'battle 4 1', 'ja', 'Curing Waltz II', 'stpc', 'CurW2','ffxiv/dnc/curing_waltz'},
+	{'battle 4 1', 'ja', 'Curing Waltz III', 'stpc', 'CurW3','ffxiv/dnc/curing_waltz'},
+	{'battle 4 2', 'ja', 'Divine Waltz', 'stpc', 'Divine','ffxiv/dnc/improvised_finish'},
+	{'battle 4 3', 'ja', 'Healing Waltz', 'stpc', 'Healing','ffxiv/dnc/shield_samba'},
+	{'battle 4 12', 'ja', 'Contradance', 'me', 'Contra','ffxiv/dnc/tillana'}, -- mastery
+-- Steps
+	{'battle 4 4', 'ja', 'Quickstep', 'stnpc', 'Quick','ffxiv/dnc/en_avant'},
+	{'battle 4 5', 'ja', 'Box Step', 'stnpc', 'Box','ffxiv/dnc/bladeshower'},
+	-- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
+-- Flourishes
+	{'battle 4 6', 'ja', 'Animated Flourish', 'stnpc', 'Voke','ffxiv/dnc/closed_position'},
+	{'battle 4 7', 'ja', 'Violent Flourish', 'stnpc', 'Stun','ffxiv/dnc/starfall_dance'},
+	{'battle 4 8', 'ja', 'Reverse Flourish', 'me', 'Reverse','ffxiv/dnc/reverse_cascade'},
+	{'battle 4 9', 'ja', 'Building Flourish', 'me', 'Building','ffxiv/dnc/flourish'},
+-- Jigs
+	-- {'battle 3 8', 'ja', 'Spectral Jig', 'me', 'Spectral','ffxiv/dnc/fan_dance_IV'},
+	-- {'battle 3 8', 'ja', 'Chocobo Jig', 'me', 'Chocobo','ffxiv/dnc/entrechat'}, -- mastery
+ }
+
 xivhotbar_keybinds_job['SAM'] = {
-	  {'battle 4 1', 'ja', 'Third Eye', 'me', '3rdEye'},
-	  {'battle 4 2', 'ja', 'Hasso', 'me', 'Hasso'},
-	  {'battle 4 3', 'ja', 'Meditate', 'me', 'Mdtate'},
-	  {'battle 4 4', 'ja', 'Seigan', 'me', 'Seigan'},
-	  {'battle 4 5', 'ja', 'Sekkanoki', 'me', 'Sekk'},
-	  {'battle 4 6', 'ja', 'Warding Circle', 'me', 'W. Circle'},
-  }
-  
+	{'battle 4 1', 'ja', 'Hasso', 'me', 'Hasso', 'ffxiv/sam/ikishoten'},
+	{'battle 4 2', 'ja', 'Meditate', 'me', 'Mdtate', 'ffxiv/sam/meditate'},
+	{'battle 4 3', 'ja', 'Sekkanoki', 'me', 'Sekka', 'ffxiv/sam/higanbana'},
+	{'battle 4 4', 'ja', 'Seigan', 'me', 'Seigan', 'ffxiv/sam/tengentsu'},
+	{'battle 4 5', 'ja', 'Third Eye', 'me', '3rd Eye', 'ffxiv/sam/third_eye'},
+	{'battle 4 6', 'ja', 'Warding Circle', 'me', 'Warding', 'ffxiv/gnb/demon_slaughter'},
+ }
+
+xivhotbar_keybinds_job['COR'] = {
+	{'battle 4 1', 'ja', "Double-Up", 'me', 'Dbl Up','ffxiv/ast/play'},
+	{'battle 4 2', 'ja', "Corsair's Roll", 'me', 'COR','classes/ast'}, -- exp
+	{'battle 4 3', 'ja', "Ninja Roll", 'me', 'NIN','classes/nin'}, -- eva
+	{'battle 4 4', 'ja', "Hunter's Roll", 'me', 'HUN','classes/acr'}, -- acc & ra acc
+	{'battle 4 5', 'ja', "Chaos Roll", 'me', 'CHS','classes/rpr'}, -- phys atk
+	{'battle 4 7', 'ja', "Magus's Roll", 'me', 'MGS','classes/whm'}, -- mag def
+	-- {'battle 3 7', 'ja', "Healer's Roll", 'me', 'HLR','classes/hlr'}, -- cure potency
+	{'battle 4 11', 'ja', "Drachen Roll", 'me', 'DRC','classes/lnc'}, -- pet & ra acc 
+	-- {'battle 3 9', 'ja', "Choral Roll", 'me', 'CRL','classes/brd'}, -- spell interrupt
+	-- {'battle 3 10', 'ja', "Monk's Roll", 'me', 'MNK','classes/mnk'}, -- subtle blow
+	{'battle 4 10', 'ja', "Beast Roll", 'me', 'BST','classes/war'}, -- pet atk
+	{'battle 4 3', 'ja', "Samurai Roll", 'me', 'SAM','classes/sam'}, -- store TP
+	-- {'battle 3 3', 'ja', "Quick Draw", 'me', 'QkDraw','classes/mch'},
+	{'battle 4 9', 'ja', "Evoker's Roll", 'me', 'EVO','classes/smn'}, -- MP regen
+	{'battle 4 6', 'ja', "Rogue's Roll", 'me', 'RGE','classes/rge'}, -- crit
+	-- {'battle 3 4', 'ja', "Warlock's Roll", 'me', 'WLK','classes/thm'}, -- magic acc
+	{'battle 4 2', 'ja', "Fighter's Roll", 'me', 'FTR','classes/mar'}, -- double atk
+-- Mastery only
+	-- {'battle 3 6', 'ja', "Puppet Roll", 'me', 'PUP','classes/pug'}, -- pet matk & pet macc
+	{'battle 4 8', 'ja', "Gallant's Roll", 'me', 'GAL','classes/pld'}, -- def
+	-- {'battle 3 8', 'ja', "Wizard's Roll", 'me', 'WIZ','classes/blm'}, -- matk
+	{'battle 4 12', 'ja', "Random Deal", 'me', 'Randm','ffxiv/ast/draw'}, 
+}
+
+xivhotbar_keybinds_job['THF'] = {
+	{'battle 4 3', 'ja', 'Steal', 't', 'Steal','ffxiv/nin/dream_within_a_dream'},
+	{'battle 4 1', 'ja', 'Sneak Attack', 'me', 'SAtk','ffxiv/nin/spinning_edge'},
+	{'battle 4 6', 'ja', 'Flee', 'me', 'Flee','ffxiv/nin/role/peloton'},
+	{'battle 4 2', 'ja', 'Trick Attack', 'me', 'TAtk','ffxiv/nin/trick_attack'},
+	{'battle 4 4', 'ja', 'Mug', 't', 'Mug','ffxiv/nin/mug'},
+	{'battle 4 5', 'ja', 'Hide', 'me', 'Hide','ffxiv/nin/hide'},
+ }
+
 xivhotbar_keybinds_job['RUN'] = {
 	  {'battle 4 1', 'ja', 'Vallation', 'me', 'Vall.'},
 	  {'battle 4 2', 'ja', 'Pflug', 'me', 'Pflug'},
