@@ -55,58 +55,102 @@ xivhotbar_keybinds_job['Base'] = {
   
 	-- Hotbar #6 Jug Pets
 	-- Leveling Jugs
-	{'battle 6 1', 'macro', 'input /equip ammo "Carrot Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Hare', 'ffxiv/blu/whistle'},
-	{'battle 6 2', 'macro', 'input /equip ammo "F. Carrot Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Steffi', 'ffxiv/blu/whistle'},
-	{'battle 6 3', 'macro', 'input /equip ammo "Fish Oil Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Carrie', 'ffxiv/blu/whistle'},
-	{'battle 6 4', 'macro', 'input /equip ammo "Warm Meat Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Siravarde', 'ffxiv/blu/whistle'},
-	{'battle 6 5', 'macro', 'input /equip ammo "L. Carrot Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Lulush', 'ffxiv/blu/whistle'},
+	-- {'battle 6 1', 'macro', 'input /equip ammo "Carrot Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Hare', 'ffxiv/blu/whistle'},
+	-- {'battle 6 2', 'macro', 'input /equip ammo "F. Carrot Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Steffi', 'ffxiv/blu/whistle'},
+	-- {'battle 6 3', 'macro', 'input /equip ammo "Fish Oil Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Carrie', 'ffxiv/blu/whistle'},
+	-- {'battle 6 4', 'macro', 'input /equip ammo "Warm Meat Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Siravarde', 'ffxiv/blu/whistle'},
+	-- {'battle 6 5', 'macro', 'input /equip ammo "L. Carrot Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Lulush', 'ffxiv/blu/whistle'},
 	
 	-- 99+ Jugs
 	-- Fluffy Bredo, Mag Def Down
-	-- {'battle 6 1', 'macro', 'input /equip ammo "Poisonous Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Bredo', 'ffxiv/blu/whistle'},
+	{'battle 6 1', 'macro', 'input /equip ammo "Poisonous Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Bredo', 'ffxiv/blu/whistle'},
 	-- Swooping Zhivago, general all-arounder
-	-- {'battle 6 2', 'macro', 'input /equip ammo "Windy Greens";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Zhivago', 'ffxiv/blu/whistle'},
+	{'battle 6 2', 'macro', 'input /equip ammo "Windy Greens";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Zhivago', 'ffxiv/blu/whistle'},
 	-- Generous Arthur, general tank, massive atk/def down 
-	-- {'battle 6 3', 'macro', 'input /equip ammo "Dire Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Arthur', 'ffxiv/blu/whistle'},
+	{'battle 6 3', 'macro', 'input /equip ammo "Dire Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Arthur', 'ffxiv/blu/whistle'},
 	-- Energized Sefina, aoe eva down, def down
-	-- {'battle 6 4', 'macro', 'input /equip ammo "Gassy Sap";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Sefina', 'ffxiv/blu/whistle'},
+	{'battle 6 4', 'macro', 'input /equip ammo "Gassy Sap";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Sefina', 'ffxiv/blu/whistle'},
 	-- Daring Roland, treasure hunter, dispel, terror
-	-- {'battle 6 5', 'macro', 'input /equip ammo "Feculent Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Roland', 'ffxiv/blu/whistle'},
+	{'battle 6 5', 'macro', 'input /equip ammo "Feculent Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Roland', 'ffxiv/blu/whistle'},
 	-- Jovial Edwin, pld tank 
-	-- {'battle 6 6', 'macro', 'input /equip ammo "Pungent Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Edwin', 'ffxiv/blu/whistle'},
+	{'battle 6 6', 'macro', 'input /equip ammo "Pungent Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Edwin', 'ffxiv/blu/whistle'},
 	-- Rhyming Shizuna, rage / berserk
-	-- {'battle 6 7', 'macro', 'input /equip ammo "Lyrical Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Shizuna', 'ffxiv/blu/whistle'},
+	{'battle 6 7', 'macro', 'input /equip ammo "Lyrical Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Shizuna', 'ffxiv/blu/whistle'},
 	-- Vivacious Gaston, cleave, debuff, atk buff
-	-- {'battle 6 8', 'macro', 'input /equip ammo "Spumante Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Gaston', 'ffxiv/blu/whistle'},
+	{'battle 6 8', 'macro', 'input /equip ammo "Spumante Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Gaston', 'ffxiv/blu/whistle'},
 	-- Vivacious Vickie, monk, def down, haste/def/counter/guard boost
-	-- {'battle 6 9', 'macro', 'input /equip ammo "Tant. Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Vickie', 'ffxiv/blu/whistle'},
+	{'battle 6 9', 'macro', 'input /equip ammo "Tant. Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Vickie', 'ffxiv/blu/whistle'},
 	-- Bouncing Bertha, aoe 
-	-- {'battle 6 10', 'macro', 'input /equip ammo "Bubbly Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Bertha', 'ffxiv/blu/whistle'},
+	{'battle 6 10', 'macro', 'input /equip ammo "Bubbly Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Bertha', 'ffxiv/blu/whistle'},
 	-- Sultry Patrice, aoe tank 
-	-- {'battle 6 11', 'macro', 'input /equip ammo "Putrescent Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Patrice', 'ffxiv/blu/whistle'},
+	{'battle 6 11', 'macro', 'input /equip ammo "Putrescent Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Patrice', 'ffxiv/blu/whistle'},
 	-- Fatso Fargann, atk down, tp drain
-	-- {'battle 6 12', 'macro', 'input /equip ammo "C. Plasma Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Fargann', 'ffxiv/blu/whistle'},
+	{'battle 6 12', 'macro', 'input /equip ammo "C. Plasma Broth";wait 1;input /ja "Bestial Loyalty" <me>', '', 'Fargann', 'ffxiv/blu/whistle'},
   }
   
-  
+-- SUBJOBS
   xivhotbar_keybinds_job['WHM'] = {
-	  {'battle 4 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
-	  {'battle 4 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
-	  {'battle 4 1', 'ma', 'Cure II', 'stpc', 'Cure 2'},
-	  {'battle 4 1', 'ma', 'Cure', 'stpc', 'Cure 1'},
-	  {'battle 4 2', 'ma', 'Flash', 't', 'Flash'},
-	  {'battle 4 3', 'ma', 'Poisona', 'stpc', 'Poisona'},
-	  {'battle 4 4', 'ma', 'Paralyna', 'stpc', 'Paralyna'},
-	  {'battle 4 5', 'ma', 'Blindna', 'stpc', 'Blindna'},
-	  {'battle 4 6', 'ma', 'Cursna', 'stpc', 'Cursna'},
-	  {'battle 4 7', 'ma', 'Erase', 'stpc', 'Erase'},
-	  {'battle 4 8', 'ja', 'Divine Seal', 'me', 'Div.Seal'},
-	  {'battle 4 9', 'ma', 'Curaga III', 'stpc', 'Curaga3'},
-	  {'battle 4 9', 'ma', 'Curaga II', 'stpc', 'Curaga2'},
-	  {'battle 4 9', 'ma', 'Curaga', 'stpc', 'Curaga1'},
-  }
-  
-  xivhotbar_keybinds_job['RDM'] = {
+	-- Some spells moved to General example instead:
+	-- Teleports / Recalls / Raises / Re-Raises
+	-- Protect(ra) / Shell(ra)
+	-- Aquaveil
+	-- Sneak / Invisible / Deodorize
+-- Job Abilities
+	{'battle 3 9', 'ja', 'Divine Seal', 'me', 'Divine','ffxiv/whm/divine_benison'},
+-- Enfeeblement
+	-- {'battle 3 2', 'ma', 'Paralyze', 'stnpc', 'Para','ffxiv/other/paralyze'},
+	-- {'battle 3 3', 'ma', 'Slow', 'stnpc', 'Slow','ffxiv/other/slow'},
+	-- {'battle 3 4', 'ma', 'Silence', 'stnpc', 'Silence','ffxiv/role/interject'},
+	-- {'battle 3 1', 'ma', 'Dia II', 'stnpc', 'Dia II', 'Dia','ffxiv/whm/dia'},
+	-- {'battle 3 1', 'ma', 'Dia', 'stnpc', 'Dia','ffxiv/whm/dia'},
+	-- {'battle 3 9', 'ma', 'Repose', 'stnpc', 'Repose','ffxiv/role/repose'},
+	{'battle 3 2', 'ma', 'Flash', 'stnpc', 'Flash','ffxiv/pld/flash'},
+-- Barspells
+	-- {'battle 3 1', 'ma', 'Barsleepra', 'me', 'Sleepra', ''},
+	-- {'battle 3 2', 'ma', 'Barpoisonra', 'me', 'Poisonra', ''},
+	-- {'battle 3 3', 'ma', 'Barparalyzra', 'me', 'Paralyzra', ''},
+	-- {'battle 3 1', 'ma', 'Barstonra', 'me', 'Stonra', 'Barstonra'},
+	-- {'battle 3 2', 'ma', 'Barwatera', 'me', 'Watera', 'Barwatera'},
+	-- {'battle 3 3', 'ma', 'Baraera', 'me', 'Aera', 'Baraera'},
+	-- {'battle 3 4', 'ma', 'Barfira', 'me', 'Fira', 'Barfira'},
+	-- {'battle 3 4', 'ma', 'Barblindra', 'me', 'Blindra', ''},
+	-- {'battle 3 5', 'ma', 'Barblizzara', 'me', 'Blizzara', 'Barblizzara'},
+	-- {'battle 3 5', 'ma', 'Barsilencera', 'me', 'Silencera'},
+	-- {'battle 3 6', 'ma', 'Barthundra', 'me', 'Thundra', 'Barthundra'},
+	-- {'battle 3 6', 'ma', 'Barvira', 'me', 'Vira'},
+	-- {'battle 3 9', 'ma', 'Barpetra', 'me', 'Petra'},
+-- Atk
+	-- {'battle 3 9', 'ma', 'Holy', 'stnpc', 'Holy','ffxiv/whm/holy'}, -- mastery
+-- Regen
+	{'battle 3 11', 'ma', 'Regen II', 'stpc', 'Regen2','ffxiv/whm/regen'},
+	{'battle 3 11', 'ma', 'Regen', 'stpc', 'Regen','ffxiv/whm/regen'},
+-- Cure
+	{'battle 3 1', 'ma', 'Cure IV', 'stpc', 'Cure4','ffxiv/sch/physick'},
+	{'battle 3 1', 'ma', 'Cure III', 'stpc', 'Cure3','ffxiv/whm/cure_III'},
+	{'battle 3 1', 'ma', 'Cure II', 'stpc', 'Cure2','ffxiv/whm/cure_II'},
+	{'battle 3 1', 'ma', 'Cure', 'stpc', 'Cure','ffxiv/whm/cure'},
+-- Cura
+	-- {'battle 1 10', 'ma', 'Cura', 'me', 'Cura','ffxiv/whm/assize'},
+-- Curaga
+	{'battle 3 10', 'ma', 'Curaga III', 'stpc', 'Curaga3','ffxiv/whm/dia','ffxiv/whm/medica_III'}, -- mastery
+	{'battle 3 10', 'ma', 'Curaga II', 'stpc', 'Curaga2','ffxiv/whm/medica_II'},
+	{'battle 3 10', 'ma', 'Curaga', 'stpc', 'Curaga','ffxiv/whm/medica'},
+-- Supportive
+	{'battle 3 3', 'ma', 'Poisona', 'stpc', 'Poisona','ffxiv/whm/003114'},
+	{'battle 3 4', 'ma', 'Paralyna', 'stpc', 'Paralyna','ffxiv/whm/003113'},
+	{'battle 3 5', 'ma', 'Blindna', 'stpc', 'Blindna','ffxiv/whm/003147'},
+	-- {'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena','ffxiv/whm/003111'},
+	-- {'battle 3 6', 'ma', 'Blink', 'me', 'Blink','ffxiv/whm/blink'},
+	-- {'battle 3 7', 'ma', 'Stoneskin', 'me', 'StnSkin','ffxiv/whm/stoneskin'},
+	{'battle 3 6', 'ma', 'Cursna', 'stpc', 'Cursna','ffxiv/whm/003146'},
+	{'battle 3 7', 'ma', 'Erase', 'stpc', 'Erase','ffxiv/role/erase'},
+	-- {'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna','ffxiv/whm/003112'},
+	-- {'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona','ffxiv/whm/003115'},
+	{'battle 3 12', 'ma', 'Haste', 'stpc', 'Haste','ffxiv/sge/krasis'},
+	-- {'battle 3 9', 'ma', 'Auspice', 'me', 'Ausp','ffxiv/whm/temperance'},  -- mastery
+ }
+
+xivhotbar_keybinds_job['RDM'] = {
 	  {'battle 4 1', 'ma', 'Cure IV', 'stpc', 'Cure 4'},
 	  {'battle 4 1', 'ma', 'Cure III', 'stpc', 'Cure 3'},
 	  {'battle 4 1', 'ma', 'Cure II', 'stpc', 'Cure 2'},
@@ -122,7 +166,7 @@ xivhotbar_keybinds_job['Base'] = {
 	  {'battle 4 9', 'ma', 'Dia', 't', 'Dia2'},
   }
   
-  xivhotbar_keybinds_job['NIN'] = {
+xivhotbar_keybinds_job['NIN'] = {
 	  {'battle 4 1', 'ma', 'Utsusemi: Ichi', 'me', 'Utsu1'},
 	  {'battle 4 2', 'ma', 'Utsusemi: Ni', 'me', 'Utsu2'},
 	  {'battle 4 3', 'ma', 'Tonko: Ni', 'me', 'Tonko'},
@@ -130,7 +174,7 @@ xivhotbar_keybinds_job['Base'] = {
 	  {'battle 4 4', 'ma', 'Monomi: Ichi', 'me', 'Monomi'},
   }
   
-  xivhotbar_keybinds_job['WAR'] = {
+xivhotbar_keybinds_job['WAR'] = {
 	  {'battle 4 1', 'ja', 'Provoke', 't', 'Voke'},
 	  {'battle 4 2', 'ja', 'Berserk', 'me', 'Zerk'},
 	  {'battle 4 3', 'ja', 'Warcry', 'me', 'W.Cry'},
@@ -138,13 +182,13 @@ xivhotbar_keybinds_job['Base'] = {
 	  {'battle 4 5', 'ja', 'Defender', 'me', 'Defender'},
   }
   
-  xivhotbar_keybinds_job['DRG'] = {
+xivhotbar_keybinds_job['DRG'] = {
 	  {'battle 4 1', 'ja', 'Jump', 't', 'Jmp'},
 	  {'battle 4 2', 'ja', 'High Jump', 't', 'H.Jmp'},
 	  {'battle 4 3', 'ja', 'Ancient Circle', 'me', 'A.Circle'},
   }
   
-  xivhotbar_keybinds_job['DNC'] = {
+xivhotbar_keybinds_job['DNC'] = {
 	  {'battle 4 1', 'ja', 'Curing Waltz III', 'stpc', 'CureW3'},
 	  {'battle 4 1', 'ja', 'Curing Waltz II', 'stpc', 'CureW2'},
 	  {'battle 4 1', 'ja', 'Curing Waltz', 'stpc', 'CureW1'},
@@ -164,16 +208,16 @@ xivhotbar_keybinds_job['Base'] = {
 	  {'battle 4 9', 'ja', 'Contradance', 'me', 'CtraDnc'},
   }
   
-  xivhotbar_keybinds_job['SAM'] = {
+xivhotbar_keybinds_job['SAM'] = {
 	  {'battle 4 1', 'ja', 'Third Eye', 'me', '3rdEye'},
-	  --{'battle 4 2', 'ja', 'Hasso', 'me', 'Hasso'},  --no 2 handers for pup
+	  {'battle 4 2', 'ja', 'Hasso', 'me', 'Hasso'},
 	  {'battle 4 3', 'ja', 'Meditate', 'me', 'Mdtate'},
-	  --{'battle 4 5', 'ja', 'Seigan', 'me', 'Seigan'},  --no 2 handers for pup
+	  {'battle 4 4', 'ja', 'Seigan', 'me', 'Seigan'},
 	  {'battle 4 5', 'ja', 'Sekkanoki', 'me', 'Sekk'},
 	  {'battle 4 6', 'ja', 'Warding Circle', 'me', 'W. Circle'},
   }
   
-  xivhotbar_keybinds_job['RUN'] = {
+xivhotbar_keybinds_job['RUN'] = {
 	  {'battle 4 1', 'ja', 'Vallation', 'me', 'Vall.'},
 	  {'battle 4 2', 'ja', 'Pflug', 'me', 'Pflug'},
 	  {'battle 4 3', 'ja', 'Ignis', 'me', 'Fire'},
@@ -185,7 +229,8 @@ xivhotbar_keybinds_job['Base'] = {
 	  {'battle 4 9', 'ja', 'Lux', 'me', 'Light'},
 	  {'battle 4 10', 'ja', 'Tenebrae', 'me', 'Dark'},
   }
-  
+
+-- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Axe'] = { 
 -- Heavy Hit
 	{'battle 2 1', 'ws', 'Avalanche Axe', 't', 'Avlnche'},
@@ -243,6 +288,4 @@ xivhotbar_keybinds_job['Scythe'] = {
 	{'battle 2 12', 'ws', 'Nightmare Scythe', 't', 'Nmare'},
 }
 
-  
-  return xivhotbar_keybinds_job
-  
+return xivhotbar_keybinds_job
