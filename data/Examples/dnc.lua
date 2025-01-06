@@ -56,7 +56,7 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 4 12', 'ja',    'Trance',             'me',    'Trance',   'ffxiv/dnc/fan_dance_IV' },
 
   -- Hotbar #5
-  { 'battle 5 1',  'input', '/ra <t>',            '',      'Pull',     'ffxiv/dnc/ra' },
+  { 'battle 5 1',  'input', '/ra <t>',            '',      'Pull',     'ra' },
   -- Jigs
   { 'battle 5 3',  'ja',    'Chocobo Jig',        'me',    'Chocobo',  'ffxiv/dnc/entrechat' },
   { 'battle 5 3',  'ja',    'Chocobo Jig II',     'me',    'Chocobo2', 'ffxiv/dnc/entrechat' },

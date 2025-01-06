@@ -92,7 +92,7 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
   { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
   { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',     'ffxiv/sch/bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' }
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',   'ffxiv/role/sleep' },
   { 'battle 3 8', 'ma', 'Stun',          't',     'Stun',    'ffxiv/drk/unmend' },
 }
@@ -322,16 +322,16 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 3 12', 'ma', 'Curaga II',    'stpc',  'Curaga2',   'ffxiv/whm/medica_II' },
   { 'battle 3 12', 'ma', 'Curaga',       'stpc',  'Curaga',    'ffxiv/whm/medica' },
   -- Supportive
-  { 'battle 3 1',  'ma', 'Poisona',      'stpc',  'Poisona',   'ffxiv/whm/003114' },
-  { 'battle 3 2',  'ma', 'Paralyna',     'stpc',  'Paralyna',  'ffxiv/whm/003113' },
-  { 'battle 3 3',  'ma', 'Blindna',      'stpc',  'Blindna',   'ffxiv/whm/003147' },
-  { 'battle 3 4',  'ma', 'Silena',       'stpc',  'Silena',    'ffxiv/whm/003111' },
+  { 'battle 3 1',  'ma', 'Poisona',      'stpc',  'Poisona',   'ffxiv/ast/003114' },
+  { 'battle 3 2',  'ma', 'Paralyna',     'stpc',  'Paralyna',  'ffxiv/ast/003113' },
+  { 'battle 3 3',  'ma', 'Blindna',      'stpc',  'Blindna',   'ffxiv/ast/003147' },
+  { 'battle 3 4',  'ma', 'Silena',       'stpc',  'Silena',    'ffxiv/ast/003111' },
   { 'battle 3 6',  'ma', 'Blink',        'me',    'Blink',     'ffxiv/whm/blink' },
   { 'battle 3 7',  'ma', 'Stoneskin',    'me',    'StnSkin',   'ffxiv/whm/stoneskin' },
-  { 'battle 3 5',  'ma', 'Cursna',       'stpc',  'Cursna',    'ffxiv/whm/003146' },
+  { 'battle 3 5',  'ma', 'Cursna',       'stpc',  'Cursna',    'ffxiv/ast/003146' },
   { 'battle 3 7',  'ma', 'Erase',        'stpc',  'Erase',     'ffxiv/role/erase' },
-  { 'battle 3 6',  'ma', 'Viruna',       'stpc',  'Viruna',    'ffxiv/whm/003112' },
-  { 'battle 3 4',  'ma', 'Stona',        'stpc',  'Stona',     'ffxiv/whm/003115' },
+  { 'battle 3 6',  'ma', 'Viruna',       'stpc',  'Viruna',    'ffxiv/ast/003112' },
+  { 'battle 3 4',  'ma', 'Stona',        'stpc',  'Stona',     'ffxiv/ast/003115' },
   { 'battle 3 5',  'ma', 'Haste',        'stpc',  'Haste',     'ffxiv/sge/krasis' },
   { 'battle 3 9',  'ma', 'Auspice',      'me',    'Ausp',      'ffxiv/whm/temperance' }, -- mastery
 }
