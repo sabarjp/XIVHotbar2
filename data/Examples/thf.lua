@@ -5,7 +5,7 @@
 --Hotbar #1
 -- Weaponskills; leave blank
 
---Hotbar #2 
+Hotbar #2 
 --main job abilities
 	-- SATA Single Hit
 	{'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataVB',"ffxiv/blu/sharpened_knife"},
@@ -19,7 +19,6 @@
 	{'battle 2 5', 'ja', 'Bully', 't', 'Bully','ffxiv/role/true_north'},
 	{'battle 2 6', 'ja', 'Accomplice', 'st', 'Accomp',"ffxiv/blu/the_dragon's_voice"},
 	{'battle 2 7', 'ja', 'Collaborator', 'st', 'Collab',"ffxiv/blu/the_ram's_voice"},
-	
 
 --Hotbar #3
 --sub job abilities; leave blanka
