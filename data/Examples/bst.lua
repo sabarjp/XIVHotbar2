@@ -134,16 +134,16 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 4 10', 'ma', 'Curaga II',   'stpc',  'Curaga2',  'ffxiv/whm/medica_II' },
   { 'battle 4 10', 'ma', 'Curaga',      'stpc',  'Curaga',   'ffxiv/whm/medica' },
   -- Supportive
-  { 'battle 4 3',  'ma', 'Poisona',     'stpc',  'Poisona',  'ffxiv/whm/003114' },
-  { 'battle 4 4',  'ma', 'Paralyna',    'stpc',  'Paralyna', 'ffxiv/whm/003113' },
-  { 'battle 4 5',  'ma', 'Blindna',     'stpc',  'Blindna',  'ffxiv/whm/003147' },
-  -- {'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena','ffxiv/whm/003111'},
+  { 'battle 4 3',  'ma', 'Poisona',     'stpc',  'Poisona',  'ffxiv/ast/003114' },
+  { 'battle 4 4',  'ma', 'Paralyna',    'stpc',  'Paralyna', 'ffxiv/ast/003113' },
+  { 'battle 4 5',  'ma', 'Blindna',     'stpc',  'Blindna',  'ffxiv/ast/003147' },
+  -- {'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena','ffxiv/ast/003111'},
   -- {'battle 3 6', 'ma', 'Blink', 'me', 'Blink','ffxiv/whm/blink'},
   -- {'battle 3 7', 'ma', 'Stoneskin', 'me', 'StnSkin','ffxiv/whm/stoneskin'},
-  { 'battle 4 6',  'ma', 'Cursna',      'stpc',  'Cursna',   'ffxiv/whm/003146' },
+  { 'battle 4 6',  'ma', 'Cursna',      'stpc',  'Cursna',   'ffxiv/ast/003146' },
   { 'battle 4 7',  'ma', 'Erase',       'stpc',  'Erase',    'ffxiv/role/erase' },
-  -- {'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna','ffxiv/whm/003112'},
-  -- {'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona','ffxiv/whm/003115'},
+  -- {'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna','ffxiv/ast/003112'},
+  -- {'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona','ffxiv/ast/003115'},
   { 'battle 4 12', 'ma', 'Haste',       'stpc',  'Haste',    'ffxiv/sge/krasis' },
   -- {'battle 3 9', 'ma', 'Auspice', 'me', 'Ausp','ffxiv/whm/temperance'},  -- mastery
 }
