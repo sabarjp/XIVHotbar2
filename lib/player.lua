@@ -45,6 +45,13 @@ player.vitals.tp = 0
 player.id = 0
 player.current_weapon = 0
 player.current_range_weapon = 0
+player.buffs = {}
+player.has_free_spell = false
+player.has_penury = false
+player.has_parsimony = false
+player.has_apogee = false
+player.has_trance = false
+player.has_sekko = false
 
 local debug = false
 
@@ -71,6 +78,8 @@ function player:initialize(windower_player, server, theme_options)
   self.id             = windower_player.id
   self.vitals.mp      = windower_player.vitals.mp
   self.vitals.tp      = windower_player.vitals.tp
+  self:update_costs()
+  self:load_default_stance()
   action_manager:initialize(theme_options)
   action_manager:update_file_path(player.name, player.main_job)
 end
@@ -106,6 +115,76 @@ function player:update_finishing_moves(buff_id)
   elseif buff_id == 588 then
     self.finishing_moves = 6
   end
+end
+
+function player:load_default_stance()
+  for _, v in ipairs(self.buffs) do
+    if v == 358 then
+      action_manager:update_stance(211)
+    elseif v == 359 then
+      action_manager:update_stance(212)
+    elseif v == 401 then
+      action_manager:update_stance(234)
+    elseif v == 402 then
+      action_manager:update_stance(235)
+    end
+  end
+end
+
+function player:update_costs()
+  local has_free_spell = false
+  local has_penury = false
+  local has_parsimony = false
+  local has_apogee = false
+  local has_trance = false
+  local has_sekko = false
+
+  for _, v in ipairs(self.buffs) do
+    if v == 47 or v == 229 then
+      -- manafont, manawell
+      has_free_spell = true
+    elseif v == 360 then
+      has_penury = true
+    elseif v == 361 then
+      has_parsimony = true
+    elseif v == 583 then
+      has_apogee = true
+    elseif v == 376 then
+      has_trance = true
+    elseif v == 408 then
+      has_sekko = true
+    end
+  end
+
+  self.has_free_spell = has_free_spell
+  self.has_penury = has_penury
+  self.has_parsimony = has_parsimony
+  self.has_apogee = has_apogee
+  self.has_trance = has_trance
+  self.has_sekko = has_sekko
+end
+
+function player:add_buff(buff_id)
+  for _, v in ipairs(self.buffs) do
+    if v == buff_id then
+      buff_id = nil -- already present
+      break
+    end
+  end
+  if buff_id then
+    table.insert(self.buffs, buff_id)
+  end
+  self:update_costs()
+end
+
+function player:remove_buff(buff_id)
+  for i, v in ipairs(self.buffs) do
+    if v == buff_id then
+      table.remove(self.buffs, i)
+      break
+    end
+  end
+  self:update_costs()
 end
 
 function player:reset_finishing_moves()
@@ -197,14 +276,14 @@ function player:execute_action(slot)
     return
   elseif action.type == 'macro' then -- Single line macro in the JOB.lua file. Seperated by semicolons.
     windower.chat.input('//' .. action.action)
-  elseif action.type == 'gs' then   -- Gear Swap
+  elseif action.type == 'gs' then    -- Gear Swap
     windower.chat.input('//gs ' .. action.action)
   elseif action.type == 's' then
     windower.chat.input('//send ' .. action.action)
   elseif action.type == 'input' then
     windower.chat.input('//input ' .. action.action)
   else
-    windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>')     -- This is for JA, WS and MA
+    windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>') -- This is for JA, WS and MA
   end
 end
 
