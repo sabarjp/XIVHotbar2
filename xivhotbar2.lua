@@ -634,6 +634,58 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
   end
 end)
 
+-- Updates on blu spell setting
+windower.register_event('outgoing chunk', function(id, original, modified, injected, blocked)
+  if id == 0x102 then
+    if windower.ffxi.get_player().main_job_id == 16 or windower.ffxi.get_player().sub_job_id == 16 then
+      if ui.theme.dev_mode then log("Set blue magic. Reloading Hotbar.") end
+      -- takes time after setting blu magic for abilities to drop off
+      coroutine.sleep(1.5)
+      reload_hotbar()
+    end
+  end
+end)
+
+-- helper function for packet debugging
+local function byte_to_binary(byte)
+  local binary = {}
+  for i = 7, 0, -1 do
+    table.insert(binary, math.floor(byte / (2 ^ i)) % 2)
+  end
+  return table.concat(binary)
+end
+
+-- Updates on blu spell list
+windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
+  if id == 0x044 then
+    if windower.ffxi.get_player().main_job_id == 16 or windower.ffxi.get_player().sub_job_id == 16 then
+      local packet = packets.parse('incoming', original)
+      if packet['Job'] == 16 then
+        -- Iterate over each character in the string and convert to binary
+        local binary_dump = {}
+        local set_blu_spells = {}
+
+        -- blu spells live in the region 0x08 through 0x1B
+        -- (or decimal 8 through 27)
+        for i = 9, 28 do
+          local byte = string.byte(original, i)
+          --table.insert(binary_dump, byte_to_binary(byte)) -- debugging
+          if byte ~= 0x0 then
+            table.insert(set_blu_spells, string.byte(original, i) + 512)
+          end
+          -- Add a line break every 8 bytes
+          if i % 4 == 0 then
+            table.insert(binary_dump, "\n")
+          end
+        end
+        -- print("  " .. table.concat(binary_dump, "  "))  -- debugging, dump binary
+        -- print(table.concat(set_blu_spells, "  ")) -- debugging, dump blu spells
+        player:update_blue_magic(set_blu_spells)
+      end
+    end
+  end
+end)
+
 -- Reloads hotbar if new weaponskill is learned.
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
   if message_id == 45 then
