@@ -103,11 +103,11 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
   { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
@@ -176,22 +176,22 @@ xivhotbar_keybinds_job['RNG'] = {
   -- Multi-Hit
   { 'battle 5 5', 'ws',    'Refulgent Arrow',            't',     'Reflgnt' }, -- rng sub
   -- Specials
-  { 'battle 5 6', 'ws',    'Dulling Arrow',              't',     'Dull' }, -- rng sub
+  { 'battle 5 6', 'ws',    'Dulling Arrow',              't',     'Dull' },    -- rng sub
   -- Merit Point
-  { 'battle 5 8', 'ws',    'Apex Arrow',                 't',     'Apex' }, -- rng sam
+  { 'battle 5 8', 'ws',    'Apex Arrow',                 't',     'Apex' },    -- rng sam
   -- Relic (only usable with specific weapon equips)
-  { 'battle 5 9', 'ws',    'Namas Arrow',                't',     'Namas' }, -- rng sam relic
+  { 'battle 5 9', 'ws',    'Namas Arrow',                't',     'Namas' },   -- rng sam relic
 }
 
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Dagger'] = {
   -- Heavy Hit
   { 'battle 1 1',  'ws', 'Wasp Sting',      't', 'Wasp' },
-  { 'battle 1 1',  'ws', 'Viper Bite',      't', 'Viper' }, -- rdm thf brd rng nin dnc
-  { 'battle 1 1',  'ws', 'Shark Bite',      't', 'Shark' }, -- thf dnc
+  { 'battle 1 1',  'ws', 'Viper Bite',      't', 'Viper' },   -- rdm thf brd rng nin dnc
+  { 'battle 1 1',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
   -- Multi-Hit
   { 'battle 1 2',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
-  { 'battle 1 2',  'ws', 'Evisceration',    't', 'Evisc' }, -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 2',  'ws', 'Evisceration',    't', 'Evisc' },   -- war rdm thf bst brd rng nin cor dnc
   -- Wind
   { 'battle 1 3',  'ws', 'Gust Slash',      't', 'Gust' },
   -- Specials
@@ -204,14 +204,14 @@ xivhotbar_keybinds_job['Dagger'] = {
   -- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
   -- {'battle 1 7', 'ws', 'Pyrrhic Kleos', 't', 'Pyrrhic'}, -- dnc
   -- Merit Point #8
-  { 'battle 1 8',  'ws', 'Exenterator',     't', 'Exent' }, -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 8',  'ws', 'Exenterator',     't', 'Exent' },   -- war rdm thf bst brd rng nin cor dnc
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 9',  'ws', "Rudra's Storm",   't', 'Rudra' }, -- thf brd dnc
+  { 'battle 1 9',  'ws', "Rudra's Storm",   't', 'Rudra' },   -- thf brd dnc
   -- Relic (only usable with specific weapon equips) #10
-  { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' }, -- rdm thf brd dnc relic
+  { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },   -- rdm thf brd dnc relic
   -- AoE Ws #11
   { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
-  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' }, -- rdm thf brd rng nin dnc
+  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
   { 'battle 1 12', 'ws', 'Shadowstitch',    't', 'ShdSt' },
 }

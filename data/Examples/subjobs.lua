@@ -5,28 +5,28 @@
 
 -- Remember to modify bar-action locations to fit your needs!
 
---BLM
---BLU
---BRD
---BST
----- COR
----- DNC
---DRK
----- DRG
---GEO
----- MNK
----- THF
----- NIN
---PLD
---PUP
----- RDM
----- RNG
---RUN
----- SAM
----- SCH
---SMN
----- WAR
----- WHM
+BLM
+BLU
+BRD
+BST
+-- COR
+-- DNC
+-- DRK
+-- DRG
+GEO
+-- MNK
+-- THF
+-- NIN
+-- PLD
+PUP
+-- RDM
+-- RNG
+-- RUN
+-- SAM
+-- SCH
+SMN
+-- WAR
+-- WHM
 
 -- {'battle 3 7', 'ja', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/'},
 -- {'battle 3 7', 'ma', 'Sleep', 'stnpc', 'Sleep','ffxiv/role/'},
@@ -127,28 +127,42 @@ xivhotbar_keybinds_job['NIN'] = {
   { 'battle 3 1',  'ma', 'Utsusemi: Ichi', 'me',    'Utsu:Ichi', 'ffxiv/nin/dream_within_a_dream' },
   { 'battle 3 2',  'ma', 'Utsusemi: Ni',   'me',    'Utsu:Ni',   'ffxiv/nin/phantom_kamaitachi' },
   -- Elements
-  { 'battle 3 7',  'ma', 'Katon: Ni',      'stnpc', 'Katon2',    'ffxiv/nin/katon' }, -- fire
-  { 'battle 3 7',  'ma', 'Katon: Ichi',    'stnpc', 'Katon',     'ffxiv/nin/katon' }, -- fire
+  { 'battle 3 7',  'ma', 'Katon: Ni',      'stnpc', 'Katon2',    'ffxiv/nin/katon' },  -- fire
+  { 'battle 3 7',  'ma', 'Katon: Ichi',    'stnpc', 'Katon',     'ffxiv/nin/katon' },  -- fire
   { 'battle 3 8',  'ma', 'Suiton: Ni',     'stnpc', 'Suiton2',   'ffxiv/nin/suiton' }, -- water
   { 'battle 3 8',  'ma', 'Suiton: Ichi',   'stnpc', 'Suiton',    'ffxiv/nin/suiton' }, -- water
-  { 'battle 3 9',  'ma', 'Doton: Ni',      'stnpc', 'Doton2',    'ffxiv/nin/doton' }, -- earth
-  { 'battle 3 9',  'ma', 'Doton: Ichi',    'stnpc', 'Doton',     'ffxiv/nin/doton' }, -- earth
+  { 'battle 3 9',  'ma', 'Doton: Ni',      'stnpc', 'Doton2',    'ffxiv/nin/doton' },  -- earth
+  { 'battle 3 9',  'ma', 'Doton: Ichi',    'stnpc', 'Doton',     'ffxiv/nin/doton' },  -- earth
   { 'battle 3 10', 'ma', 'Hyoton: Ni',     'stnpc', 'Hyoton2',   'ffxiv/nin/hyoton' }, -- ice
   { 'battle 3 10', 'ma', 'Hyoton: Ichi',   'stnpc', 'Hyoton',    'ffxiv/nin/hyoton' }, -- ice
-  { 'battle 3 11', 'ma', 'Huton: Ni',      'stnpc', 'Huton2',    'ffxiv/nin/huton' }, -- wind
-  { 'battle 3 11', 'ma', 'Huton: Ichi',    'stnpc', 'Huton',     'ffxiv/nin/huton' }, -- wind
+  { 'battle 3 11', 'ma', 'Huton: Ni',      'stnpc', 'Huton2',    'ffxiv/nin/huton' },  -- wind
+  { 'battle 3 11', 'ma', 'Huton: Ichi',    'stnpc', 'Huton',     'ffxiv/nin/huton' },  -- wind
   { 'battle 3 12', 'ma', 'Raiton: Ni',     'stnpc', 'Raiton2',   'ffxiv/nin/raiton' }, -- thunder
   { 'battle 3 12', 'ma', 'Raiton: Ichi',   'stnpc', 'Raiton',    'ffxiv/nin/raiton' }, -- thunder
 
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
   { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
+}
+
+xivhotbar_keybinds_job['{PLD}'] = {
+  { 'battle 3 1',  'ja', 'Holy Circle', 'me',    'HolyCir',  'ffxiv/pld/holy_circle' },
+  { 'battle 3 2',  'ja', 'Shield Bash', 't',     'Sh. Bash', 'ffxiv/pld/shield_bash' },
+  { 'battle 3 3',  'ja', 'Sentinel',    'me',    'Sentnl',   'ffxiv/pld/sentinel' },
+  { 'battle 3 4',  'ja', 'Cover',       'stpc',  'Cover',    'ffxiv/pld/cover' },
+  { 'battle 3 5',  'ma', 'Flash',       'stnpc', 'Flash',    'ffxiv/pld/flash' },
+  { 'battle 3 8',  'ma', 'Cure III',    'stpc',  'Cure3' },
+  { 'battle 3 7',  'ma', 'Cure II',     'stpc',  'Cure2' },
+  { 'battle 3 6',  'ma', 'Cure',        'stpc',  'Cure1' },
+  -- Mastery
+  { 'battle 3 9',  'ma', 'Cure IV',     'stpc',  'Cure4' },
+  { 'battle 3 10', 'ma', 'Holy',        'stnpc', 'Holy' },
 }
 
 xivhotbar_keybinds_job['PUP'] = {
@@ -207,11 +221,24 @@ xivhotbar_keybinds_job['RNG'] = {
   -- Multi-Hit
   { 'battle 5 5', 'ws',    'Refulgent Arrow',            't',     'Reflgnt' }, -- rng sub
   -- Specials
-  { 'battle 5 6', 'ws',    'Dulling Arrow',              't',     'Dull' }, -- rng sub
+  { 'battle 5 6', 'ws',    'Dulling Arrow',              't',     'Dull' },    -- rng sub
   -- Merit Point
-  { 'battle 5 8', 'ws',    'Apex Arrow',                 't',     'Apex' }, -- rng sam
+  { 'battle 5 8', 'ws',    'Apex Arrow',                 't',     'Apex' },    -- rng sam
   -- Relic (only usable with specific weapon equips)
-  { 'battle 5 9', 'ws',    'Namas Arrow',                't',     'Namas' }, -- rng sam relic
+  { 'battle 5 9', 'ws',    'Namas Arrow',                't',     'Namas' },   -- rng sam relic
+}
+
+xivhotbar_keybinds_job['RUN'] = {
+  { 'battle 4 1',  'ja', 'Vallation', 'me', 'Vall.' },
+  { 'battle 4 2',  'ja', 'Pflug',     'me', 'Pflug' },
+  { 'battle 4 3',  'ja', 'Ignis',     'me', 'Fire' },
+  { 'battle 4 4',  'ja', 'Gelus',     'me', 'Ice' },
+  { 'battle 4 5',  'ja', 'Flabra',    'me', 'Wind' },
+  { 'battle 4 6',  'ja', 'Tellus',    'me', 'Earth' },
+  { 'battle 4 7',  'ja', 'Sulpor',    'me', 'Thundr' },
+  { 'battle 4 8',  'ja', 'Unda',      'me', 'Water' },
+  { 'battle 4 9',  'ja', 'Lux',       'me', 'Light' },
+  { 'battle 4 10', 'ja', 'Tenebrae',  'me', 'Dark' },
 }
 
 xivhotbar_keybinds_job['SAM'] = {
