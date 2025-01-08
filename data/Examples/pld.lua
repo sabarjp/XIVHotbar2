@@ -7,8 +7,6 @@ xivhotbar_keybinds_job['Base'] = {
 
   -- Hotbar #2
   --main job abilities
-  -- replace banish
-
   { 'battle 2 1',  'ma', 'Cure III',      'stpc',  'Cure3' },
   { 'battle 2 1',  'ma', 'Cure II',       'stpc',  'Cure2' },
   { 'battle 2 1',  'ma', 'Cure',          'stpc',  'Cure1' },
@@ -56,11 +54,11 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',     'ffxiv/sch/bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
-  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',   'ffxiv/role/sleep' },
-  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun',    'ffxiv/drk/unmend' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
+  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
+  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
 xivhotbar_keybinds_job['COR'] = {

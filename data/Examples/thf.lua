@@ -8,16 +8,13 @@ xivhotbar_keybinds_job['Base'] = {
   --main job abilities
   -- SATA Single Hit
   -- {'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Wasp Sting" <t>','','sataWS',"ffxiv/blu/sharpened_knife"},
-  -- {'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Viper Bite" <t>','','sataVB',"ffxiv/blu/sharpened_knife"},
-  -- {'battle 2 1', 'macro','input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;input /ws "Shark Bite" <t>','','sataSB',"ffxiv/blu/sharpened_knife"},
-  { 'battle 2 1',  'macro', "input /ja 'Sneak Attack' <me>;wait 2;input /ja 'Trick Attack' <me>;wait 1;input /ws 'Rudra's Storm' <t>", "",   "sataRS",  "ffxiv/blu/sharpened_knife" },
+  { 'battle 2 1',  'macro', "input /ja 'Sneak Attack' <me>;wait 2;input /ja 'Trick Attack' <me>", "",   "SATA",    "ffxiv/blu/sharpened_knife" },
   -- SATA Multi Hit
-  { 'battle 2 2',  'macro', 'input /ja "Sneak Attack" <me>;wait 2;input /ja "Trick Attack" <me>;wait 1;/ws "Dancing Edge" <t>',        '',   'sataDe',  "ffxiv/blu/sharpened_knife" },
-  { 'battle 2 3',  'ja',    'Sneak Attack',                                                                                            'me', 'Sneak',   'ffxiv/nin/spinning_edge' },
-  { 'battle 2 4',  'ja',    'Trick Attack',                                                                                            'me', 'Trick',   'ffxiv/nin/trick_attack' },
-  { 'battle 2 5',  'ja',    'Bully',                                                                                                   't',  'Bully',   'ffxiv/role/true_north' },
-  { 'battle 2 6',  'ja',    'Accomplice',                                                                                              'st', 'Accomp',  "ffxiv/blu/the_dragon's_voice" },
-  { 'battle 2 7',  'ja',    'Collaborator',                                                                                            'st', 'Collab',  "ffxiv/blu/the_ram's_voice" },
+  { 'battle 2 2',  'ja',    'Sneak Attack',                                                       'me', 'Sneak',   'ffxiv/nin/spinning_edge' },
+  { 'battle 2 3',  'ja',    'Trick Attack',                                                       'me', 'Trick',   'ffxiv/nin/trick_attack' },
+  { 'battle 2 4',  'ja',    'Bully',                                                              't',  'Bully',   'ffxiv/role/true_north' },
+  { 'battle 2 5',  'ja',    'Accomplice',                                                         'st', 'Accomp',  "ffxiv/blu/the_dragon's_voice" },
+  { 'battle 2 6',  'ja',    'Collaborator',                                                       'st', 'Collab',  "ffxiv/blu/the_ram's_voice" },
 
   --Hotbar #3
   --sub job abilities; leave blanka
@@ -25,18 +22,18 @@ xivhotbar_keybinds_job['Base'] = {
   --Hotbar #4
   --utility or pet bar
   --12 is always 2-hour ability
-  { 'battle 4 1',  'ja',    'Steal',                                                                                                   't',  'Steal',   'ffxiv/nin/dream_within_a_dream' },
-  { 'battle 4 2',  'ja',    'Despoil',                                                                                                 't',  'Despoil' },
-  { 'battle 4 3',  'ja',    'Mug',                                                                                                     't',  'Mug',     'ffxiv/nin/mug' },
-  { 'battle 4 2',  'ja',    'Feint',                                                                                                   'me', 'Feint',   'ffxiv/role/feint' },
-  { 'battle 4 4',  'ja',    'Hide',                                                                                                    'me', 'Hide',    'ffxiv/nin/hide' },
-  { 'battle 4 5',  'ja',    'Flee',                                                                                                    'me', 'Flee',    'ffxiv/role/peloton' },
-  { 'battle 4 6',  'ja',    'Larceny',                                                                                                 't',  'Larceny' },
-  { 'battle 4 6',  'ja',    'Conspirator',                                                                                             'me', 'Conspir' },
-  { 'battle 4 12', 'ja',    'Perfect Dodge',                                                                                           'me', 'P Dodge', 'ffxiv/mnk/anatman' },
+  { 'battle 4 1',  'ja',    'Steal',                                                              't',  'Steal',   'ffxiv/nin/dream_within_a_dream' },
+  { 'battle 4 2',  'ja',    'Despoil',                                                            't',  'Despoil' },
+  { 'battle 4 3',  'ja',    'Mug',                                                                't',  'Mug',     'ffxiv/nin/mug' },
+  { 'battle 4 2',  'ja',    'Feint',                                                              'me', 'Feint',   'ffxiv/role/feint' },
+  { 'battle 4 4',  'ja',    'Hide',                                                               'me', 'Hide',    'ffxiv/nin/hide' },
+  { 'battle 4 5',  'ja',    'Flee',                                                               'me', 'Flee',    'ffxiv/role/peloton' },
+  { 'battle 4 6',  'ja',    'Larceny',                                                            't',  'Larceny' },
+  { 'battle 4 6',  'ja',    'Conspirator',                                                        'me', 'Conspir' },
+  { 'battle 4 12', 'ja',    'Perfect Dodge',                                                      'me', 'P Dodge', 'ffxiv/mnk/anatman' },
 
   -- Hotbar #5
-  { 'battle 5 1',  'input', '/ra <t>',                                                                                                 '',   'Pull',    'ra' },
+  { 'battle 5 1',  'input', '/ra <t>',                                                            '',   'Pull',    'ra' },
 
   -- Hotbar #6
 }
@@ -127,9 +124,9 @@ xivhotbar_keybinds_job['DNC'] = {
   { 'battle 3 5',  'ja', 'Healing Waltz',     'stpc',  'Healing',  'ffxiv/dnc/shield_samba' },
   { 'battle 3 8',  'ja', 'Contradance',       'me',    'Contra',   'ffxiv/dnc/tillana' }, -- mastery
   -- Steps
-  { 'battle 3 6',  'ja', 'Quickstep',         'stnpc', 'Quick',    'ffxiv/dnc/en_avant' },
-  { 'battle 3 7',  'ja', 'Box Step',          'stnpc', 'Box',      'ffxiv/dnc/bladeshower' },
-  -- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
+  { 'battle 3 6',  'ja', 'Quickstep',         't',     'Quick',    'ffxiv/dnc/en_avant' },
+  { 'battle 3 7',  'ja', 'Box Step',          't',     'Box',      'ffxiv/dnc/bladeshower' },
+  -- {'battle 3 9', 'ja', 'Stutter Step', 't', 'Stutter','ffxiv/dnc/fountainfall'},
   -- Flourishes
   { 'battle 3 12', 'ja', 'Animated Flourish', 'stnpc', 'Voke',     'ffxiv/dnc/closed_position' },
   { 'battle 3 9',  'ja', 'Violent Flourish',  'stnpc', 'Stun',     'ffxiv/dnc/starfall_dance' },
@@ -153,11 +150,11 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',     'ffxiv/sch/bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
-  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',   'ffxiv/role/sleep' },
-  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun',    'ffxiv/drk/unmend' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
+  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
+  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
 xivhotbar_keybinds_job['RNG'] = {

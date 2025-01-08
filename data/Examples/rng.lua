@@ -107,11 +107,11 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
   { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
@@ -166,72 +166,11 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',     'ffxiv/sch/bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
-  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',   'ffxiv/role/' },
-  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun',    'ffxiv/drk/unmend' },
-}
-
-xivhotbar_keybinds_job['WHM'] = {
-  -- Some spells moved to General example instead:
-  -- Teleports / Recalls / Raises / Re-Raises
-  -- Protect(ra) / Shell(ra)
-  -- Aquaveil
-  -- Sneak / Invisible / Deodorize
-  -- Job Abilities
-  { 'battle 3 12', 'ja', 'Divine Seal',  'me',    'Divine',    'ffxiv/whm/divine_benison' },
-  -- Enfeeblement
-  -- {'battle 3 2', 'ma', 'Paralyze', 'stnpc', 'Para','ffxiv/other/paralyze'},
-  -- {'battle 3 3', 'ma', 'Slow', 'stnpc', 'Slow','ffxiv/other/slow'},
-  -- {'battle 3 4', 'ma', 'Silence', 'stnpc', 'Silence','ffxiv/role/interject'},
-  { 'battle 3 1',  'ma', 'Dia II',       'stnpc', 'Dia II',    'Dia',                     'ffxiv/whm/dia' },
-  { 'battle 3 1',  'ma', 'Dia',          'stnpc', 'Dia',       'ffxiv/whm/dia' },
-  -- {'battle 3 9', 'ma', 'Repose', 'stnpc', 'Repose','ffxiv/role/repose'},
-  -- {'battle 3 9', 'ma', 'Flash', 'stnpc', 'Flash','ffxiv/pld/flash'},
-  -- Barspells
-  -- {'battle 3 1', 'ma', 'Barsleepra', 'me', 'Sleepra', ''},
-  -- {'battle 3 2', 'ma', 'Barpoisonra', 'me', 'Poisonra', ''},
-  { 'battle 3 11', 'ma', 'Barparalyzra', 'me',    'Paralyzra', '' },
-  -- {'battle 3 1', 'ma', 'Barstonra', 'me', 'Stonra', 'Barstonra'},
-  -- {'battle 3 2', 'ma', 'Barwatera', 'me', 'Watera', 'Barwatera'},
-  -- {'battle 3 3', 'ma', 'Baraera', 'me', 'Aera', 'Baraera'},
-  -- {'battle 3 4', 'ma', 'Barfira', 'me', 'Fira', 'Barfira'},
-  -- {'battle 3 4', 'ma', 'Barblindra', 'me', 'Blindra', ''},
-  { 'battle 3 10', 'ma', 'Barblizzara',  'me',    'Blizzara',  'Barblizzara' },
-  -- {'battle 3 5', 'ma', 'Barsilencera', 'me', 'Silencera'},
-  -- {'battle 3 6', 'ma', 'Barthundra', 'me', 'Thundra', 'Barthundra'},
-  -- {'battle 3 6', 'ma', 'Barvira', 'me', 'Vira'},
-  -- {'battle 3 9', 'ma', 'Barpetra', 'me', 'Petra'},
-  -- Atk
-  -- {'battle 3 9', 'ma', 'Holy', 'stnpc', 'Holy','ffxiv/whm/holy'}, -- mastery
-  -- Regen
-  { 'battle 3 3',  'ma', 'Regen II',     'stpc',  'Regen2',    'ffxiv/whm/regen' },
-  { 'battle 3 3',  'ma', 'Regen',        'stpc',  'Regen',     'ffxiv/whm/regen' },
-  -- Cure
-  { 'battle 3 2',  'ma', 'Cure IV',      'stpc',  'Cure4',     'ffxiv/sch/physick' },
-  { 'battle 3 2',  'ma', 'Cure III',     'stpc',  'Cure3',     'ffxiv/whm/cure_III' },
-  { 'battle 3 2',  'ma', 'Cure II',      'stpc',  'Cure2',     'ffxiv/whm/cure_II' },
-  { 'battle 3 2',  'ma', 'Cure',         'stpc',  'Cure',      'ffxiv/whm/cure' },
-  -- Cura
-  -- {'battle 1 10', 'ma', 'Cura', 'me', 'Cura','ffxiv/whm/assize'},
-  -- Curaga
-  { 'battle 3 4',  'ma', 'Curaga III',   'stpc',  'Curaga3',   'ffxiv/whm/dia',           'ffxiv/whm/medica_III' }, -- mastery
-  { 'battle 3 4',  'ma', 'Curaga II',    'stpc',  'Curaga2',   'ffxiv/whm/medica_II' },
-  { 'battle 3 4',  'ma', 'Curaga',       'stpc',  'Curaga',    'ffxiv/whm/medica' },
-  -- Supportive
-  -- {'battle 3 ', 'ma', 'Poisona', 'stpc', 'Poisona','ffxiv/ast/003114'},
-  -- {'battle 3 2', 'ma', 'Paralyna', 'stpc', 'Paralyna','ffxiv/ast/003113'},
-  -- {'battle 3 3', 'ma', 'Blindna', 'stpc', 'Blindna','ffxiv/ast/003147'},
-  -- {'battle 3 4', 'ma', 'Silena', 'stpc', 'Silena','ffxiv/ast/003111'},
-  { 'battle 3 6',  'ma', 'Blink',        'me',    'Blink',     'ffxiv/whm/shroud' },
-  { 'battle 3 7',  'ma', 'Stoneskin',    'me',    'StnSkin',   'ffxiv/whm/stoneskin' },
-  -- {'battle 3 5', 'ma', 'Cursna', 'stpc', 'Cursna','ffxiv/ast/003146'},
-  { 'battle 3 8',  'ma', 'Erase',        'stpc',  'Erase',     'ffxiv/role/erase' },
-  -- {'battle 3 6', 'ma', 'Viruna', 'stpc', 'Viruna','ffxiv/ast/003112'},
-  -- {'battle 3 4', 'ma', 'Stona', 'stpc', 'Stona','ffxiv/ast/003115'},
-  { 'battle 3 5',  'ma', 'Haste',        'stpc',  'Haste',     'ffxiv/sge/krasis' },
-  { 'battle 3 9',  'ma', 'Auspice',      'me',    'Ausp',      'ffxiv/whm/temperance' }, -- mastery
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
+  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
+  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
 -- WEAPONSKILL SETS
@@ -291,31 +230,31 @@ xivhotbar_keybinds_job['Dagger'] = {
   -- {'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'}, -- rdm thf brd dnc relic
   -- AoE Ws #11
   { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
-  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' }, -- rdm thf brd rng nin dnc
+  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
   { 'battle 1 12', 'ws', 'Shadowstitch',    't', 'ShdSt' },
 }
 
 xivhotbar_keybinds_job['Bow'] = {
   -- Heavy Hit
-  { 'battle 1 1', 'ws', 'Flaming Arrow',     't', 'Flame' }, -- rng sub
-  { 'battle 1 1', 'ws', 'Piercing Arrow',    't', 'Pierce' }, -- rng sub
+  { 'battle 1 1', 'ws', 'Flaming Arrow',     't', 'Flame' },    -- rng sub
+  { 'battle 1 1', 'ws', 'Piercing Arrow',    't', 'Pierce' },   -- rng sub
   { 'battle 1 1', 'ws', 'Sidewinder',        't', 'Sidewndr' }, -- rng sub
-  { 'battle 1 1', 'ws', 'Arching Arrow',     't', 'Arch' }, -- rng
-  { 'battle 1 2', 'ws', 'Empyreal Arrow',    't', 'Empyrl' }, -- rng
+  { 'battle 1 1', 'ws', 'Arching Arrow',     't', 'Arch' },     -- rng
+  { 'battle 1 2', 'ws', 'Empyreal Arrow',    't', 'Empyrl' },   -- rng
   -- Multi-Hit
-  { 'battle 1 3', 'ws', 'Refulgent Arrow',   't', 'Reflgnt' }, -- rng sub
+  { 'battle 1 3', 'ws', 'Refulgent Arrow',   't', 'Reflgnt' },  -- rng sub
   -- Specials
-  { 'battle 1 4', 'ws', 'Dulling Arrow',     't', 'Dull' }, -- rng sub
-  { 'battle 1 4', 'ws', 'Blast Arrow',       't', 'Blast' }, -- rng
+  { 'battle 1 4', 'ws', 'Dulling Arrow',     't', 'Dull' },     -- rng sub
+  { 'battle 1 4', 'ws', 'Blast Arrow',       't', 'Blast' },    -- rng
   -- Prime #6
-  { 'battle 1 5', 'ws', 'Sarv',              't', 'Sarv' }, -- rng
+  { 'battle 1 5', 'ws', 'Sarv',              't', 'Sarv' },     -- rng
   -- Merit Point #8
-  { 'battle 1 6', 'ws', 'Apex Arrow',        't', 'Apex' }, -- rng sam
+  { 'battle 1 6', 'ws', 'Apex Arrow',        't', 'Apex' },     -- rng sam
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 7', 'ws', "Jishnu's Radiance", 't', 'Jishnu' }, -- rng
+  { 'battle 1 7', 'ws', "Jishnu's Radiance", 't', 'Jishnu' },   -- rng
   -- Relic (only usable with specific weapon equips) #10
-  { 'battle 1 8', 'ws', 'Namas Arrow',       't', 'Namas' }, -- rng sam relic
+  { 'battle 1 8', 'ws', 'Namas Arrow',       't', 'Namas' },    -- rng sam relic
   -- AoE Ws #11
   -- none
   -- Stun WS #12
@@ -324,23 +263,23 @@ xivhotbar_keybinds_job['Bow'] = {
 
 xivhotbar_keybinds_job['Marksmanship'] = {
   -- Heavy Hit
-  { 'battle 1 1', 'ws', 'Hot Shot',     't', 'Hot' }, -- rng cor sub
-  { 'battle 1 1', 'ws', 'Sniper Shot',  't', 'Sniper' }, -- rng cor sub
-  { 'battle 1 1', 'ws', 'Slug Shot',    't', 'Slug' }, -- rng cor sub
+  { 'battle 1 1', 'ws', 'Hot Shot',     't', 'Hot' },      -- rng cor sub
+  { 'battle 1 1', 'ws', 'Sniper Shot',  't', 'Sniper' },   -- rng cor sub
+  { 'battle 1 1', 'ws', 'Slug Shot',    't', 'Slug' },     -- rng cor sub
   { 'battle 1 1', 'ws', 'Detonator',    't', 'Detonate' }, -- rng cor
   -- Multi-Hit
-  { 'battle 1 2', 'ws', 'Blast Shot',   't', 'Blast' }, -- rng
+  { 'battle 1 2', 'ws', 'Blast Shot',   't', 'Blast' },    -- rng
   -- Specials
-  { 'battle 1 3', 'ws', 'Split Shot',   't', 'Split' }, -- rng cor
-  { 'battle 1 3', 'ws', 'Numbing Shot', 't', 'Numb' }, -- rng cor sub
+  { 'battle 1 3', 'ws', 'Split Shot',   't', 'Split' },    -- rng cor
+  { 'battle 1 3', 'ws', 'Numbing Shot', 't', 'Numb' },     -- rng cor sub
   -- Prime #6
   { 'battle 1 4', 'ws', 'Terminus',     't', 'Terminus' }, -- rng cor
   -- Class Specific #7
-  { 'battle 1 5', 'ws', 'Heavy Shot',   't', 'Heavy' }, -- rng
-  { 'battle 1 5', 'ws', 'Trueflight',   't', 'Trueflt' }, -- rng
+  { 'battle 1 5', 'ws', 'Heavy Shot',   't', 'Heavy' },    -- rng
+  { 'battle 1 5', 'ws', 'Trueflight',   't', 'Trueflt' },  -- rng
   -- {'battle 1 7', 'ws', 'Leaden Salute', 't', 'Leaden'}, -- cor
   -- Merit Point #8
-  { 'battle 1 6', 'ws', 'Last Stand',   't', 'Last' }, -- thf rng cor
+  { 'battle 1 6', 'ws', 'Last Stand',   't', 'Last' },     -- thf rng cor
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 7', 'ws', 'Wildfire',     't', 'Wildfire' }, -- rng cor
   -- Relic (only usable with specific weapon equips) #10

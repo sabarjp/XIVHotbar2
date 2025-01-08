@@ -9,32 +9,32 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 2 1',  'ma',    'Utsusemi: Ichi', 'me',    'Utsu:Ichi', 'ffxiv/nin/dream_within_a_dream' },
   { 'battle 2 2',  'ma',    'Utsusemi: Ni',   'me',    'Utsu:Ni',   'ffxiv/nin/phantom_kamaitachi' },
   { 'battle 2 3',  'ma',    'Utsusemi: San',  'me',    'Utsu:Sn',   'ffxiv/nin/hide' },
-  { 'battle 2 4',  'ma',    'Migawari: Ichi', 'me',    'Miga',      'ffxiv/role/bunshin' }, -- immune
+  { 'battle 2 4',  'ma',    'Migawari: Ichi', 'me',    'Miga',      'ffxiv/role/bunshin' },   -- immune
   -- Enmity
-  { 'battle 2 5',  'ma',    'Gekka: Ichi',    'me',    'Gekka',     'ffxiv/role/chi' }, -- enmity
-  { 'battle 2 6',  'ma',    'Yain: Ichi',     'me',    'Yain',      'ffxiv/role/ten' }, -- enmity freeze
+  { 'battle 2 5',  'ma',    'Gekka: Ichi',    'me',    'Gekka',     'ffxiv/role/chi' },       -- enmity
+  { 'battle 2 6',  'ma',    'Yain: Ichi',     'me',    'Yain',      'ffxiv/role/ten' },       -- enmity freeze
   -- Enfeeblement
-  { 'battle 2 7',  'ma',    'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 2 8',  'ma',    'Hojo: Ni',       'stnpc', 'Hojo2',     'ffxiv/ast/redraw' }, -- slow
-  { 'battle 2 9',  'ma',    'Hojo: Ichi',     'stnpc', 'Hojo',      'ffxiv/ast/redraw' }, -- slow
+  { 'battle 2 7',  'ma',    'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },     -- blind
+  { 'battle 2 8',  'ma',    'Hojo: Ni',       'stnpc', 'Hojo2',     'ffxiv/ast/redraw' },     -- slow
+  { 'battle 2 9',  'ma',    'Hojo: Ichi',     'stnpc', 'Hojo',      'ffxiv/ast/redraw' },     -- slow
   { 'battle 2 10', 'ma',    'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 2 11', 'ma',    'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
-  { 'battle 2 12', 'ma',    'Aisha: Ichi',    'stnpc', 'Aisha',     'ffxiv/role/break' }, -- weaken
+  { 'battle 2 11', 'ma',    'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },       -- paralyze
+  { 'battle 2 12', 'ma',    'Aisha: Ichi',    'stnpc', 'Aisha',     'ffxiv/role/break' },     -- weaken
   --Hotbar #3
   --sub job abilities; leave blank
 
   --Hotbar #4
   --utility or pet bar
   --12 is always 2-hour ability
-  { 'battle 4 1',  'ja',    'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
-  { 'battle 4 2',  'ja',    'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
+  { 'battle 4 1',  'ja',    'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' },   -- tanky
+  { 'battle 4 2',  'ja',    'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' },   -- dps
   { 'battle 4 3',  'ja',    'Sange',          'me',    'Sange',     'ffxiv/nin/death_blossom' }, -- merit
   { 'battle 4 4',  'ja',    'Futae',          'me',    'Futae',     'ffxiv/nin/ninjutsu' },
   { 'battle 4 5',  'ja',    'Issekigan',      'me',    'Isse',      'ffxiv/nin/hakke_mujinsatsu' },
   { 'battle 4 6',  'ja',    'Mikage',         'me',    'Mikage',    'ffxiv/nin/shukuchi' },
-  { 'battle 4 7',  'ma',    'Yurin: Ichi',    'stnpc', 'Yurin',     'ffxiv/role/bhavacakra' }, -- tp reduce
+  { 'battle 4 7',  'ma',    'Yurin: Ichi',    'stnpc', 'Yurin',     'ffxiv/role/bhavacakra' },     -- tp reduce
   { 'battle 4 8',  'ma',    'Myoshu: Ichi',   'me',    'Myoshu',    'ffxiv/role/fleeting_raiju' }, -- sub blow
-  { 'battle 4 9',  'ma',    'Kakka: Ichi',    'me',    'Kakka',     'ffxiv/role/forked_raiju' }, --  tp gain
+  { 'battle 4 9',  'ma',    'Kakka: Ichi',    'me',    'Kakka',     'ffxiv/role/forked_raiju' },   --  tp gain
   { 'battle 4 12', 'ja',    'Mijin Gakure',   'stnpc', 'Mijin',     'ffxiv/blu/self-destruct' },
 
   -- Hotbar #5
@@ -68,29 +68,6 @@ xivhotbar_keybinds_job['Base'] = {
 
 -- SUBJOBS
 -- Hotbar #3
-xivhotbar_keybinds_job['RNG'] = {
-  { 'battle 3 1', 'ja', 'Sharpshot',  'me',    'Sharp',   'ffxiv/brd/burst_shot' },
-  { 'battle 3 5', 'ja', 'Scavenge',   'me',    'Scvnge',  'ffxiv/role/tactician' },
-  { 'battle 3 4', 'ja', 'Camouflage', 'me',    'Camo',    'ffxiv/brd/iron_jaws' },
-  { 'battle 3 2', 'ja', 'Barrage',    'me',    'Barrage', 'ffxiv/brd/barrage' },
-  { 'battle 3 3', 'ja', 'Shadowbind', 'stnpc', 'Bind',    'ffxiv/brd/shadowbite' },
-  -- Ranged Hotbar #5
-  -- {'battle 5 1', 'input', '/ra <t>', '', 'RA', 'ra'},
-  -- {'battle 5 7', 'input', '/equip ammo "Wooden Arrow"', '', 'Ammo', 'classes/phy_rng'},
-  -- Heavy Hit
-  -- {'battle 5 2', 'ws', 'Flaming Arrow', 't', 'Flame'},
-  -- {'battle 5 3', 'ws', 'Piercing Arrow', 't', 'Pierce'},
-  -- {'battle 5 4', 'ws', 'Sidewinder', 't', 'Sidewndr'},
-  -- Multi-Hit
-  -- {'battle 5 5', 'ws', 'Refulgent Arrow', 't', 'Reflgnt'}, -- rng sub
-  -- Specials
-  -- {'battle 5 6', 'ws', 'Dulling Arrow', 't', 'Dull'}, -- rng sub
-  -- Merit Point
-  -- {'battle 5 8', 'ws', 'Apex Arrow', 't', 'Apex'}, -- rng sam
-  -- Relic (only usable with specific weapon equips)
-  -- {'battle 5 9', 'ws', 'Namas Arrow', 't', 'Namas'}, -- rng sam relic
-}
-
 xivhotbar_keybinds_job['MNK'] = {
   { 'battle 3 1', 'ja', 'Boost',         'me',    'Boost',  'ffxiv/mnk/riddle_of_fire' },
   { 'battle 3 2', 'ja', 'Dodge',         'me',    'Dodge',  'ffxiv/mnk/riddle_of_earth' },
@@ -177,34 +154,34 @@ xivhotbar_keybinds_job['DRG'] = {
 }
 
 xivhotbar_keybinds_job['DRK'] = {
-  { 'battle 3 1', 'ja', 'Last Resort',   'me',    'LResort',  'ffxiv/drk/grit' },
-  { 'battle 3 2', 'ja', 'Souleater',     'me',    'SEater',   'ffxiv/drk/souleater' },
-  { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume',  'ffxiv/drk/syphon_strike' },
-  { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',     'ffxiv/drk/shadow_wall' },
-  { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',   'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',      'ffxiv/sch/bio' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio II',   'ffxiv/sch/bio_II' },
-  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',    'ffxiv/role/sleep' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep II', 'ffxiv/role/sleep' },
-  { 'battle 3 8', 'ma', 'Stun',          'stnpc', 'Stun',     'ffxiv/drk/unmend' },
+  { 'battle 3 1', 'ja', 'Last Resort',   'me',    'LResort', 'ffxiv/drk/grit' },
+  { 'battle 3 2', 'ja', 'Souleater',     'me',    'SEater',  'ffxiv/drk/souleater' },
+  { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
+  { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
+  { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
+  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio II' },
+  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep II' },
+  { 'battle 3 8', 'ma', 'Stun',          'stnpc', 'Stun' },
 }
 
 xivhotbar_keybinds_job['RNG'] = {
-  { 'battle 3 1', 'ja',    'Sharpshot',       'me',    'Sharp',   'ffxiv/brd/burst_shot' },
-  { 'battle 3 5', 'ja',    'Scavenge',        'me',    'Scvnge',  'ffxiv/role/tactician' },
-  { 'battle 3 4', 'ja',    'Camouflage',      'me',    'Camo',    'ffxiv/brd/iron_jaws' },
-  { 'battle 3 2', 'ja',    'Barrage',         'me',    'Barrage', 'ffxiv/brd/barrage' },
-  { 'battle 3 3', 'ja',    'Shadowbind',      'stnpc', 'Bind',    'ffxiv/brd/shadowbite' },
+  { 'battle 3 1', 'ja',    'Sharpshot',  'me',    'Sharp',   'ffxiv/brd/burst_shot' },
+  { 'battle 3 5', 'ja',    'Scavenge',   'me',    'Scvnge',  'ffxiv/role/tactician' },
+  { 'battle 3 4', 'ja',    'Camouflage', 'me',    'Camo',    'ffxiv/brd/iron_jaws' },
+  { 'battle 3 2', 'ja',    'Barrage',    'me',    'Barrage', 'ffxiv/brd/barrage' },
+  { 'battle 3 3', 'ja',    'Shadowbind', 'stnpc', 'Bind',    'ffxiv/brd/shadowbite' },
   -- Ranged Hotbar #5
-  { 'battle 5 1', 'input', '/ra <t>',         '',      'RA',      'ra' },
+  { 'battle 5 1', 'input', '/ra <t>',    '',      'RA',      'ra' },
   -- Heavy Hit
-  { 'battle 5 2', 'ws',    'Flaming Arrow',   't',     'Flame' },
-  { 'battle 5 3', 'ws',    'Piercing Arrow',  't',     'Pierce' },
-  { 'battle 5 4', 'ws',    'Sidewinder',      't',     'Sidewndr' },
+  -- { 'battle 5 2', 'ws',    'Flaming Arrow',   't',     'Flame' },
+  -- { 'battle 5 3', 'ws',    'Piercing Arrow',  't',     'Pierce' },
+  -- { 'battle 5 4', 'ws',    'Sidewinder',      't',     'Sidewndr' },
   -- Multi-Hit
-  { 'battle 5 5', 'ws',    'Refulgent Arrow', 't',     'Reflgnt' }, -- rng sub
+  -- { 'battle 5 5', 'ws',    'Refulgent Arrow', 't',     'Reflgnt' }, -- rng sub
   -- Specials
-  { 'battle 5 6', 'ws',    'Dulling Arrow',   't',     'Dull' }, -- rng sub
+  -- { 'battle 5 6', 'ws',    'Dulling Arrow',   't',     'Dull' }, -- rng sub
   -- Merit Point
   -- {'battle 5 8', 'ws', 'Apex Arrow', 't', 'Apex'}, -- rng sam
   -- Relic (only usable with specific weapon equips)
@@ -222,18 +199,18 @@ xivhotbar_keybinds_job['Katana'] = {
   -- Multi-Hit
   { 'battle 1 2',  'ws', 'Blade: Retsu', 't', 'Retsu' },
   { 'battle 1 2',  'ws', 'Blade: Chi',   't', 'Chi' },
-  { 'battle 1 2',  'ws', 'Blade: Jin',   't', 'Jin' }, -- nin
-  { 'battle 1 2',  'ws', 'Blade: Ku',    't', 'Ku' }, -- nin
+  { 'battle 1 2',  'ws', 'Blade: Jin',   't', 'Jin' },   -- nin
+  { 'battle 1 2',  'ws', 'Blade: Ku',    't', 'Ku' },    -- nin
   -- Specials
-  { 'battle 1 3',  'ws', 'Blade: Yu',    't', 'Yu' }, -- nin
+  { 'battle 1 3',  'ws', 'Blade: Yu',    't', 'Yu' },    -- nin
   -- Prime #6
   { 'battle 1 6',  'ws', 'Zesho Meppo',  't', 'Zesho' }, -- nin
   -- Class Specific #7
-  { 'battle 1 7',  'ws', 'Blade: Kamu',  't', 'Kamu' }, -- nin
+  { 'battle 1 7',  'ws', 'Blade: Kamu',  't', 'Kamu' },  -- nin
   -- Merit Point #8
   { 'battle 1 8',  'ws', 'Blade: Shun',  't', 'Shun' },
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 9',  'ws', 'Blade: Hi',    't', 'Hi' }, -- nin
+  { 'battle 1 9',  'ws', 'Blade: Hi',    't', 'Hi' },    -- nin
   -- Relic (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Blade: Metsu', 't', 'Metsu' }, -- nin relic
   -- AoE Ws #11
@@ -269,7 +246,7 @@ xivhotbar_keybinds_job['Dagger'] = {
   -- {'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'}, -- rdm thf brd dnc relic
   -- AoE Ws #11
   { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
-  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' }, -- rdm thf brd rng nin dnc
+  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
   { 'battle 1 12', 'ws', 'Shadowstitch',    't', 'ShdSt' },
 }

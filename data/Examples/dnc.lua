@@ -21,16 +21,16 @@ xivhotbar_keybinds_job['Base'] = {
   --main job abilities
   -- Flourishes 1
   { 'battle 2 1',  'ja',    'Animated Flourish',  'stnpc', 'Anima',    'ffxiv/dnc/closed_position' }, --voke
-  { 'battle 2 2',  'ja',    'Desperate Flourish', 'stnpc', 'Desp',     'ffxiv/role/break' }, -- gravity
-  { 'battle 2 3',  'ja',    'Violent Flourish',   'stnpc', 'Violnt',   'ffxiv/drk/unmend' }, -- stun
+  { 'battle 2 2',  'ja',    'Desperate Flourish', 'stnpc', 'Desp',     'ffxiv/role/break' },          -- gravity
+  { 'battle 2 3',  'ja',    'Violent Flourish',   'stnpc', 'Violnt',   'ffxiv/drk/unmend' },          -- stun
   -- Flourishes 2
   { 'battle 2 5',  'ja',    'Reverse Flourish',   'me',    'Revrse',   'ffxiv/dnc/reverse_cascade' },
   { 'battle 2 6',  'ja',    'Building Flourish',  'me',    'Build',    'ffxiv/dnc/flourish' },
   { 'battle 2 7',  'ja',    'Wild Flourish',      'me',    'Wild',     'ffxiv/dnc/rising_windmill' }, -- skillchain
   -- Flourish 3
-  { 'battle 2 8',  'ja',    'Climactic Flourish', 'me',    'Clima',    'ffxiv/dnc/cascade' }, -- crit
-  { 'battle 2 9',  'ja',    'Striking Flourish',  'me',    'Strike',   'ffxiv/dnc/windmill' }, -- double atk
-  { 'battle 2 10', 'ja',    'Ternary Flourish',   'me',    'Terna',    'ffxiv/dnc/starfall_dance' }, -- triple atk
+  { 'battle 2 8',  'ja',    'Climactic Flourish', 'me',    'Clima',    'ffxiv/dnc/cascade' },         -- crit
+  { 'battle 2 9',  'ja',    'Striking Flourish',  'me',    'Strike',   'ffxiv/dnc/windmill' },        -- double atk
+  { 'battle 2 10', 'ja',    'Ternary Flourish',   'me',    'Terna',    'ffxiv/dnc/starfall_dance' },  -- triple atk
 
 
   --Hotbar #3
@@ -48,8 +48,8 @@ xivhotbar_keybinds_job['Base'] = {
   -- Buffs
   { 'battle 4 5',  'ja',    'Contradance',        'me',    'Contra',   'ffxiv/dnc/tillana' },
   { 'battle 4 6',  'ja',    'Presto',             'me',    'Presto',   'ffxiv/dnc/bloodshower' },
-  { 'battle 4 7',  'ja',    'Saber Dance',        'me',    'Saber',    'ffxiv/dnc/devilment' }, -- dps merit
-  { 'battle 4 8',  'ja',    'Fan Dance',          'me',    'Fan',      'ffxiv/dnc/fan_dance_III' }, -- tank merit
+  { 'battle 4 7',  'ja',    'Saber Dance',        'me',    'Saber',    'ffxiv/dnc/devilment' },        -- dps merit
+  { 'battle 4 8',  'ja',    'Fan Dance',          'me',    'Fan',      'ffxiv/dnc/fan_dance_III' },    -- tank merit
   { 'battle 4 9',  'ja',    'No Foot Rise',       'me',    'NoFoot',   'ffxiv/dnc/technical_finish' }, -- merit
   -- Long cooldown
   { 'battle 4 11', 'ja',    'Grand Pas',          'me',    'Grand',    'ffxiv/dnc/standard_step' },
@@ -145,11 +145,11 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
   { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
@@ -179,11 +179,11 @@ xivhotbar_keybinds_job['DRK'] = {
 xivhotbar_keybinds_job['Dagger'] = {
   -- Heavy Hit
   { 'battle 1 9',  'ws', 'Wasp Sting',      't', 'Wasp' },
-  { 'battle 1 9',  'ws', 'Viper Bite',      't', 'Viper' }, -- rdm thf brd rng nin dnc
-  { 'battle 1 9',  'ws', 'Shark Bite',      't', 'Shark' }, -- thf dnc
+  { 'battle 1 9',  'ws', 'Viper Bite',      't', 'Viper' },   -- rdm thf brd rng nin dnc
+  { 'battle 1 9',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
   -- Multi-Hit
   { 'battle 1 9',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
-  { 'battle 1 9',  'ws', 'Evisceration',    't', 'Evisc' }, -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 9',  'ws', 'Evisceration',    't', 'Evisc' },   -- war rdm thf bst brd rng nin cor dnc
   -- Wind
   -- {'battle 1 6', 'ws', 'Gust Slash', 't', 'Gust'},
   -- Specials
@@ -196,14 +196,14 @@ xivhotbar_keybinds_job['Dagger'] = {
   -- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
   { 'battle 1 10', 'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' }, -- dnc
   -- Merit Point #8
-  { 'battle 1 10', 'ws', 'Exenterator',     't', 'Exent' }, -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 10', 'ws', 'Exenterator',     't', 'Exent' },   -- war rdm thf bst brd rng nin cor dnc
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 10', 'ws', "Rudra's Storm",   't', 'Rudra' }, -- thf brd dnc
+  { 'battle 1 10', 'ws', "Rudra's Storm",   't', 'Rudra' },   -- thf brd dnc
   -- Relic (only usable with specific weapon equips) #10
-  { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' }, -- rdm thf brd dnc relic
+  { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },   -- rdm thf brd dnc relic
   -- AoE Ws #11
   { 'battle 1 12', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
-  { 'battle 1 12', 'ws', 'Aeolian Edge',    't', 'Aeoln' }, -- rdm thf brd rng nin dnc
+  { 'battle 1 12', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
   -- {'battle 1 12', 'ws', 'Shadowstitch', 't', 'ShdSt'},
 }
