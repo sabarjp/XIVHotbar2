@@ -1275,7 +1275,7 @@ function ui:check_and_set_disable(action)
       elseif is_silenced == true then
         self.disabled_slots.actions[action.action] = true
         return true
-      elseif check_if_spell_usable(action.action) ~= true then
+      elseif check_if_spell_usable(action.action, self.player) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
       elseif mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then

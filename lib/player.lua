@@ -52,6 +52,7 @@ player.has_parsimony = false
 player.has_apogee = false
 player.has_trance = false
 player.has_sekko = false
+player.set_blue_magic = nil -- nil here means that we do not know yet!
 
 local debug = false
 
@@ -129,6 +130,10 @@ function player:load_default_stance()
       action_manager:update_stance(235)
     end
   end
+end
+
+function player:update_blue_magic(blue_spells)
+  self.set_blue_magic = blue_spells
 end
 
 function player:update_costs()

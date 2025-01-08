@@ -254,15 +254,15 @@ local function fill_table(file_table, file_key, actions_table)
     file_table[5] = ability_name
   end
 
-  actions_table.environment[file_key] = slot_key[1]     --environment is either battle or field
-  actions_table.hotbar[file_key]      = slot_key[2]     --hotbar number
-  actions_table.slot[file_key]        = slot_key[3]     --slot number in above hotbar
-  actions_table.type[file_key]        = file_table[2]   -- type of attack: ma, ws, input, macro etc.
-  actions_table.action[file_key]      = file_table[3]   -- name of action: dia, slow, provoke, etc.
-  actions_table.target[file_key]      = file_table[4]   -- target: t, st, stnpc, etc
-  actions_table.alias[file_key]       = file_table[5]   -- display name for each slot/skill
-  if (file_table[6] ~= nil) then                        -- if last slot of file_table is not empty/blank then...
-    actions_table.icon[file_key] = file_table[6]        -- name of icon image in images/icons/custom folder
+  actions_table.environment[file_key] = slot_key[1]   --environment is either battle or field
+  actions_table.hotbar[file_key]      = slot_key[2]   --hotbar number
+  actions_table.slot[file_key]        = slot_key[3]   --slot number in above hotbar
+  actions_table.type[file_key]        = file_table[2] -- type of attack: ma, ws, input, macro etc.
+  actions_table.action[file_key]      = file_table[3] -- name of action: dia, slow, provoke, etc.
+  actions_table.target[file_key]      = file_table[4] -- target: t, st, stnpc, etc
+  actions_table.alias[file_key]       = file_table[5] -- display name for each slot/skill
+  if (file_table[6] ~= nil) then                      -- if last slot of file_table is not empty/blank then...
+    actions_table.icon[file_key] = file_table[6]      -- name of icon image in images/icons/custom folder
   end
 end
 
@@ -312,7 +312,7 @@ function action_req_check(action_array)
     if check_spell_level(action_array[3]) == true then
       if check_if_spell_learned(action_array[3]) == true then
         -- LEARNED AND PREVIOUS IS SAME SLOT --
-        if previous_slot == action_array[1] then         --If previous action was on same slot and character meets level requirement but not learned requirement
+        if previous_slot == action_array[1] then --If previous action was on same slot and character meets level requirement but not learned requirement
           if previous_learned == true then
             table.insert(tier_list, action_array[3])
             previous_learned = true
@@ -326,7 +326,7 @@ function action_req_check(action_array)
               not_learned_spells_row_slot[action_array[3]] = false
             end
             previous_level_req_met = true
-            return false             -- If previous spell meets requirements then return false and dont parse this spell
+            return false -- If previous spell meets requirements then return false and dont parse this spell
           elseif previous_learned ~= true then
             for k, v in pairs(tier_list) do
               if v ~= false then
@@ -350,8 +350,8 @@ function action_req_check(action_array)
             return true
           end
           -- LEARNED AND PREVIOUS IS NOT SAME SLOT --
-        elseif previous_slot ~= action_array[1] then         -- Head of the list, could just be a list of 1.
-          tier_list = {}                                     -- Empty this list and start new list with action name on next line.
+        elseif previous_slot ~= action_array[1] then -- Head of the list, could just be a list of 1.
+          tier_list = {}                             -- Empty this list and start new list with action name on next line.
           table.insert(tier_list, action_array[3])
 
           not_learned_spells_row_slot[action_array[3]] = false
@@ -362,7 +362,7 @@ function action_req_check(action_array)
         end
       elseif check_if_spell_learned(action_array[3]) ~= true then
         -- NOT LEARNED AND PREVIOUS NOT SAME SLOT --
-        if previous_slot ~= action_array[1] then         --If action doesn't share a hotbar slot
+        if previous_slot ~= action_array[1] then --If action doesn't share a hotbar slot
           tier_list = {}
           table.insert(tier_list, false)
 
@@ -373,7 +373,7 @@ function action_req_check(action_array)
               previous_slot = action_array[1]
               previous_learned = false
               previous_level_req_met = true
-              return true               -- Character is correct level for spell but hasn't learned it.
+              return true -- Character is correct level for spell but hasn't learned it.
             end
           end
           -- NOT LEARNED AND PREVIOUS IS SAME SLOT --
@@ -389,7 +389,7 @@ function action_req_check(action_array)
           previous_slot = action_array[1]
           previous_learned = false
           previous_level_req_met = true
-          return false           -- Character is correct level for spell but hasn't learned it.
+          return false -- Character is correct level for spell but hasn't learned it.
         end
       end
     elseif check_spell_level(action_array[3]) ~= true then
@@ -437,15 +437,15 @@ end
 function check_spell_level(spell_name_en)
   for key, val in pairs(spells) do
     if spells[key]['en'] == spell_name_en then
-      if spells[key]['levels'][windower.ffxi.get_player().main_job_id] == nil then                                                             -- Check to see if current main job even has a level associated with spell
-        if windower.ffxi.get_player().sub_job_level == nil or spells[key]['levels'][windower.ffxi.get_player().sub_job_id] == nil then         -- Otherwise check to see if current sub job even has a level associated with spell
+      if spells[key]['levels'][windower.ffxi.get_player().main_job_id] == nil then                                                     -- Check to see if current main job even has a level associated with spell
+        if windower.ffxi.get_player().sub_job_level == nil or spells[key]['levels'][windower.ffxi.get_player().sub_job_id] == nil then -- Otherwise check to see if current sub job even has a level associated with spell
           return false
-        elseif windower.ffxi.get_player().sub_job_level < spells[key]['levels'][windower.ffxi.get_player().sub_job_id] then                    -- Check to see if sub job level is lower than spell level
+        elseif windower.ffxi.get_player().sub_job_level < spells[key]['levels'][windower.ffxi.get_player().sub_job_id] then            -- Check to see if sub job level is lower than spell level
           return false
         else
           return true
         end
-      elseif windower.ffxi.get_player().main_job_level < spells[key]['levels'][windower.ffxi.get_player().main_job_id] then       -- Check to see if main job level is lower than spell level
+      elseif windower.ffxi.get_player().main_job_level < spells[key]['levels'][windower.ffxi.get_player().main_job_id] then -- Check to see if main job level is lower than spell level
         return false
       else
         return true
@@ -466,67 +466,98 @@ function check_if_spell_learned(spell_name_en)
 end
 
 -- ONLY USED TO CHECK IF SPELL IS GREYED OUT
--- helps determine which job or subjob is capable of casting a spell, this mostly applies
--- to scholar which has spell casting restrictions due to the addenda.
-function check_if_spell_usable(spell_name_en)
+function check_if_spell_usable(spell_name_en, player)
+  local spell = nil
   for key, val in pairs(spells) do
     if spells[key]['en'] == spell_name_en then
-      -- check if castable by main job
-      if spells[key]['levels'][windower.ffxi.get_player().main_job_id] ~= nil then
-        if windower.ffxi.get_player().main_job_level >= spells[key]['levels'][windower.ffxi.get_player().main_job_id] then
-          if windower.ffxi.get_player().main_job_id ~= 20 then
-            -- this is not a scholar spell, so it should be castable
-            return true
-          else
-            -- this is a scholar spell, so we have to see if it requires addendum use
-            if (spells[key]['requirements'] % 8) >= 4 then
-              if current_stance == 234 and spells[key]['type'] == 'WhiteMagic' then
-                -- we are in addendum white and the spell is white magic
-                return true
-              end
-
-              if current_stance == 235 and spells[key]['type'] == 'BlackMagic' then
-                -- we are in addendum black and the spell is black magic
-                return true
-              end
-            else
-              -- doesn't need addendum, castable!
-              return true
-            end
-          end
-        end
-      end
-
-      -- check if castable by sub job
-      if spells[key]['levels'][windower.ffxi.get_player().sub_job_id] ~= nil then
-        if windower.ffxi.get_player().sub_job_level >= spells[key]['levels'][windower.ffxi.get_player().sub_job_id] then
-          if windower.ffxi.get_player().sub_job_id ~= 20 then
-            -- this is not a scholar spell, so it should be castable
-            return true
-          else
-            -- this is a scholar spell, so we have to see if it requires addendum use
-            if (spells[key]['requirements'] % 8) >= 4 then
-              if current_stance == 234 and spells[key]['type'] == 'WhiteMagic' then
-                -- we are in addendum white and the spell is white magic
-                return true
-              end
-
-              if current_stance == 235 and spells[key]['type'] == 'BlackMagic' then
-                -- we are in addendum black and the spell is black magic
-                return true
-              end
-            else
-              -- doesn't need addendum, castable!
-              return true
-            end
-          end
-        end
-      end
-
-      -- not usable by either main job, sub job, or we're a scholar in the wrong addendum
-      return false
+      spell = spells[key]
     end
   end
+
+  local usable_by_job = check_if_spell_usable_by_a_job(spell)
+  local usable_by_blu = check_if_spell_is_set(spell, player)
+
+  return (usable_by_job and usable_by_blu)
+end
+
+-- help determine if blue magic is set
+function check_if_spell_is_set(spell, player)
+  -- check if blue magic
+  if spell['type'] == 'BlueMagic' then
+    if player.set_blue_magic == nil then
+      -- in this scenario, we haven't gotten a packet to know what is set yet,
+      -- so we will just assume everything is set until then.
+      return true
+    end
+
+    for k, v in pairs(player.set_blue_magic) do
+      if v == spell['id'] then
+        return true
+      end
+    end
+    return false
+  else
+    return true
+  end
+end
+
+-- helps determine which job or subjob is capable of casting a spell, this mostly applies
+-- to scholar which has spell casting restrictions due to the addenda.
+function check_if_spell_usable_by_a_job(spell)
+  -- check if castable by main job
+  if spell['levels'][windower.ffxi.get_player().main_job_id] ~= nil then
+    if windower.ffxi.get_player().main_job_level >= spell['levels'][windower.ffxi.get_player().main_job_id] then
+      if windower.ffxi.get_player().main_job_id ~= 20 then
+        -- this is not a scholar spell, so it should be castable
+        return true
+      else
+        -- this is a scholar spell, so we have to see if it requires addendum use
+        if (spell['requirements'] % 8) >= 4 then
+          if current_stance == 234 and spell['type'] == 'WhiteMagic' then
+            -- we are in addendum white and the spell is white magic
+            return true
+          end
+
+          if current_stance == 235 and spell['type'] == 'BlackMagic' then
+            -- we are in addendum black and the spell is black magic
+            return true
+          end
+        else
+          -- doesn't need addendum, castable!
+          return true
+        end
+      end
+    end
+  end
+
+  -- check if castable by sub job
+  if spell['levels'][windower.ffxi.get_player().sub_job_id] ~= nil then
+    if windower.ffxi.get_player().sub_job_level >= spell['levels'][windower.ffxi.get_player().sub_job_id] then
+      if windower.ffxi.get_player().sub_job_id ~= 20 then
+        -- this is not a scholar spell, so it should be castable
+        return true
+      else
+        -- this is a scholar spell, so we have to see if it requires addendum use
+        if (spell['requirements'] % 8) >= 4 then
+          if current_stance == 234 and spell['type'] == 'WhiteMagic' then
+            -- we are in addendum white and the spell is white magic
+            return true
+          end
+
+          if current_stance == 235 and spell['type'] == 'BlackMagic' then
+            -- we are in addendum black and the spell is black magic
+            return true
+          end
+        else
+          -- doesn't need addendum, castable!
+          return true
+        end
+      end
+    end
+  end
+
+  -- not usable by either main job, sub job, or we're a scholar in the wrong addendum
+  return false
 end
 
 function check_if_ability_learned(ability_name_en)
@@ -556,15 +587,15 @@ function check_if_ability_usable(ability_name_en, player)
         end
       end
 
-      if ability_list[key]['id'] == 209 or ability_list[key]['id'] == 313 then       -- wild flourish/striking flourish
+      if ability_list[key]['id'] == 209 or ability_list[key]['id'] == 313 then -- wild flourish/striking flourish
         if player:get_finishing_moves() < 2 then
           return false
         end
-      elseif ability_list[key]['id'] == 314 then       -- ternary flourish
+      elseif ability_list[key]['id'] == 314 then -- ternary flourish
         if player:get_finishing_moves() < 3 then
           return false
         end
-      elseif ability_list[key]['type'] == 'Flourish1' or ability_list[key]['type'] == 'Flourish2' or ability_list[key]['type'] == 'Flourish3' then       -- other flourishes
+      elseif ability_list[key]['type'] == 'Flourish1' or ability_list[key]['type'] == 'Flourish2' or ability_list[key]['type'] == 'Flourish3' then -- other flourishes
         if player:get_finishing_moves() < 1 then
           return false
         end
@@ -572,7 +603,7 @@ function check_if_ability_usable(ability_name_en, player)
     end
   end
 
-  return true   --assume otherwise we are OK
+  return true --assume otherwise we are OK
 end
 
 function check_if_pet_ability_usable(ability_index)
@@ -656,9 +687,9 @@ local function parse_binds(theme_options, player, hotbar)
   end
 
   -- MAIN JOB -- FILL TABLE
-  for key, val in pairs(hotbar['Base']) do                        -- Goes through each slot in the 'Base' job. Key is number sequenced. Values is list of strings.
+  for key, val in pairs(hotbar['Base']) do                  -- Goes through each slot in the 'Base' job. Key is number sequenced. Values is list of strings.
     if action_req_check(hotbar['Base'][key]) == true then
-      fill_table(hotbar['Base'][key], key, mainjob_actions)       -- hotbar['Base'][key] is each line in the BASE section of the JOB.lua file
+      fill_table(hotbar['Base'][key], key, mainjob_actions) -- hotbar['Base'][key] is each line in the BASE section of the JOB.lua file
     end
   end
 
@@ -771,7 +802,7 @@ function action_manager:swap_actions(player, swap_table)
     if (self.hotbar['battle']['hotbar_' .. s_row]['slot_' .. s_slot] ~= nil) then
       if (self.hotbar['battle']['hotbar_' .. d_row]['slot_' .. d_slot] == nil) then
         self.hotbar['battle']['hotbar_' .. d_row]['slot_' .. d_slot] = table.copy(
-        self.hotbar['battle']['hotbar_' .. s_row]['slot_' .. s_slot], true)
+          self.hotbar['battle']['hotbar_' .. s_row]['slot_' .. s_slot], true)
         self.hotbar['battle']['hotbar_' .. s_row]['slot_' .. s_slot] = nil
 
         -- Write the changes after swapping the actions
@@ -780,7 +811,7 @@ function action_manager:swap_actions(player, swap_table)
       else
         temp_slot = table.copy(self.hotbar['battle']['hotbar_' .. s_row]['slot_' .. s_slot], true)
         self.hotbar['battle']['hotbar_' .. s_row]['slot_' .. s_slot] = table.copy(
-        self.hotbar['battle']['hotbar_' .. d_row]['slot_' .. d_slot], true)
+          self.hotbar['battle']['hotbar_' .. d_row]['slot_' .. d_slot], true)
         self.hotbar['battle']['hotbar_' .. d_row]['slot_' .. d_slot] = temp_slot
 
         -- Write the changes after swapping the actions
@@ -792,11 +823,11 @@ function action_manager:swap_actions(player, swap_table)
     else
       print("XIVHOTBAR2: Cannot swap icons if the dragged icon is empty!")
     end
-  else   -- field
+  else -- field
     if (self.hotbar['field']['hotbar_' .. s_row]['slot_' .. s_slot] ~= nil) then
       if (self.hotbar['field']['hotbar_' .. d_row]['slot_' .. d_slot] == nil) then
         self.hotbar['field']['hotbar_' .. d_row]['slot_' .. d_slot] = table.copy(
-        self.hotbar['field']['hotbar_' .. s_row]['slot_' .. s_slot], true)
+          self.hotbar['field']['hotbar_' .. s_row]['slot_' .. s_slot], true)
         self.hotbar['field']['hotbar_' .. s_row]['slot_' .. s_slot] = nil
 
         -- Write the changes after swapping the actions
@@ -805,7 +836,7 @@ function action_manager:swap_actions(player, swap_table)
       else
         temp_slot = table.copy(self.hotbar['field']['hotbar_' .. s_row]['slot_' .. s_slot], true)
         self.hotbar['field']['hotbar_' .. s_row]['slot_' .. s_slot] = table.copy(
-        self.hotbar['field']['hotbar_' .. d_row]['slot_' .. d_slot], true)
+          self.hotbar['field']['hotbar_' .. d_row]['slot_' .. d_slot], true)
         self.hotbar['field']['hotbar_' .. d_row]['slot_' .. d_slot] = temp_slot
 
         -- Write the changes after swapping the actions
@@ -840,7 +871,7 @@ end
 function action_manager:insert_action(player_subjob, args)
   if not args[6] then
     print(
-    'XIVHOTBAR2: Invalid arguments: set <mode> <hotbar> <slot> <action_type> <action> <target (optional)> <alias (optional)> <icon (optional)>')
+      'XIVHOTBAR2: Invalid arguments: set <mode> <hotbar> <slot> <action_type> <action> <target (optional)> <alias (optional)> <icon (optional)>')
     return
   end
   local prio = args[1]:lower()
@@ -892,7 +923,7 @@ end
 
 function action_manager:get_action(slot)
   return self.hotbar[self.hotbar_settings.active_environment]['hotbar_' .. self.hotbar_settings.active_hotbar]
-  ['slot_' .. slot]
+      ['slot_' .. slot]
 end
 
 -- change active hotbar
@@ -954,7 +985,7 @@ function action_manager:load(player)
     end
     _general_fileG.xivhotbar_keybinds_general = {}
     _general_fileG.xivhotbar_keybinds_general[general_root] = _general_fileG.xivhotbar_keybinds_general[general_root] or
-    'Root'
+        'Root'
     parse_general_binds(general_root)
 
     action_manager:add_actions(general_actions)
