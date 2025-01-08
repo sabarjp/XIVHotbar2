@@ -831,6 +831,14 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
   end
 end)
 
+windower.register_event('incoming text', function(text)
+  if string.find(text, windower.ffxi.get_player().name .. " learns") then
+    if ui.theme.dev_mode then log("Learned a new spell. Reloading Hotbar.") end
+    reload_hotbar()
+  end
+end)
+
+
 --- Reloads hotbar when using GM command. ** For development only **
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
   if ui.theme.dev_mode then
