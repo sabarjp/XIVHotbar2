@@ -10,7 +10,7 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 2 2',  'ja',    'Konzen-ittai',   't',    'Konzen',   'ffxiv/sam/hissatsu_senei' },
   { 'battle 2 3',  'ja',    'Sengikori',      'me',   'Sengi',    'ffxiv/sam/oka' },
   { 'battle 2 4',  'ja',    'Hagakure',       'me',   'Haga',     'ffxiv/sam/hagakure' },
-  { 'battle 2 5',  'ja',    'Blade Bash',     't',    'B Bash',   'ffxiv/sam/yukikaze' }, -- merit
+  { 'battle 2 5',  'ja',    'Blade Bash',     't',    'B Bash',   'ffxiv/sam/yukikaze' },          -- merit
   { 'battle 2 6',  'ja',    'Shikikoyo',      'stpc', 'Shiki',    'ffxiv/sam/kaeshi_setsugekka' }, -- merit
 
   --Hotbar #3
@@ -50,11 +50,11 @@ xivhotbar_keybinds_job['RNG'] = {
   -- Multi-Hit
   { 'battle 5 5', 'ws',    'Refulgent Arrow',            't',     'Reflgnt' }, -- rng sub
   -- Specials
-  { 'battle 5 6', 'ws',    'Dulling Arrow',              't',     'Dull' }, -- rng sub
+  { 'battle 5 6', 'ws',    'Dulling Arrow',              't',     'Dull' },    -- rng sub
   -- Merit Point
-  { 'battle 5 8', 'ws',    'Apex Arrow',                 't',     'Apex' }, -- rng sam
+  { 'battle 5 8', 'ws',    'Apex Arrow',                 't',     'Apex' },    -- rng sam
   -- Relic (only usable with specific weapon equips)
-  { 'battle 5 9', 'ws',    'Namas Arrow',                't',     'Namas' }, -- rng sam relic
+  { 'battle 5 9', 'ws',    'Namas Arrow',                't',     'Namas' },   -- rng sam relic
 }
 
 xivhotbar_keybinds_job['MNK'] = {
@@ -126,11 +126,11 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
   { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
@@ -176,11 +176,11 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',     'ffxiv/sch/bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
-  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',   'ffxiv/role/sleep' },
-  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun',    'ffxiv/drk/unmend' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
+  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
+  { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
 -- WEAPONSKILL SETS
@@ -196,7 +196,7 @@ xivhotbar_keybinds_job['Great Katana'] = {
   { 'battle 1 3',  'ws', 'Tachi: Kagero',   't', 'Kagero' },
   { 'battle 1 3',  'ws', 'Tachi: Koki',     't', 'Koki' },
   -- Specials
-  { 'battle 1 4',  'ws', 'Tachi: Yukikaze', 't', 'Yuki' }, -- sam
+  { 'battle 1 4',  'ws', 'Tachi: Yukikaze', 't', 'Yuki' },  -- sam
   { 'battle 1 5',  'ws', 'Tachi: Gekko',    't', 'Gekko' }, -- sam
   { 'battle 1 6',  'ws', 'Tachi: Kasha',    't', 'Kasha' }, -- sam
   -- Prime #6
@@ -204,7 +204,7 @@ xivhotbar_keybinds_job['Great Katana'] = {
   -- Merit Point #8
   { 'battle 1 8',  'ws', 'Tachi: Shoha',    't', 'Shoha' }, -- sam
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 9',  'ws', 'Tachi: Fudo',     't', 'Fudo' }, -- sam
+  { 'battle 1 9',  'ws', 'Tachi: Fudo',     't', 'Fudo' },  -- sam
   -- Relic (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Tachi: Kaiten',   't', 'Kaiten' },
   -- AoE Ws #11
