@@ -194,19 +194,18 @@ xivhotbar_keybinds_job['Great Katana'] = {
   -- Elements
   { 'battle 1 3',  'ws', 'Tachi: Goten',    't', 'Goten' },
   { 'battle 1 3',  'ws', 'Tachi: Kagero',   't', 'Kagero' },
-  { 'battle 1 3',  'ws', 'Tachi: Koki',     't', 'Koki' },
+  { 'battle 1 4',  'ws', 'Tachi: Koki',     't', 'Koki' },
   -- Specials
-  { 'battle 1 4',  'ws', 'Tachi: Yukikaze', 't', 'Yuki' },  -- sam
-  { 'battle 1 5',  'ws', 'Tachi: Gekko',    't', 'Gekko' }, -- sam
-  { 'battle 1 6',  'ws', 'Tachi: Kasha',    't', 'Kasha' }, -- sam
-  -- Prime #6
-  { 'battle 1 7',  'ws', 'Tachi: Mumei',    't', 'Mumei' }, -- sam
-  -- Merit Point #8
+  { 'battle 1 5',  'ws', 'Tachi: Yukikaze', 't', 'Yuki' },  -- sam
+  { 'battle 1 6',  'ws', 'Tachi: Gekko',    't', 'Gekko' }, -- sam
+  { 'battle 1 7',  'ws', 'Tachi: Kasha',    't', 'Kasha' }, -- sam
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Tachi: Shoha',    't', 'Shoha' }, -- sam
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', 'Tachi: Fudo',     't', 'Fudo' },  -- sam
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Tachi: Kaiten',   't', 'Kaiten' },
+  { 'battle 1 10', 'ws', 'Tachi: Mumei',    't', 'Mumei' }, -- sam
   -- AoE Ws #11
   -- none
   -- Stun WS #12
@@ -216,27 +215,26 @@ xivhotbar_keybinds_job['Great Katana'] = {
 xivhotbar_keybinds_job['Polearm'] = {
   -- Heavy Hit
   { 'battle 1 1',  'ws', 'Vorpal Thrust',  't', 'Vorpal' },
-  -- {'battle 1 1', 'ws', 'Wheeling Thrust', 't', 'Wheel'}, -- drg
+  -- { 'battle 1 1',  'ws', 'Wheeling Thrust',   't', 'Wheel' }, -- drg
   -- Multi-Hit
   { 'battle 1 2',  'ws', 'Double Thrust',  't', 'Double' },
   { 'battle 1 2',  'ws', 'Penta Thrust',   't', 'Penta' },
-  { 'battle 1 2',  'ws', 'Drakesbane',     't', 'Drakes' },
+  { 'battle 1 3',  'ws', 'Drakesbane',     't', 'Drakes' },
   -- Thunder
-  { 'battle 1 3',  'ws', 'Thunder Thrust', 't', 'Thunder' },
-  -- {'battle 1 3', 'ws', 'Raiden Thrust', 't', 'Raiden'}, -- war pld drg
+  { 'battle 1 4',  'ws', 'Thunder Thrust', 't', 'Thunder' },
+  -- { 'battle 1 3',  'ws', 'Raiden Thrust',     't', 'Raiden' },  -- war pld drg
   -- Specials
-  -- {'battle 1 4', 'ws', 'Skewer', 't', 'Skewer'}, -- drg
-  { 'battle 1 4',  'ws', 'Impulse Drive',  't', 'Impulse' }, -- war sam drg
-  -- Prime #6
-  { 'battle 1 6',  'ws', 'Diarmuid',       't', 'Diarm' },
-  -- Merit Point #8
-  { 'battle 1 8',  'ws', 'Stardiver',      't', 'Star' }, -- war sam drg
+  -- { 'battle 1 4',  'ws', 'Skewer',            't', 'Skewer' },  -- drg
+  { 'battle 1 5',  'ws', 'Impulse Drive',  't', 'Impulse' }, -- war sam drg
+  -- Merit Point
+  { 'battle 1 6',  'ws', 'Stardiver',      't', 'Star' },    -- war sam drg
   -- Empyrean (Abyssea only)  #9
-  -- {'battle 1 9', "Camlann's Torment", 'name', 't', 'Camlann'}, -- drg
-  -- Relic (only usable with specific weapon equips) #10
-  -- {'battle 1 10', 'ws', 'Geirskogul', 't', 'Geirsk'}, -- drg
+  -- { 'battle 1 9',  "ws", "Camlann's Torment", 't', 'Camlann' }, -- drg
+  -- Relic & Prime (only usable with specific weapon equips) #10
+  -- { 'battle 1 10', 'ws', 'Geirskogul',        't', 'Geirsk' },  -- drg
+  { 'battle 1 10', 'ws', 'Diarmuid',       't', 'Diarm' },
   -- AoE Ws #11
-  -- {'battle 1 11', 'Sonic Thrust', 'name', 't', 'Sonic'}, -- war pld drg
+  -- { 'battle 1 11', 'ws', 'Sonic Thrust',      't', 'Sonic' }, -- war pld drg
   -- Stun WS #12
   { 'battle 1 12', 'ws', 'Leg Sweep',      't', 'LegSwp' },
 }

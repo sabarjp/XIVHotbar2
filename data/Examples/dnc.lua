@@ -178,34 +178,33 @@ xivhotbar_keybinds_job['DRK'] = {
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Dagger'] = {
   -- Heavy Hit
-  { 'battle 1 9',  'ws', 'Wasp Sting',      't', 'Wasp' },
-  { 'battle 1 9',  'ws', 'Viper Bite',      't', 'Viper' },   -- rdm thf brd rng nin dnc
-  { 'battle 1 9',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
+  { 'battle 1 1',  'ws', 'Wasp Sting',      't', 'Wasp' },
+  { 'battle 1 1',  'ws', 'Viper Bite',      't', 'Viper' },   -- rdm thf brd rng nin dnc
+  { 'battle 1 1',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
   -- Multi-Hit
-  { 'battle 1 9',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
-  { 'battle 1 9',  'ws', 'Evisceration',    't', 'Evisc' },   -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 3',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
+  { 'battle 1 4',  'ws', 'Evisceration',    't', 'Evisc' },   -- war rdm thf bst brd rng nin cor dnc
   -- Wind
-  -- {'battle 1 6', 'ws', 'Gust Slash', 't', 'Gust'},
+  { 'battle 1 5',  'ws', 'Gust Slash',      't', 'Gust' },
   -- Specials
-  -- {'battle 1 4', 'ws', 'Energy Steal', 't', 'Energy'},
-  -- {'battle 1 4', 'ws', 'Energy Drain', 't', 'Energy'}, -- rdm thf brd rng nin dnc
-  -- Prime #6
-  { 'battle 1 9',  'ws', 'Ruthless Stroke', 't', 'Ruthless' },
-  -- Class Specific #7
-  -- {'battle 1 7', 'ws', 'Mandalic Stab', 't', 'Mandalic'}, -- thf
-  -- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
-  { 'battle 1 10', 'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' }, -- dnc
-  -- Merit Point #8
-  { 'battle 1 10', 'ws', 'Exenterator',     't', 'Exent' },   -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 6',  'ws', 'Energy Steal',    't', 'Energy' },
+  { 'battle 1 6',  'ws', 'Energy Drain',    't', 'Energy' }, -- rdm thf brd rng nin dnc
+  -- Class Specific
+  -- { 'battle 1 7',  'ws', 'Mandalic Stab',   't', 'Mandalic' }, -- thf
+  -- { 'battle 1 7',  'ws', 'Mordant Rime',    't', 'Mordant' },  -- brd
+  { 'battle 1 7',  'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' }, -- dnc
+  -- Merit Point
+  { 'battle 1 8',  'ws', 'Exenterator',     't', 'Exent' },   -- war rdm thf bst brd rng nin cor dnc
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 10', 'ws', "Rudra's Storm",   't', 'Rudra' },   -- thf brd dnc
-  -- Relic (only usable with specific weapon equips) #10
+  { 'battle 1 9',  'ws', "Rudra's Storm",   't', 'Rudra' },   -- thf brd dnc
+  -- Relic & Prime (only usable with specific weapon equips) #10
+  { 'battle 1 10', 'ws', 'Ruthless Stroke', 't', 'Ruthless' },
   { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },   -- rdm thf brd dnc relic
   -- AoE Ws #11
-  { 'battle 1 12', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
-  { 'battle 1 12', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
+  { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
+  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
-  -- {'battle 1 12', 'ws', 'Shadowstitch', 't', 'ShdSt'},
+  { 'battle 1 12', 'ws', 'Shadowstitch',    't', 'ShdSt' },
 }
 
 return xivhotbar_keybinds_job

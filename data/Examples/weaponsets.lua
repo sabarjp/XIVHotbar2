@@ -18,19 +18,17 @@ xivhotbar_keybinds_job['Hand-to-hand'] = {
   -- Specials
   { 'battle 1 3',  'ws', 'Howling Fist',     't', 'Howling' }, -- mnk pup
   { 'battle 1 4',  'ws', 'Tornado Kick',     't', 'Tornado' }, -- mnk pup
-  -- Prime #6
-  { 'battle 1 6',  'ws', 'Maru Kala',        't', 'Maru' },
-  -- Class Specific #7
+  -- Class Specific
   { 'battle 1 7',  'ws', "Ascetic's Fury",   't', 'Ascetic' }, -- mnk
   { 'battle 1 7',  'ws', 'Stringing Pummel', 't', 'String' },  -- pup
-  { 'battle 1 7',  'ws', 'name',             't', 'displayName' },
-  -- Merit Point #8
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Shijin Spiral',    't', 'Shijin' },  -- mnk pup
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', 'Victory Smite',    't', 'Victory' }, -- mnk pup
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Final Heaven',     't', 'FinHvn' },  -- mnk
   { 'battle 1 10', 'ws', 'Dragon Blow',      't', 'DragonB' }, -- bonanza
+  { 'battle 1 10', 'ws', 'Maru Kala',        't', 'Maru' },
   -- AoE Ws #11
   { 'battle 1 11', 'ws', 'Spinning Attack',  't', 'Spinning' },
   -- Stun WS #12
@@ -49,22 +47,21 @@ xivhotbar_keybinds_job['Dagger'] = {
   { 'battle 1 3',  'ws', 'Gust Slash',      't', 'Gust' },
   -- Specials
   { 'battle 1 4',  'ws', 'Energy Steal',    't', 'Energy' },
-  { 'battle 1 4',  'ws', 'Energy Drain',    't', 'Energy' }, -- rdm thf brd rng nin dnc
-  -- Prime #6
-  { 'battle 1 6',  'ws', 'Ruthless Stroke', 't', 'Ruthless' },
-  -- Class Specific #7
+  { 'battle 1 4',  'ws', 'Energy Drain',    't', 'Energy' },   -- rdm thf brd rng nin dnc
+  -- Class Specific
   { 'battle 1 7',  'ws', 'Mandalic Stab',   't', 'Mandalic' }, -- thf
   { 'battle 1 7',  'ws', 'Mordant Rime',    't', 'Mordant' },  -- brd
   { 'battle 1 7',  'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' },  -- dnc
-  -- Merit Point #8
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Exenterator',     't', 'Exent' },    -- war rdm thf bst brd rng nin cor dnc
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', "Rudra's Storm",   't', 'Rudra' },    -- thf brd dnc
-  -- Relic (only usable with specific weapon equips) #10
-  { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },    -- rdm thf brd dnc relic
+  -- Relic & Prime (only usable with specific weapon equips) #10
+  { 'battle 1 10', 'ws', 'Ruthless Stroke', 't', 'Ruthless' },
+  { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },   -- rdm thf brd dnc relic
   -- AoE Ws #11
-  { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' },  -- rdm thf brd rng nin cor dnc
-  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },    -- rdm thf brd rng nin dnc
+  { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
+  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
   { 'battle 1 12', 'ws', 'Shadowstitch',    't', 'ShdSt' },
 }
@@ -240,7 +237,7 @@ xivhotbar_keybinds_job['Polearm'] = {
   { 'battle 1 10', 'ws',                'Geirskogul',      't', 'Geirsk' },  -- drg
   { 'battle 1 10', 'ws',                'Diarmuid',        't', 'Diarm' },
   -- AoE Ws #11
-  { 'battle 1 11', 'Sonic Thrust',      'name',            't', 'Sonic' }, -- war pld drg
+  { 'battle 1 11', 'ws',                'Sonic Thrust',    't', 'Sonic' }, -- war pld drg
   -- Stun WS #12
   { 'battle 1 12', 'ws',                'Leg Sweep',       't', 'LegSwp' },
 }
@@ -255,20 +252,19 @@ xivhotbar_keybinds_job['Katana'] = {
   -- Multi-Hit
   { 'battle 1 2',  'ws', 'Blade: Retsu', 't', 'Retsu' },
   { 'battle 1 2',  'ws', 'Blade: Chi',   't', 'Chi' },
-  { 'battle 1 2',  'ws', 'Blade: Jin',   't', 'Jin' },   -- nin
-  { 'battle 1 2',  'ws', 'Blade: Ku',    't', 'Ku' },    -- nin
+  { 'battle 1 2',  'ws', 'Blade: Jin',   't', 'Jin' },  -- nin
+  { 'battle 1 2',  'ws', 'Blade: Ku',    't', 'Ku' },   -- nin
   -- Specials
-  { 'battle 1 3',  'ws', 'Blade: Yu',    't', 'Yu' },    -- nin
-  -- Prime #6
-  { 'battle 1 6',  'ws', 'Zesho Meppo',  't', 'Zesho' }, -- nin
-  -- Class Specific #7
-  { 'battle 1 7',  'ws', 'Blade: Kamu',  't', 'Kamu' },  -- nin
-  -- Merit Point #8
+  { 'battle 1 3',  'ws', 'Blade: Yu',    't', 'Yu' },   -- nin
+  -- Class Specific
+  { 'battle 1 7',  'ws', 'Blade: Kamu',  't', 'Kamu' }, -- nin
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Blade: Shun',  't', 'Shun' },
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', 'Blade: Hi',    't', 'Hi' },    -- nin
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Blade: Metsu', 't', 'Metsu' }, -- nin relic
+  { 'battle 1 10', 'ws', 'Zesho Meppo',  't', 'Zesho' }, -- nin
   -- AoE Ws #11
   -- none
   -- Stun WS #12
@@ -290,14 +286,13 @@ xivhotbar_keybinds_job['Great Katana'] = {
   { 'battle 1 4',  'ws', 'Tachi: Yukikaze', 't', 'Yuki' },  -- sam
   { 'battle 1 5',  'ws', 'Tachi: Gekko',    't', 'Gekko' }, -- sam
   { 'battle 1 6',  'ws', 'Tachi: Kasha',    't', 'Kasha' }, -- sam
-  -- Prime #6
-  { 'battle 1 7',  'ws', 'Tachi: Mumei',    't', 'Mumei' }, -- sam
-  -- Merit Point #8
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Tachi: Shoha',    't', 'Shoha' }, -- sam
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', 'Tachi: Fudo',     't', 'Fudo' },  -- sam
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Tachi: Kaiten',   't', 'Kaiten' },
+  { 'battle 1 10', 'ws', 'Tachi: Mumei',    't', 'Mumei' }, -- sam
   -- AoE Ws #11
   -- none
   -- Stun WS #12
@@ -379,14 +374,13 @@ xivhotbar_keybinds_job['Bow'] = {
   -- Specials
   { 'battle 1 4',  'ws', 'Dulling Arrow',     't', 'Dull' },     -- rng sub
   { 'battle 1 4',  'ws', 'Blast Arrow',       't', 'Blast' },    -- rng
-  -- Prime #6
-  { 'battle 1 6',  'ws', 'Sarv',              't', 'Sarv' },     -- rng
-  -- Merit Point #8
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Apex Arrow',        't', 'Apex' },     -- rng sam
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', "Jishnu's Radiance", 't', 'Jishnu' },   -- rng
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Namas Arrow',       't', 'Namas' },    -- rng sam relic
+  { 'battle 1 10', 'ws', 'Sarv',              't', 'Sarv' },     -- rng
   -- AoE Ws #11
   -- none
   -- Stun WS #12
@@ -404,18 +398,17 @@ xivhotbar_keybinds_job['Marksmanship'] = {
   -- Specials
   { 'battle 1 4',  'ws', 'Split Shot',    't', 'Split' },    -- rng cor
   { 'battle 1 4',  'ws', 'Numbing Shot',  't', 'Numb' },     -- rng cor sub
-  -- Prime #6
-  { 'battle 1 6',  'ws', 'Terminus',      't', 'Terminus' }, -- rng cor
-  -- Class Specific #7
+  -- Class Specific
   { 'battle 1 7',  'ws', 'Heavy Shot',    't', 'Heavy' },    -- rng
   { 'battle 1 7',  'ws', 'Trueflight',    't', 'Trueflt' },  -- rng
   { 'battle 1 7',  'ws', 'Leaden Salute', 't', 'Leaden' },   -- cor
-  -- Merit Point #8
+  -- Merit Point
   { 'battle 1 8',  'ws', 'Last Stand',    't', 'Last' },     -- thf rng cor
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', 'Wildfire',      't', 'Wildfire' }, -- rng cor
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Coronach',      't', 'Coronach' }, -- rng cor relic
+  { 'battle 1 10', 'ws', 'Terminus',      't', 'Terminus' }, -- rng cor
   -- AoE Ws #11
   -- none
   -- Stun WS #12
