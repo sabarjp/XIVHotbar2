@@ -2,7 +2,7 @@
 xivhotbar_keybinds_job['Base'] = {
   -- Hotbar #1 Primary JAs
   { 'battle 1 1',  'ja', 'Deploy',           't',  'Fight',    'ffxiv/mch/rook_overload' },
-  { 'battle 1 2',  'ja', 'Retrieve',         't',  'Retrieve', 'ffxiv/mch/pile_bunker' },
+  { 'battle 1 2',  'ja', 'Retrieve',         'me', 'Retrieve', 'ffxiv/mch/pile_bunker' },
   -- Maneuvers
   { 'battle 1 3',  'ja', 'Fire Maneuver',    'me', 'FireMan',  'ffxiv/pic/fire_in_red' },
   { 'battle 1 4',  'ja', 'Ice Maneuver',     'me', 'IceMan',   'ffxiv/pic/blizzard_in_cyan' },

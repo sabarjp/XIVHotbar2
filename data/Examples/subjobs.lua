@@ -604,7 +604,7 @@ xivhotbar_keybinds_job['PLD'] = {
 xivhotbar_keybinds_job['PUP'] = {
   -- Pet Control
   { 'battle 3 1',  'ja', 'Deploy',           't',  'Fight',    'ffxiv/mch/rook_overload' },
-  { 'battle 3 2',  'ja', 'Retrieve',         't',  'Retrieve', 'ffxiv/mch/pile_bunker' },
+  { 'battle 3 2',  'ja', 'Retrieve',         'me', 'Retrieve', 'ffxiv/mch/pile_bunker' },
   -- Maneuvers
   { 'battle 3 3',  'ja', 'Fire Maneuver',    'me', 'FireMan',  'ffxiv/pic/fire_in_red' },
   { 'battle 3 4',  'ja', 'Ice Maneuver',     'me', 'IceMan',   'ffxiv/pic/blizzard_in_cyan' },
