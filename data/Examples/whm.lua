@@ -172,19 +172,19 @@ xivhotbar_keybinds_job['SCH'] = {
 }
 
 xivhotbar_keybinds_job['Club'] = {
-  { 'battle 1 9', 'ws', 'Shining Strike', 't', 'Shining' },
-  { 'battle 1 9', 'ws', 'Seraph Strike',  't', 'Seraph' },
-  { 'battle 1 9', 'ws', 'Starlight',      't', 'Star' },
-  { 'battle 1 9', 'ws', 'Moonlight',      't', 'Moon' },
-  { 'battle 1 9', 'ws', 'True Strike',    't', 'True' },
-  { 'battle 1 9', 'ws', 'Judgement',      't', 'Judge' },
-  { 'battle 1 9', 'ws', 'Hexa Strike',    't', 'Hexa' },
-  { 'battle 1 9', 'ws', 'Flash Nova',     't', 'F.Nova' },
-  { 'battle 1 9', 'ws', 'Realmrazer',     't', 'Razer' },
-  { 'battle 1 9', 'ws', 'Randgrith',      't', 'RGrith' },
-  { 'battle 1 9', 'ws', 'Dagan',          't', 'Dagan' },
-  { 'battle 1 9', 'ws', 'Mystic Boon',    't', 'M.Boon' },
-  { 'battle 1 9', 'ws', 'Dagda',          't', 'Dagda' },
+  { 'battle 1 9', 'ws', 'Shining Strike', 't',  'Shining' },
+  { 'battle 1 9', 'ws', 'Seraph Strike',  't',  'Seraph' },
+  { 'battle 1 9', 'ws', 'Starlight',      'me', 'Star' },
+  { 'battle 1 9', 'ws', 'Moonlight',      'me', 'Moon' },
+  { 'battle 1 9', 'ws', 'True Strike',    't',  'True' },
+  { 'battle 1 9', 'ws', 'Judgement',      't',  'Judge' },
+  { 'battle 1 9', 'ws', 'Hexa Strike',    't',  'Hexa' },
+  { 'battle 1 9', 'ws', 'Flash Nova',     't',  'F.Nova' },
+  { 'battle 1 9', 'ws', 'Realmrazer',     't',  'Razer' },
+  { 'battle 1 9', 'ws', 'Randgrith',      't',  'RGrith' },
+  { 'battle 1 9', 'ws', 'Dagan',          't',  'Dagan' },
+  { 'battle 1 9', 'ws', 'Mystic Boon',    't',  'M.Boon' },
+  { 'battle 1 9', 'ws', 'Dagda',          't',  'Dagda' },
 }
 
 xivhotbar_keybinds_job['Staff'] = {

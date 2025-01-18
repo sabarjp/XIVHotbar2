@@ -280,24 +280,24 @@ xivhotbar_keybinds_job['Sword'] = {
 
 xivhotbar_keybinds_job['Club'] = {
   -- Heavy Hit
-  { 'battle 1 1',  'ws', 'True Strike',    't', 'True' },
-  { 'battle 1 2',  'ws', 'Judgment',       't', 'Judgment' }, -- war whm pld drk sam blu geo
+  { 'battle 1 1',  'ws', 'True Strike',    't',  'True' },
+  { 'battle 1 2',  'ws', 'Judgment',       't',  'Judgment' }, -- war whm pld drk sam blu geo
   -- Multi-Hit
   -- { 'battle 1 2',  'ws', 'Hexa Strike',    't', 'Hexa' },     -- whm geo
-  { 'battle 1 3',  'ws', 'Black Halo',     't', 'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 3',  'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
   -- Light
-  { 'battle 1 4',  'ws', 'Shining Strike', 't', 'Shining' },
-  { 'battle 1 4',  'ws', 'Seraph Strike',  't', 'Seraph' },  -- war whm pld drk sam blu geo
-  { 'battle 1 5',  'ws', 'Flash Nova',     't', 'Fl Nova' }, -- war whm pld drk sam blu geo
+  { 'battle 1 4',  'ws', 'Shining Strike', 't',  'Shining' },
+  { 'battle 1 4',  'ws', 'Seraph Strike',  't',  'Seraph' }, -- war whm pld drk sam blu geo
+  { 'battle 1 5',  'ws', 'Flash Nova',     't',  'Fl Nova' }, -- war whm pld drk sam blu geo
   -- Specials
-  { 'battle 1 6',  'ws', 'Skullbreaker',   't', 'Skullbrk' },
-  { 'battle 1 7',  'ws', 'Starlight',      't', 'Star' },
-  { 'battle 1 8',  'ws', 'Moonlight',      't', 'Moon' }, -- war whm pld drk sam blu geo
+  { 'battle 1 6',  'ws', 'Skullbreaker',   't',  'Skullbrk' },
+  { 'battle 1 7',  'ws', 'Starlight',      'me', 'Star' },
+  { 'battle 1 8',  'ws', 'Moonlight',      'me', 'Moon' }, -- war whm pld drk sam blu geo
   -- Class Specific
   -- { 'battle 1 6',  'ws', 'Mystic Boon',    't', 'Mystic' },   -- whm only
   -- { 'battle 1 6',  'ws', 'Exudation',      't', 'Exuda' },    -- geo
   -- Merit Point
-  { 'battle 1 9',  'ws', 'Realmrazer',     't', 'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 9',  'ws', 'Realmrazer',     't',  'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
   -- Empyrean (Abyssea only)  #9
   -- { 'battle 1 9',  'ws', 'Dagan',          't', 'Dagan' },    -- whm
   -- Relic & Prime (only usable with specific weapon equips) #10
@@ -306,7 +306,7 @@ xivhotbar_keybinds_job['Club'] = {
   -- AoE Ws #11
   -- none
   -- Stun WS #12
-  { 'battle 1 12', 'ws', 'Brainshaker',    't', 'Brainshkr' },
+  { 'battle 1 12', 'ws', 'Brainshaker',    't',  'Brainshkr' },
 }
 
 xivhotbar_keybinds_job['Axe'] = {
