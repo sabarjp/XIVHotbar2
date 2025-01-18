@@ -32,15 +32,15 @@ local defaults = {}
 defaults.General = {}
 defaults.General.HideEnvironment = false
 defaults.General.HideInventoryCount = false
-defaults.General.EnableWeaponSwitching = false
-defaults.General.HideHotbarNumbers = false
+defaults.General.EnableWeaponSwitching = true
+defaults.General.HideHotbarNumbers = true
 defaults.General.PlayingHorizonXI = false
 
 defaults.Hotbar = {}
 defaults.Hotbar.ShowActionDescription = true
 defaults.Hotbar.HideEmptySlots = true
 defaults.Hotbar.HideActionName = false
-defaults.Hotbar.HideActionCost = true
+defaults.Hotbar.HideActionCost = false
 
 
 
@@ -121,22 +121,32 @@ defaults.Texts.Keys.Stroke.Blue              = 20
 
 -- Costs
 defaults.Texts.Costs                         = {}
+
 defaults.Texts.Costs.Font                    = 'Calibri'
 defaults.Texts.Costs.Size                    = 10
 defaults.Texts.Costs.Pos                     = {}
 defaults.Texts.Costs.Pos.OffsetX             = 1
 defaults.Texts.Costs.Pos.OffsetY             = 24
-defaults.Texts.Costs.Color                   = {}
-defaults.Texts.Costs.Color.Alpha             = 255
-defaults.Texts.Costs.Color.Red               = 0
-defaults.Texts.Costs.Color.Green             = 240
-defaults.Texts.Costs.Color.Blue              = 120
 defaults.Texts.Costs.Stroke                  = {}
 defaults.Texts.Costs.Stroke.Width            = 2
 defaults.Texts.Costs.Stroke.Alpha            = 200
 defaults.Texts.Costs.Stroke.Red              = 20
 defaults.Texts.Costs.Stroke.Green            = 20
 defaults.Texts.Costs.Stroke.Blue             = 20
+
+-- different colors for mp/tp cost
+defaults.Texts.Costs.MP                      = {}
+defaults.Texts.Costs.MP.Color                = {}
+defaults.Texts.Costs.MP.Color.Alpha          = 255
+defaults.Texts.Costs.MP.Color.Red            = 0
+defaults.Texts.Costs.MP.Color.Green          = 240
+defaults.Texts.Costs.MP.Color.Blue           = 120
+defaults.Texts.Costs.TP                      = {}
+defaults.Texts.Costs.TP.Color                = {}
+defaults.Texts.Costs.TP.Color.Alpha          = 255
+defaults.Texts.Costs.TP.Color.Red            = 240
+defaults.Texts.Costs.TP.Color.Green          = 120
+defaults.Texts.Costs.TP.Color.Blue           = 120
 
 -- Recasts
 defaults.Texts.Recasts                       = {}

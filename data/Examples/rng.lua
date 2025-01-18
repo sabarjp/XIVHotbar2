@@ -9,12 +9,13 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 2 1',  'ja',    'Sharpshot',                  'me',    'Sharp',    'ffxiv/brd/burst_shot' },
   { 'battle 2 2',  'ja',    'Barrage',                    'me',    'Barrage',  'ffxiv/brd/barrage' },
   { 'battle 2 3',  'ja',    'Shadowbind',                 'stnpc', 'Bind',     'ffxiv/brd/shadowbite' },
-  { 'battle 2 4',  'ja',    'Unlimited Shot',             'me',    'Unlmtd',   'ffxiv/brd/stormbite' },
-  { 'battle 2 5',  'ja',    'Double Shot',                'me',    'Double',   'ffxiv/brd/quick_nock' },
+  { 'battle 2 4',  'ja',    'Velocity Shot',              'me',    'Velcty',   'ffxiv/brd/raging_strikes' },
+  { 'battle 2 5',  'ja',    'Unlimited Shot',             'me',    'Unlmtd',   'ffxiv/brd/stormbite' },
+  { 'battle 2 6',  'ja',    'Double Shot',                'me',    'Double',   'ffxiv/brd/quick_knock' },
   -- Enmity
-  { 'battle 2 10', 'ja',    'Decoy Shot',                 'me',    'Bounty',   'ffxiv/vpr/slither' },
-  { 'battle 2 11', 'ja',    'Stealth Shot',               'me',    'Stealth',  'ffxiv/brd/repelling_shot' }, -- Merit
-  { 'battle 2 12', 'ja',    'Flashy Shot',                'me',    'Flashy',   'ffxiv/brd/empyreal_arrow' }, -- Merit
+  { 'battle 3 10', 'ja',    'Decoy Shot',                 'me',    'Bounty',   'ffxiv/vpr/slither' },
+  { 'battle 3 11', 'ja',    'Stealth Shot',               'me',    'Stealth',  'ffxiv/brd/repelling_shot' }, -- Merit
+  { 'battle 3 12', 'ja',    'Flashy Shot',                'me',    'Flashy',   'ffxiv/brd/empyreal_arrow' }, -- Merit
 
   --Hotbar #3
   --sub job abilities; leave blank
@@ -24,18 +25,15 @@ xivhotbar_keybinds_job['Base'] = {
   --12 is always 2-hour ability
   { 'battle 4 1',  'ja',    'Scavenge',                   'me',    'Scvnge',   'ffxiv/role/tactician' },
   { 'battle 4 2',  'ja',    'Camouflage',                 'me',    'Camo',     'ffxiv/brd/iron_jaws' },
-  { 'battle 4 3',  'ja',    'Bounty Shot',                't',     'Bounty',   'ffxiv/nin/mug' },
-  { 'battle 4 4',  'ja',    'Overkill',                   'me',    'Overkill', 'ffxiv/brd/refulgent_arrow' },
-  { 'battle 4 10', 'ja',    'Hover Shot',                 'me',    'Hover',    'ffxiv/brd/ladonsbite' },
-  { 'battle 4 11', 'ja',    'Velocity Shot',              'me',    'Velcty',   'ffxiv/brd/raging_strikes' },
+  { 'battle 4 3',  'ja',    'Bounty Shot',                'me',    'Bounty',   'ffxiv/nin/mug' },
+  { 'battle 4 4',  'ja',    'Hover Shot',                 'me',    'Hover',    'ffxiv/nin/ladonsbite' },
+  { 'battle 4 5',  'ja',    'Overkill',                   'me',    'Overkill', 'ffxiv/nin/refulgent_arrow' },
   { 'battle 4 12', 'ja',    'Eagle Eye Shot',             't',     'EEShot',   'ffxiv/brd/apex_arrow' },
 
   -- Hotbar #5
   -- Ranged Hotbar #5
   { 'battle 5 1',  'input', '/ra <t>',                    '',      'RA',       'ra' },
-  { 'battle 5 7',  'input', '/equip ammo "Silver Arrow"', '',      'Ammo',     'classes/phy_rng' },
-  { 'battle 5 2',  'input', '//ara start',                '',      'ARA',      'ra' },
-  { 'battle 5 8',  'input', '//ara stop',                 '',      'Stop',     'ra' },
+  { 'battle 5 7',  'input', '/equip ammo "Wooden Arrow"', '',      'Ammo',     'classes/phy_rng' },
 }
 
 -- SUBJOBS

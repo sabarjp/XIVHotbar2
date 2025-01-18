@@ -123,10 +123,6 @@ theme.apply = function(settings)
   -- [Texts - Costs] --
   options.font_costs                      = st.Costs.Font
   options.font_size_costs                 = st.Costs.Size
-  options.font_alpha_costs                = st.Costs.Color.Alpha
-  options.font_color_red_costs            = st.Costs.Color.Red
-  options.font_color_green_costs          = st.Costs.Color.Green
-  options.font_color_blue_costs           = st.Costs.Color.Blue
   options.font_stroke_width_costs         = st.Costs.Stroke.Width
   options.font_stroke_alpha_costs         = st.Costs.Stroke.Alpha
   options.font_stroke_color_red_costs     = st.Costs.Stroke.Red
@@ -134,6 +130,14 @@ theme.apply = function(settings)
   options.font_stroke_color_blue_costs    = st.Costs.Stroke.Blue
   options.text_offset_x_costs             = st.Costs.Pos.OffsetX
   options.text_offset_y_costs             = st.Costs.Pos.OffsetY
+  options.font_alpha_costs_mp             = st.Costs.MP.Color.Alpha
+  options.font_color_red_costs_mp         = st.Costs.MP.Color.Red
+  options.font_color_green_costs_mp       = st.Costs.MP.Color.Green
+  options.font_color_blue_costs_mp        = st.Costs.MP.Color.Blue
+  options.font_alpha_costs_tp             = st.Costs.TP.Color.Alpha
+  options.font_color_red_costs_tp         = st.Costs.TP.Color.Red
+  options.font_color_green_costs_tp       = st.Costs.TP.Color.Green
+  options.font_color_blue_costs_tp        = st.Costs.TP.Color.Blue
 
   -- [Texts - Recast] --
   options.font_recasts                    = st.Recasts.Font

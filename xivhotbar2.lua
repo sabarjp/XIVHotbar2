@@ -124,6 +124,7 @@ function initialize()
   player:initialize(windower_player, server, theme_options)
   player:load_hotbar()
   keyboard:bind_keys(theme_options.rows, theme_options.columns)
+
   ui:load_player_hotbar(player:get_hotbar_info())
   ui.hotbar.ready = true
   ui.hotbar.initialized = true
@@ -166,11 +167,13 @@ end
 
 -- reload hotbar --
 function reload_hotbar(using_pet_name)
+  if ui.theme.dev_mode then log("Reloading Hotbar.") end
+
   coroutine.sleep(1)
 
   -- the pet name tends to be unreliable, so we pass it in as a param when possible
   local pet_name = using_pet_name or ''
-  if not using_pet_name then
+  if using_pet_name == nil then
     local pet = windower.ffxi.get_mob_by_target('pet') or nil
     if pet ~= nil then
       pet_name = pet.name
@@ -267,7 +270,7 @@ windower.register_event('addon command', function(command, ...)
   if command == 'reload' then
     if ui.theme.dev_mode then log('Reloading Hotbar.') end
     reload_hotbar()
-  elseif command == 'release' then         --Custom change to release pet
+  elseif command == 'release' then           --Custom change to release pet
     windower.chat.input('/pet release <me>') -- Need to us ct
   elseif command == 'set' then
     set_action_command(args)
@@ -523,7 +526,7 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
     loaded = false
     ui.hotbar.hide_hotbars = true
     ui:hide()
-  elseif id == 0x00A then   -- load new zone
+  elseif id == 0x00A then -- load new zone
     --print("begin load")
     loaded = false
     zoning = true
@@ -587,10 +590,8 @@ end)
 
 function set_weapon_type(is_ranged, bag, index)
   local item = resources.items[windower.ffxi.get_items(bag, index).id]
-
   if item ~= nil then
     local new_skill_type = resources.items[windower.ffxi.get_items(bag, index).id].skill
-
     if theme_options.enable_weapon_switching == true then
       if new_skill_type ~= nil then
         if is_ranged then
@@ -631,6 +632,58 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
   end
 end)
 
+-- Updates on blu spell setting
+windower.register_event('outgoing chunk', function(id, original, modified, injected, blocked)
+  if id == 0x102 then
+    if windower.ffxi.get_player().main_job_id == 16 or windower.ffxi.get_player().sub_job_id == 16 then
+      if ui.theme.dev_mode then log("Set blue magic. Reloading Hotbar.") end
+      -- takes time after setting blu magic for abilities to drop off
+      coroutine.sleep(1.5)
+      reload_hotbar()
+    end
+  end
+end)
+
+-- helper function for packet debugging
+local function byte_to_binary(byte)
+  local binary = {}
+  for i = 7, 0, -1 do
+    table.insert(binary, math.floor(byte / (2 ^ i)) % 2)
+  end
+  return table.concat(binary)
+end
+
+-- Updates on blu spell list
+windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
+  if id == 0x044 then
+    if windower.ffxi.get_player().main_job_id == 16 or windower.ffxi.get_player().sub_job_id == 16 then
+      local packet = packets.parse('incoming', original)
+      if packet['Job'] == 16 then
+        -- Iterate over each character in the string and convert to binary
+        local binary_dump = {}
+        local set_blu_spells = {}
+
+        -- blu spells live in the region 0x08 through 0x1B
+        -- (or decimal 8 through 27)
+        for i = 9, 28 do
+          local byte = string.byte(original, i)
+          --table.insert(binary_dump, byte_to_binary(byte)) -- debugging
+          if byte ~= 0x0 then
+            table.insert(set_blu_spells, string.byte(original, i) + 512)
+          end
+          -- Add a line break every 8 bytes
+          if i % 4 == 0 then
+            table.insert(binary_dump, "\n")
+          end
+        end
+        -- print("  " .. table.concat(binary_dump, "  "))  -- debugging, dump binary
+        -- print(table.concat(set_blu_spells, "  ")) -- debugging, dump blu spells
+        player:update_blue_magic(set_blu_spells)
+      end
+    end
+  end
+end)
+
 -- Reloads hotbar if new weaponskill is learned.
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
   if message_id == 45 then
@@ -656,15 +709,22 @@ windower.register_event('gain buff', function(id)
   if id == 143 or id == 269 then -- Level Cap / Level Sync, Status Effect
     if ui.theme.dev_mode then log("Level Capped/Sync'd. Reloading Hotbar.") end
     reload_hotbar()
-  elseif id == 55 then                                        -- Astral Flow - Status Effect
+  elseif id == 55 then                                         -- Astral Flow - Status Effect
     reload_hotbar()
-  elseif id == 377 then                                       -- Tabula Rasa- Status Effect
+  elseif id == 377 then                                        -- Tabula Rasa- Status Effect
     reload_hotbar()
   elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White for stratagems
     reload_hotbar()
-  elseif (id >= 381 and id <= 385) or id == 588 then          -- finishing move 1/2/3/4/5/6+
+  elseif (id >= 381 and id <= 385) or id == 588 then           -- finishing move 1/2/3/4/5/6+
     player:update_finishing_moves(id)
-    reload_hotbar()
+  elseif id == 47 or id == 360 or id == 361 or id == 229 or id == 583 then
+    -- manafont, penury, parsimony, manawell, apogee
+    player:add_buff(id)
+    ui:update_mp_costs(player:get_hotbar_info())
+  elseif id == 376 or id == 408 then
+    -- trance, sekkanoki
+    player:add_buff(id)
+    ui:update_tp_costs(player:get_hotbar_info())
   end
 end)
 
@@ -672,15 +732,22 @@ windower.register_event('lose buff', function(id)
   if id == 269 then -- Level Cap / Level Sync - Status Effect
     log("Leve Sync'd Removed. Reloading Hotbar.")
     reload_hotbar()
-  elseif id == 55 then                                        -- Astral Flow - Status Effect
+  elseif id == 55 then                                         -- Astral Flow - Status Effect
     reload_hotbar()
-  elseif id == 377 then                                       -- Tabula Rasa - Status Effect
+  elseif id == 377 then                                        -- Tabula Rasa - Status Effect
     reload_hotbar()
   elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White
     reload_hotbar()
-  elseif (id >= 381 and id <= 385) or id == 588 then          -- finishing move 1/2/3/4/5/6+
+  elseif (id >= 381 and id <= 385) or id == 588 then           -- finishing move 1/2/3/4/5/6+
     player:reset_finishing_moves()
-    reload_hotbar()
+  elseif id == 47 or id == 360 or id == 361 or id == 229 or id == 583 then
+    -- manafont, penury, parsimony, manawell, apogee
+    player:remove_buff(id)
+    ui:update_mp_costs(player:get_hotbar_info())
+  elseif id == 376 or id == 408 then
+    -- trance, sekkanoki
+    player:remove_buff(id)
+    ui:update_tp_costs(player:get_hotbar_info())
   end
 end)
 
@@ -722,11 +789,12 @@ end
 --This event is reloading hotbar if a pet dies or released
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
   local packet = packets.parse('incoming', original)
-  if id == 0x068 then                     -- Pet Status Packet Update
+  if id == 0x068 then                       -- Pet Status Packet Update
     if packet['Owner ID'] == player.id then -- If player.id and pet owner ID are the same
-      if packet['Pet Index'] == 0 then    -- If there is no pet. Meaning it died or was released.
+      if packet['Pet Index'] == 0 then      -- If there is no pet. Meaning it died or was released.
         if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
-        coroutine.sleep(.1)
+        -- takes time after a pet dies for its abilities to drop off
+        coroutine.sleep(2.5)
         reload_hotbar('')
       end
     end
@@ -737,9 +805,9 @@ end)
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
   if state.ready == true then
     local packet = packets.parse('incoming', original)
-    if id == 0x068 then                                        -- If the second pet update packet comes in
+    if id == 0x068 then                                           -- If the second pet update packet comes in
       if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
-        if packet['Pet Index'] ~= 0 then                       -- If the pet has an index of non zero then pet summoned succesfully
+        if packet['Pet Index'] ~= 0 then                          -- If the pet has an index of non zero then pet summoned succesfully
           if ui.theme.dev_mode then log("Pet Summoned " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
           reload_hotbar(packet['Pet Name'])
         end
@@ -760,6 +828,14 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
     end
   end
 end)
+
+windower.register_event('incoming text', function(text)
+  if string.find(text, windower.ffxi.get_player().name .. " learns") then
+    if ui.theme.dev_mode then log("Learned a new spell. Reloading Hotbar.") end
+    reload_hotbar()
+  end
+end)
+
 
 --- Reloads hotbar when using GM command. ** For development only **
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
