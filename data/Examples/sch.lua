@@ -321,12 +321,12 @@ xivhotbar_keybinds_job['RDM'] = {
 }
 
 xivhotbar_keybinds_job['Club'] = {
-  { 'battle 5 12', 'ws', 'Shining Strike', 't', 'Shining' },
-  { 'battle 5 12', 'ws', 'Starlight',      't', 'Star' },
-  { 'battle 5 12', 'ws', 'True Strike',    't', 'True' },
-  { 'battle 5 12', 'ws', 'Black Halo',     't', 'Halo' },
-  { 'battle 5 12', 'ws', 'Realmrazer',     't', 'Razer' },
-  { 'battle 5 12', 'ws', 'Randgrith',      't', 'RGrith' },
+  { 'battle 5 12', 'ws', 'Shining Strike', 't',  'Shining' },
+  { 'battle 5 12', 'ws', 'Starlight',      'me', 'Star' },
+  { 'battle 5 12', 'ws', 'True Strike',    't',  'True' },
+  { 'battle 5 12', 'ws', 'Black Halo',     't',  'Halo' },
+  { 'battle 5 12', 'ws', 'Realmrazer',     't',  'Razer' },
+  { 'battle 5 12', 'ws', 'Randgrith',      't',  'RGrith' },
 }
 
 xivhotbar_keybinds_job['Staff'] = {
