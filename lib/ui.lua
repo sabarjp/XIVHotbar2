@@ -830,6 +830,7 @@ end
 
 --     end
 -- end
+
 -- load action into a hotbar slot
 function ui:load_action(row, slot, action, player_vitals)
   local action_map = { ['ma'] = 'spells', ['ja'] = 'abilities', ['ws'] = 'weaponskills' }

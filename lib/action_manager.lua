@@ -294,142 +294,75 @@ local function parse_general_binds(hotbar)
   end
 end
 
+-- This function will check if an action has its requirements met before adding it
+-- to the live hotbars. This involves validating various conditions based on the
+-- action type (e.g., magic abilities, job abilities, weapon skills, etc.) and
+-- ensures that only valid actions are registered for use.
+-- The function processes input as an array where:
+--   action_array[1]: Specifies the hotbar slot (e.g., "slot 1 2").
+--   action_array[2]: Defines the action type (e.g., 'ma', 'ja', 'ws').
+--   action_array[3]: Represents the action name or ID.
+--
+-- Key considerations include:
+--   - Ensuring the character meets level requirements for spells/abilities.
+--   - Verifying if spells/abilities are learned.
+--   - Handling hotbar slot conflicts and previous actions logically.
+--   - Special handling for unlearned spells and their tier lists.
+--   - Support for diverse action types (magic, job abilities, etc.).
+-- Top-level function to check if an action meets its requirements before being added to live hotbars.
+-- Function to check if an action meets its requirements before being added to live hotbars.
 function action_req_check(action_array)
-  local slot_key = T(action_array[1]:split(' '))
-  row = tonumber(slot_key[2])
-  col = tonumber(slot_key[3])
+  local action_type = action_array[2] -- Action type (e.g., 'ma', 'ja', 'ws').
+  local action_name = action_array[3] -- Specific action name or identifier.
+  local slot = action_array[1]        -- Slot identifier (e.g., 'battle 3 8').
 
+  -- Ensure static variables are initialized.
+  previous_slot_key = previous_slot_key or nil
+  previous_learned = previous_learned or false
 
-  -- print("-----------------------")
-  -- for k,v in pairs(tier_list) do
-  --     print(v)
-  -- end
-  -- print("-----------------------")
+  -- Ensure spell meets level requirements and is learned, if applicable.
+  if action_type == 'ma' then
+    if not check_spell_level(action_name) then
+      previous_slot_key = slot -- Update previous slot tracking.
+      previous_learned = false
+      return false             -- Spell does not meet level requirements.
+    end
 
-
-  if action_array[2] == 'ma' then
-    -- Note: create function validate_ma to do the below code in a more organized manner
-    if check_spell_level(action_array[3]) == true then
-      if check_if_spell_learned(action_array[3]) == true then
-        -- LEARNED AND PREVIOUS IS SAME SLOT --
-        if previous_slot == action_array[1] then --If previous action was on same slot and character meets level requirement but not learned requirement
-          if previous_learned == true then
-            table.insert(tier_list, action_array[3])
-            previous_learned = true
-            tier_list_complete = true
-            for k, v in pairs(tier_list) do
-              if v == false then
-                tier_list_complete = false
-              end
-            end
-            if tier_list_complete == true then
-              not_learned_spells_row_slot[action_array[3]] = false
-            end
-            previous_level_req_met = true
-            return false -- If previous spell meets requirements then return false and dont parse this spell
-          elseif previous_learned ~= true then
-            for k, v in pairs(tier_list) do
-              if v ~= false then
-                if previous_level_req_met == true then
-                  not_learned_spells_row_slot[action_array[3]] = action_array[1]
-                end
-                previous_slot = action_array[1]
-                previous_learned = true
-                previous_level_req_met = true
-                return false
-              end
-            end
-            table.insert(tier_list, action_array[3])
-
-            if previous_level_req_met == true then
-              not_learned_spells_row_slot[action_array[3]] = action_array[1]
-            end
-            previous_slot = action_array[1]
-            previous_learned = true
-            previous_level_req_met = true
-            return true
-          end
-          -- LEARNED AND PREVIOUS IS NOT SAME SLOT --
-        elseif previous_slot ~= action_array[1] then -- Head of the list, could just be a list of 1.
-          tier_list = {}                             -- Empty this list and start new list with action name on next line.
-          table.insert(tier_list, action_array[3])
-
-          not_learned_spells_row_slot[action_array[3]] = false
-          previous_slot = action_array[1]
-          previous_learned = true
-          previous_level_req_met = true
-          return true
-        end
-      elseif check_if_spell_learned(action_array[3]) ~= true then
-        -- NOT LEARNED AND PREVIOUS NOT SAME SLOT --
-        if previous_slot ~= action_array[1] then --If action doesn't share a hotbar slot
-          tier_list = {}
-          table.insert(tier_list, false)
-
-          not_learned_spells_row_slot[action_array[3]] = action_array[1]
-          for key, val in pairs(spells) do
-            if action_array[3] == spells[key]['en'] then
-              table.insert(not_learned_spells, action_array[3])
-              previous_slot = action_array[1]
-              previous_learned = false
-              previous_level_req_met = true
-              return true -- Character is correct level for spell but hasn't learned it.
-            end
-          end
-          -- NOT LEARNED AND PREVIOUS IS SAME SLOT --
-        elseif previous_slot == action_array[1] then
-          table.insert(tier_list, false)
-          for k, v in pairs(tier_list) do
-            if v ~= false then
-              not_learned_spells_row_slot[action_array[3]] = action_array[1]
-
-              break
-            end
-          end
-          previous_slot = action_array[1]
+    if check_if_spell_learned(action_name) then
+      if previous_slot_key == slot and previous_learned then
+        return false -- Prefer the first eligible spell in the slot.
+      end
+      -- Update slot and learned tracking.
+      previous_slot_key = slot
+      previous_learned = true
+      return true -- Successfully add the learned spell.
+    else
+      -- Handle unlearned spells.
+      not_learned_spells_row_slot[action_name] = slot
+      for key, val in pairs(spells) do
+        if action_name == spells[key]['en'] then
+          table.insert(not_learned_spells, action_name) -- Add to unlearned spells list.
+          previous_slot_key = slot
           previous_learned = false
-          previous_level_req_met = true
-          return false -- Character is correct level for spell but hasn't learned it.
+          return true -- Spell is valid but not learned.
         end
       end
-    elseif check_spell_level(action_array[3]) ~= true then
-      if previous_slot ~= action_array[1] then
-        tier_list = {}
-        table.insert(tier_list, false)
-        previous_slot = action_array[1]
-        previous_learned = false
-        previous_level_req_met = false
-      elseif previous_slot == action_array[1] then
-        table.insert(tier_list, false)
-        previous_slot = action_array[1]
-        previous_learned = false
-        previous_level_req_met = false
-      end
+      return false -- Spell is invalid.
     end
-  elseif action_array[2] == 'ja' then
-    if check_if_ability_learned(action_array[3]) == true then
-      return true
-    end
-    return false
-  elseif action_array[2] == 'bstpet' then
-    if check_if_pet_ability_usable(action_array[3]) == true then
-      return true
-    end
-    return false
-  elseif action_array[2] == 'ws' then
-    if check_if_ws_learned(action_array[3]) == true then
-      return true
-    end
-    return false
-  elseif action_array[2] == 'ct' or action_array[2] == 'pet' then
-    return true
-  elseif action_array[2] == 'input' then
-    return true
-  elseif action_array[2] == 'macro' then
-    return true
-  elseif action_array[2] == 'gs' then
+  elseif action_type == 'ja' then
+    -- Check if job ability is learned.
+    return check_if_ability_learned(action_name)
+  elseif action_type == 'bstpet' then
+    -- Check if Beastmaster pet ability is usable.
+    return check_if_pet_ability_usable(action_name)
+  elseif action_type == 'ws' then
+    -- Check if weapon skill is learned.
+    return check_if_ws_learned(action_name)
+  elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' then
+    -- Always allow these action types.
     return true
   else
+    -- Reject unrecognized action types.
     return false
   end
 end
