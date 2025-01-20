@@ -278,11 +278,13 @@ windower.register_event('addon command', function(command, ...)
     else
       windower.chat.input('/mount ' .. args[1] .. ' <me>')
     end
-  elseif command == 'reload' then
-    print("Reload 2")
-    flush_old_keybinds()
-    bind_keys()
-    player:load_hotbar()
+  elseif command == 'execute' then
+    -- special command that is triggered by a windower keybind into an action
+    -- on this addon
+    change_active_hotbar(tonumber(args[1]))
+    if tonumber(args[2]) <= theme_options.columns then
+      trigger_action(tonumber(args[2]))
+    end
   elseif command == 'move' then
     state.demo = not state.demo
     if state.demo then

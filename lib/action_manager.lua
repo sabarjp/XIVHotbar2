@@ -311,6 +311,7 @@ end
 --   - Support for diverse action types (magic, job abilities, etc.).
 -- Top-level function to check if an action meets its requirements before being added to live hotbars.
 -- Function to check if an action meets its requirements before being added to live hotbars.
+-- Function to check if an action meets its requirements before being added to live hotbars.
 function action_req_check(action_array)
   local action_type = action_array[2] -- Action type (e.g., 'ma', 'ja', 'ws').
   local action_name = action_array[3] -- Specific action name or identifier.
@@ -318,36 +319,31 @@ function action_req_check(action_array)
 
   -- Ensure static variables are initialized.
   previous_slot_key = previous_slot_key or nil
-  previous_learned = previous_learned or false
+  last_eligible_spell = last_eligible_spell or nil          -- Track the last eligible spell.
+  unlearned_spells_in_slot = unlearned_spells_in_slot or {} -- Track unlearned spells per slot.
+
+  -- Reset state when moving to a new slot.
+  if slot ~= previous_slot_key then
+    previous_slot_key = slot
+    last_eligible_spell = nil
+    unlearned_spells_in_slot = {}
+  end
 
   -- Ensure spell meets level requirements and is learned, if applicable.
   if action_type == 'ma' then
     if not check_spell_level(action_name) then
-      previous_slot_key = slot -- Update previous slot tracking.
-      previous_learned = false
-      return false             -- Spell does not meet level requirements.
+      return false -- Spell does not meet level requirements.
     end
 
     if check_if_spell_learned(action_name) then
-      if previous_slot_key == slot and previous_learned then
-        return false -- Prefer the first eligible spell in the slot.
-      end
-      -- Update slot and learned tracking.
-      previous_slot_key = slot
-      previous_learned = true
-      return true -- Successfully add the learned spell.
+      -- Update the last eligible spell for this slot.
+      last_eligible_spell = action_name
+      return true -- Continue checking other spells in the same slot.
     else
-      -- Handle unlearned spells.
+      -- Track unlearned spells for UI purposes.
       not_learned_spells_row_slot[action_name] = slot
-      for key, val in pairs(spells) do
-        if action_name == spells[key]['en'] then
-          table.insert(not_learned_spells, action_name) -- Add to unlearned spells list.
-          previous_slot_key = slot
-          previous_learned = false
-          return true -- Spell is valid but not learned.
-        end
-      end
-      return false -- Spell is invalid.
+      table.insert(unlearned_spells_in_slot, action_name)
+      return true -- Spell is valid but not learned.
     end
   elseif action_type == 'ja' then
     -- Check if job ability is learned.

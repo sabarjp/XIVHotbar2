@@ -42,10 +42,6 @@ defaults.Hotbar.HideEmptySlots = true
 defaults.Hotbar.HideActionName = false
 defaults.Hotbar.HideActionCost = false
 
-
-
-
-
 defaults.Hotbar.Offsets                      = {}
 defaults.Hotbar.Offsets.First                = { Vertical = false, OffsetX = 675, OffsetY = 1010 }
 defaults.Hotbar.Offsets.Second               = { Vertical = false, OffsetX = 675, OffsetY = 956 }
