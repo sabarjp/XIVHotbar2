@@ -134,8 +134,6 @@ local overlay_images_setup = {
 
 
 -- ui variables
--- ui.battle_notice = images.new(table.copy(images_setup, true))
-ui.battle_notice = images.new()
 ui.feedback_icon = nil
 ui.hotbars = {}
 
@@ -1030,7 +1028,6 @@ end
 
 -- hide all ui components
 function ui:hide()
-  self.battle_notice:hide()
   self.feedback_icon:hide()
   self.inventory_count:hide()
   if (self.active_environment ~= nil) then
@@ -1094,7 +1091,6 @@ end
 
 -- load player hotbar
 function ui:load_player_hotbar(player_hotbar, environment, player_vitals)
-  --if environment == 'field' and self.theme.hide_battle_notice == false then
   if environment == 'field' then
     self.active_environment['field']:color(255, 255, 255)
     self.active_environment['battle']:color(100, 100, 100)
