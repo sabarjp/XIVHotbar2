@@ -208,12 +208,6 @@ end
 -- Addon Commands -- --
 --------------------
 
--- command to set an action in a hotbar --
-function set_action_command(args)
-  player:insert_action(args)
-  reload_hotbar()
-end
-
 function flush_old_keybinds()
   for i = 1, ui.hotbar.rows, 1 do
     for j = 1, ui.hotbar.columns, 1 do
@@ -255,8 +249,7 @@ local function print_help()
   log("Commands:")
   log("move: Enables moving the hotbars by dragging them, also writes the changes to settings.xml if used again.")
   log("reload: Reloads the hotbar, if you have made changes to the hotbar-file, this is faster for loading.")
-  log("Dependencies:")
-  log("shortcuts: Used for weapon skills.")
+  log("mount: either dismounts if mounted, or mounts the indicated mount")
 end
 
 
@@ -270,10 +263,6 @@ windower.register_event('addon command', function(command, ...)
   if command == 'reload' then
     if ui.theme.dev_mode then log('Reloading Hotbar.') end
     reload_hotbar()
-  elseif command == 'release' then           --Custom change to release pet
-    windower.chat.input('/pet release <me>') -- Need to us ct
-  elseif command == 'set' then
-    set_action_command(args)
   elseif command == 'help' then
     print_help()
   elseif command == 'mount' then
@@ -285,30 +274,15 @@ windower.register_event('addon command', function(command, ...)
       end
     end
     if args[1] == nil then
-      windower.chat.input('/mount crab <me>')
+      windower.chat.input('/mount raptor <me>')
     else
       windower.chat.input('/mount ' .. args[1] .. ' <me>')
-    end
-  elseif command == 'summon' then
-    local avatar_id = player:determine_summoner_id(args[1])
-    if (avatar_id == 0) then
-      print("Error, couldn't find avatar '" .. args[1] .. "'... Unable to load actions for it.")
-    end
-    windower.chat.input('/ma ' .. args[1] .. ' <me>')
-  elseif command == 'execute' then
-    change_active_hotbar(tonumber(args[1]))
-    if tonumber(args[2]) <= theme_options.columns then
-      trigger_action(tonumber(args[2]))
     end
   elseif command == 'reload' then
     print("Reload 2")
     flush_old_keybinds()
     bind_keys()
     player:load_hotbar()
-  elseif command == 'add' then
-    player:insert_action(args)
-  elseif command == 'zoneid' then
-    print(windower.ffxi.get_info().zone)
   elseif command == 'move' then
     state.demo = not state.demo
     if state.demo then
