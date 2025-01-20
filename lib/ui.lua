@@ -29,7 +29,6 @@
 local database = require('priv_res/database') -- TODO: IMPORT FROM RES
 local formatter = require('lib/text_formatter')
 local keyboard = require('lib/keyboard_mapper')
-local spell_list = require('priv_res/spells')
 
 local ui = {}
 
@@ -1393,110 +1392,91 @@ function ui:check_recasts(player_hotbar, environment, player_vitals)
   end
 end
 
+-- this shows a mouse-over effect on an icon
 function ui:check_hover()
   local disabled_opacity = self.theme.disabled_slot_opacity
-  local enabled_opacity  = 200
-  local row              = self.hover_icon.row
-  local col              = self.hover_icon.col
-  local prev_col         = self.hover_icon.col
-  local prev_row         = self.hover_icon.row
+  local enabled_opacity = 200
+  local row = self.hover_icon.row
+  local col = self.hover_icon.col
+  local prev_row = self.prev_row
+  local prev_col = self.prev_col
 
-  if (row ~= nil and col ~= nil) then
-    if (self.disabled_icons[row][col] == 0) then
+  -- Handle previously hovered icon
+  if prev_row and prev_col then
+    local opacity = self.disabled_icons[prev_row][prev_col] == 1 and disabled_opacity or enabled_opacity
+    self.hotbars[prev_row].slot_icons[prev_col]:alpha(opacity)
+  end
+
+  -- Handle currently hovered icon
+  if row and col then
+    if self.disabled_icons[row][col] == 0 then
       self.hotbars[row].slot_icons[col]:alpha(disabled_opacity)
       prev_row, prev_col = row, col
     end
-  elseif (prev_row ~= nil and prev_col ~= nil) then
-    if (self.disabled_icons[prev_row][prev_col] == 1) then
-      opacity = disabled_opacity
-    else
-      opacity = enabled_opacity
-    end
-    self.hotbars[prev_row].slot_icons[prev_col]:alpha(opacity)
-    prev_col = nil
-    prev_row = nil
+  else
+    prev_row, prev_col = nil, nil
   end
 
-  self.prev_col       = prev_col
-  self.prev_row       = prev_row
+  -- Update state
+  self.prev_row = prev_row
+  self.prev_col = prev_col
   self.hover_icon.row = row
   self.hover_icon.col = col
 end
 
------------------
--- Feedback UI --
------------------
+--------------------------------------------------------------------
+-- Feedback UI to indicate a icon is being pressed --
+--------------------------------------------------------------------
 
--- trigger feedback visuals in given hotbar and slot
+-- trigger feed back to occur on the next frame
 function ui:trigger_feedback(row, slot)
-  --if slot == 0 then slot = 10 end
-
   self.feedback_icon:pos(get_slot_x(self, row, slot), get_slot_y(self, row, slot))
+  self.feedback.current_opacity = self.feedback.max_opacity -- Reset opacity on activation
   self.feedback.is_active = true
 end
 
 -- show feedback
 function ui:show_feedback()
-  if self.feedback.current_opacity ~= 0 then
+  if self.feedback.is_active and self.feedback.current_opacity > 0 then
     self.feedback.current_opacity = self.feedback.current_opacity - self.feedback.speed
     self.feedback_icon:alpha(self.feedback.current_opacity)
     self.feedback_icon:show()
-    if self.feedback.current_opacity < 0 then
-      self.feedback_icon:hide()
-      self.feedback.current_opacity = self.feedback.max_opacity
-      self.feedback.is_active = false
-    end
+  else
+    self.feedback_icon:hide()
+    self.feedback.is_active = false
   end
 end
 
 -- Returns true if the coordinates are over a button
--- Credit: maverickdfz
--- https://github.com/maverickdfz/FFXIAddons/blob/master/xivhotbar/ui.lua
 function ui:hovered(x, y)
-  local row = nil
-  local slot = nil
-  local found = false
+  local row, slot, found = nil, nil, false
 
-  local pos_x
-  local pos_y
-  local debug_msg
-  local off_x
-  local off_y
-  local found = false
-  pos_x = self.active_environment['battle']:pos_x()
-  pos_y = self.active_environment['battle']:pos_y() - 60
-  off_x = pos_x + 60
-  off_y = pos_y + 100
-  if ((pos_x <= x and x <= off_x) or (pos_x >= x and x >= off_x))
-      and ((pos_y <= y and y <= off_y) or (pos_y >= y and y >= off_y))
-  then
-    hotbar, slot, found = nil, 100, true
+  -- Check battle environment area
+  local pos_x = self.active_environment['battle']:pos_x()
+  local pos_y = self.active_environment['battle']:pos_y() - 60
+  local off_x, off_y = pos_x + 60, pos_y + 100
+
+  if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
+    return nil, 100 -- Immediate return when in battle area
   end
-  if found == false then
-    for h = 1, #self.hotbars, 1 do
-      for i = 1, self.theme.columns, 1 do
-        pos_x = get_slot_x(self, h, i)
-        pos_y = get_slot_y(self, h, i)
-        off_x = pos_x + self.image_width
-        off_y = pos_y + self.image_height
 
-        if ((pos_x <= x and x <= off_x) or (pos_x >= x and x >= off_x))
-            and ((pos_y <= y and y <= off_y) or (pos_y >= y and y >= off_y))
-        then
-          row, slot, found = h, i, true
-          break
-        end
-      end
+  -- Check hotbar slots
+  for h = 1, #self.hotbars do
+    for i = 1, self.theme.columns do
+      pos_x = get_slot_x(self, h, i)
+      pos_y = get_slot_y(self, h, i)
+      off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
 
-      if (found == true) then
-        break
+      if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
+        return h, i -- Return immediately once a slot is found
       end
     end
   end
 
-  return row, slot
+  return row, slot -- Return nil, nil if no match is found
 end
 
+-- this shows the tooltip for an action
 function ui:light_up_action(x, y, row, column, player_hotbar, environment, vitals)
   local icon_x = get_slot_x(self, row, column)
   local icon_y = get_slot_y(self, row, column)
