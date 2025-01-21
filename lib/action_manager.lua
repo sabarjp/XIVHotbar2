@@ -28,29 +28,25 @@
 ]]
 
 local file_manager = require('lib/file_manager')
-local ui = require('lib/ui')
 local spell_list = require('priv_res/spells')
 local horizon_spell_list = require('priv_res/horizon_spells')
 local ws_list = require('priv_res/weapon_skills')
 local ability_list = require('priv_res/job_abilities')
-local job_list = require('priv_res/jobs')
-local job_root = {}
 local action_manager = {}
 local mainjob_actions = {}
 local subjob_actions = {}
 local petname_actions = {}
 local general_actions = {}
 local stance_actions = {}
-local job_ability_actions = {}
 local weaponskill_actions = {}
 local current_stance = nil
 local learned_spells_name = {}
 local learned_ws_id = {}
 local learned_abilities_id = {}
 local usable_pet_abilities_name = {}
-not_learned_spells = {}
+
+-- global that is used by the UI to indicate where learnable abilities exist
 not_learned_spells_row_slot = {}
-tier_list = {}
 
 buff_table = {
   -- Scholar
@@ -319,41 +315,47 @@ function action_req_check(action_array)
 
   -- Ensure static variables are initialized.
   previous_slot_key = previous_slot_key or nil
-  last_eligible_spell = last_eligible_spell or nil          -- Track the last eligible spell.
-  unlearned_spells_in_slot = unlearned_spells_in_slot or {} -- Track unlearned spells per slot.
+  last_eligible_spell = last_eligible_spell or nil -- Track the last eligible spell.
 
   -- Reset state when moving to a new slot.
   if slot ~= previous_slot_key then
     previous_slot_key = slot
     last_eligible_spell = nil
-    unlearned_spells_in_slot = {}
   end
 
   -- Ensure spell meets level requirements and is learned, if applicable.
   if action_type == 'ma' then
-    if not check_spell_level(action_name) then
-      return false -- Spell does not meet level requirements.
+    if not meets_spell_level_req(action_name) then
+      return false
     end
 
-    if check_if_spell_learned(action_name) then
-      -- Update the last eligible spell for this slot.
+    if is_spell_learned(action_name) then
+      -- Update the last eligible spell for this slot, since we will now examine the next.
       last_eligible_spell = action_name
-      return true -- Continue checking other spells in the same slot.
+      return true
     else
-      -- Track unlearned spells for UI purposes.
+      -- Spell is valid, but not learned, so add it to the data structure that maps to the
+      -- scroll icon to indicate it is learnable
       not_learned_spells_row_slot[action_name] = slot
-      table.insert(unlearned_spells_in_slot, action_name)
-      return true -- Spell is valid but not learned.
+
+      -- if we already had an eligible spell in the slot, then we will be using that instead of
+      -- the unlearned yet learnable one, if nothing else was in this slot, then no harm in putting
+      -- the unlearned one here as a placeholder with the scroll icon.
+      if last_eligible_spell then
+        return false
+      else
+        return true
+      end
     end
   elseif action_type == 'ja' then
     -- Check if job ability is learned.
-    return check_if_ability_learned(action_name)
+    return is_job_ability_learned(action_name)
   elseif action_type == 'bstpet' then
     -- Check if Beastmaster pet ability is usable.
-    return check_if_pet_ability_usable(action_name)
+    return is_pet_ability_usable(action_name)
   elseif action_type == 'ws' then
     -- Check if weapon skill is learned.
-    return check_if_ws_learned(action_name)
+    return is_weaponskill_learned(action_name)
   elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' then
     -- Always allow these action types.
     return true
@@ -363,7 +365,7 @@ function action_req_check(action_array)
   end
 end
 
-function check_spell_level(spell_name_en)
+function meets_spell_level_req(spell_name_en)
   for key, val in pairs(spells) do
     if spells[key]['en'] == spell_name_en then
       if spells[key]['levels'][windower.ffxi.get_player().main_job_id] == nil then                                                     -- Check to see if current main job even has a level associated with spell
@@ -383,7 +385,7 @@ function check_spell_level(spell_name_en)
   end
 end
 
-function check_if_spell_learned(spell_name_en)
+function is_spell_learned(spell_name_en)
   for k, v in pairs(learned_spells_name) do
     if v == spell_name_en then
       --These are spells that player meets level and learned requirement
@@ -395,7 +397,7 @@ function check_if_spell_learned(spell_name_en)
 end
 
 -- ONLY USED TO CHECK IF SPELL IS GREYED OUT
-function check_if_spell_usable(spell_name_en, player)
+function is_spell_usable(spell_name_en, player)
   local spell = nil
   for key, val in pairs(spells) do
     if spells[key]['en'] == spell_name_en then
@@ -403,14 +405,14 @@ function check_if_spell_usable(spell_name_en, player)
     end
   end
 
-  local usable_by_job = check_if_spell_usable_by_a_job(spell)
-  local usable_by_blu = check_if_spell_is_set(spell, player)
+  local usable_by_job = is_spell_usable_by_a_job(spell)
+  local usable_by_blu = is_blu_spell_set(spell, player)
 
   return (usable_by_job and usable_by_blu)
 end
 
 -- help determine if blue magic is set
-function check_if_spell_is_set(spell, player)
+function is_blu_spell_set(spell, player)
   -- check if blue magic
   if spell['type'] == 'BlueMagic' then
     if player.set_blue_magic == nil then
@@ -432,7 +434,7 @@ end
 
 -- helps determine which job or subjob is capable of casting a spell, this mostly applies
 -- to scholar which has spell casting restrictions due to the addenda.
-function check_if_spell_usable_by_a_job(spell)
+function is_spell_usable_by_a_job(spell)
   -- check if castable by main job
   if spell['levels'][windower.ffxi.get_player().main_job_id] ~= nil then
     if windower.ffxi.get_player().main_job_level >= spell['levels'][windower.ffxi.get_player().main_job_id] then
@@ -489,7 +491,7 @@ function check_if_spell_usable_by_a_job(spell)
   return false
 end
 
-function check_if_ability_learned(ability_name_en)
+function is_job_ability_learned(ability_name_en)
   for key, val in pairs(ability_list) do
     if ability_list[key]['en'] == ability_name_en then
       for k, v in pairs(learned_abilities_id) do
@@ -504,7 +506,7 @@ end
 
 -- ONLY USED TO CHECK IF SPELL IS GREYED OUT
 -- helps determine if an ability can be used, for abilities that are conditional. example are dancer tp moves, dancer finishers.
-function check_if_ability_usable(ability_name_en, player)
+function is_job_ability_usable(ability_name_en, player)
   local current_tp = windower.ffxi.get_player().vitals.tp
 
   for key, val in pairs(ability_list) do
@@ -535,7 +537,7 @@ function check_if_ability_usable(ability_name_en, player)
   return true --assume otherwise we are OK
 end
 
-function check_if_pet_ability_usable(ability_index)
+function is_pet_ability_usable(ability_index)
   -- really just need to see if index exists
   local ndx = tonumber(ability_index)
   if ndx >= 1 and ndx <= #usable_pet_abilities_name then
@@ -544,7 +546,7 @@ function check_if_pet_ability_usable(ability_index)
   return false
 end
 
-function check_if_ws_learned(ws_name_en)
+function is_weaponskill_learned(ws_name_en)
   for key, val in pairs(ws_list) do
     if ws_list[key]['en'] == ws_name_en then
       for k, v in pairs(learned_ws_id) do
