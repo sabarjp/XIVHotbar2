@@ -812,7 +812,7 @@ end
 
 
 -- load action into a hotbar slot
-function ui:load_action(row, slot, action, player_vitals)
+function ui:load_action(row, slot, environment, action, player_vitals)
   local action_map = { ['ma'] = 'spells', ['ja'] = 'abilities', ['ws'] = 'weaponskills' }
 
   self:clear_slot(row, slot)
@@ -829,22 +829,13 @@ function ui:load_action(row, slot, action, player_vitals)
       self.hotbars[row].slot_keys[slot]:show()
     end
   else
-    for learnable_action, learnable_slot in pairs(not_learned_spells_row_slot) do
-      if learnable_slot then
-        local action_array1 = T(learnable_slot:split(' '))
-        local row_scroll = tonumber(action_array1[2])
-        local slot_scroll = tonumber(action_array1[3])
+    local learnable_spell_name = not_learned_spells_row_slot[environment .. ' ' .. row .. ' ' .. slot]
 
-        if row == row_scroll and slot == slot_scroll then
-          if learnable_action == action.action then
-            self.hotbars[row_scroll].slot_overlay[slot_scroll]:path(windower.addon_path ..
-              '/images/icons/custom/scroll.png')
-          else
-            self.hotbars[row_scroll].slot_overlay[slot_scroll]:path(windower.addon_path ..
-              '/images/icons/custom/upgrade.png')
-          end
-          break
-        end
+    if learnable_spell_name then
+      if learnable_spell_name == action.action then
+        self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/scroll.png')
+      else
+        self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/upgrade.png')
       end
     end
 
@@ -1064,7 +1055,7 @@ function ui:load_player_hotbar(player_hotbar, environment, player_vitals)
 
   for h = 1, self.theme.hotbar_number, 1 do
     for i = 1, self.theme.columns, 1 do
-      self:load_action(h, i, player_hotbar[environment]['hotbar_' .. h]['slot_' .. i], player_vitals)
+      self:load_action(h, i, environment, player_hotbar[environment]['hotbar_' .. h]['slot_' .. i], player_vitals)
     end
   end
 end

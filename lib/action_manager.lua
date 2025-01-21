@@ -336,7 +336,8 @@ function action_req_check(action_array)
     else
       -- Spell is valid, but not learned, so add it to the data structure that maps to the
       -- scroll icon to indicate it is learnable
-      not_learned_spells_row_slot[action_name] = slot
+      -- Add or update the mapping for the slot
+      not_learned_spells_row_slot[slot] = action_name
 
       -- if we already had an eligible spell in the slot, then we will be using that instead of
       -- the unlearned yet learnable one, if nothing else was in this slot, then no harm in putting
@@ -565,6 +566,7 @@ local function parse_binds(theme_options, player, hotbar)
   learned_ws_id = {}
   missing_actions = {}
   usable_pet_abilities_name = {}
+  not_learned_spells_row_slot = {}
 
   -- Create Learned Spells List
   if theme_options.playing_on_horizon == true then

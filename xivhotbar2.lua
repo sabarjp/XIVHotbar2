@@ -522,7 +522,7 @@ end)
 
 -- Equip / Unequip
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if id == 0x050 then --Equip/Unequip
+  if id == 0x050 then -- Equip/Unequip
     local packet = packets.parse('incoming', original)
     local slot = packet['Equipment Slot']
 
@@ -533,28 +533,36 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 
       -- index > 0 means equipping
       if evt_inv_index ~= 0 then
+        local weapon_changed = false
         if slot == 0 then
-          set_weapon_type(false, evt_bag_index, windower.ffxi.get_items().equipment.main)
+          weapon_changed = set_weapon_type(false, evt_bag_index, windower.ffxi.get_items().equipment.main)
         elseif slot == 2 then
-          set_weapon_type(true, evt_bag_index, windower.ffxi.get_items().equipment.range)
+          weapon_changed = set_weapon_type(true, evt_bag_index, windower.ffxi.get_items().equipment.range)
         end
 
-        if not zoning then
+        if not zoning and weapon_changed then
           if ui.theme.dev_mode then log("Weapon Changed. Reloading Hotbar.") end
           reload_hotbar()
         end
 
         return
-        -- 0 index is unequipping
+        -- index = 0 means unequipping
       else
+        local weapon_changed = false
         if slot == 0 then
-          player:update_weapon_type(0)
+          if player.current_weapon ~= 0 then
+            player:update_weapon_type(0)
+            weapon_changed = true
+          end
         elseif slot == 2 then
-          player:update_range_weapon_type(0)
+          if player.current_range_weapon ~= 0 then
+            player:update_range_weapon_type(0)
+            weapon_changed = true
+          end
         end
 
-        if not zoning then
-          if ui.theme.dev_mode then log("Weapon Unequiped. Reloading Hotbar.") end
+        if not zoning and weapon_changed then
+          if ui.theme.dev_mode then log("Weapon Unequipped. Reloading Hotbar.") end
           reload_hotbar()
         end
 
@@ -564,22 +572,31 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
   end
 end)
 
+-- Returns whether or not the weapon type was changed
 function set_weapon_type(is_ranged, bag, index)
   local item = resources.items[windower.ffxi.get_items(bag, index).id]
 
   if item ~= nil then
-    local new_skill_type = resources.items[windower.ffxi.get_items(bag, index).id].skill
+    local new_skill_type = item.skill
 
     if theme_options.enable_weapon_switching == true then
       if new_skill_type ~= nil then
         if is_ranged then
-          player:update_range_weapon_type(new_skill_type)
+          if player.current_range_weapon ~= new_skill_type then
+            player:update_range_weapon_type(new_skill_type)
+            return true -- Weapon type was changed
+          end
         else
-          player:update_weapon_type(new_skill_type)
+          if player.current_weapon ~= new_skill_type then
+            player:update_weapon_type(new_skill_type)
+            return true -- Weapon type was changed
+          end
         end
       end
     end
   end
+
+  return false -- Weapon type was not changed
 end
 
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
