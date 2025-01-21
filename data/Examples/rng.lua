@@ -9,13 +9,12 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 2 1',  'ja',    'Sharpshot',                  'me',    'Sharp',    'ffxiv/brd/burst_shot' },
   { 'battle 2 2',  'ja',    'Barrage',                    'me',    'Barrage',  'ffxiv/brd/barrage' },
   { 'battle 2 3',  'ja',    'Shadowbind',                 'stnpc', 'Bind',     'ffxiv/brd/shadowbite' },
-  { 'battle 2 4',  'ja',    'Velocity Shot',              'me',    'Velcty',   'ffxiv/brd/raging_strikes' },
-  { 'battle 2 5',  'ja',    'Unlimited Shot',             'me',    'Unlmtd',   'ffxiv/brd/stormbite' },
-  { 'battle 2 6',  'ja',    'Double Shot',                'me',    'Double',   'ffxiv/brd/quick_knock' },
+  { 'battle 2 4',  'ja',    'Unlimited Shot',             'me',    'Unlmtd',   'ffxiv/brd/stormbite' },
+  { 'battle 2 5',  'ja',    'Double Shot',                'me',    'Double',   'ffxiv/brd/quick_nock' },
   -- Enmity
-  { 'battle 3 10', 'ja',    'Decoy Shot',                 'me',    'Bounty',   'ffxiv/vpr/slither' },
-  { 'battle 3 11', 'ja',    'Stealth Shot',               'me',    'Stealth',  'ffxiv/brd/repelling_shot' }, -- Merit
-  { 'battle 3 12', 'ja',    'Flashy Shot',                'me',    'Flashy',   'ffxiv/brd/empyreal_arrow' }, -- Merit
+  { 'battle 2 10', 'ja',    'Decoy Shot',                 'me',    'Bounty',   'ffxiv/vpr/slither' },
+  { 'battle 2 11', 'ja',    'Stealth Shot',               'me',    'Stealth',  'ffxiv/brd/repelling_shot' }, -- Merit
+  { 'battle 2 12', 'ja',    'Flashy Shot',                'me',    'Flashy',   'ffxiv/brd/empyreal_arrow' }, -- Merit
 
   --Hotbar #3
   --sub job abilities; leave blank
@@ -25,9 +24,10 @@ xivhotbar_keybinds_job['Base'] = {
   --12 is always 2-hour ability
   { 'battle 4 1',  'ja',    'Scavenge',                   'me',    'Scvnge',   'ffxiv/role/tactician' },
   { 'battle 4 2',  'ja',    'Camouflage',                 'me',    'Camo',     'ffxiv/brd/iron_jaws' },
-  { 'battle 4 3',  'ja',    'Bounty Shot',                'me',    'Bounty',   'ffxiv/nin/mug' },
-  { 'battle 4 4',  'ja',    'Hover Shot',                 'me',    'Hover',    'ffxiv/nin/ladonsbite' },
-  { 'battle 4 5',  'ja',    'Overkill',                   'me',    'Overkill', 'ffxiv/nin/refulgent_arrow' },
+  { 'battle 4 3',  'ja',    'Bounty Shot',                't',     'Bounty',   'ffxiv/nin/mug' },
+  { 'battle 4 4',  'ja',    'Overkill',                   'me',    'Overkill', 'ffxiv/brd/refulgent_arrow' },
+  { 'battle 4 10', 'ja',    'Hover Shot',                 'me',    'Hover',    'ffxiv/brd/ladonsbite' },
+  { 'battle 4 11', 'ja',    'Velocity Shot',              'me',    'Velcty',   'ffxiv/brd/raging_strikes' },
   { 'battle 4 12', 'ja',    'Eagle Eye Shot',             't',     'EEShot',   'ffxiv/brd/apex_arrow' },
 
   -- Hotbar #5
@@ -175,59 +175,57 @@ xivhotbar_keybinds_job['DRK'] = {
 
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Axe'] = {
-  -- Wind
-  { 'battle 1 9',  'ws', 'Gale Axe',      't', 'Gale' },
   -- Heavy Hit
   { 'battle 1 9',  'ws', 'Avalanche Axe', 't', 'Avlnche' },
-  -- {'battle 1 1', 'ws', 'Spinning Axe', 't', 'Spinning'}, -- war drk run bst
-  -- {'battle 1 1', 'ws', 'Calamity', 't', 'Calamity'}, -- war bst
+  -- { 'battle 1 1',  'ws', 'Spinning Axe',  't', 'Spinning' }, -- war drk run bst
+  -- { 'battle 1 1',  'ws', 'Calamity',      't', 'Calamity' }, -- war bst
   -- Multi-Hit
   { 'battle 1 10', 'ws', 'Raging Axe',    't', 'Raging' },
   { 'battle 1 10', 'ws', 'Rampage',       't', 'Rampage' },
   { 'battle 1 10', 'ws', 'Decimation',    't', 'Decimate' }, -- war drk bst rng run
+  -- Wind
+  -- { 'battle 1 3',  'ws', 'Gale Axe',      't', 'Gale' },
   -- Specials
-  -- {'battle 1 4', 'ws', 'Mistral Axe', 't', 'Mistral'}, -- war bst
-  -- Prime #6
-  -- {'battle 1 6', 'ws', 'Blitz', 't', 'Blitz'}, -- bst
-  -- Class Specific #7
-  -- {'battle 1 7', 'ws', 'Primal Rend', 't', 'Primal'}, -- bst
-  -- Merit Point #8
+  -- { 'battle 1 4',  'ws', 'Mistral Axe',   't', 'Mistral' },   -- war bst
+  -- Class Specific
+  -- { 'battle 1 5',  'ws', 'Primal Rend',   't', 'Primal' },    -- bst
+  -- Merit Point
   { 'battle 1 11', 'ws', 'Ruinator',      't', 'Ruinator' }, -- war drk bst rng run
   -- Empyrean (Abyssea only)  #9
-  -- {'battle 1 9', 'ws', 'Cloudsplitter', 't', 'Cloudsplt'}, -- war bst
-  -- Relic (only usable with specific weapon equips) #10
-  -- {'battle 1 10', 'ws', 'Onslaught', 't', 'Onslaught'}, -- bst relic
+  -- { 'battle 1 9',  'ws', 'Cloudsplitter', 't', 'Cloudsplt' }, -- war bst
+  -- Relic & Prime (only usable with specific weapon equips) #10
+  -- { 'battle 1 10', 'ws', 'Onslaught',     't', 'Onslaught' }, -- bst relic
+  -- { 'battle 1 10', 'ws', 'Blitz',         't', 'Blitz' },     -- bst
   -- Bind WS #11
-  -- {'battle 1 12', 'ws', 'Bora Axe', 't', 'Bora'}, -- war drk run bst
+  -- { 'battle 1 11', 'ws', 'Bora Axe',      't', 'Bora' },      -- war drk run bst
   -- Bind WS #12
   { 'battle 1 12', 'ws', 'Smash Axe',     't', 'Smash' },
 }
 
 xivhotbar_keybinds_job['Dagger'] = {
-  -- Wind
-  { 'battle 1 9',  'ws', 'Gust Slash',      't', 'Gust' },
   -- Heavy Hit
   { 'battle 1 9',  'ws', 'Wasp Sting',      't', 'Wasp' },
   { 'battle 1 9',  'ws', 'Viper Bite',      't', 'Viper' }, -- rdm thf brd rng nin dnc
-  -- {'battle 1 1', 'ws', 'Shark Bite', 't', 'Shark'}, -- thf dnc
+  -- { 'battle 1 1',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
   -- Multi-Hit
-  -- {'battle 1 2', 'ws', 'Dancing Edge', 't', 'DncEdge'}, -- thf dnc
-  { 'battle 1 10', 'ws', 'Evisceration',    't', 'Evisc' }, -- war rdm thf bst brd rng nin cor dnc
+  -- { 'battle 1 2',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
+  { 'battle 1 9',  'ws', 'Evisceration',    't', 'Evisc' }, -- war rdm thf bst brd rng nin cor dnc
+  -- Wind
+  -- { 'battle 1 11', 'ws', 'Gust Slash',      't', 'Gust' },
   -- Specials
-  -- {'battle 1 4', 'ws', 'Energy Steal', 't', 'Energy'},
-  -- {'battle 1 4', 'ws', 'Energy Drain', 't', 'Energy'}, -- rdm thf brd rng nin dnc
-  -- Prime #6
-  { 'battle 1 9',  'ws', 'Ruthless Stroke', 't', 'Ruthless' },
-  -- Class Specific #7
-  -- {'battle 1 7', 'ws', 'Mandalic Stab', 't', 'Mandalic'}, -- thf
-  -- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
-  -- {'battle 1 7', 'ws', 'Pyrrhic Kleos', 't', 'Pyrrhic'}, -- dnc
-  -- Merit Point #8
-  { 'battle 1 9',  'ws', 'Exenterator',     't', 'Exent' }, -- war rdm thf bst brd rng nin cor dnc
+  -- { 'battle 1 4',  'ws', 'Energy Steal',    't', 'Energy' },
+  -- { 'battle 1 4',  'ws', 'Energy Drain',    't', 'Energy' },   -- rdm thf brd rng nin dnc
+  -- Class Specific
+  -- { 'battle 1 7',  'ws', 'Mandalic Stab',   't', 'Mandalic' }, -- thf
+  -- { 'battle 1 7',  'ws', 'Mordant Rime',    't', 'Mordant' },  -- brd
+  -- { 'battle 1 7',  'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' },  -- dnc
+  -- Merit Point
+  { 'battle 1 10', 'ws', 'Exenterator',     't', 'Exent' }, -- war rdm thf bst brd rng nin cor dnc
   -- Empyrean (Abyssea only)  #9
-  -- {'battle 1 9', 'ws', "Rudra's Storm", 't', 'Rudra'}, -- thf brd dnc
-  -- Relic (only usable with specific weapon equips) #10
-  -- {'battle 1 10', 'ws', 'Mercy Stroke', 't', 'Mercy'}, -- rdm thf brd dnc relic
+  -- { 'battle 1 9',  'ws', "Rudra's Storm",   't', 'Rudra' },    -- thf brd dnc
+  -- Relic & Prime (only usable with specific weapon equips) #10
+  { 'battle 1 10', 'ws', 'Ruthless Stroke', 't', 'Ruthless' },
+  -- { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },   -- rdm thf brd dnc relic
   -- AoE Ws #11
   { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
   { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
@@ -240,21 +238,20 @@ xivhotbar_keybinds_job['Bow'] = {
   { 'battle 1 1', 'ws', 'Flaming Arrow',     't', 'Flame' },    -- rng sub
   { 'battle 1 1', 'ws', 'Piercing Arrow',    't', 'Pierce' },   -- rng sub
   { 'battle 1 1', 'ws', 'Sidewinder',        't', 'Sidewndr' }, -- rng sub
-  { 'battle 1 1', 'ws', 'Arching Arrow',     't', 'Arch' },     -- rng
-  { 'battle 1 2', 'ws', 'Empyreal Arrow',    't', 'Empyrl' },   -- rng
+  { 'battle 1 2', 'ws', 'Arching Arrow',     't', 'Arch' },     -- rng
+  { 'battle 1 3', 'ws', 'Empyreal Arrow',    't', 'Empyrl' },   -- rng
   -- Multi-Hit
-  { 'battle 1 3', 'ws', 'Refulgent Arrow',   't', 'Reflgnt' },  -- rng sub
+  { 'battle 1 4', 'ws', 'Refulgent Arrow',   't', 'Reflgnt' },  -- rng sub
   -- Specials
-  { 'battle 1 4', 'ws', 'Dulling Arrow',     't', 'Dull' },     -- rng sub
-  { 'battle 1 4', 'ws', 'Blast Arrow',       't', 'Blast' },    -- rng
-  -- Prime #6
-  { 'battle 1 5', 'ws', 'Sarv',              't', 'Sarv' },     -- rng
-  -- Merit Point #8
+  { 'battle 1 5', 'ws', 'Dulling Arrow',     't', 'Dull' },     -- rng sub
+  { 'battle 1 5', 'ws', 'Blast Arrow',       't', 'Blast' },    -- rng
+  -- Merit Point
   { 'battle 1 6', 'ws', 'Apex Arrow',        't', 'Apex' },     -- rng sam
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 7', 'ws', "Jishnu's Radiance", 't', 'Jishnu' },   -- rng
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 8', 'ws', 'Namas Arrow',       't', 'Namas' },    -- rng sam relic
+  { 'battle 1 8', 'ws', 'Sarv',              't', 'Sarv' },     -- rng
   -- AoE Ws #11
   -- none
   -- Stun WS #12
@@ -266,24 +263,23 @@ xivhotbar_keybinds_job['Marksmanship'] = {
   { 'battle 1 1', 'ws', 'Hot Shot',     't', 'Hot' },      -- rng cor sub
   { 'battle 1 1', 'ws', 'Sniper Shot',  't', 'Sniper' },   -- rng cor sub
   { 'battle 1 1', 'ws', 'Slug Shot',    't', 'Slug' },     -- rng cor sub
-  { 'battle 1 1', 'ws', 'Detonator',    't', 'Detonate' }, -- rng cor
+  { 'battle 1 2', 'ws', 'Detonator',    't', 'Detonate' }, -- rng cor
   -- Multi-Hit
-  { 'battle 1 2', 'ws', 'Blast Shot',   't', 'Blast' },    -- rng
+  { 'battle 1 3', 'ws', 'Blast Shot',   't', 'Blast' },    -- rng
   -- Specials
-  { 'battle 1 3', 'ws', 'Split Shot',   't', 'Split' },    -- rng cor
-  { 'battle 1 3', 'ws', 'Numbing Shot', 't', 'Numb' },     -- rng cor sub
-  -- Prime #6
-  { 'battle 1 4', 'ws', 'Terminus',     't', 'Terminus' }, -- rng cor
-  -- Class Specific #7
+  { 'battle 1 4', 'ws', 'Split Shot',   't', 'Split' },    -- rng cor
+  { 'battle 1 4', 'ws', 'Numbing Shot', 't', 'Numb' },     -- rng cor sub
+  -- Class Specific
   { 'battle 1 5', 'ws', 'Heavy Shot',   't', 'Heavy' },    -- rng
   { 'battle 1 5', 'ws', 'Trueflight',   't', 'Trueflt' },  -- rng
-  -- {'battle 1 7', 'ws', 'Leaden Salute', 't', 'Leaden'}, -- cor
-  -- Merit Point #8
+  -- { 'battle 1 7',  'ws', 'Leaden Salute', 't', 'Leaden' },   -- cor
+  -- Merit Point
   { 'battle 1 6', 'ws', 'Last Stand',   't', 'Last' },     -- thf rng cor
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 7', 'ws', 'Wildfire',     't', 'Wildfire' }, -- rng cor
-  -- Relic (only usable with specific weapon equips) #10
+  -- Relic & Prime (only usable with specific weapon equips) #10
   { 'battle 1 8', 'ws', 'Coronach',     't', 'Coronach' }, -- rng cor relic
+  { 'battle 1 8', 'ws', 'Terminus',     't', 'Terminus' }, -- rng cor
   -- AoE Ws #11
   -- none
   -- Stun WS #12
