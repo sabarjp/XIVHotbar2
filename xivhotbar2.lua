@@ -396,7 +396,10 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
 end)
 
 -- ON PRERENDER --
+local frame_counter = 0
 windower.register_event('prerender', function()
+  frame_counter = frame_counter + 1
+
   if ui.hotbar.ready == false then
     return
   end
@@ -419,7 +422,12 @@ windower.register_event('prerender', function()
       moved_row_info.removed_slot.active = false
       ui:load_player_hotbar(player:get_hotbar_info())
     end
-    ui:check_recasts(player:get_hotbar_info())
+
+    -- Only execute the expensive recast logic every 3 ticks
+    if frame_counter % 3 == 0 then
+      ui:check_recasts(player:get_hotbar_info())
+    end
+
     ui:check_hover()
   end
 end)
