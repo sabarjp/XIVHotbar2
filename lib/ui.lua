@@ -1207,7 +1207,7 @@ end
 
 -- checks and sets disabled slot state
 function ui:check_and_set_disable(action)
-  local mp = windower.ffxi.get_player().vitals.mp
+  local mp = self.player.vitals.mp
 
   if action ~= nil and is_neutralized == true then
     self.disabled_slots.actions[action.action] = true

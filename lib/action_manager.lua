@@ -367,17 +367,20 @@ function action_req_check(action_array)
 end
 
 function meets_spell_level_req(spell_name_en)
+  -- TODO: prefer our global player
+  local windower_player = windower.ffxi.get_player()
+
   for key, val in pairs(spells) do
     if spells[key]['en'] == spell_name_en then
-      if spells[key]['levels'][windower.ffxi.get_player().main_job_id] == nil then                                                     -- Check to see if current main job even has a level associated with spell
-        if windower.ffxi.get_player().sub_job_level == nil or spells[key]['levels'][windower.ffxi.get_player().sub_job_id] == nil then -- Otherwise check to see if current sub job even has a level associated with spell
+      if spells[key]['levels'][windower_player.main_job_id] == nil then                                          -- Check to see if current main job even has a level associated with spell
+        if windower_player.sub_job_level == nil or spells[key]['levels'][windower_player.sub_job_id] == nil then -- Otherwise check to see if current sub job even has a level associated with spell
           return false
-        elseif windower.ffxi.get_player().sub_job_level < spells[key]['levels'][windower.ffxi.get_player().sub_job_id] then            -- Check to see if sub job level is lower than spell level
+        elseif windower_player.sub_job_level < spells[key]['levels'][windower_player.sub_job_id] then            -- Check to see if sub job level is lower than spell level
           return false
         else
           return true
         end
-      elseif windower.ffxi.get_player().main_job_level < spells[key]['levels'][windower.ffxi.get_player().main_job_id] then -- Check to see if main job level is lower than spell level
+      elseif windower_player.main_job_level < spells[key]['levels'][windower_player.main_job_id] then -- Check to see if main job level is lower than spell level
         return false
       else
         return true
@@ -406,7 +409,7 @@ function is_spell_usable(spell_name_en, player)
     end
   end
 
-  local usable_by_job = is_spell_usable_by_a_job(spell)
+  local usable_by_job = is_spell_usable_by_a_job(spell, player)
   local usable_by_blu = is_blu_spell_set(spell, player)
 
   return (usable_by_job and usable_by_blu)
@@ -435,61 +438,37 @@ end
 
 -- helps determine which job or subjob is capable of casting a spell, this mostly applies
 -- to scholar which has spell casting restrictions due to the addenda.
-function is_spell_usable_by_a_job(spell)
-  -- check if castable by main job
-  if spell['levels'][windower.ffxi.get_player().main_job_id] ~= nil then
-    if windower.ffxi.get_player().main_job_level >= spell['levels'][windower.ffxi.get_player().main_job_id] then
-      if windower.ffxi.get_player().main_job_id ~= 20 then
-        -- this is not a scholar spell, so it should be castable
-        return true
+function is_spell_usable_by_a_job(spell, player)
+  -- Cache player data to avoid redundant calls
+  local main_job_id = player.main_job_id
+  local main_job_level = player.main_job_level
+  local sub_job_id = player.sub_job_id
+  local sub_job_level = player.sub_job_level
+
+  local function can_cast(job_id, job_level)
+    local spell_level = spell['levels'][job_id]
+    if spell_level and job_level >= spell_level then
+      if job_id ~= 20 then
+        return true -- Not a scholar spell, castable
       else
-        -- this is a scholar spell, so we have to see if it requires addendum use
+        -- Scholar-specific checks
         if (spell['requirements'] % 8) >= 4 then
           if current_stance == 234 and spell['type'] == 'WhiteMagic' then
-            -- we are in addendum white and the spell is white magic
             return true
           end
-
           if current_stance == 235 and spell['type'] == 'BlackMagic' then
-            -- we are in addendum black and the spell is black magic
             return true
           end
         else
-          -- doesn't need addendum, castable!
-          return true
+          return true -- Doesn't need addendum, castable
         end
       end
     end
+    return false
   end
 
-  -- check if castable by sub job
-  if spell['levels'][windower.ffxi.get_player().sub_job_id] ~= nil then
-    if windower.ffxi.get_player().sub_job_level >= spell['levels'][windower.ffxi.get_player().sub_job_id] then
-      if windower.ffxi.get_player().sub_job_id ~= 20 then
-        -- this is not a scholar spell, so it should be castable
-        return true
-      else
-        -- this is a scholar spell, so we have to see if it requires addendum use
-        if (spell['requirements'] % 8) >= 4 then
-          if current_stance == 234 and spell['type'] == 'WhiteMagic' then
-            -- we are in addendum white and the spell is white magic
-            return true
-          end
-
-          if current_stance == 235 and spell['type'] == 'BlackMagic' then
-            -- we are in addendum black and the spell is black magic
-            return true
-          end
-        else
-          -- doesn't need addendum, castable!
-          return true
-        end
-      end
-    end
-  end
-
-  -- not usable by either main job, sub job, or we're a scholar in the wrong addendum
-  return false
+  -- Check main job and sub job
+  return can_cast(main_job_id, main_job_level) or can_cast(sub_job_id, sub_job_level)
 end
 
 function is_job_ability_learned(ability_name_en)
