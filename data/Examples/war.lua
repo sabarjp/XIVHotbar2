@@ -287,7 +287,7 @@ xivhotbar_keybinds_job['Club'] = {
   { 'battle 1 3',  'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
   -- Light
   { 'battle 1 4',  'ws', 'Shining Strike', 't',  'Shining' },
-  { 'battle 1 4',  'ws', 'Seraph Strike',  't',  'Seraph' }, -- war whm pld drk sam blu geo
+  { 'battle 1 4',  'ws', 'Seraph Strike',  't',  'Seraph' },  -- war whm pld drk sam blu geo
   { 'battle 1 5',  'ws', 'Flash Nova',     't',  'Fl Nova' }, -- war whm pld drk sam blu geo
   -- Specials
   { 'battle 1 6',  'ws', 'Skullbreaker',   't',  'Skullbrk' },

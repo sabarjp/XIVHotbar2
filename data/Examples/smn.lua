@@ -442,6 +442,7 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 3 3',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
   { 'battle 3 3',  'ma', 'Curaga',      'stpc',  'Curaga' },
   -- Supportive
+  { 'battle 3 5',  'ma', 'Erase',       'stpc',  'Erase' },
   -- { 'battle 3 4',  'ma', 'Poisona',      'stpc',  'Poisona' },
   -- { 'battle 3 4',  'ma', 'Paralyna',     'stpc',  'Paralyna' },
   -- { 'battle 3 4',  'ma', 'Blindna',      'stpc',  'Blindna' },
@@ -449,7 +450,6 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 4 2',  'ma', 'Blink',       'me',    'Blink' },
   { 'battle 4 3',  'ma', 'Stoneskin',   'me',    'StnSkin' },
   -- { 'battle 3 4',  'ma', 'Cursna',       'stpc',  'Cursna' },
-  { 'battle 3 5',  'ma', 'Erase',       'stpc',  'Erase' },
   -- { 'battle 3 4',  'ma', 'Viruna',       'stpc',  'Viruna' },
   -- { 'battle 3 4',  'ma', 'Stona',        'stpc',  'Stona' },
   { 'battle 3 4',  'ma', 'Haste',       'stpc',  'Haste' },
@@ -558,7 +558,7 @@ xivhotbar_keybinds_job['Club'] = {
   -- Specials
   { 'battle 1 12', 'ws', 'Skullbreaker',   't',  'Skullbrk' },
   { 'battle 1 12', 'ws', 'Starlight',      'me', 'Star' },
-  -- { 'battle 1 5',  'ws', 'Moonlight',      't', 'Moon' },     -- war whm pld drk sam blu geo
+  -- { 'battle 1 5',  'ws', 'Moonlight',      'me', 'Moon' },     -- war whm pld drk sam blu geo
   -- Class Specific
   -- { 'battle 1 6',  'ws', 'Mystic Boon',    't', 'Mystic' },   -- whm only
   -- { 'battle 1 6',  'ws', 'Exudation',      't', 'Exuda' },    -- geo
