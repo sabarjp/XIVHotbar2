@@ -33,8 +33,8 @@
 --]]
 
 _addon.name = 'XIVHotbar2'
-_addon.author = 'Edeon, Akirane', 'Technyze'
-_addon.version = '0.1'
+_addon.author = 'Sabarjp, Fethur', 'Edeon, Akirane', 'Technyze'
+_addon.version = '0.2'
 _addon.language = 'english'
 _addon.commands = { 'xivhotbar', 'htb', 'execute', 'xivhotbar2' }
 
@@ -92,20 +92,22 @@ function initialize()
   ui:set_player(player)
 
   box:init(theme_options)
-  windower_player = windower.ffxi.get_player()
+  local windower_player = windower.ffxi.get_player()
+  local windower_info = windower.ffxi.get_info()
 
-  local server = resources.servers[windower.ffxi.get_info().server]
-      and resources.servers[windower.ffxi.get_info().server].en
-      or "PrivateServer_" .. tostring(windower.ffxi.get_info().server)
+  local server = resources.servers[windower_info.server]
+      and resources.servers[windower_info.server].en
+      or "PrivateServer_" .. tostring(windower_info.server)
 
   if theme_options.enable_weapon_switching == true then
     -- unlikely to be available unless the world has already been loaded in
-    if windower.ffxi.get_items() ~= nil then
-      if not (windower.ffxi.get_items().equipment.main_bag == 0 and windower.ffxi.get_items().equipment.main == 0) then
-        set_weapon_type(false, windower.ffxi.get_items().equipment.main_bag, windower.ffxi.get_items().equipment.main)
+    local items = windower.ffxi.get_items()
+    if items ~= nil then
+      if not (items.equipment.main_bag == 0 and items.equipment.main == 0) then
+        set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
       end
-      if not (windower.ffxi.get_items().equipment.range_bag == 0 and windower.ffxi.get_items().equipment.range == 0) then
-        set_weapon_type(true, windower.ffxi.get_items().equipment.range_bag, windower.ffxi.get_items().equipment.range)
+      if not (items.equipment.range_bag == 0 and items.equipment.range == 0) then
+        set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
       end
     end
   end
@@ -136,8 +138,9 @@ function on_world_load()
   if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
 
   if theme_options.enable_weapon_switching == true then
-    set_weapon_type(false, windower.ffxi.get_items().equipment.main_bag, windower.ffxi.get_items().equipment.main)
-    set_weapon_type(true, windower.ffxi.get_items().equipment.range_bag, windower.ffxi.get_items().equipment.range)
+    local items = windower.ffxi.get_items()
+    set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
+    set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
   end
 
   ui.hotbar.hide_hotbars = false
@@ -180,18 +183,20 @@ function reload_hotbar(using_pet_name)
     end
   end
 
-  if resources.jobs[windower.ffxi.get_player().sub_job_id] == nil then -- If character has no subjob
-    ui:update_mp(windower.ffxi.get_player().vitals.mp)
-    ui:update_tp(windower.ffxi.get_player().vitals.tp)
-    player:update_job(resources.jobs[windower.ffxi.get_player().main_job_id].ens, 'NON')
-    player:update_level(windower.ffxi.get_player().main_job_level, 0)
+  local windower_player = windower.ffxi.get_player()
+
+  if resources.jobs[windower_player.sub_job_id] == nil then -- If character has no subjob
+    ui:update_mp(windower_player.vitals.mp)
+    ui:update_tp(windower_player.vitals.tp)
+    player:update_job(windower_player.main_job_id, resources.jobs[windower_player.main_job_id].ens, 0, 'NON')
+    player:update_level(windower_player.main_job_level, 0)
     player:update_pet(pet_name)
   else
-    ui:update_mp(windower.ffxi.get_player().vitals.mp)
-    ui:update_tp(windower.ffxi.get_player().vitals.tp)
-    player:update_job(resources.jobs[windower.ffxi.get_player().main_job_id].ens,
-      resources.jobs[windower.ffxi.get_player().sub_job_id].ens)
-    player:update_level(windower.ffxi.get_player().main_job_level, windower.ffxi.get_player().sub_job_level)
+    ui:update_mp(windower_player.vitals.mp)
+    ui:update_tp(windower_player.vitals.tp)
+    player:update_job(windower_player.main_job_id, resources.jobs[windower_player.main_job_id].ens,
+      windower_player.sub_job_id, resources.jobs[windower_player.sub_job_id].ens)
+    player:update_level(windower_player.main_job_level, windower_player.sub_job_level)
     player:update_pet(pet_name)
   end
 
@@ -207,12 +212,6 @@ end
 --------------------
 -- Addon Commands -- --
 --------------------
-
--- command to set an action in a hotbar --
-function set_action_command(args)
-  player:insert_action(args)
-  reload_hotbar()
-end
 
 function flush_old_keybinds()
   for i = 1, ui.hotbar.rows, 1 do
@@ -255,8 +254,7 @@ local function print_help()
   log("Commands:")
   log("move: Enables moving the hotbars by dragging them, also writes the changes to settings.xml if used again.")
   log("reload: Reloads the hotbar, if you have made changes to the hotbar-file, this is faster for loading.")
-  log("Dependencies:")
-  log("shortcuts: Used for weapon skills.")
+  log("mount: either dismounts if mounted, or mounts the indicated mount")
 end
 
 
@@ -270,10 +268,6 @@ windower.register_event('addon command', function(command, ...)
   if command == 'reload' then
     if ui.theme.dev_mode then log('Reloading Hotbar.') end
     reload_hotbar()
-  elseif command == 'release' then           --Custom change to release pet
-    windower.chat.input('/pet release <me>') -- Need to us ct
-  elseif command == 'set' then
-    set_action_command(args)
   elseif command == 'help' then
     print_help()
   elseif command == 'mount' then
@@ -285,30 +279,17 @@ windower.register_event('addon command', function(command, ...)
       end
     end
     if args[1] == nil then
-      windower.chat.input('/mount crab <me>')
+      windower.chat.input('/mount raptor <me>')
     else
       windower.chat.input('/mount ' .. args[1] .. ' <me>')
     end
-  elseif command == 'summon' then
-    local avatar_id = player:determine_summoner_id(args[1])
-    if (avatar_id == 0) then
-      print("Error, couldn't find avatar '" .. args[1] .. "'... Unable to load actions for it.")
-    end
-    windower.chat.input('/ma ' .. args[1] .. ' <me>')
   elseif command == 'execute' then
+    -- special command that is triggered by a windower keybind into an action
+    -- on this addon
     change_active_hotbar(tonumber(args[1]))
     if tonumber(args[2]) <= theme_options.columns then
       trigger_action(tonumber(args[2]))
     end
-  elseif command == 'reload' then
-    print("Reload 2")
-    flush_old_keybinds()
-    bind_keys()
-    player:load_hotbar()
-  elseif command == 'add' then
-    player:insert_action(args)
-  elseif command == 'zoneid' then
-    print(windower.ffxi.get_info().zone)
   elseif command == 'move' then
     state.demo = not state.demo
     if state.demo then
@@ -415,7 +396,10 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
 end)
 
 -- ON PRERENDER --
+local frame_counter = 0
 windower.register_event('prerender', function()
+  frame_counter = frame_counter + 1
+
   if ui.hotbar.ready == false then
     return
   end
@@ -438,18 +422,25 @@ windower.register_event('prerender', function()
       moved_row_info.removed_slot.active = false
       ui:load_player_hotbar(player:get_hotbar_info())
     end
-    ui:check_recasts(player:get_hotbar_info())
+
+    -- Only execute the expensive recast logic every 3 ticks
+    if frame_counter % 3 == 0 then
+      ui:check_recasts(player:get_hotbar_info())
+    end
+
     ui:check_hover()
   end
 end)
 
 -- ON MP CHANGE --
 windower.register_event('mp change', function(new, old)
+  player.vitals.mp = new
   ui:update_mp(new)
 end)
 
 -- OM TP CHANGE --
 windower.register_event('tp change', function(new, old)
+  player.vitals.tp = new
   ui:update_tp(new)
 end)
 
@@ -467,7 +458,8 @@ end)
 
 -- ON LOGIN/LOAD --
 windower.register_event('load', function()
-  if windower.ffxi.get_player() ~= nil then
+  local windower_player = windower.ffxi.get_player()
+  if windower_player ~= nil then
     defaults = require('defaults')
     settings = config.load(defaults)
     config.save(settings)
@@ -476,14 +468,15 @@ windower.register_event('load', function()
     theme_options = theme.apply(settings)
     local settings = config.load(defaults)
     config.save(settings)
-    player.id = windower.ffxi.get_player().id
+    player.id = windower_player.id
     initialize()
     coroutine.sleep(2)
   end
 end)
 
 windower.register_event('login', function()
-  if windower.ffxi.get_player() ~= nil then
+  local windower_player = windower.ffxi.get_player()
+  if windower_player ~= nil then
     windower.send_command('lua load xivhotbar2')
     defaults = require('defaults')
     settings = config.load(defaults)
@@ -493,7 +486,7 @@ windower.register_event('login', function()
     theme_options = theme.apply(settings)
     local settings = config.load(defaults)
     config.save(settings)
-    player.id = windower.ffxi.get_player().id
+    player.id = windower_player.id
 
     initialize()
   end
@@ -546,7 +539,7 @@ end)
 
 -- Equip / Unequip
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if id == 0x050 then --Equip/Unequip
+  if id == 0x050 then -- Equip/Unequip
     local packet = packets.parse('incoming', original)
     local slot = packet['Equipment Slot']
 
@@ -557,28 +550,37 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 
       -- index > 0 means equipping
       if evt_inv_index ~= 0 then
+        local weapon_changed = false
+        local items = windower.ffxi.get_items()
         if slot == 0 then
-          set_weapon_type(false, evt_bag_index, windower.ffxi.get_items().equipment.main)
+          weapon_changed = set_weapon_type(false, evt_bag_index, items.equipment.main)
         elseif slot == 2 then
-          set_weapon_type(true, evt_bag_index, windower.ffxi.get_items().equipment.range)
+          weapon_changed = set_weapon_type(true, evt_bag_index, items.equipment.range)
         end
 
-        if not zoning then
+        if not zoning and weapon_changed then
           if ui.theme.dev_mode then log("Weapon Changed. Reloading Hotbar.") end
           reload_hotbar()
         end
 
         return
-        -- 0 index is unequipping
+        -- index = 0 means unequipping
       else
+        local weapon_changed = false
         if slot == 0 then
-          player:update_weapon_type(0)
+          if player.current_weapon ~= 0 then
+            player:update_weapon_type(0)
+            weapon_changed = true
+          end
         elseif slot == 2 then
-          player:update_range_weapon_type(0)
+          if player.current_range_weapon ~= 0 then
+            player:update_range_weapon_type(0)
+            weapon_changed = true
+          end
         end
 
-        if not zoning then
-          if ui.theme.dev_mode then log("Weapon Unequiped. Reloading Hotbar.") end
+        if not zoning and weapon_changed then
+          if ui.theme.dev_mode then log("Weapon Unequipped. Reloading Hotbar.") end
           reload_hotbar()
         end
 
@@ -588,22 +590,31 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
   end
 end)
 
+-- Returns whether or not the weapon type was changed
 function set_weapon_type(is_ranged, bag, index)
   local item = resources.items[windower.ffxi.get_items(bag, index).id]
 
   if item ~= nil then
-    local new_skill_type = resources.items[windower.ffxi.get_items(bag, index).id].skill
+    local new_skill_type = item.skill
 
     if theme_options.enable_weapon_switching == true then
       if new_skill_type ~= nil then
         if is_ranged then
-          player:update_range_weapon_type(new_skill_type)
+          if player.current_range_weapon ~= new_skill_type then
+            player:update_range_weapon_type(new_skill_type)
+            return true -- Weapon type was changed
+          end
         else
-          player:update_weapon_type(new_skill_type)
+          if player.current_weapon ~= new_skill_type then
+            player:update_weapon_type(new_skill_type)
+            return true -- Weapon type was changed
+          end
         end
       end
     end
   end
+
+  return false -- Weapon type was not changed
 end
 
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
@@ -618,13 +629,14 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
     if id == 0x0AC and changing_job == true then
       changing_job = false
       if old_main ~= new_main or old_sub ~= new_sub then
-        player:update_job(resources.jobs[new_main].ens, resources.jobs[new_sub].ens)
+        player:update_job(new_main, resources.jobs[new_main].ens, new_sub, resources.jobs[new_sub].ens)
         if ui.theme.dev_mode then log("Changing Job (Moogle)") end
         reload_hotbar()
       end
     elseif id == 0x01B then
-      old_main = windower.ffxi.get_player().main_job_id
-      old_sub = windower.ffxi.get_player().sub_job_id
+      local windower_player = windower.ffxi.get_player()
+      old_main = windower_player.main_job_id
+      old_sub = windower_player.sub_job_id
       local packet = packets.parse('incoming', original)
       new_main = packet['Main Job']
       new_sub = packet['Sub Job']
@@ -637,7 +649,7 @@ end)
 -- Updates on blu spell setting
 windower.register_event('outgoing chunk', function(id, original, modified, injected, blocked)
   if id == 0x102 then
-    if windower.ffxi.get_player().main_job_id == 16 or windower.ffxi.get_player().sub_job_id == 16 then
+    if player.main_job_id == 16 or player.sub_job_id == 16 then
       if ui.theme.dev_mode then log("Set blue magic. Reloading Hotbar.") end
       -- takes time after setting blu magic for abilities to drop off
       coroutine.sleep(1.5)
@@ -658,7 +670,7 @@ end
 -- Updates on blu spell list
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
   if id == 0x044 then
-    if windower.ffxi.get_player().main_job_id == 16 or windower.ffxi.get_player().sub_job_id == 16 then
+    if player.main_job_id == 16 or player.sub_job_id == 16 then
       local packet = packets.parse('incoming', original)
       if packet['Job'] == 16 then
         -- Iterate over each character in the string and convert to binary
@@ -689,7 +701,7 @@ end)
 -- Reloads hotbar if new weaponskill is learned.
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
   if message_id == 45 then
-    if actor_id == windower.ffxi.get_player().id then
+    if actor_id == player.id then
       if ui.theme.dev_mode then log("Learned Weaponskill. Reloading Hotbar.") end
       reload_hotbar()
     end
@@ -699,7 +711,7 @@ end)
 -- Reloads hotbar if new spell is learned.
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
   if message_id == 23 then
-    if actor_id == windower.ffxi.get_player().id then
+    if actor_id == player.id then
       if ui.theme.dev_mode then log("Learned Spell. Reloading Hotbar.") end
       reload_hotbar()
     end
@@ -757,7 +769,7 @@ end)
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
   if id == 0x02D then -- Kill Message
     mob_killed = true
-    old_level = windower.ffxi.get_player().main_job_level
+    old_level = player.main_job_level
   elseif mob_killed and id == 0x061 then -- Mob Killed and Char Stats Message
     local packet = packets.parse('incoming', original)
     --print("Packet: ", packet)
@@ -779,14 +791,6 @@ end)
 
 
 ----------------------------- PET EVENT STUFF ----------------------------------------------------
-
-function reload_stance_hotbar()
-  player:update_job(resources.jobs[windower.ffxi.get_player().main_job_id].ens,
-    resources.jobs[windower.ffxi.get_player().sub_job_id].ens)
-  player:update_level(windower.ffxi.get_player().main_job_level, windower.ffxi.get_player().sub_job_level)
-  player:load_hotbar()
-  ui:load_player_hotbar(player:get_hotbar_info())
-end
 
 --This event is reloading hotbar if a pet dies or released
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)

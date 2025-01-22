@@ -29,7 +29,6 @@
 local database = require('priv_res/database') -- TODO: IMPORT FROM RES
 local formatter = require('lib/text_formatter')
 local keyboard = require('lib/keyboard_mapper')
-local spell_list = require('priv_res/spells')
 
 local ui = {}
 
@@ -134,8 +133,6 @@ local overlay_images_setup = {
 
 
 -- ui variables
--- ui.battle_notice = images.new(table.copy(images_setup, true))
-ui.battle_notice = images.new()
 ui.feedback_icon = nil
 ui.hotbars = {}
 
@@ -813,28 +810,9 @@ local function load(ui)
   setup_feedback(ui)
 end
 
--- local function load_overlay()
---     -- if not_learned_spells_row_slot[action.action] ~= nil then -- This is for displaying the scroll overlay
---     --     key = T(not_learned_spells_row_slot[action.action]:split(' '))
---     --     --print(key)
---     --     ui.hotbars[tonumber(key[2])].slot_overlay[tonumber(key[3])]:path(windower.addon_path .. '/images/icons/custom/scroll.png')
---     -- end
 
---     for k,v in pairs(not_learned_spells_row_slot) do
---         --print("Slot: ", k, " | ", v)
---         key = T(k:split(' '))
---         --ui.hotbars[tonumber(key[2])].slot_overlay[tonumber(key[3])]:path(windower.addon_path .. '/images/icons/custom/blank.png') -- Set overlay to blank by default
---         if v == true then
---             key = T(k:split(' '))
---             ui.hotbars[tonumber(key[2])].slot_overlay[tonumber(key[3])]:path(windower.addon_path .. '/images/icons/custom/scroll.png')
---         elseif v == false then
---             ui.hotbars[tonumber(key[2])].slot_overlay[tonumber(key[3])]:path(windower.addon_path .. '/images/icons/custom/blank.png') -- Set overlay to blank by default
---         end
-
---     end
--- end
 -- load action into a hotbar slot
-function ui:load_action(row, slot, action, player_vitals)
+function ui:load_action(row, slot, environment, action, player_vitals)
   local action_map = { ['ma'] = 'spells', ['ja'] = 'abilities', ['ws'] = 'weaponskills' }
 
   self:clear_slot(row, slot)
@@ -851,46 +829,15 @@ function ui:load_action(row, slot, action, player_vitals)
       self.hotbars[row].slot_keys[slot]:show()
     end
   else
-    for k, v in pairs(not_learned_spells_row_slot) do
-      if k == action.action and v ~= false then
-        local action_array1 = T(v:split(' '))
-        local env_scroll = action_array1[1]
-        local row_scroll = tonumber(action_array1[2])
-        local slot_scroll = tonumber(action_array1[3])
+    local learnable_spell_name = not_learned_spells_row_slot[environment .. ' ' .. row .. ' ' .. slot]
 
-        if action.type == 'ma' then
-          if row == row_scroll and slot == slot_scroll then
-            self.hotbars[row_scroll].slot_overlay[slot_scroll]:path(windower.addon_path ..
-              '/images/icons/custom/scroll.png')
-          end
-        end
-      elseif k == action.action and v == false then
-        if action.type == 'ma' then
-          if row == row_scroll and slot == slot_scroll then
-            self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/blank.png')
-          end
-        end
+    if learnable_spell_name then
+      if learnable_spell_name == action.action then
+        self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/scroll.png')
+      else
+        self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/upgrade.png')
       end
     end
-
-    -- for k,v in pairs(not_learned_spells_row_slot) do
-    --     action_array1 = T(k:split(' '))
-    --     env_scroll = action_array1[1]
-    --     row_scroll = tonumber(action_array1[2])
-    --     slot_scroll = tonumber(action_array1[3])
-
-
-    --     if env_scroll == 'battle' then
-    --         -- This is for determining if this each slot needs a scroll overlay.
-    --         if action.type == 'ma'then
-    --             if v == true then
-    --                 if row == row_scroll and slot == slot_scroll then
-    --                     ui.hotbars[row_scroll].slot_overlay[slot_scroll]:path(windower.addon_path .. '/images/icons/custom/scroll.png')
-    --                 end
-    --             end
-    --         end
-    --     end
-    -- end
 
     -- if slot has a skill (ma, ja or ws)
     if S { 'ma', 'ja' }:contains(action.type) then
@@ -1030,7 +977,6 @@ end
 
 -- hide all ui components
 function ui:hide()
-  self.battle_notice:hide()
   self.feedback_icon:hide()
   self.inventory_count:hide()
   if (self.active_environment ~= nil) then
@@ -1094,7 +1040,6 @@ end
 
 -- load player hotbar
 function ui:load_player_hotbar(player_hotbar, environment, player_vitals)
-  --if environment == 'field' and self.theme.hide_battle_notice == false then
   if environment == 'field' then
     self.active_environment['field']:color(255, 255, 255)
     self.active_environment['battle']:color(100, 100, 100)
@@ -1110,7 +1055,7 @@ function ui:load_player_hotbar(player_hotbar, environment, player_vitals)
 
   for h = 1, self.theme.hotbar_number, 1 do
     for i = 1, self.theme.columns, 1 do
-      self:load_action(h, i, player_hotbar[environment]['hotbar_' .. h]['slot_' .. i], player_vitals)
+      self:load_action(h, i, environment, player_hotbar[environment]['hotbar_' .. h]['slot_' .. i], player_vitals)
     end
   end
 end
@@ -1262,20 +1207,20 @@ end
 
 -- checks and sets disabled slot state
 function ui:check_and_set_disable(action)
-  local mp = windower.ffxi.get_player().vitals.mp
+  local mp = self.player.vitals.mp
 
   if action ~= nil and is_neutralized == true then
     self.disabled_slots.actions[action.action] = true
     return true
   elseif action ~= nil then
     if action.type == 'ma' then
-      if check_if_spell_learned(action.action) ~= true then
+      if is_spell_learned(action.action) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
       elseif is_silenced == true then
         self.disabled_slots.actions[action.action] = true
         return true
-      elseif check_if_spell_usable(action.action, self.player) ~= true then
+      elseif is_spell_usable(action.action, self.player) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
       elseif mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then
@@ -1293,7 +1238,7 @@ function ui:check_and_set_disable(action)
       elseif action.type == 'ws' and can_ws == false then
         self.disabled_slots.actions[action.action] = true
         return true
-      elseif check_if_ability_usable(action.action, self.player) ~= true then
+      elseif is_job_ability_usable(action.action, self.player) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
       elseif action.type == 'ja' and mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then
@@ -1397,110 +1342,91 @@ function ui:check_recasts(player_hotbar, environment, player_vitals)
   end
 end
 
+-- this shows a mouse-over effect on an icon
 function ui:check_hover()
   local disabled_opacity = self.theme.disabled_slot_opacity
-  local enabled_opacity  = 200
-  local row              = self.hover_icon.row
-  local col              = self.hover_icon.col
-  local prev_col         = self.hover_icon.col
-  local prev_row         = self.hover_icon.row
+  local enabled_opacity = 200
+  local row = self.hover_icon.row
+  local col = self.hover_icon.col
+  local prev_row = self.prev_row
+  local prev_col = self.prev_col
 
-  if (row ~= nil and col ~= nil) then
-    if (self.disabled_icons[row][col] == 0) then
+  -- Handle previously hovered icon
+  if prev_row and prev_col then
+    local opacity = self.disabled_icons[prev_row][prev_col] == 1 and disabled_opacity or enabled_opacity
+    self.hotbars[prev_row].slot_icons[prev_col]:alpha(opacity)
+  end
+
+  -- Handle currently hovered icon
+  if row and col then
+    if self.disabled_icons[row][col] == 0 then
       self.hotbars[row].slot_icons[col]:alpha(disabled_opacity)
       prev_row, prev_col = row, col
     end
-  elseif (prev_row ~= nil and prev_col ~= nil) then
-    if (self.disabled_icons[prev_row][prev_col] == 1) then
-      opacity = disabled_opacity
-    else
-      opacity = enabled_opacity
-    end
-    self.hotbars[prev_row].slot_icons[prev_col]:alpha(opacity)
-    prev_col = nil
-    prev_row = nil
+  else
+    prev_row, prev_col = nil, nil
   end
 
-  self.prev_col       = prev_col
-  self.prev_row       = prev_row
+  -- Update state
+  self.prev_row = prev_row
+  self.prev_col = prev_col
   self.hover_icon.row = row
   self.hover_icon.col = col
 end
 
------------------
--- Feedback UI --
------------------
+--------------------------------------------------------------------
+-- Feedback UI to indicate a icon is being pressed --
+--------------------------------------------------------------------
 
--- trigger feedback visuals in given hotbar and slot
+-- trigger feed back to occur on the next frame
 function ui:trigger_feedback(row, slot)
-  --if slot == 0 then slot = 10 end
-
   self.feedback_icon:pos(get_slot_x(self, row, slot), get_slot_y(self, row, slot))
+  self.feedback.current_opacity = self.feedback.max_opacity -- Reset opacity on activation
   self.feedback.is_active = true
 end
 
 -- show feedback
 function ui:show_feedback()
-  if self.feedback.current_opacity ~= 0 then
+  if self.feedback.is_active and self.feedback.current_opacity > 0 then
     self.feedback.current_opacity = self.feedback.current_opacity - self.feedback.speed
     self.feedback_icon:alpha(self.feedback.current_opacity)
     self.feedback_icon:show()
-    if self.feedback.current_opacity < 0 then
-      self.feedback_icon:hide()
-      self.feedback.current_opacity = self.feedback.max_opacity
-      self.feedback.is_active = false
-    end
+  else
+    self.feedback_icon:hide()
+    self.feedback.is_active = false
   end
 end
 
 -- Returns true if the coordinates are over a button
--- Credit: maverickdfz
--- https://github.com/maverickdfz/FFXIAddons/blob/master/xivhotbar/ui.lua
 function ui:hovered(x, y)
-  local row = nil
-  local slot = nil
-  local found = false
+  local row, slot, found = nil, nil, false
 
-  local pos_x
-  local pos_y
-  local debug_msg
-  local off_x
-  local off_y
-  local found = false
-  pos_x = self.active_environment['battle']:pos_x()
-  pos_y = self.active_environment['battle']:pos_y() - 60
-  off_x = pos_x + 60
-  off_y = pos_y + 100
-  if ((pos_x <= x and x <= off_x) or (pos_x >= x and x >= off_x))
-      and ((pos_y <= y and y <= off_y) or (pos_y >= y and y >= off_y))
-  then
-    hotbar, slot, found = nil, 100, true
+  -- Check battle environment area
+  local pos_x = self.active_environment['battle']:pos_x()
+  local pos_y = self.active_environment['battle']:pos_y() - 60
+  local off_x, off_y = pos_x + 60, pos_y + 100
+
+  if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
+    return nil, 100 -- Immediate return when in battle area
   end
-  if found == false then
-    for h = 1, #self.hotbars, 1 do
-      for i = 1, self.theme.columns, 1 do
-        pos_x = get_slot_x(self, h, i)
-        pos_y = get_slot_y(self, h, i)
-        off_x = pos_x + self.image_width
-        off_y = pos_y + self.image_height
 
-        if ((pos_x <= x and x <= off_x) or (pos_x >= x and x >= off_x))
-            and ((pos_y <= y and y <= off_y) or (pos_y >= y and y >= off_y))
-        then
-          row, slot, found = h, i, true
-          break
-        end
-      end
+  -- Check hotbar slots
+  for h = 1, #self.hotbars do
+    for i = 1, self.theme.columns do
+      pos_x = get_slot_x(self, h, i)
+      pos_y = get_slot_y(self, h, i)
+      off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
 
-      if (found == true) then
-        break
+      if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
+        return h, i -- Return immediately once a slot is found
       end
     end
   end
 
-  return row, slot
+  return row, slot -- Return nil, nil if no match is found
 end
 
+-- this shows the tooltip for an action
 function ui:light_up_action(x, y, row, column, player_hotbar, environment, vitals)
   local icon_x = get_slot_x(self, row, column)
   local icon_y = get_slot_y(self, row, column)

@@ -12,7 +12,9 @@ Why use this fork over any other hotbar?
 * Robust Dancer support (shows usability of TP moves)
 * Robust Scholar arts support (shows usability of addendum spells, better stance detection)
 * Robust Beastmaster support (show usability of sic, support /bstpet)
+* Robust Blue Mage support
 * Ranged and Melee WS both work for ranged jobs
+* Spells and abilities have the same priority now, listed from least priority to highest priority.
 
 ## Hide Unusable skills
 Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.
@@ -38,12 +40,14 @@ Abilities on cooldown will be dimmed.
 Spells that are on the bar, but not known yet, are dimmed and have an icon to indicate they can be learned.
 
 ## Sharing Hotbar Slots:
-Abilities that share a hotbar slot will auto-select the first usable ability. For example, if Stone V and Stone IV share the same hotbar slot, then Stone V will have priority to appear, (unless it cannot be used due to level/etc), then Stone IV will appear instead, and so on.
+Abilities that share a hotbar slot will auto-select the last usable ability. For example, if Stone II and Stone IV share the same hotbar slot, then Stone IV (if usable) will have priority to appear, then Stone II will appear instead, and so on.
 
-This works seamlessly with the level syncing. For example, syncing down to level 30 will turn Dia II (Level 31) back into Dia as you can see in the image above when zoning into Promyvion-Dem.
+This requires spells be ordered from lowest priority, to highest priority. As an example, magic sharing a slot should have Stone, then Stone II, and so on. Job abilities sharing a slot would work the same way, for example, Shining Strike then Seraph Strike below it.
+
+This works seamlessly with the level syncing. 
 
 ## Spell Learning Notification
-When a player has a spell setup on their hotbar, and are high enough level to use that spell, but have not learned that spell yet a small glowing scroll icon will appear in the top right corner of the spell. This disappears once learning that spell.
+When a player has a spell setup on their hotbar, and are high enough level to use that spell, but have not learned that spell yet a small glowing scroll icon will appear in the top right corner of the spell. This disappears once learning that spell. If multiple spells are sharing the slot, and you are eligible to learn a shared (but not visible) spell, then an "upgrade arrow" icon will appear.
 
 ## Weaponswitching and Weaponskills:
 Hotbar skills can be conditionally bound based on equipped weapon. Note that this MUST be enabled in the settings.xml, and this is OFF BY DEFAULT since it can behave with some bugs.

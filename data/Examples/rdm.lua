@@ -143,12 +143,18 @@ xivhotbar_keybinds_job['Base'] = {
 
 
   -- Hotbar #6 Utility
-  { 'battle 6 1',  'ma', 'Barstonra',     'stpc',  'Barston',  'Barstonra' },
-  { 'battle 6 2',  'ma', 'Barwatera',     'stpc',  'Barwater', 'Barwatera' },
-  { 'battle 6 3',  'ma', 'Baraera',       'stpc',  'Baraera',  'Baraera' },
-  { 'battle 6 4',  'ma', 'Barfira',       'stpc',  'Barfira',  'Barfira' },
-  { 'battle 6 5',  'ma', 'Barblizzara',   'stpc',  'Barblizz', 'Barblizzara' },
-  { 'battle 6 6',  'ma', 'Barthundra',    'stpc',  'Barthun',  'Barthundra' },
+  { 'battle 6 1',  'ma', 'Barstonra',     'stpc',  'Barston' },
+  { 'battle 6 1',  'ma', 'Barstone',      'me',    'Barston' },
+  { 'battle 6 2',  'ma', 'Barwatera',     'stpc',  'Barwater' },
+  { 'battle 6 2',  'ma', 'Barwater',      'me',    'Barwater' },
+  { 'battle 6 3',  'ma', 'Baraera',       'stpc',  'Baraera' },
+  { 'battle 6 3',  'ma', 'Baraero',       'me',    'Baraero' },
+  { 'battle 6 4',  'ma', 'Barfira',       'stpc',  'Barfira' },
+  { 'battle 6 4',  'ma', 'Barfire',       'me',    'Barfire' },
+  { 'battle 6 5',  'ma', 'Barblizzara',   'stpc',  'Barbliza' },
+  { 'battle 6 5',  'ma', 'Barblizzard',   'me',    'Barblizz' },
+  { 'battle 6 6',  'ma', 'Barthundra',    'stpc',  'Barthna' },
+  { 'battle 6 6',  'ma', 'Barthunder',    'me',    'Barthun' },
   { 'battle 6 7',  'ma', 'Enstone II',    'me',    'Enstone2' },
   { 'battle 6 7',  'ma', 'Enstone',       'me',    'Enstone' },
   { 'battle 6 8',  'ma', 'Enwater II',    'me',    'Enwater2' },
@@ -232,14 +238,14 @@ xivhotbar_keybinds_job['NIN'] = {
   --more sword WS because we have room
   { 'battle 2 3',  'ws', 'Fast Blade',       't',  'Fast' },
   { 'battle 2 4',  'ws', 'Spirits Within',   't',  'Spirits' },
-  { 'battle 2 5',  'ws', 'Vorpal Blade',     't',  'Vorpal' }, -- war rdm pld drk blu run
-  { 'battle 2 6',  'ws', 'Savage Blade',     't',  'Savage' }, -- war rdm pld drk blu cor run
+  { 'battle 2 5',  'ws', 'Vorpal Blade',     't',  'Vorpal' },   -- war rdm pld drk blu run
+  { 'battle 2 6',  'ws', 'Savage Blade',     't',  'Savage' },   -- war rdm pld drk blu cor run
   { 'battle 2 7',  'ws', 'Sanguine Blade',   't',  'Sanguine' }, -- war rdm pld drk blu run
   { 'battle 2 8',  'ws', 'Imperator',        't',  'Imperator' },
-  { 'battle 2 9',  'ws', 'Death Blossom',    't',  'D Blsm' }, -- rdm
+  { 'battle 2 9',  'ws', 'Death Blossom',    't',  'D Blsm' },   -- rdm
   { 'battle 2 10', 'ws', 'Requiescat',       't',  'Requisct' }, -- war rdm pld drk sam blu cor run
   { 'battle 2 11', 'ws', 'Chant du Cygne',   't',  'duCygne' },
-  { 'battle 2 12', 'ws', 'Knights of Round', 't',  'KotR' }, -- rdm pld blu relic
+  { 'battle 2 12', 'ws', 'Knights of Round', 't',  'KotR' },     -- rdm pld blu relic
 }
 
 xivhotbar_keybinds_job['THF'] = {
@@ -249,14 +255,14 @@ xivhotbar_keybinds_job['THF'] = {
 
   --more sword WS because we have room
   { 'battle 2 4',  'ws', 'Spirits Within',   't',  'Spirits' },
-  { 'battle 2 5',  'ws', 'Vorpal Blade',     't',  'Vorpal' }, -- war rdm pld drk blu run
-  { 'battle 2 6',  'ws', 'Savage Blade',     't',  'Savage' }, -- war rdm pld drk blu cor run
+  { 'battle 2 5',  'ws', 'Vorpal Blade',     't',  'Vorpal' },   -- war rdm pld drk blu run
+  { 'battle 2 6',  'ws', 'Savage Blade',     't',  'Savage' },   -- war rdm pld drk blu cor run
   { 'battle 2 7',  'ws', 'Sanguine Blade',   't',  'Sanguine' }, -- war rdm pld drk blu run
   { 'battle 2 8',  'ws', 'Imperator',        't',  'Imperator' },
-  { 'battle 2 9',  'ws', 'Death Blossom',    't',  'D Blsm' }, -- rdm
+  { 'battle 2 9',  'ws', 'Death Blossom',    't',  'D Blsm' },   -- rdm
   { 'battle 2 10', 'ws', 'Requiescat',       't',  'Requisct' }, -- war rdm pld drk sam blu cor run
   { 'battle 2 11', 'ws', 'Chant du Cygne',   't',  'duCygne' },
-  { 'battle 2 12', 'ws', 'Knights of Round', 't',  'KotR' }, -- rdm pld blu relic
+  { 'battle 2 12', 'ws', 'Knights of Round', 't',  'KotR' },     -- rdm pld blu relic
 }
 
 xivhotbar_keybinds_job['PLD'] = {
@@ -270,10 +276,10 @@ xivhotbar_keybinds_job['PLD'] = {
   { 'battle 2 6',  'ws', 'Spirits Within',   't',     'Spirits' },
   { 'battle 2 7',  'ws', 'Sanguine Blade',   't',     'Sanguine' }, -- war rdm pld drk blu run
   { 'battle 2 8',  'ws', 'Imperator',        't',     'Imperator' },
-  { 'battle 2 9',  'ws', 'Death Blossom',    't',     'D Blsm' }, -- rdm
+  { 'battle 2 9',  'ws', 'Death Blossom',    't',     'D Blsm' },   -- rdm
   { 'battle 2 10', 'ws', 'Requiescat',       't',     'Requisct' }, -- war rdm pld drk sam blu cor run
   { 'battle 2 11', 'ws', 'Chant du Cygne',   't',     'duCygne' },
-  { 'battle 2 12', 'ws', 'Knights of Round', 't',     'KotR' }, -- rdm pld blu relic
+  { 'battle 2 12', 'ws', 'Knights of Round', 't',     'KotR' },     -- rdm pld blu relic
 }
 
 xivhotbar_keybinds_job['DRK'] = {
@@ -286,10 +292,10 @@ xivhotbar_keybinds_job['DRK'] = {
   --more sword WS because we have room
   { 'battle 2 7',  'ws', 'Spirits Within',   't',  'Spirits' },
   { 'battle 2 8',  'ws', 'Sanguine Blade',   't',  'Sanguine' }, -- war rdm pld drk blu run
-  { 'battle 2 9',  'ws', 'Death Blossom',    't',  'D Blsm' }, -- rdm
+  { 'battle 2 9',  'ws', 'Death Blossom',    't',  'D Blsm' },   -- rdm
   { 'battle 2 10', 'ws', 'Requiescat',       't',  'Requisct' }, -- war rdm pld drk sam blu cor run
   { 'battle 2 11', 'ws', 'Chant du Cygne',   't',  'duCygne' },
-  { 'battle 2 12', 'ws', 'Knights of Round', 't',  'KotR' }, -- rdm pld blu relic
+  { 'battle 2 12', 'ws', 'Knights of Round', 't',  'KotR' },     -- rdm pld blu relic
 }
 
 xivhotbar_keybinds_job['WAR'] = {
@@ -303,10 +309,10 @@ xivhotbar_keybinds_job['WAR'] = {
   { 'battle 2 6',  'ws', 'Spirits Within',   't',     'Spirits' },
   { 'battle 2 7',  'ws', 'Sanguine Blade',   't',     'Sanguine' }, -- war rdm pld drk blu run
   { 'battle 2 8',  'ws', 'Imperator',        't',     'Imperator' },
-  { 'battle 2 9',  'ws', 'Death Blossom',    't',     'D Blsm' }, -- rdm
+  { 'battle 2 9',  'ws', 'Death Blossom',    't',     'D Blsm' },   -- rdm
   { 'battle 2 10', 'ws', 'Requiescat',       't',     'Requisct' }, -- war rdm pld drk sam blu cor run
   { 'battle 2 11', 'ws', 'Chant du Cygne',   't',     'duCygne' },
-  { 'battle 2 12', 'ws', 'Knights of Round', 't',     'KotR' }, -- rdm pld blu relic
+  { 'battle 2 12', 'ws', 'Knights of Round', 't',     'KotR' },     -- rdm pld blu relic
 }
 
 xivhotbar_keybinds_job['DNC'] = {
@@ -348,13 +354,13 @@ xivhotbar_keybinds_job['Sword'] = {
   { 'battle 1 9',  'ws', 'Red Lotus Blade',  't', 'RLotus' }, -- war rdm pld drk blu
   -- Light
   { 'battle 1 10', 'ws', 'Shining Blade',    't', 'Shining' },
-  { 'battle 1 10', 'ws', 'Seraph Blade',     't', 'Seraph' }, -- war rdm pld drk blu run
+  { 'battle 1 10', 'ws', 'Seraph Blade',     't', 'Seraph' },   -- war rdm pld drk blu run
   -- Specials
   { 'battle 1 11', 'ws', 'Sanguine Blade',   't', 'Sanguine' }, -- war rdm pld drk blu run
   -- Prime #6
   { 'battle 1 11', 'ws', 'Imperator',        't', 'Imperator' },
   -- Class Specific #7
-  { 'battle 1 11', 'ws', 'Death Blossom',    't', 'D Blsm' }, -- rdm
+  { 'battle 1 11', 'ws', 'Death Blossom',    't', 'D Blsm' },   -- rdm
   -- Merit Point #8
   { 'battle 1 11', 'ws', 'Requiescat',       't', 'Requisct' }, -- war rdm pld drk sam blu cor run
   -- Empyrean (Abyssea only)  #9

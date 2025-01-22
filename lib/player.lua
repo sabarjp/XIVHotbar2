@@ -70,6 +70,8 @@ end
 -- initialize player
 function player:initialize(windower_player, server, theme_options)
   self.name           = windower_player.name
+  self.main_job_id    = windower_player.main_job_id
+  self.sub_job_id     = windower_player.sub_job_id
   self.main_job       = windower_player.main_job
   self.sub_job        = windower_player.sub_job
   self.main_job_level = windower_player.main_job_level
@@ -90,9 +92,11 @@ function player:remove_action(remove_table)
 end
 
 -- update player jobs
-function player:update_job(main, sub)
+function player:update_job(main_id, main, sub_id, sub)
   self.main_job = main
   self.sub_job = sub
+  self.main_job_id = main_id
+  self.sub_job_id = sub_id
   action_manager:update_file_path(player.name, player.main_job)
 end
 
@@ -203,7 +207,7 @@ function player:update_level(main_level, sub_level)
 end
 
 function player:get_main_job_level()
-  return windower_player.main_job_level
+  return self.main_job_level
 end
 
 -- load hotbar for current player and job combination
