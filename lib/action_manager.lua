@@ -236,7 +236,26 @@ local function add_action(am, action, environment, hotbar, slot)
   end
 end
 
-local function fill_table(file_table, file_key, actions_table)
+local function reindex_action_table(actions_table)
+  local function reindex_table(original_table)
+    local sequential_table = {}
+    for _, value in pairs(original_table) do
+      table.insert(sequential_table, value)
+    end
+    return sequential_table
+  end
+
+  actions_table.environment = reindex_table(actions_table.environment)
+  actions_table.hotbar = reindex_table(actions_table.hotbar)
+  actions_table.slot = reindex_table(actions_table.slot)
+  actions_table.type = reindex_table(actions_table.type)
+  actions_table.action = reindex_table(actions_table.action)
+  actions_table.target = reindex_table(actions_table.target)
+  actions_table.alias = reindex_table(actions_table.alias)
+  actions_table.icon = reindex_table(actions_table.icon)
+end
+
+local function fill_action_table(file_table, file_key, actions_table)
   -- Slot_key is 'battle 1 2' in a job/general file.
   -- file_table is each slot that contains a list of string. Example (First Key): file_table = {'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure'}
   -- file_key is the number for that slot. Example (First Key): 1
@@ -257,8 +276,11 @@ local function fill_table(file_table, file_key, actions_table)
   actions_table.action[file_key]      = file_table[3] -- name of action: dia, slow, provoke, etc.
   actions_table.target[file_key]      = file_table[4] -- target: t, st, stnpc, etc
   actions_table.alias[file_key]       = file_table[5] -- display name for each slot/skill
+
   if (file_table[6] ~= nil) then                      -- if last slot of file_table is not empty/blank then...
     actions_table.icon[file_key] = file_table[6]      -- name of icon image in images/icons/custom folder
+  else
+    actions_table.icon[file_key] = ''
   end
 end
 
@@ -285,7 +307,8 @@ end
 local function parse_general_binds(hotbar)
   for key, val in pairs(hotbar['Root']) do
     if action_req_check(hotbar['Root'][key]) == true then
-      fill_table(hotbar['Root'][key], key, general_actions)
+      fill_action_table(hotbar['Root'][key], key, general_actions)
+      reindex_action_table(general_actions)
     end
   end
 end
@@ -539,7 +562,7 @@ function is_weaponskill_learned(ws_name_en)
   end
 end
 
-local function parse_binds(theme_options, player, hotbar)
+local function parse_binds(theme_options, player, job_root)
   learned_abilities_id = {}
   learned_spells_name = {}
   learned_ws_id = {}
@@ -599,17 +622,19 @@ local function parse_binds(theme_options, player, hotbar)
   end
 
   -- MAIN JOB -- FILL TABLE
-  for key, val in pairs(hotbar['Base']) do                  -- Goes through each slot in the 'Base' job. Key is number sequenced. Values is list of strings.
-    if action_req_check(hotbar['Base'][key]) == true then
-      fill_table(hotbar['Base'][key], key, mainjob_actions) -- hotbar['Base'][key] is each line in the BASE section of the JOB.lua file
+  for key, val in pairs(job_root['Base']) do                         -- Goes through each slot in the 'Base' job. Key is number sequenced. Values is list of strings.
+    if action_req_check(job_root['Base'][key]) == true then
+      fill_action_table(job_root['Base'][key], key, mainjob_actions) -- job_root['Base'][key] is each line in the BASE section of the JOB.lua file
+      reindex_action_table(mainjob_actions)
     end
   end
 
   -- SUB JOB -- FILL TABLE
-  if (hotbar[player.sub_job] ~= nil) then
-    for key, val in pairs(hotbar[player.sub_job]) do
-      if action_req_check(hotbar[player.sub_job][key]) == true then
-        fill_table(hotbar[player.sub_job][key], key, subjob_actions)
+  if (job_root[player.sub_job] ~= nil) then
+    for key, val in pairs(job_root[player.sub_job]) do
+      if action_req_check(job_root[player.sub_job][key]) == true then
+        fill_action_table(job_root[player.sub_job][key], key, subjob_actions)
+        reindex_action_table(subjob_actions)
       end
     end
   else
@@ -620,10 +645,11 @@ local function parse_binds(theme_options, player, hotbar)
   end
 
   -- PET NAME -- FILL TABLE
-  if (hotbar[player.pet_name] ~= nil) then
-    for key, val in pairs(hotbar[player.pet_name]) do
-      if action_req_check(hotbar[player.pet_name][key]) == true then
-        fill_table(hotbar[player.pet_name][key], key, petname_actions)
+  if (job_root[player.pet_name] ~= nil) then
+    for key, val in pairs(job_root[player.pet_name]) do
+      if action_req_check(job_root[player.pet_name][key]) == true then
+        fill_action_table(job_root[player.pet_name][key], key, petname_actions)
+        reindex_action_table(petname_actions)
       end
     end
   else
@@ -646,11 +672,11 @@ local function parse_binds(theme_options, player, hotbar)
 
   local stance_ndx = 1
   for k, s in pairs(stances) do
-    if (hotbar[buff_table[s]] ~= nil) then
-      local stance_table = hotbar[buff_table[s]]
+    if (job_root[buff_table[s]] ~= nil) then
+      local stance_table = job_root[buff_table[s]]
       for key, val in pairs(stance_table) do
         if action_req_check(stance_table[key]) == true then
-          fill_table(stance_table[key], stance_ndx, stance_actions)
+          fill_action_table(stance_table[key], stance_ndx, stance_actions)
           stance_ndx = stance_ndx + 1
         end
       end
@@ -666,10 +692,10 @@ local function parse_binds(theme_options, player, hotbar)
     local weaponskill_ndx = 1
     for k, w in ipairs(weapons) do
       if (weaponskill_types[w] ~= nil) then
-        if (hotbar[weaponskill_types[w]] ~= nil) then
-          for key, val in ipairs(hotbar[weaponskill_types[w]]) do
-            if action_req_check(hotbar[weaponskill_types[w]][key]) == true then
-              fill_table(hotbar[weaponskill_types[w]][key], weaponskill_ndx, weaponskill_actions)
+        if (job_root[weaponskill_types[w]] ~= nil) then
+          for key, val in ipairs(job_root[weaponskill_types[w]]) do
+            if action_req_check(job_root[weaponskill_types[w]][key]) == true then
+              fill_action_table(job_root[weaponskill_types[w]][key], weaponskill_ndx, weaponskill_actions)
               weaponskill_ndx = weaponskill_ndx + 1
             end
           end
@@ -847,6 +873,8 @@ function action_manager:change_active_hotbar(new_hotbar)
   end
 end
 
+-- This function is responsible for actually loading the LUA file definitions
+-- and transforming them to be ready to be mapped to the hotbars.
 function action_manager:load(player)
   action_manager:init_action_tables() -- Create/Initialize MainJob, SubJob, Stance, Weaponskill, Stance Tables
 
