@@ -120,19 +120,19 @@ xivhotbar_keybinds_job['WHM'] = {
   -- Atk
   -- {'battle 3 9', 'ma', 'Holy', 'stnpc', 'Holy','ffxiv/whm/holy'}, -- mastery
   -- Regen
-  { 'battle 4 11', 'ma', 'Regen II',    'stpc',  'Regen2',   'ffxiv/whm/regen' },
   { 'battle 4 11', 'ma', 'Regen',       'stpc',  'Regen',    'ffxiv/whm/regen' },
+  { 'battle 4 11', 'ma', 'Regen II',    'stpc',  'Regen2',   'ffxiv/whm/regen' },
   -- Cure
-  { 'battle 4 1',  'ma', 'Cure IV',     'stpc',  'Cure4',    'ffxiv/sch/physick' },
-  { 'battle 4 1',  'ma', 'Cure III',    'stpc',  'Cure3',    'ffxiv/whm/cure_III' },
-  { 'battle 4 1',  'ma', 'Cure II',     'stpc',  'Cure2',    'ffxiv/whm/cure_II' },
   { 'battle 4 1',  'ma', 'Cure',        'stpc',  'Cure',     'ffxiv/whm/cure' },
+  { 'battle 4 1',  'ma', 'Cure II',     'stpc',  'Cure2',    'ffxiv/whm/cure_II' },
+  { 'battle 4 1',  'ma', 'Cure III',    'stpc',  'Cure3',    'ffxiv/whm/cure_III' },
+  { 'battle 4 1',  'ma', 'Cure IV',     'stpc',  'Cure4',    'ffxiv/sch/physick' },
   -- Cura
   -- {'battle 1 10', 'ma', 'Cura', 'me', 'Cura','ffxiv/whm/assize'},
   -- Curaga
-  { 'battle 4 10', 'ma', 'Curaga III',  'stpc',  'Curaga3',  'ffxiv/whm/dia',           'ffxiv/whm/medica_III' }, -- mastery
-  { 'battle 4 10', 'ma', 'Curaga II',   'stpc',  'Curaga2',  'ffxiv/whm/medica_II' },
   { 'battle 4 10', 'ma', 'Curaga',      'stpc',  'Curaga',   'ffxiv/whm/medica' },
+  { 'battle 4 10', 'ma', 'Curaga II',   'stpc',  'Curaga2',  'ffxiv/whm/medica_II' },
+  { 'battle 4 10', 'ma', 'Curaga III',  'stpc',  'Curaga3',  'ffxiv/whm/dia',           'ffxiv/whm/medica_III' }, -- mastery
   -- Supportive
   { 'battle 4 3',  'ma', 'Poisona',     'stpc',  'Poisona',  'ffxiv/ast/003114' },
   { 'battle 4 4',  'ma', 'Paralyna',    'stpc',  'Paralyna', 'ffxiv/ast/003113' },
@@ -149,10 +149,10 @@ xivhotbar_keybinds_job['WHM'] = {
 }
 
 xivhotbar_keybinds_job['RDM'] = {
-  { 'battle 4 1', 'ma', 'Cure IV',    'stpc', 'Cure 4' },
-  { 'battle 4 1', 'ma', 'Cure III',   'stpc', 'Cure 3' },
-  { 'battle 4 1', 'ma', 'Cure II',    'stpc', 'Cure 2' },
   { 'battle 4 1', 'ma', 'Cure',       'stpc', 'Cure 1' },
+  { 'battle 4 1', 'ma', 'Cure II',    'stpc', 'Cure 2' },
+  { 'battle 4 1', 'ma', 'Cure III',   'stpc', 'Cure 3' },
+  { 'battle 4 1', 'ma', 'Cure IV',    'stpc', 'Cure 4' },
   { 'battle 4 2', 'ma', 'Refresh',    'stpc', 'Refresh' },
   { 'battle 4 3', 'ma', 'Sneak',      'stpc', 'Sneak' },
   { 'battle 4 4', 'ma', 'Invisible',  'stpc', 'Invis' },
@@ -160,8 +160,8 @@ xivhotbar_keybinds_job['RDM'] = {
   { 'battle 4 6', 'ma', 'Phalanx',    'me',   'Phalanx' },
   { 'battle 4 7', 'ja', 'Haste',      'stpc', 'Haste' },
   { 'battle 4 8', 'ma', 'Ice Spikes', 'me',   'I.Spikes' },
-  { 'battle 4 9', 'ma', 'Dia II',     't',    'Dia2' },
   { 'battle 4 9', 'ma', 'Dia',        't',    'Dia2' },
+  --{ 'battle 4 9', 'ma', 'Dia II',     't',    'Dia2' },
 }
 
 xivhotbar_keybinds_job['NIN'] = {
@@ -182,11 +182,11 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 4 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
-  { 'battle 4 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 4 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
-  { 'battle 4 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 4 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
+  { 'battle 4 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 4 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 4 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 4 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 4 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
   { 'battle 4 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 4 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
@@ -303,19 +303,19 @@ xivhotbar_keybinds_job['Axe'] = {
   -- Wind
   { 'battle 2 3',  'ws', 'Gale Axe',      't', 'Gale' },
   -- Specials
-  { 'battle 2 4',  'ws', 'Mistral Axe',   't', 'Mistral' }, -- war bst
+  { 'battle 2 4',  'ws', 'Mistral Axe',   't', 'Mistral' },   -- war bst
   -- Prime #6
-  { 'battle 2 6',  'ws', 'Blitz',         't', 'Blitz' }, -- bst
+  { 'battle 2 6',  'ws', 'Blitz',         't', 'Blitz' },     -- bst
   -- Class Specific #7
-  { 'battle 2 7',  'ws', 'Primal Rend',   't', 'Primal' }, -- bst
+  { 'battle 2 7',  'ws', 'Primal Rend',   't', 'Primal' },    -- bst
   -- Merit Point #8
-  { 'battle 2 8',  'ws', 'Ruinator',      't', 'Ruinator' }, -- war drk bst rng run
+  { 'battle 2 8',  'ws', 'Ruinator',      't', 'Ruinator' },  -- war drk bst rng run
   -- Empyrean (Abyssea only)  #9
   { 'battle 2 9',  'ws', 'Cloudsplitter', 't', 'Cloudsplt' }, -- war bst
   -- Relic (only usable with specific weapon equips) #10
   { 'battle 2 10', 'ws', 'Onslaught',     't', 'Onslaught' }, -- bst relic
   -- Bind WS #11
-  { 'battle 2 11', 'ws', 'Bora Axe',      't', 'Bora' },  -- war drk run bst
+  { 'battle 2 11', 'ws', 'Bora Axe',      't', 'Bora' },      -- war drk run bst
   -- Bind WS #12
   { 'battle 2 12', 'ws', 'Smash Axe',     't', 'Smash' },
 }

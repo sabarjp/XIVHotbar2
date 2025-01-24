@@ -35,11 +35,11 @@ xivhotbar_keybinds_job['Base'] = {
 
 
   -- Hotbar #3
-  { 'battle 3 1',  'ma',    'Valor Minuet III',          'me',   'Min3' },
   { 'battle 3 1',  'ma',    'Valor Minuet',              'me',   'Min1' },
+  { 'battle 3 1',  'ma',    'Valor Minuet III',          'me',   'Min3' },
   --------------------------------------------------------------------------------------
-  { 'battle 3 2',  'ma',    'Valor Minuet IV',           'me',   'Min4' },
   { 'battle 3 2',  'ma',    'Valor Minuet II',           'me',   'Min2' },
+  { 'battle 3 2',  'ma',    'Valor Minuet IV',           'me',   'Min4' },
   --------------------------------------------------------------------------------------
   { 'battle 3 3',  'ma',    'Sword Madrigal',            'me',   'Mad1' },
   { 'battle 3 4',  'ma',    'Blade Madrigal',            'me',   'Mad2' },
