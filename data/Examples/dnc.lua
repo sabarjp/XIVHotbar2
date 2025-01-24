@@ -146,8 +146,8 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
   { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
   { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
@@ -168,43 +168,44 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
   { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio',     'ffxiv/sch/bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
+  --{ 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2',    'ffxiv/sch/bio_II' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep',   'ffxiv/role/sleep' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2',  'ffxiv/role/sleep' },
   { 'battle 3 8', 'ma', 'Stun',          't',     'Stun',    'ffxiv/drk/unmend' },
 }
 
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Dagger'] = {
   -- Heavy Hit
-  { 'battle 1 1',  'ws', 'Wasp Sting',      't', 'Wasp' },
-  { 'battle 1 1',  'ws', 'Viper Bite',      't', 'Viper' },   -- rdm thf brd rng nin dnc
-  { 'battle 1 1',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
+  { 'battle 1 9',  'ws', 'Wasp Sting',      't', 'Wasp' },
+  { 'battle 1 9',  'ws', 'Viper Bite',      't', 'Viper' },   -- rdm thf brd rng nin dnc
+  { 'battle 1 9',  'ws', 'Shark Bite',      't', 'Shark' },   -- thf dnc
   -- Multi-Hit
-  { 'battle 1 3',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
-  { 'battle 1 4',  'ws', 'Evisceration',    't', 'Evisc' },   -- war rdm thf bst brd rng nin cor dnc
+  { 'battle 1 9',  'ws', 'Dancing Edge',    't', 'DncEdge' }, -- thf dnc
+  { 'battle 1 9',  'ws', 'Evisceration',    't', 'Evisc' },   -- war rdm thf bst brd rng nin cor dnc
   -- Wind
-  { 'battle 1 5',  'ws', 'Gust Slash',      't', 'Gust' },
+  -- {'battle 1 6', 'ws', 'Gust Slash', 't', 'Gust'},
   -- Specials
-  { 'battle 1 6',  'ws', 'Energy Steal',    't', 'Energy' },
-  { 'battle 1 6',  'ws', 'Energy Drain',    't', 'Energy' }, -- rdm thf brd rng nin dnc
-  -- Class Specific
-  -- { 'battle 1 7',  'ws', 'Mandalic Stab',   't', 'Mandalic' }, -- thf
-  -- { 'battle 1 7',  'ws', 'Mordant Rime',    't', 'Mordant' },  -- brd
-  { 'battle 1 7',  'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' }, -- dnc
-  -- Merit Point
-  { 'battle 1 8',  'ws', 'Exenterator',     't', 'Exent' },   -- war rdm thf bst brd rng nin cor dnc
+  -- {'battle 1 4', 'ws', 'Energy Steal', 't', 'Energy'},
+  -- {'battle 1 4', 'ws', 'Energy Drain', 't', 'Energy'}, -- rdm thf brd rng nin dnc
+  -- Prime #6
+  { 'battle 1 9',  'ws', 'Ruthless Stroke', 't', 'Ruthless' },
+  -- Class Specific #7
+  -- {'battle 1 7', 'ws', 'Mandalic Stab', 't', 'Mandalic'}, -- thf
+  -- {'battle 1 7', 'ws', 'Mordant Rime', 't', 'Mordant'}, -- brd
+  { 'battle 1 10', 'ws', 'Pyrrhic Kleos',   't', 'Pyrrhic' }, -- dnc
+  -- Merit Point #8
+  { 'battle 1 10', 'ws', 'Exenterator',     't', 'Exent' },   -- war rdm thf bst brd rng nin cor dnc
   -- Empyrean (Abyssea only)  #9
-  { 'battle 1 9',  'ws', "Rudra's Storm",   't', 'Rudra' },   -- thf brd dnc
-  -- Relic & Prime (only usable with specific weapon equips) #10
-  { 'battle 1 10', 'ws', 'Ruthless Stroke', 't', 'Ruthless' },
+  { 'battle 1 10', 'ws', "Rudra's Storm",   't', 'Rudra' },   -- thf brd dnc
+  -- Relic (only usable with specific weapon equips) #10
   { 'battle 1 10', 'ws', 'Mercy Stroke',    't', 'Mercy' },   -- rdm thf brd dnc relic
   -- AoE Ws #11
-  { 'battle 1 11', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
-  { 'battle 1 11', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
+  { 'battle 1 12', 'ws', 'Cyclone',         't', 'Cyclone' }, -- rdm thf brd rng nin cor dnc
+  { 'battle 1 12', 'ws', 'Aeolian Edge',    't', 'Aeoln' },   -- rdm thf brd rng nin dnc
   -- Bind WS #12
-  { 'battle 1 12', 'ws', 'Shadowstitch',    't', 'ShdSt' },
+  -- {'battle 1 12', 'ws', 'Shadowstitch', 't', 'ShdSt'},
 }
 
 return xivhotbar_keybinds_job

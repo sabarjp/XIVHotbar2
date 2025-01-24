@@ -7,20 +7,20 @@ xivhotbar_keybinds_job['Base'] = {
 
   -- Hotbar #2
   --main job abilities
-  { 'battle 2 1',  'ma', 'Cure III',      'stpc',  'Cure3' },
-  { 'battle 2 1',  'ma', 'Cure II',       'stpc',  'Cure2' },
   { 'battle 2 1',  'ma', 'Cure',          'stpc',  'Cure1' },
+  { 'battle 2 1',  'ma', 'Cure II',       'stpc',  'Cure2' },
+  { 'battle 2 1',  'ma', 'Cure III',      'stpc',  'Cure3' },
   { 'battle 2 2',  'ma', 'Cure IV',       'stpc',  'Cure4' },
   { 'battle 2 3',  'ma', 'Cure V',        'stpc',  'Cure5' },
   { 'battle 2 4',  'ma', 'Reprisal',      'me',    'Reprise' },
   { 'battle 2 5',  'ma', 'Phalanx',       'me',    'Phalanx' },
-  { 'battle 2 6',  'ma', 'Enlight II',    'me',    'Enlight2' },
   { 'battle 2 6',  'ma', 'Enlight',       'me',    'Enlight' },
+  { 'battle 2 6',  'ma', 'Enlight II',    'me',    'Enlight2' },
   { 'battle 2 7',  'ma', 'Crusade',       'me',    'Crusade' },
-  { 'battle 2 8',  'ma', 'Holy II',       'stnpc', 'Holy2' },
   { 'battle 2 8',  'ma', 'Holy',          'stnpc', 'Holy' },
-  { 'battle 2 9',  'ma', 'Banish II',     'stnpc', 'Banish2' },
+  { 'battle 2 8',  'ma', 'Holy II',       'stnpc', 'Holy2' },
   { 'battle 2 9',  'ma', 'Banish',        'stnpc', 'Banish' },
+  { 'battle 2 9',  'ma', 'Banish II',     'stnpc', 'Banish2' },
 
   --Hotbar #3
   --sub job abilities; leave blank
@@ -54,10 +54,10 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
   { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
@@ -139,6 +139,85 @@ xivhotbar_keybinds_job['WAR'] = {
   { 'battle 3 5', 'ja', 'Aggressor', 'me',    'Aggrsr', 'ffxiv/war/onslaught' },
 }
 
+xivhotbar_keybinds_job['WHM'] = {
+  -- Abilities
+  { 'battle 3 12', 'ja', 'Divine Seal', 'me',    'Divine',  'ffxiv/whm/divine_benison' },
+  -- Enfeeblement
+  -- { 'battle 3 ',  'ma', 'Paralyze',     'stnpc', 'Para' },
+  -- { 'battle 3 ',  'ma', 'Slow',         'stnpc', 'Slow' },
+  -- { 'battle 3 ',  'ma', 'Silence',      'stnpc', 'Silence' },
+  { 'battle 3 1',  'ma', 'Dia',         'stnpc', 'Dia' },
+  --{ 'battle 3 2',  'ma', 'Dia II',      'stnpc', 'Dia II' },
+  -- { 'battle 3 ',  'ma', 'Repose',       'stnpc', 'Repose' },
+  -- { 'battle 3 ',  'ma', 'Flash',        'stnpc', 'Flash',     'ffxiv/pld/flash' },
+  { 'battle 3 3',  'ma', 'Aquaveil',    'me',    'Aquaveil' },
+  -- Barspells
+  -- { 'battle 3 ',  'ma', 'Barsleepra',   'me',    'Sleepra',   '' },
+  -- { 'battle 3 ',  'ma', 'Barpoisonra',  'me',    'Poisonra',  '' },
+  -- { 'battle 3 ',  'ma', 'Barparalyzra', 'me',    'Paralyzra', '' },
+  -- { 'battle 3 ',  'ma', 'Barstonra',    'me',    'Stonra',    'Barstonra' },
+  -- { 'battle 3 ',  'ma', 'Barwatera',    'me',    'Watera',    'Barwatera' },
+  -- { 'battle 3 ',  'ma', 'Baraera',      'me',    'Aera',      'Baraera' },
+  -- { 'battle 3 ',  'ma', 'Barfira',      'me',    'Fira',      'Barfira' },
+  -- { 'battle 3 ',  'ma', 'Barblindra',   'me',    'Blindra',   '' },
+  -- { 'battle 3 ',  'ma', 'Barblizzara',  'me',    'Blizzara',  'Barblizzara' },
+  -- { 'battle 3 ',  'ma', 'Barsilencera', 'me',    'Silencera' },
+  -- { 'battle 3 ',  'ma', 'Barthundra',   'me',    'Thundra',   'Barthundra' },
+  -- { 'battle 3 ',  'ma', 'Barvira',      'me',    'Vira' },
+  -- { 'battle 3 ',  'ma', 'Barpetra',     'me',    'Petra' },
+  -- Atk
+  -- { 'battle 3 ',  'ma', 'Holy',         'stnpc', 'Holy' }, -- mastery
+  -- Regen
+  { 'battle 3 5',  'ma', 'Regen',       'stpc',  'Regen' },
+  { 'battle 3 5',  'ma', 'Regen II',    'stpc',  'Regen2' },
+  -- Cure
+  { 'battle 3 4',  'ma', 'Cure',        'stpc',  'Cure' },
+  { 'battle 3 4',  'ma', 'Cure II',     'stpc',  'Cure2' },
+  { 'battle 3 4',  'ma', 'Cure III',    'stpc',  'Cure3' },
+  { 'battle 3 4',  'ma', 'Cure IV',     'stpc',  'Cure4' },
+  -- Cura
+  --{ 'battle 1 ',   'ma', 'Cura',        'me',    'Cura' },
+  -- Curaga
+  { 'battle 3 6',  'ma', 'Curaga',      'stpc',  'Curaga' },
+  { 'battle 3 6',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
+  { 'battle 3 6',  'ma', 'Curaga III',  'stpc',  'Curaga3' }, -- mastery
+  -- Supportive
+  { 'battle 3 7',  'ma', 'Poisona',     'stpc',  'Poisona' },
+  { 'battle 3 7',  'ma', 'Paralyna',    'stpc',  'Paralyna' },
+  { 'battle 3 7',  'ma', 'Blindna',     'stpc',  'Blindna' },
+  { 'battle 3 7',  'ma', 'Silena',      'stpc',  'Silena' },
+  { 'battle 3 7',  'ma', 'Blink',       'me',    'Blink' },
+  { 'battle 3 7',  'ma', 'Stoneskin',   'me',    'StnSkin' },
+  { 'battle 3 7',  'ma', 'Cursna',      'stpc',  'Cursna' },
+  { 'battle 3 7',  'ma', 'Erase',       'stpc',  'Erase' },
+  -- { 'battle 3 ',  'ma', 'Viruna',       'stpc',  'Viruna' },
+  -- { 'battle 3 ',  'ma', 'Stona',        'stpc',  'Stona' },
+  { 'battle 3 10', 'ma', 'Haste',       'stpc',  'Haste' },
+  { 'battle 3 11', 'ma', 'Auspice',     'me',    'Ausp' }, -- mastery
+}
+
+xivhotbar_keybinds_job['RDM'] = {
+  { 'battle 3 1',  'ma', 'Cure',     'stpc',  'Cure 1' },
+  { 'battle 3 1',  'ma', 'Cure II',  'stpc',  'Cure 2' },
+  { 'battle 3 1',  'ma', 'Cure III', 'stpc',  'Cure 3' },
+  { 'battle 3 1',  'ma', 'Cure IV',  'stpc',  'Cure 4' },
+
+  { 'battle 3 1',  'ma', 'Refresh',  'stpc',  'Refresh' },
+  { 'battle 3 2',  'ma', 'Haste',    'stpc',  'Haste' },
+  { 'battle 3 3',  'ma', 'Dia',      'stnpc', 'Dia' },
+  --{ 'battle 3 3',  'ma', 'Dia II',   'stnpc', 'Dia2' },
+
+  { 'battle 3 4',  'ma', 'Paralyze', 't',     'Paralyze' },
+  { 'battle 3 5',  'ma', 'Slow',     't',     'Slow' },
+  { 'battle 3 6',  'ma', 'Silence',  'stnpc', 'Silence' },
+  { 'battle 3 7',  'ma', 'Poison',   't',     'Paralyze' },
+  { 'battle 3 8',  'ma', 'Blind',    't',     'Slow' },
+  { 'battle 3 9',  'ma', 'Bind',     'stnpc', 'Bind' },
+  { 'battle 3 10', 'ma', 'Frazzle',  't',     'Frazzle' },
+
+  { 'battle 3 11', 'ma', 'Phalanx',  'me',    'Phalanx' },
+}
+
 -- WEAPONSKILL SETS (3-12)
 xivhotbar_keybinds_job['Sword'] = {
   -- Heavy Hit
@@ -204,24 +283,24 @@ xivhotbar_keybinds_job['Great Sword'] = {
 
 xivhotbar_keybinds_job['Club'] = {
   -- Heavy Hit
-  { 'battle 1 3',  'ws', 'True Strike',    't',  'True' },
-  { 'battle 1 3',  'ws', 'Judgment',       't',  'Judgment' }, -- war whm pld drk sam blu geo
+  { 'battle 1 3',  'ws', 'True Strike',    't', 'True' },
+  { 'battle 1 3',  'ws', 'Judgment',       't', 'Judgment' }, -- war whm pld drk sam blu geo
   -- Multi-Hit
   -- { 'battle 1 4',  'ws', 'Hexa Strike',    't', 'Hexa' },     -- whm geo
-  { 'battle 1 4',  'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 4',  'ws', 'Black Halo',     't', 'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
   -- Light
-  { 'battle 1 5',  'ws', 'Shining Strike', 't',  'Shining' },
-  { 'battle 1 5',  'ws', 'Seraph Strike',  't',  'Seraph' }, -- war whm pld drk sam blu geo
-  { 'battle 1 5',  'ws', 'Flash Nova',     't',  'Fl Nova' }, -- war whm pld drk sam blu geo
+  { 'battle 1 5',  'ws', 'Shining Strike', 't', 'Shining' },
+  { 'battle 1 5',  'ws', 'Seraph Strike',  't', 'Seraph' },  -- war whm pld drk sam blu geo
+  { 'battle 1 5',  'ws', 'Flash Nova',     't', 'Fl Nova' }, -- war whm pld drk sam blu geo
   -- Specials
-  { 'battle 1 6',  'ws', 'Skullbreaker',   't',  'Skullbrk' },
-  { 'battle 1 7',  'ws', 'Starlight',      'me', 'Star' },
-  { 'battle 1 7',  'ws', 'Moonlight',      'me', 'Moon' }, -- war whm pld drk sam blu geo
+  { 'battle 1 6',  'ws', 'Skullbreaker',   't', 'Skullbrk' },
+  { 'battle 1 7',  'ws', 'Starlight',      't', 'Star' },
+  { 'battle 1 7',  'ws', 'Moonlight',      't', 'Moon' }, -- war whm pld drk sam blu geo
   -- Class Specific
   -- { 'battle 1 6',  'ws', 'Mystic Boon',    't', 'Mystic' },   -- whm only
   -- { 'battle 1 6',  'ws', 'Exudation',      't', 'Exuda' },    -- geo
   -- Merit Point
-  { 'battle 1 8',  'ws', 'Realmrazer',     't',  'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 8',  'ws', 'Realmrazer',     't', 'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
   -- Empyrean (Abyssea only)  #9
   -- { 'battle 1 9',  'ws', 'Dagan',          't', 'Dagan' },    -- whm
   -- Relic & Prime (only usable with specific weapon equips) #10
@@ -230,7 +309,7 @@ xivhotbar_keybinds_job['Club'] = {
   -- AoE Ws #11
   -- none
   -- Stun WS #12
-  { 'battle 1 12', 'ws', 'Brainshaker',    't',  'Brainshkr' },
+  { 'battle 1 12', 'ws', 'Brainshaker',    't', 'Brainshkr' },
 }
 
 xivhotbar_keybinds_job['Staff'] = {

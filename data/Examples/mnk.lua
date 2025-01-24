@@ -94,11 +94,11 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' }, -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' }, -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' }, -- paralyze
   -- Stances
   { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
   { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
@@ -141,13 +141,13 @@ xivhotbar_keybinds_job['DRG'] = {
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Hand-to-hand'] = {
   -- Heavy Hit
-  { 'battle 1 1',  'ws', 'One Inch Punch',  't', '1Inch' },  -- mnk pup
+  { 'battle 1 1',  'ws', 'One Inch Punch',  't', '1Inch' }, -- mnk pup
   { 'battle 1 1',  'ws', 'Backhand Blow',   't', 'Backhand' },
   { 'battle 1 1',  'ws', 'Dragon Kick',     't', 'Dragon' }, -- mmk pup
   -- Multi-Hit
   { 'battle 1 2',  'ws', 'Combo',           't', 'Combo' },
-  { 'battle 1 2',  'ws', 'Raging Fists',    't', 'Raging' },  -- mnk pup
-  { 'battle 1 2',  'ws', 'Asuran Fists',    't', 'Asuran' },  -- mnk pup
+  { 'battle 1 2',  'ws', 'Raging Fists',    't', 'Raging' }, -- mnk pup
+  { 'battle 1 2',  'ws', 'Asuran Fists',    't', 'Asuran' }, -- mnk pup
   -- Specials
   { 'battle 1 3',  'ws', 'Howling Fist',    't', 'Howling' }, -- mnk pup
   { 'battle 1 4',  'ws', 'Tornado Kick',    't', 'Tornado' }, -- mnk pup
@@ -158,11 +158,11 @@ xivhotbar_keybinds_job['Hand-to-hand'] = {
   -- {'battle 1 7', 'ws', 'Stringing Pummel', 't', 'String'}, -- pup
   { 'battle 1 7',  'ws', 'name',            't', 'displayName' },
   -- Merit Point #8
-  { 'battle 1 8',  'ws', 'Shijin Spiral',   't', 'Shijin' },  -- mnk pup
+  { 'battle 1 8',  'ws', 'Shijin Spiral',   't', 'Shijin' }, -- mnk pup
   -- Empyrean (Abyssea only)  #9
   { 'battle 1 9',  'ws', 'Victory Smite',   't', 'Victory' }, -- mnk pup
   -- Relic (only usable with specific weapon equips) #10
-  { 'battle 1 10', 'ws', 'Final Heaven',    't', 'FinHvn' },  -- mnk
+  { 'battle 1 10', 'ws', 'Final Heaven',    't', 'FinHvn' }, -- mnk
   -- {'battle 1 10', 'ws', 'Dragon Blow', 't', 'DragonB'}, -- bonanza
   -- AoE Ws #11
   { 'battle 1 11', 'ws', 'Spinning Attack', 't', 'Spinning' },
@@ -172,18 +172,18 @@ xivhotbar_keybinds_job['Hand-to-hand'] = {
 
 xivhotbar_keybinds_job['Club'] = {
   -- Heavy Hit
-  { 'battle 1 1',  'ws', 'True Strike',    't',  'True' },
+  { 'battle 1 1',  'ws', 'True Strike',    't', 'True' },
   -- {'battle 1 1', 'ws', 'Judgment', 't', 'Judgment'}, -- war whm pld drk sam blu geo
   -- Multi-Hit
   -- {'battle 1 2', 'ws', 'Hexa Strike', 't', 'Hexa'}, -- whm geo
-  { 'battle 1 2',  'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 2',  'ws', 'Black Halo',     't', 'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
   -- Light
-  { 'battle 1 3',  'ws', 'Shining Strike', 't',  'Shining' },
+  { 'battle 1 3',  'ws', 'Shining Strike', 't', 'Shining' },
   -- {'battle 1 3', 'ws', 'Seraph Strike', 't', 'Seraph'}, -- war whm pld drk sam blu geo
   -- {'battle 1 3', 'ws', 'Flash Nova', 't', 'Fl Nova'}, -- war whm pld drk sam blu geo
   -- Specials
-  { 'battle 1 4',  'ws', 'Skullbreaker',   't',  'Skullbrk' },
-  { 'battle 1 5',  'ws', 'Starlight',      'me', 'Star' },
+  { 'battle 1 4',  'ws', 'Skullbreaker',   't', 'Skullbrk' },
+  { 'battle 1 5',  'ws', 'Starlight',      't', 'Star' },
   -- {'battle 1 5', 'ws', 'Moonlight', 't', 'Moon'}, -- war whm pld drk sam blu geo
   -- Prime #6
   -- {'battle 1 6', 'ws', 'Dagda', 't', 'Dagda'},  -- whm geo recc
@@ -191,7 +191,7 @@ xivhotbar_keybinds_job['Club'] = {
   -- {'battle 1 7', 'ws', 'Mystic Boon', 't', 'Mystic'}, -- whm only
   -- {'battle 1 7', 'ws', 'Exudation', 't', 'Exuda'}, -- geo
   -- Merit Point #8
-  { 'battle 1 8',  'ws', 'Realmrazer',     't',  'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 8',  'ws', 'Realmrazer',     't', 'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
   -- Empyrean (Abyssea only)  #9
   -- {'battle 1 9', 'ws', 'Dagan', 't', 'Dagan'}, -- whm
   -- Relic (only usable with specific weapon equips) #10
@@ -199,7 +199,7 @@ xivhotbar_keybinds_job['Club'] = {
   -- AoE Ws #11
   -- none
   -- Stun WS #12
-  { 'battle 1 12', 'ws', 'Brainshaker',    't',  'Brainshkr' },
+  { 'battle 1 12', 'ws', 'Brainshaker',    't', 'Brainshkr' },
 }
 
 xivhotbar_keybinds_job['Staff'] = {
@@ -231,7 +231,7 @@ xivhotbar_keybinds_job['Staff'] = {
   -- Relic (only usable with specific weapon equips) #10
   -- {'battle 1 10', 'ws', 'Gate of Tartarus', 't', 'Gate'}, -- blm smn relic
   -- AoE Ws #11
-  { 'battle 1 11', 'ws', 'Earth Crusher', 't', 'Crusher' },  -- war mnk whm pld geo
+  { 'battle 1 11', 'ws', 'Earth Crusher', 't', 'Crusher' }, -- war mnk whm pld geo
   { 'battle 1 11', 'ws', 'Cataclysm',     't', 'Catcylsm' }, -- war mnk whm pld geo
   -- Stun WS #12
   -- {'battle 1 12', 'ws', 'Tartarus Torpor', 't', 'Torpor'}, -- campaign

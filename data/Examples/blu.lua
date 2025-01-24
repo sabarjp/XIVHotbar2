@@ -255,12 +255,12 @@ xivhotbar_keybinds_job['Base'] = {
 }
 
 xivhotbar_keybinds_job['WHM'] = {
-  --{ 'battle 4 1',  'ma', 'Cure IV',     'stpc', 'Cure 4' },
-  --{ 'battle 4 1',  'ma', 'Cure III',    'stpc', 'Cure 3' },
-  --{ 'battle 4 1',  'ma', 'Cure II',     'stpc', 'Cure 2' },
   --{ 'battle 4 1',  'ma', 'Cure',        'stpc', 'Cure 1' },
+  --{ 'battle 4 1',  'ma', 'Cure II',     'stpc', 'Cure 2' },
+  --{ 'battle 4 1',  'ma', 'Cure III',    'stpc', 'Cure 3' },
+  --{ 'battle 4 1',  'ma', 'Cure IV',     'stpc', 'Cure 4' },
 
-  { 'battle 4 1',  'ma', 'Dia',         't',    'Dia' }, -- spam to learn blu spells
+  { 'battle 4 1',  'ma', 'Dia',         't',    'Dia' }, -- spam to help learn blu spells
 
   { 'battle 4 2',  'ma', 'Poisona',     'stpc', 'Poisona' },
   { 'battle 4 3',  'ma', 'Paralyna',    'stpc', 'Paralyna' },
@@ -272,9 +272,31 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 4 9',  'ma', 'Erase',       'stpc', 'Erase' },
   { 'battle 4 10', 'ja', 'Divine Seal', 'me',   'Div.Seal' },
   --------------------------------------------------------------------------------------
-  { 'battle 4 11', 'ma', 'Curaga III',  'stpc', 'Curaga3' },
-  { 'battle 4 11', 'ma', 'Curaga II',   'stpc', 'Curaga2' },
   { 'battle 4 11', 'ma', 'Curaga',      'stpc', 'Curaga' },
+  { 'battle 4 11', 'ma', 'Curaga II',   'stpc', 'Curaga2' },
+  { 'battle 4 11', 'ma', 'Curaga III',  'stpc', 'Curaga3' },
+}
+
+xivhotbar_keybinds_job['RDM'] = {
+  { 'battle 4 1',  'ma', 'Cure',     'stpc',  'Cure 1' },
+  { 'battle 4 1',  'ma', 'Cure II',  'stpc',  'Cure 2' },
+  { 'battle 4 1',  'ma', 'Cure III', 'stpc',  'Cure 3' },
+  { 'battle 4 1',  'ma', 'Cure IV',  'stpc',  'Cure 4' },
+
+  { 'battle 4 1',  'ma', 'Refresh',  'stpc',  'Refresh' },
+  { 'battle 4 2',  'ma', 'Haste',    'stpc',  'Haste' },
+  { 'battle 4 3',  'ma', 'Dia',      'stnpc', 'Dia' },
+  --{ 'battle 4 3',  'ma', 'Dia II',   'stnpc', 'Dia2' },
+
+  { 'battle 4 4',  'ma', 'Paralyze', 't',     'Paralyze' },
+  { 'battle 4 5',  'ma', 'Slow',     't',     'Slow' },
+  { 'battle 4 6',  'ma', 'Silence',  'stnpc', 'Silence' },
+  { 'battle 4 7',  'ma', 'Poison',   't',     'Paralyze' },
+  { 'battle 4 8',  'ma', 'Blind',    't',     'Slow' },
+  { 'battle 4 9',  'ma', 'Bind',     'stnpc', 'Bind' },
+  { 'battle 4 10', 'ma', 'Frazzle',  't',     'Frazzle' },
+
+  { 'battle 4 11', 'ma', 'Phalanx',  'me',    'Phalanx' },
 }
 
 xivhotbar_keybinds_job['THF'] = {
@@ -294,8 +316,8 @@ xivhotbar_keybinds_job['NIN'] = {
 
   -- Enfeeblement
   { 'battle 4 3', 'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
-  { 'battle 4 4', 'ma', 'Hojo: Ni',       'stnpc', 'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 4 4', 'ma', 'Hojo: Ichi',     'stnpc', 'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 4 4', 'ma', 'Hojo: Ni',       'stnpc', 'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 4 5', 'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
   { 'battle 4 6', 'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
@@ -360,15 +382,15 @@ xivhotbar_keybinds_job['Club'] = {
   { 'battle 1 1',  'ws', 'True Strike',    't',  'True' },
   { 'battle 1 2',  'ws', 'Judgment',       't',  'Judgment' }, -- war whm pld drk sam blu geo
   -- Multi-Hit
-  { 'battle 1 3',  'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 3',  'ws', 'Black Halo',     't',  'Bl Halo' },  -- war mnk whm blm pld smn blu sch geo
   -- Light
   { 'battle 1 4',  'ws', 'Shining Strike', 't',  'Shining' },
-  { 'battle 1 5',  'ws', 'Seraph Strike',  't',  'Seraph' }, -- war whm pld drk sam blu geo
+  { 'battle 1 5',  'ws', 'Seraph Strike',  't',  'Seraph' },  -- war whm pld drk sam blu geo
   { 'battle 1 6',  'ws', 'Flash Nova',     't',  'Fl Nova' }, -- war whm pld drk sam blu geo
   -- Specials
   { 'battle 1 7',  'ws', 'Skullbreaker',   't',  'Skullbrk' },
   { 'battle 1 8',  'ws', 'Starlight',      'me', 'Star' },
-  { 'battle 1 9',  'ws', 'Moonlight',      'me', 'Moon' },    -- war whm pld drk sam blu geo
+  { 'battle 1 9',  'ws', 'Moonlight',      't',  'Moon' },     -- war whm pld drk sam blu geo
   -- Merit Point #8
   { 'battle 1 10', 'ws', 'Realmrazer',     't',  'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
   -- AoE Ws #11

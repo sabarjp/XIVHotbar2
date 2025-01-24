@@ -108,8 +108,8 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
   { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
   { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
@@ -159,10 +159,10 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
   { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
@@ -173,8 +173,8 @@ xivhotbar_keybinds_job['WHM'] = {
   -- { 'battle 3 ',  'ma', 'Paralyze',     'stnpc', 'Para' },
   -- { 'battle 3 ',  'ma', 'Slow',         'stnpc', 'Slow' },
   -- { 'battle 3 ',  'ma', 'Silence',      'stnpc', 'Silence' },
-  { 'battle 3 2',  'ma', 'Dia II',      'stnpc', 'Dia II' },
   { 'battle 3 1',  'ma', 'Dia',         'stnpc', 'Dia' },
+  --{ 'battle 3 2',  'ma', 'Dia II',      'stnpc', 'Dia II' },
   -- { 'battle 3 ',  'ma', 'Repose',       'stnpc', 'Repose' },
   -- { 'battle 3 ',  'ma', 'Flash',        'stnpc', 'Flash',     'ffxiv/pld/flash' },
   { 'battle 3 3',  'ma', 'Aquaveil',    'me',    'Aquaveil' },
@@ -195,19 +195,19 @@ xivhotbar_keybinds_job['WHM'] = {
   -- Atk
   -- { 'battle 3 ',  'ma', 'Holy',         'stnpc', 'Holy' }, -- mastery
   -- Regen
-  { 'battle 3 5',  'ma', 'Regen II',    'stpc',  'Regen2' },
   { 'battle 3 5',  'ma', 'Regen',       'stpc',  'Regen' },
+  { 'battle 3 5',  'ma', 'Regen II',    'stpc',  'Regen2' },
   -- Cure
-  { 'battle 3 4',  'ma', 'Cure IV',     'stpc',  'Cure4' },
-  { 'battle 3 4',  'ma', 'Cure III',    'stpc',  'Cure3' },
-  { 'battle 3 4',  'ma', 'Cure II',     'stpc',  'Cure2' },
   { 'battle 3 4',  'ma', 'Cure',        'stpc',  'Cure' },
+  { 'battle 3 4',  'ma', 'Cure II',     'stpc',  'Cure2' },
+  { 'battle 3 4',  'ma', 'Cure III',    'stpc',  'Cure3' },
+  { 'battle 3 4',  'ma', 'Cure IV',     'stpc',  'Cure4' },
   -- Cura
-  { 'battle 1 ',   'ma', 'Cura',        'me',    'Cura' },
+  --{ 'battle 1 ',   'ma', 'Cura',        'me',    'Cura' },
   -- Curaga
-  { 'battle 3 6',  'ma', 'Curaga III',  'stpc',  'Curaga3' }, -- mastery
-  { 'battle 3 6',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
   { 'battle 3 6',  'ma', 'Curaga',      'stpc',  'Curaga' },
+  { 'battle 3 6',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
+  { 'battle 3 6',  'ma', 'Curaga III',  'stpc',  'Curaga3' }, -- mastery
   -- Supportive
   { 'battle 3 7',  'ma', 'Poisona',     'stpc',  'Poisona' },
   { 'battle 3 7',  'ma', 'Paralyna',    'stpc',  'Paralyna' },

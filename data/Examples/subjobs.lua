@@ -104,8 +104,8 @@ xivhotbar_keybinds_job['NIN'] = {
 
   -- Enfeeblement
   { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       'stnpc', 'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 3 4',  'ma', 'Hojo: Ichi',     'stnpc', 'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       'stnpc', 'Hojo',      'ffxiv/ast/redraw' },      -- slow
   { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
   { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
@@ -159,14 +159,14 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 2', 'ja', 'Souleater',     'me',    'SEater',  'ffxiv/drk/souleater' },
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' }, -- mastery
   -- Enfeeblment
-  { 'battle 3 8', 'ma', 'Poison II',     'stnpc', 'Poison2' },
   { 'battle 3 8', 'ma', 'Poison',        'stnpc', 'Poison' },
+  { 'battle 3 8', 'ma', 'Poison II',     'stnpc', 'Poison2' },
   { 'battle 3 8', 'ma', 'Poisonga',      'stnpc', 'Psnaga' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 8', 'ma', 'Bind',          'stnpc', 'Bind' },
-  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' }, -- mastery
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' }, -- mastery
   { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
   -- Absorbs
   { 'battle 3 7', 'ma', 'Drain',         'stnpc', 'Drain' },
@@ -180,12 +180,12 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 7', 'ma', 'Absorb-STR',    'stnpc', 'Abs-STR' },
   { 'battle 3 7', 'ma', 'Absorb-TP',     'stnpc', 'Abs-TP' },
   -- Black Magic
-  { 'battle 5 1', 'ma', 'Stone II',      'stnpc', 'Stone2' },
   { 'battle 5 1', 'ma', 'Stone',         'stnpc', 'Stone' },
-  { 'battle 5 1', 'ma', 'Water II',      'stnpc', 'Water2' },
+  { 'battle 5 1', 'ma', 'Stone II',      'stnpc', 'Stone2' },
   { 'battle 5 1', 'ma', 'Water',         'stnpc', 'Water' },
-  { 'battle 5 1', 'ma', 'Aero II',       'stnpc', 'Aero2' }, -- mastery
+  { 'battle 5 1', 'ma', 'Water II',      'stnpc', 'Water2' },
   { 'battle 5 1', 'ma', 'Aero',          'stnpc', 'Aero' },
+  { 'battle 5 1', 'ma', 'Aero II',       'stnpc', 'Aero2' }, -- mastery
   { 'battle 5 1', 'ma', 'Fire',          'stnpc', 'Fire' },
   { 'battle 5 1', 'ma', 'Blizzard',      'stnpc', 'Blizzard' },
   { 'battle 5 1', 'ma', 'Thunder',       'stnpc', 'Thunder' },
@@ -223,52 +223,52 @@ xivhotbar_keybinds_job['RDM'] = {
   -- Abilities
   { 'battle 1 1',  'ja', 'Convert',       'me',    'Convert',   'ffxiv/rdm/magic_barrier' },
   -- Enspells
-  { 'battle 6 7',  'ma', 'Enstone II',    'me',    'Enstone2' }, -- mastery
   { 'battle 6 7',  'ma', 'Enstone',       'me',    'Enstone' },
-  { 'battle 6 8',  'ma', 'Enwater II',    'me',    'Enwater2' }, -- mastery
+  { 'battle 6 7',  'ma', 'Enstone II',    'me',    'Enstone2' }, -- mastery
   { 'battle 6 8',  'ma', 'Enwater',       'me',    'Enwater' },
-  { 'battle 6 9',  'ma', 'Enaero II',     'me',    'Enaero2' },  -- mastery
+  { 'battle 6 8',  'ma', 'Enwater II',    'me',    'Enwater2' }, -- mastery
   { 'battle 6 9',  'ma', 'Enaero',        'me',    'Enaero' },
-  { 'battle 6 10', 'ma', 'Enfire II',     'me',    'Enfire2' },  -- mastery
+  { 'battle 6 9',  'ma', 'Enaero II',     'me',    'Enaero2' },  -- mastery
   { 'battle 6 10', 'ma', 'Enfire',        'me',    'Enfire' },
-  { 'battle 6 11', 'ma', 'Enblizzard II', 'me',    'Enblizz2' }, -- mastery
+  { 'battle 6 10', 'ma', 'Enfire II',     'me',    'Enfire2' },  -- mastery
   { 'battle 6 11', 'ma', 'Enblizzard',    'me',    'Enblizz' },
-  { 'battle 6 12', 'ma', 'Enthunder II',  'me',    'Enthun2' },  -- mastery
+  { 'battle 6 11', 'ma', 'Enblizzard II', 'me',    'Enblizz2' }, -- mastery
   { 'battle 6 12', 'ma', 'Enthunder',     'me',    'Enthun' },
+  { 'battle 6 12', 'ma', 'Enthunder II',  'me',    'Enthun2' },  -- mastery
   --Enfeeblement
-  { 'battle 2 4',  'ma', 'Dia II',        'stnpc', 'Dia2' },
   { 'battle 2 4',  'ma', 'Dia',           'stnpc', 'Dia' },
+  { 'battle 2 4',  'ma', 'Dia II',        'stnpc', 'Dia2' },
   { 'battle 2 4',  'ma', 'Diaga',         'stnpc', 'Diaga' },
-  { 'battle 3 8',  'ma', 'Poison II',     'stnpc', 'Poison2' },
   { 'battle 3 8',  'ma', 'Poison',        'stnpc', 'Poison' },
+  { 'battle 3 8',  'ma', 'Poison II',     'stnpc', 'Poison2' },
   { 'battle 2 5',  'ma', 'Paralyze',      'stnpc', 'Paralyze' },
   { 'battle 2 9',  'ma', 'Blind',         'stnpc', 'Blind' },
-  { 'battle 3 6',  'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 3 6',  'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 6',  'ma', 'Bio II',        'stnpc', 'Bio2' },
   { 'battle 2 10', 'ma', 'Bind',          'stnpc', 'Bind' },
   { 'battle 2 6',  'ma', 'Slow',          'stnpc', 'Slow' },
   { 'battle 2 7',  'ma', 'Silence',       'stnpc', 'Silence' },
   { 'battle 2 7',  'ma', 'Gravity',       'stnpc', 'Gravity' },
-  { 'battle 3 7',  'ma', 'Sleep II',      'stnpc', 'Sleep2' },
   { 'battle 3 7',  'ma', 'Sleep',         'stnpc', 'Sleep' },
+  { 'battle 3 7',  'ma', 'Sleep II',      'stnpc', 'Sleep2' },
   { 'battle 3 7',  'ma', 'Dispel',        'stnpc', 'Dispel' },
   { 'battle 3 7',  'ma', 'Distract',      'stnpc', 'Distract' },
   { 'battle 3 7',  'ma', 'Frazzle',       'stnpc', 'Frazzle' },
   -- White Magic
-  { 'battle 1 1',  'ma', 'Cure IV',       'stpc',  'Cure 4' },
-  { 'battle 1 1',  'ma', 'Cure III',      'stpc',  'Cure3' },
-  { 'battle 1 1',  'ma', 'Cure II',       'stpc',  'Cure2' },
   { 'battle 1 1',  'ma', 'Cure',          'stpc',  'Cure' },
+  { 'battle 1 1',  'ma', 'Cure II',       'stpc',  'Cure2' },
+  { 'battle 1 1',  'ma', 'Cure III',      'stpc',  'Cure3' },
+  { 'battle 1 1',  'ma', 'Cure IV',       'stpc',  'Cure 4' },
   { 'battle 2 1',  'ma', 'Regen',         'stpc',  'Regen' },
   -- Black Magic
-  { 'battle 5 1',  'ma', 'Stone II',      'stnpc', 'Stone2' },
   { 'battle 5 1',  'ma', 'Stone',         'stnpc', 'Stone' },
-  { 'battle 5 1',  'ma', 'Water II',      'stnpc', 'Water2' },
+  { 'battle 5 1',  'ma', 'Stone II',      'stnpc', 'Stone2' },
   { 'battle 5 1',  'ma', 'Water',         'stnpc', 'Water' },
-  { 'battle 5 1',  'ma', 'Aero II',       'stnpc', 'Aero2' }, -- mastery
+  { 'battle 5 1',  'ma', 'Water II',      'stnpc', 'Water2' },
   { 'battle 5 1',  'ma', 'Aero',          'stnpc', 'Aero' },
-  { 'battle 5 1',  'ma', 'Fire II',       'stnpc', 'Fire2' }, -- mastery
+  { 'battle 5 1',  'ma', 'Aero II',       'stnpc', 'Aero2' }, -- mastery
   { 'battle 5 1',  'ma', 'Fire',          'stnpc', 'Fire' },
+  { 'battle 5 1',  'ma', 'Fire II',       'stnpc', 'Fire2' }, -- mastery
   { 'battle 5 1',  'ma', 'Blizzard',      'stnpc', 'Blizzard' },
   { 'battle 5 1',  'ma', 'Thunder',       'stnpc', 'Thunder' },
   -- Buffs
@@ -304,8 +304,8 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 3 2',  'ma', 'Paralyze',     'stnpc', 'Para' },
   { 'battle 3 3',  'ma', 'Slow',         'stnpc', 'Slow' },
   { 'battle 3 4',  'ma', 'Silence',      'stnpc', 'Silence' },
-  { 'battle 3 1',  'ma', 'Dia II',       'stnpc', 'Dia II' },
   { 'battle 3 1',  'ma', 'Dia',          'stnpc', 'Dia' },
+  { 'battle 3 1',  'ma', 'Dia II',       'stnpc', 'Dia II' },
   { 'battle 3 9',  'ma', 'Repose',       'stnpc', 'Repose' },
   { 'battle 3 9',  'ma', 'Flash',        'stnpc', 'Flash',     'ffxiv/pld/flash' },
   { 'battle 3 1',  'ma', 'Aquaveil',     'me',    'Aquaveil' },
@@ -326,19 +326,19 @@ xivhotbar_keybinds_job['WHM'] = {
   -- Atk
   { 'battle 3 9',  'ma', 'Holy',         'stnpc', 'Holy' }, -- mastery
   -- Regen
-  { 'battle 3 11', 'ma', 'Regen II',     'stpc',  'Regen2' },
   { 'battle 3 11', 'ma', 'Regen',        'stpc',  'Regen' },
+  { 'battle 3 11', 'ma', 'Regen II',     'stpc',  'Regen2' },
   -- Cure
-  { 'battle 3 10', 'ma', 'Cure IV',      'stpc',  'Cure4' },
-  { 'battle 3 10', 'ma', 'Cure III',     'stpc',  'Cure3' },
-  { 'battle 3 10', 'ma', 'Cure II',      'stpc',  'Cure2' },
   { 'battle 3 10', 'ma', 'Cure',         'stpc',  'Cure' },
+  { 'battle 3 10', 'ma', 'Cure II',      'stpc',  'Cure2' },
+  { 'battle 3 10', 'ma', 'Cure III',     'stpc',  'Cure3' },
+  { 'battle 3 10', 'ma', 'Cure IV',      'stpc',  'Cure4' },
   -- Cura
   { 'battle 1 10', 'ma', 'Cura',         'me',    'Cura' },
   -- Curaga
-  { 'battle 3 12', 'ma', 'Curaga III',   'stpc',  'Curaga3' }, -- mastery
-  { 'battle 3 12', 'ma', 'Curaga II',    'stpc',  'Curaga2' },
   { 'battle 3 12', 'ma', 'Curaga',       'stpc',  'Curaga' },
+  { 'battle 3 12', 'ma', 'Curaga II',    'stpc',  'Curaga2' },
+  { 'battle 3 12', 'ma', 'Curaga III',   'stpc',  'Curaga3' }, -- mastery
   -- Supportive
   { 'battle 3 1',  'ma', 'Poisona',      'stpc',  'Poisona' },
   { 'battle 3 2',  'ma', 'Paralyna',     'stpc',  'Paralyna' },
@@ -391,13 +391,13 @@ xivhotbar_keybinds_job['SCH'] = {
 
 xivhotbar_keybinds_job['Light Arts'] = {
   -- White Magic
-  { 'battle 1 4', 'ma', 'Cure IV',   'stpc', 'Cure4' }, -- mastery
-  { 'battle 1 3', 'ma', 'Cure III',  'stpc', 'Cure3' },
-  { 'battle 1 2', 'ma', 'Cure II',   'stpc', 'Cure2' },
   { 'battle 1 1', 'ma', 'Cure',      'stpc', 'Cure1' },
-  { 'battle 1 8', 'ma', 'Regen III', 'stpc', 'Regen3' }, -- mastery
-  { 'battle 1 8', 'ma', 'Regen II',  'stpc', 'Regen2' },
+  { 'battle 1 2', 'ma', 'Cure II',   'stpc', 'Cure2' },
+  { 'battle 1 3', 'ma', 'Cure III',  'stpc', 'Cure3' },
+  { 'battle 1 4', 'ma', 'Cure IV',   'stpc', 'Cure4' }, -- mastery
   { 'battle 1 8', 'ma', 'Regen',     'stpc', 'Regen' },
+  { 'battle 1 8', 'ma', 'Regen II',  'stpc', 'Regen2' },
+  { 'battle 1 8', 'ma', 'Regen III', 'stpc', 'Regen3' }, -- mastery
   -- Status Removal
   { 'battle 2 1', 'ma', 'Poisona',   'stpc', 'Poisona' },
   { 'battle 2 2', 'ma', 'Paralyna',  'stpc', 'Paralyna' },
@@ -411,20 +411,20 @@ xivhotbar_keybinds_job['Light Arts'] = {
 
 xivhotbar_keybinds_job['Dark Arts'] = {
   -- Black Magic
-  { 'battle 1 1',  'ma', 'Stone III',    'stnpc', 'Stone3' }, -- mastery
-  { 'battle 1 1',  'ma', 'Stone II',     'stnpc', 'Stone2' },
   { 'battle 1 1',  'ma', 'Stone',        'stnpc', 'Stone' },
-  { 'battle 1 2',  'ma', 'Water III',    'stnpc', 'Water3' }, -- mastery
-  { 'battle 1 2',  'ma', 'Water II',     'stnpc', 'Water2' },
+  { 'battle 1 1',  'ma', 'Stone II',     'stnpc', 'Stone2' },
+  { 'battle 1 1',  'ma', 'Stone III',    'stnpc', 'Stone3' }, -- mastery
   { 'battle 1 2',  'ma', 'Water',        'stnpc', 'Water' },
-  { 'battle 1 3',  'ma', 'Aero II',      'stnpc', 'Aero2' },
+  { 'battle 1 2',  'ma', 'Water II',     'stnpc', 'Water2' },
+  { 'battle 1 2',  'ma', 'Water III',    'stnpc', 'Water3' }, -- mastery
   { 'battle 1 3',  'ma', 'Aero',         'stnpc', 'Aero' },
-  { 'battle 1 4',  'ma', 'Fire II',      'stnpc', 'Fire2' },
+  { 'battle 1 3',  'ma', 'Aero II',      'stnpc', 'Aero2' },
   { 'battle 1 4',  'ma', 'Fire',         'stnpc', 'Fire' },
-  { 'battle 1 5',  'ma', 'Blizzard II',  'stnpc', 'Blizz2' },
+  { 'battle 1 4',  'ma', 'Fire II',      'stnpc', 'Fire2' },
   { 'battle 1 5',  'ma', 'Blizzard',     'stnpc', 'Blizz' },
-  { 'battle 1 6',  'ma', 'Thunder II',   'stnpc', 'Thund2' }, -- mastery
+  { 'battle 1 5',  'ma', 'Blizzard II',  'stnpc', 'Blizz2' },
   { 'battle 1 6',  'ma', 'Thunder',      'stnpc', 'Thund' },
+  { 'battle 1 6',  'ma', 'Thunder II',   'stnpc', 'Thund2' }, -- mastery
   -- Enfeeblement
   { 'battle 1 7',  'ma', 'Sleep',        'stnpc', 'Sleep' },
   { 'battle 1 10', 'ma', 'Dispel',       'stnpc', 'Dispel' },
@@ -590,12 +590,12 @@ xivhotbar_keybinds_job['PLD'] = {
   { 'battle 3 3',  'ja', 'Sentinel',    'me',    'Sentnl',   'ffxiv/pld/sentinel' },
   { 'battle 3 4',  'ja', 'Cover',       'stpc',  'Cover',    'ffxiv/pld/cover' },
   -- Spells
-  { 'battle 3 9',  'ma', 'Cure IV',     'stpc',  'Cure4' }, -- Mastery
-  { 'battle 3 8',  'ma', 'Cure III',    'stpc',  'Cure3' },
-  { 'battle 3 7',  'ma', 'Cure II',     'stpc',  'Cure2' },
   { 'battle 3 6',  'ma', 'Cure',        'stpc',  'Cure1' },
-  { 'battle 2 9',  'ma', 'Banish II',   'stnpc', 'Banish2' },
+  { 'battle 3 7',  'ma', 'Cure II',     'stpc',  'Cure2' },
+  { 'battle 3 8',  'ma', 'Cure III',    'stpc',  'Cure3' },
+  { 'battle 3 9',  'ma', 'Cure IV',     'stpc',  'Cure4' }, -- Mastery
   { 'battle 2 9',  'ma', 'Banish',      'stnpc', 'Banish' },
+  { 'battle 2 9',  'ma', 'Banish II',   'stnpc', 'Banish2' },
   { 'battle 3 5',  'ma', 'Flash',       'stnpc', 'Flash',    'ffxiv/pld/flash' },
 
   { 'battle 3 10', 'ma', 'Holy',        'stnpc', 'Holy' }, -- Mastery
@@ -604,7 +604,7 @@ xivhotbar_keybinds_job['PLD'] = {
 xivhotbar_keybinds_job['PUP'] = {
   -- Pet Control
   { 'battle 3 1',  'ja', 'Deploy',           't',  'Fight',    'ffxiv/mch/rook_overload' },
-  { 'battle 3 2',  'ja', 'Retrieve',         'me', 'Retrieve', 'ffxiv/mch/pile_bunker' },
+  { 'battle 3 2',  'ja', 'Retrieve',         't',  'Retrieve', 'ffxiv/mch/pile_bunker' },
   -- Maneuvers
   { 'battle 3 3',  'ja', 'Fire Maneuver',    'me', 'FireMan',  'ffxiv/pic/fire_in_red' },
   { 'battle 3 4',  'ja', 'Ice Maneuver',     'me', 'IceMan',   'ffxiv/pic/blizzard_in_cyan' },
@@ -636,9 +636,9 @@ xivhotbar_keybinds_job['RUN'] = {
   -- Defensive Spells
   { 'battle 2 5',  'ma', 'Blink',        'me',    'Blink' },
   -- Curative Spells
-  { 'battle 2 9',  'ma', 'Regen III',    'stpc',  'Regen3' },
-  { 'battle 2 9',  'ma', 'Regen II',     'stpc',  'Regen2' },
   { 'battle 2 9',  'ma', 'Regen',        'stpc',  'Regen' },
+  { 'battle 2 9',  'ma', 'Regen II',     'stpc',  'Regen2' },
+  { 'battle 2 9',  'ma', 'Regen III',    'stpc',  'Regen3' },
   -- Tanking / Self-Targeted Defense
   { 'battle 3 11', 'ja', 'Vallation',    'me',    'Valltn',    'ffxiv/sge/haima' },
   { 'battle 3 12', 'ja', 'Swordplay',    'me',    'Swordply',  'ffxiv/vpr/Flanksbane_Fang' },
