@@ -32,6 +32,13 @@ local spell_list = require('priv_res/spells')
 local horizon_spell_list = require('priv_res/horizon_spells')
 local ws_list = require('priv_res/weapon_skills')
 local ability_list = require('priv_res/job_abilities')
+local ability_level_list = require('priv_res/job_abilities_levels')
+local weaponskill_level_list = require('priv_res/weapon_skills_levels')
+
+local spells = {}       -- populated after binds are parsed
+local abilities = {}    -- populated after binds are parsed
+local weaponskills = {} -- populated after binds are parsed
+
 local action_manager = {}
 local mainjob_actions = {}
 local subjob_actions = {}
@@ -105,6 +112,24 @@ weaponskill_types = {
   [26] = "Marksmanship",
 }
 
+-- reverse lookup tables
+-- these tables map english names to ids so we can get O(1) operations when parsing massive amounts
+-- of keybinds, should significantly speed up access
+local en_to_spell_id = {}
+local en_to_ability_id = {}
+local en_to_weaponskill_id = {}
+
+for spell_id, spell_data in pairs(resources.spells) do
+  en_to_spell_id[spell_data.en] = spell_id
+end
+
+for ability_id, ability_data in pairs(resources.job_abilities) do
+  en_to_ability_id[ability_data.en] = ability_id
+end
+
+for weapon_skill_id, weapon_skill_data in pairs(resources.weapon_skills) do
+  en_to_weaponskill_id[weapon_skill_data.en] = weapon_skill_id
+end
 
 local function create_table(_new_table, _table_key)
   setmetatable(_new_table, {
@@ -372,12 +397,20 @@ function action_req_check(action_array)
       end
     end
   elseif action_type == 'ja' then
+    if not meets_ability_level_req(action_name) then
+      return false
+    end
+
     -- Check if job ability is learned.
     return is_job_ability_learned(action_name)
   elseif action_type == 'bstpet' then
     -- Check if Beastmaster pet ability is usable.
     return is_pet_ability_usable(action_name)
   elseif action_type == 'ws' then
+    if not meets_weaponskill_level_req(action_name) then
+      return false
+    end
+
     -- Check if weapon skill is learned.
     return is_weaponskill_learned(action_name)
   elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' then
@@ -390,52 +423,192 @@ function action_req_check(action_array)
 end
 
 function meets_spell_level_req(spell_name_en)
+  if not spell_name_en then return false end
+
   -- TODO: prefer our global player
   local windower_player = windower.ffxi.get_player()
 
-  for key, val in pairs(spells) do
-    if spells[key]['en'] == spell_name_en then
-      if spells[key]['levels'][windower_player.main_job_id] == nil then                                          -- Check to see if current main job even has a level associated with spell
-        if windower_player.sub_job_level == nil or spells[key]['levels'][windower_player.sub_job_id] == nil then -- Otherwise check to see if current sub job even has a level associated with spell
-          return false
-        elseif windower_player.sub_job_level < spells[key]['levels'][windower_player.sub_job_id] then            -- Check to see if sub job level is lower than spell level
-          return false
-        else
-          return true
-        end
-      elseif windower_player.main_job_level < spells[key]['levels'][windower_player.main_job_id] then -- Check to see if main job level is lower than spell level
-        return false
-      else
-        return true
-      end
+  -- Use the reverse lookup table to get the spell ID
+  local spell_id = en_to_spell_id[spell_name_en]
+  if not spell_id then
+    return true -- Spell does not exist, but assume true, might be new patch data
+  end
+
+  -- Retrieve the spell data
+  local spell_data = resources.spells[spell_id]
+  if not spell_data then
+    return true -- Invalid spell data, but assume true, might be new patch data
+  end
+
+  -- Check if the main job has a level requirement for the spell
+  local main_job_id = windower_player.main_job_id
+  local main_job_level = windower_player.main_job_level
+  local main_job_spell_level = spell_data.levels[main_job_id]
+
+  if not main_job_spell_level then
+    -- Main job does not have access, check the sub job
+    local sub_job_id = windower_player.sub_job_id
+    local sub_job_level = windower_player.sub_job_level
+
+    if not sub_job_id or not sub_job_level then
+      return false -- No sub job or sub job level data
     end
+
+    local sub_job_spell_level = spell_data.levels[sub_job_id]
+    if not sub_job_spell_level then
+      return false -- Sub job does not have access to the spell
+    end
+
+    -- Check if the sub job level is high enough
+    return sub_job_level >= sub_job_spell_level
+  else
+    -- Check if the main job level is high enough
+    return main_job_level >= main_job_spell_level
   end
 end
 
-function is_spell_learned(spell_name_en)
-  for k, v in pairs(learned_spells_name) do
-    if v == spell_name_en then
-      --These are spells that player meets level and learned requirement
-      return true
+function meets_ability_level_req(ability_name_en)
+  if not ability_name_en then return false end
+
+  -- TODO: prefer our global player
+  local windower_player = windower.ffxi.get_player()
+
+  -- Use the reverse lookup table to get the ability ID
+  local ability_id = en_to_ability_id[ability_name_en]
+  if not ability_id then
+    return true -- Ability does not exist, have to assume true, might be a new patch
+  end
+
+  -- Retrieve the ability data
+  local ability_data = ability_level_list[ability_id]
+  if not ability_data then
+    return true -- Invalid ability data, have to assume true, might be a new patch
+  end
+
+  -- Check if the main job has a level requirement for the ability
+  local main_job_id = windower_player.main_job_id
+  local main_job_level = windower_player.main_job_level
+  local main_job_ability_level = ability_data.levels[main_job_id]
+
+  if not main_job_ability_level then
+    -- Main job does not have access, check the sub job
+    local sub_job_id = windower_player.sub_job_id
+    local sub_job_level = windower_player.sub_job_level
+
+    if not sub_job_id or not sub_job_level then
+      return false -- No sub job or sub job level data
+    end
+
+    local sub_job_ability_level = ability_data.levels[sub_job_id]
+    if not sub_job_ability_level then
+      return false -- Sub job does not have access to the ability
+    end
+
+    -- Check if the sub job level is high enough
+    return sub_job_level >= sub_job_ability_level
+  else
+    -- Check if the main job level is high enough
+    return main_job_level >= main_job_ability_level
+  end
+end
+
+-- Create a mapping from underscored skill names to the known skills since windower skills are in a goofy format
+local underscored_to_known_skill_map = {
+  hand_to_hand = "Hand-to-Hand",
+  dagger = "Dagger",
+  sword = "Sword",
+  great_sword = "Great Sword",
+  axe = "Axe",
+  great_axe = "Great Axe",
+  scythe = "Scythe",
+  polearm = "Polearm",
+  katana = "Katana",
+  great_katana = "Great Katana",
+  club = "Club",
+  staff = "Staff",
+  automaton_melee = "Automaton Melee",
+  automaton_archery = "Automaton Archery",
+  automaton_magic = "Automaton Magic",
+  archery = "Archery",
+  marksmanship = "Marksmanship",
+  throwing = "Throwing",
+  guard = "Guard",
+  evasion = "Evasion",
+  shield = "Shield",
+  parrying = "Parrying",
+}
+
+function meets_weaponskill_level_req(weaponskill_name_en)
+  if not weaponskill_name_en then return false end
+  local weaponskill_id = en_to_weaponskill_id[weaponskill_name_en]
+
+  -- TODO: prefer our global player
+  local windower_player = windower.ffxi.get_player()
+  local skills = windower_player.skills
+  local main_job_level = windower_player.main_job_level
+
+  -- Retrieve the weaponskill data directly using the skill_id
+  local skill_data = weaponskill_level_list[weaponskill_id]
+  if not skill_data then
+    return true -- If no data exists for this skill_id, assume it is always available
+  end
+
+  local min_level = skill_data.min_level
+  local min_skill = skill_data.min_skill
+
+  -- Check if player meets the minimum level requirement (if applicable)
+  if min_level and main_job_level < min_level then
+    return false
+  end
+
+  -- Use the skill ID to find the relevant skill level in the player's skills
+  local skill_name = nil
+  for underscored_name, readable_name in pairs(underscored_to_known_skill_map) do
+    if readable_name == resources.skills[skill_data.skill].en then
+      skill_name = underscored_name
+      break
     end
   end
 
-  return false
+  if not skill_name then
+    return false
+  end
+
+  local player_skill = skills[skill_name] or 0
+
+  -- Check if player meets the minimum skill requirement
+  if min_skill and player_skill < min_skill then
+    return false
+  end
+
+  -- If all checks pass, return true
+  return true
+end
+
+function is_spell_learned(spell_name_en)
+  return learned_spells_name[spell_name_en] == true
 end
 
 -- ONLY USED TO CHECK IF SPELL IS GREYED OUT
 function is_spell_usable(spell_name_en, player)
-  local spell = nil
-  for key, val in pairs(spells) do
-    if spells[key]['en'] == spell_name_en then
-      spell = spells[key]
-    end
+  -- Use the reverse lookup table to get the spell ID
+  local spell_id = en_to_spell_id[spell_name_en]
+  if not spell_id then
+    return true -- Spell does not exist, assume true, might be a new patch
   end
 
+  -- Retrieve the spell data
+  local spell = resources.spells[spell_id]
+  if not spell then
+    return true -- Invalid spell data, assume true, might be a new patch
+  end
+
+  -- Check if the spell is usable by the player's job or Blue Mage spell set
   local usable_by_job = is_spell_usable_by_a_job(spell, player)
   local usable_by_blu = is_blu_spell_set(spell, player)
 
-  return (usable_by_job and usable_by_blu)
+  -- Return true only if both conditions are met
+  return usable_by_job and usable_by_blu
 end
 
 -- help determine if blue magic is set
@@ -495,16 +668,14 @@ function is_spell_usable_by_a_job(spell, player)
 end
 
 function is_job_ability_learned(ability_name_en)
-  for key, val in pairs(ability_list) do
-    if ability_list[key]['en'] == ability_name_en then
-      for k, v in pairs(learned_abilities_id) do
-        if v == ability_list[key]['id'] then
-          return true
-        end
-      end
-      return false
-    end
+  -- Use the reverse lookup table to get the ability ID
+  local ability_id = en_to_ability_id[ability_name_en]
+  if not ability_id then
+    return true -- Ability does not exist, assume its a patch skill
   end
+
+  -- Check if the ability ID is in the learned abilities set
+  return learned_abilities_id[ability_id] == true
 end
 
 -- ONLY USED TO CHECK IF SPELL IS GREYED OUT
@@ -575,14 +746,14 @@ local function parse_binds(theme_options, player, job_root)
     spells = horizon_spell_list
     for key, val in pairs(horizon_spell_list) do
       if windower.ffxi.get_spells()[spells[key]['id']] == true then
-        table.insert(learned_spells_name, spells[key]['en'])
+        learned_spells_name[spells[key]['en']] = true
       end
     end
   elseif theme_options.playing_on_horizon == false then
     spells = spell_list
     for key, val in pairs(spell_list) do
       if windower.ffxi.get_spells()[spells[key]['id']] == true then
-        table.insert(learned_spells_name, spells[key]['en'])
+        learned_spells_name[spells[key]['en']] = true
       end
     end
   end
@@ -590,9 +761,9 @@ local function parse_binds(theme_options, player, job_root)
   -- Create Learned Abilities List
   abilities = ability_list
   for key, val in pairs(windower.ffxi.get_abilities().job_abilities) do
-    for k, v in pairs(abilities) do
+    for k, ability_data in pairs(ability_list) do
       if val == k then
-        table.insert(learned_abilities_id, abilities[k]['id'])
+        learned_abilities_id[ability_data.id] = true
       end
     end
   end

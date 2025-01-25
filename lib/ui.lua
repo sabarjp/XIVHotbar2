@@ -1024,12 +1024,21 @@ function ui:show(player_hotbar, environment)
       self.hotbars[h].slot_icons[i]:show()
       self.hotbars[h].slot_overlay[i]:show()
       self.hotbars[h].number:show()
-      if action ~= nil then self.hotbars[h].slot_frames[i]:show() end
-      if self.theme.hide_empty_slots == false then self.hotbars[h].slot_backgrounds[i]:show() end
-      if self.theme.hide_action_names == false then self.hotbars[h].slot_texts[i]:show() end
-      if self.theme.hide_action_cost == false then self.hotbars[h].slot_cost[i]:show() end
-      if self.theme.hide_recast_text == false then self.hotbars[h].slot_recast_texts[i]:show() end
-      if self.theme.hide_empty_slots == false then self.hotbars[h].slot_keys[i]:show() end
+
+      if action ~= nil then
+        self.hotbars[h].slot_frames[i]:show()
+        self.hotbars[h].slot_backgrounds[i]:show()
+        self.hotbars[h].slot_texts[i]:show()
+        self.hotbars[h].slot_cost[i]:show()
+        self.hotbars[h].slot_recast_texts[i]:show()
+        self.hotbars[h].slot_keys[i]:show()
+      else
+        if self.theme.hide_empty_slots == false then self.hotbars[h].slot_backgrounds[i]:show() end
+        if self.theme.hide_action_names == false then self.hotbars[h].slot_texts[i]:show() end
+        if self.theme.hide_action_cost == false then self.hotbars[h].slot_cost[i]:show() end
+        if self.theme.hide_recast_text == false then self.hotbars[h].slot_recast_texts[i]:show() end
+        if self.theme.hide_empty_slots == false then self.hotbars[h].slot_keys[i]:show() end
+      end
     end
   end
 end
@@ -1173,7 +1182,7 @@ function ui:update_mp_cost(row, slot, action)
     local skill = nil
     skill = database[action.type][(action.action):lower()]
 
-    if skill.mpcost ~= nil and skill.mpcost ~= 0 then
+    if skill and skill.mpcost ~= nil and skill.mpcost ~= 0 then
       local mp_cost = self:get_true_mp_cost(skill)
       -- update mp cost
       ui.hotbars[row].slot_cost[slot]:text(tostring(mp_cost))
