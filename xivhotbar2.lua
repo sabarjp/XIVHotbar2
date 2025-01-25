@@ -836,12 +836,11 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 end)
 
 windower.register_event('incoming text', function(text)
-  if string.find(text, windower.ffxi.get_player().name .. " learns") then
+  if string.find(text, windower.ffxi.get_player().name) and string.find(text, " learns a new spell") then
     if ui.theme.dev_mode then log("Learned a new spell. Reloading Hotbar.") end
     reload_hotbar()
   end
 end)
-
 
 --- Reloads hotbar when using GM command. ** For development only **
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
@@ -861,3 +860,21 @@ windower.register_event('incoming text', function(text)
     end
   end
 end)
+
+
+
+
+--- HELPERS
+function printTable(tbl, indent)
+  indent = indent or 0
+  local indentString = string.rep("  ", indent)
+
+  for key, value in pairs(tbl) do
+    if type(value) == "table" then
+      windower.add_to_chat(8, indentString .. tostring(key) .. ":")
+      printTable(value, indent + 1)
+    else
+      windower.add_to_chat(8, indentString .. tostring(key) .. ": " .. tostring(value))
+    end
+  end
+end
