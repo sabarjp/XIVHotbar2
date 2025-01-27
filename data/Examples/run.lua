@@ -3,35 +3,35 @@ xivhotbar_keybinds_job['Base'] = {
   --Hotbar #1
   -- 9-12 Weaponskills;
   -- 1-8 Runes
-  { 'battle 1 1',  'ja', 'Ignis',              'me',    'Ignis',     'ffxiv/pic/fire_in_red' },
-  { 'battle 1 2',  'ja', 'Gelus',              'me',    'Gelus',     'ffxiv/pic/blizzard_in_cyan' },
-  { 'battle 1 3',  'ja', 'Flabra',             'me',    'Flabra',    'ffxiv/pic/aero_in_green' },
-  { 'battle 1 4',  'ja', 'Tellus',             'me',    'Tellus',    'ffxiv/pic/stone_in_yellow' },
-  { 'battle 1 5',  'ja', 'Sulpor',             'me',    'Sulpor',    'ffxiv/pic/thunder_in_magenta' },
-  { 'battle 1 6',  'ja', 'Unda',               'me',    'Unda',      'ffxiv/pic/water_in_blue' },
-  { 'battle 1 7',  'ja', 'Lux',                'me',    'Lux',       'ffxiv/pic/holy_in_white' },
-  { 'battle 1 8',  'ja', 'Tenebrae',           'me',    'Ignis',     'ffxiv/pic/comet_in_black' },
+  { 'battle 1 1',  'ja', 'Ignis',              'me',   'Ignis',     'ffxiv/pic/fire_in_red' },
+  { 'battle 1 2',  'ja', 'Gelus',              'me',   'Gelus',     'ffxiv/pic/blizzard_in_cyan' },
+  { 'battle 1 3',  'ja', 'Flabra',             'me',   'Flabra',    'ffxiv/pic/aero_in_green' },
+  { 'battle 1 4',  'ja', 'Tellus',             'me',   'Tellus',    'ffxiv/pic/stone_in_yellow' },
+  { 'battle 1 5',  'ja', 'Sulpor',             'me',   'Sulpor',    'ffxiv/pic/thunder_in_magenta' },
+  { 'battle 1 6',  'ja', 'Unda',               'me',   'Unda',      'ffxiv/pic/water_in_blue' },
+  { 'battle 1 7',  'ja', 'Lux',                'me',   'Lux',       'ffxiv/pic/holy_in_white' },
+  { 'battle 1 8',  'ja', 'Tenebrae',           'me',   'Ignis',     'ffxiv/pic/comet_in_black' },
 
   -- Hotbar #2
   --main job abilities
   -- Offensive
-  { 'battle 2 1',  'ja', 'Swipe',              't',     'Swipe',     'ffxiv/vpr/First_Generation' },
-  { 'battle 2 2',  'ja', 'Lunge',              't',     'Lunge',     'ffxiv/vpr/Hindsbane_Fang' },
-  { 'battle 2 3',  'ja', 'Gambit',             't',     'Gambit',    'ffxiv/vpr/Twinfang_Bite' },
-  { 'battle 2 4',  'ja', 'Rayke',              'me',    'Rayke',     'ffxiv/vpr/Vicepit' }, -- merit
+  { 'battle 2 1',  'ja', 'Swipe',              't',    'Swipe',     'ffxiv/vpr/First_Generation' },
+  { 'battle 2 2',  'ja', 'Lunge',              't',    'Lunge',     'ffxiv/vpr/Hindsbane_Fang' },
+  { 'battle 2 3',  'ja', 'Gambit',             't',    'Gambit',    'ffxiv/vpr/Twinfang_Bite' },
+  { 'battle 2 4',  'ja', 'Rayke',              'me',   'Rayke',     'ffxiv/vpr/Vicepit' }, -- merit
   -- Defensive Spells
-  { 'battle 2 5',  'ma', 'Blink',              'me',    'Blink' },
-  { 'battle 2 6',  'ma', 'Stoneskin',          'me',    'Stoneskin' },
-  { 'battle 2 7',  'ma', 'Phalanx',            'me',    'Phalanx' },
-  { 'battle 2 8',  'ma', 'Temper',             'me',    'Temper' }, -- job point
+  { 'battle 2 5',  'ma', 'Blink',              'me',   'Blink' },
+  { 'battle 2 6',  'ma', 'Stoneskin',          'me',   'Stoneskin' },
+  { 'battle 2 7',  'ma', 'Phalanx',            'me',   'Phalanx' },
+  { 'battle 2 8',  'ma', 'Temper',             'me',   'Temper' }, -- job point
   -- Curative Spells
-  { 'battle 2 9',  'ma', 'Regen',              'stpc',  'Regen' },
-  { 'battle 2 9',  'ma', 'Regen II',           'stpc',  'Regen2' },
-  { 'battle 2 9',  'ma', 'Regen III',          'stpc',  'Regen3' },
-  { 'battle 2 9',  'ma', 'Regen IV',           'stpc',  'Regen4' },
-  { 'battle 2 10', 'ma', 'Refresh',            'stpc',  'Refresh' },
+  { 'battle 2 9',  'ma', 'Regen',              'stpc', 'Regen' },
+  { 'battle 2 9',  'ma', 'Regen II',           'stpc', 'Regen2' },
+  { 'battle 2 9',  'ma', 'Regen III',          'stpc', 'Regen3' },
+  { 'battle 2 9',  'ma', 'Regen IV',           'stpc', 'Regen4' },
+  { 'battle 2 10', 'ma', 'Refresh',            'stpc', 'Refresh' },
   -- Spell buffs
-  { 'battle 2 12', 'ja', 'Embolden',           'me',    'Embold',    'ffxiv/vpr/Uncoiled_Fury' },
+  { 'battle 2 12', 'ja', 'Embolden',           'me',   'Embold',    'ffxiv/vpr/Uncoiled_Fury' },
 
   --Hotbar #3
   --sub job abilities; leave blank
@@ -40,46 +40,46 @@ xivhotbar_keybinds_job['Base'] = {
   --utility or pet bar
   --12 is always 2-hour ability
   -- Tanking / Self-Targeted Defense
-  { 'battle 4 1',  'ja', 'Vallation',          'me',    'Valltn',    'ffxiv/sge/haima' },
-  { 'battle 4 2',  'ja', 'Swordplay',          'me',    'Swordply',  'ffxiv/vpr/Flanksbane_Fang' },
-  { 'battle 4 3',  'ja', 'Pflug',              'me',    'Pflug',     'ffxiv/sge/eukrasia' },
-  { 'battle 4 4',  'ja', 'Vivacious Pulse',    'me',    'Viva',      'ffxiv/sge/krasis' },
-  { 'battle 4 5',  'ja', 'Battuta',            'me',    'Battuta',   'ffxiv/vpr/Twinblood_Bite' }, -- merit
-  { 'battle 4 6',  'ja', 'Liement',            'me',    'Liement',   'ffxiv/sge/physis' },
+  { 'battle 4 1',  'ja', 'Vallation',          'me',   'Valltn',    'ffxiv/sge/haima' },
+  { 'battle 4 2',  'ja', 'Swordplay',          'me',   'Swordply',  'ffxiv/vpr/Flanksbane_Fang' },
+  { 'battle 4 3',  'ja', 'Pflug',              'me',   'Pflug',     'ffxiv/sge/eukrasia' },
+  { 'battle 4 4',  'ja', 'Vivacious Pulse',    'me',   'Viva',      'ffxiv/sge/krasis' },
+  { 'battle 4 5',  'ja', 'Battuta',            'me',   'Battuta',   'ffxiv/vpr/Twinblood_Bite' }, -- merit
+  { 'battle 4 6',  'ja', 'Liement',            'me',   'Liement',   'ffxiv/sge/physis' },
   -- Party-Wide Defense
-  { 'battle 4 7',  'ja', 'Valiance',           'me',    'Valia',     'ffxiv/sge/panhaima' },
-  { 'battle 4 8',  'ja', 'One for All',        'me',    '1FAll',     'ffxiv/sge/kerachole' },
-  { 'battle 4 11', 'ja', 'Odyllic Subterfuge', 't',     'Odyllic',   'ffxiv/sge/eukrasian_dosis' },
-  { 'battle 4 12', 'ja', 'Elemental Sforzo',   'me',    'Sforzo',    'ffxiv/sge/taurochole' },
+  { 'battle 4 7',  'ja', 'Valiance',           'me',   'Valia',     'ffxiv/sge/panhaima' },
+  { 'battle 4 8',  'ja', 'One for All',        'me',   '1FAll',     'ffxiv/sge/kerachole' },
+  { 'battle 4 11', 'ja', 'Odyllic Subterfuge', 't',    'Odyllic',   'ffxiv/sge/eukrasian_dosis' },
+  { 'battle 4 12', 'ja', 'Elemental Sforzo',   'me',   'Sforzo',    'ffxiv/sge/taurochole' },
 
   -- Hotbar #5
   -- Tanking spells
-  { 'battle 5 1',  'ma', 'Flash',              'stnpc', 'Flash',     'ffxiv/pld/flash' },
-  { 'battle 5 2',  'ma', 'Crusade',            'me',    'Crusade' },
-  { 'battle 5 3',  'ma', 'Foil',               'me',    'Foil' },
-  { 'battle 5 4',  'ma', 'Aquaveil',           'me',    'Aqua' },
+  { 'battle 5 1',  'ma', 'Flash',              't',    'Flash',     'ffxiv/pld/flash' },
+  { 'battle 5 2',  'ma', 'Crusade',            'me',   'Crusade' },
+  { 'battle 5 3',  'ma', 'Foil',               'me',   'Foil' },
+  { 'battle 5 4',  'ma', 'Aquaveil',           'me',   'Aqua' },
   -- Spikes
-  { 'battle 5 7',  'ma', 'Blaze Spikes',       'me',    'BlzSpikes' },
-  { 'battle 5 8',  'ma', 'Ice Spikes',         'me',    'IceSpikes' },
-  { 'battle 5 9',  'ma', 'Shock Spikes',       'me',    'ShkSpikes' },
+  { 'battle 5 7',  'ma', 'Blaze Spikes',       'me',   'BlzSpikes' },
+  { 'battle 5 8',  'ma', 'Ice Spikes',         'me',   'IceSpikes' },
+  { 'battle 5 9',  'ma', 'Shock Spikes',       'me',   'ShkSpikes' },
 
   -- Hotbar #6
   -- Bar-element Spells
-  { 'battle 6 1',  'ma', 'Barstone',           'me',    'BStone',    'Barstonra' },
-  { 'battle 6 2',  'ma', 'Barwater',           'me',    'BWater',    'Barwatera' },
-  { 'battle 6 3',  'ma', 'Baraero',            'me',    'BAero',     'Baraera' },
-  { 'battle 6 4',  'ma', 'Barfire',            'me',    'BFire',     'Barfira' },
-  { 'battle 6 5',  'ma', 'Barblizzard',        'me',    'BBlizzard', 'Barblizzara' },
-  { 'battle 6 6',  'ma', 'Barthunder',         'me',    'BThunder',  'Barthundra' },
+  { 'battle 6 1',  'ma', 'Barstone',           'me',   'BStone',    'Barstonra' },
+  { 'battle 6 2',  'ma', 'Barwater',           'me',   'BWater',    'Barwatera' },
+  { 'battle 6 3',  'ma', 'Baraero',            'me',   'BAero',     'Baraera' },
+  { 'battle 6 4',  'ma', 'Barfire',            'me',   'BFire',     'Barfira' },
+  { 'battle 6 5',  'ma', 'Barblizzard',        'me',   'BBlizzard', 'Barblizzara' },
+  { 'battle 6 6',  'ma', 'Barthunder',         'me',   'BThunder',  'Barthundra' },
   -- Bar-enfeeble Spells
-  { 'battle 6 7',  'ma', 'Barsleep',           'me',    'BSleep',    '' },
+  { 'battle 6 7',  'ma', 'Barsleep',           'me',   'BSleep',    '' },
   -- { 'battle 6 6',  'ma', 'Barpoison',          'me',    'BPoison',   '' },
-  { 'battle 6 8',  'ma', 'Barparalyze',        'me',    'BPara',     '' },
-  { 'battle 6 9',  'ma', 'Barblind',           'me',    'BBlind',    '' },
-  { 'battle 6 10', 'ma', 'Barsilence',         'me',    'BSilence',  '' },
+  { 'battle 6 8',  'ma', 'Barparalyze',        'me',   'BPara',     '' },
+  { 'battle 6 9',  'ma', 'Barblind',           'me',   'BBlind',    '' },
+  { 'battle 6 10', 'ma', 'Barsilence',         'me',   'BSilence',  '' },
   -- { 'battle 6 10', 'ma', 'Barvirus',           'me',    'BVirus',    '' },
-  { 'battle 6 11', 'ma', 'Barpetrify',         'me',    'BPetri',    '' },
-  { 'battle 6 12', 'ma', 'Baramnesia',         'me',    'Bamnesia',  '' },
+  { 'battle 6 11', 'ma', 'Barpetrify',         'me',   'BPetri',    '' },
+  { 'battle 6 12', 'ma', 'Baramnesia',         'me',   'Bamnesia',  '' },
 }
 
 -- SUBJOBS
@@ -91,8 +91,8 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio2' },
+  { 'battle 3 6', 'ma', 'Bio',           't',     'Bio' },
+  { 'battle 3 6', 'ma', 'Bio II',        't',     'Bio2' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
   { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep2' },
   { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
@@ -146,12 +146,12 @@ xivhotbar_keybinds_job['DNC'] = {
   { 'battle 3 6',  'ja', 'Healing Waltz',     'stpc',  'Healing',  'ffxiv/dnc/shield_samba' },
   { 'battle 3 6',  'ja', 'Contradance',       'me',    'Contra',   'ffxiv/dnc/tillana' }, -- mastery
   -- Steps
-  { 'battle 3 7',  'ja', 'Quickstep',         'stnpc', 'Quick',    'ffxiv/dnc/en_avant' },
-  { 'battle 3 8',  'ja', 'Box Step',          'stnpc', 'Box',      'ffxiv/dnc/bladeshower' },
-  { 'battle 3 9',  'ja', 'Stutter Step',      'stnpc', 'Stutter',  'ffxiv/dnc/fountainfall' },
+  { 'battle 3 7',  'ja', 'Quickstep',         't',     'Quick',    'ffxiv/dnc/en_avant' },
+  { 'battle 3 8',  'ja', 'Box Step',          't',     'Box',      'ffxiv/dnc/bladeshower' },
+  { 'battle 3 9',  'ja', 'Stutter Step',      't',     'Stutter',  'ffxiv/dnc/fountainfall' },
   -- Flourishes
   { 'battle 3 10', 'ja', 'Animated Flourish', 'stnpc', 'Voke',     'ffxiv/dnc/closed_position' },
-  { 'battle 3 11', 'ja', 'Violent Flourish',  'stnpc', 'Stun',     'ffxiv/dnc/starfall_dance' },
+  { 'battle 3 11', 'ja', 'Violent Flourish',  't',     'Stun',     'ffxiv/dnc/starfall_dance' },
   { 'battle 3 12', 'ja', 'Reverse Flourish',  'me',    'Reverse',  'ffxiv/dnc/reverse_cascade' },
   { 'battle 3 12', 'ja', 'Building Flourish', 'me',    'Building', 'ffxiv/dnc/flourish' },
   -- Jigs
@@ -160,12 +160,12 @@ xivhotbar_keybinds_job['DNC'] = {
 }
 
 xivhotbar_keybinds_job['MNK'] = {
-  { 'battle 3 1', 'ja', 'Boost',         'me',    'Boost',  'ffxiv/mnk/riddle_of_fire' },
-  { 'battle 3 2', 'ja', 'Dodge',         'me',    'Dodge',  'ffxiv/mnk/riddle_of_earth' },
-  { 'battle 3 3', 'ja', 'Focus',         'me',    'Focus',  'ffxiv/mnk/riddle_of_wind' },
-  { 'battle 3 4', 'ja', 'Chakra',        'me',    'Chakra', 'ffxiv/mnk/meditation' },
-  { 'battle 3 5', 'ja', 'Chi Blast',     'stnpc', 'Chi',    'ffxiv/mnk/elixir_field' },
-  { 'battle 3 6', 'ja', 'Counterstance', 'me',    'Ctr',    'ffxiv/mnk/arm_of_the_destroyer' },
+  { 'battle 3 1', 'ja', 'Boost',         'me', 'Boost',  'ffxiv/mnk/riddle_of_fire' },
+  { 'battle 3 2', 'ja', 'Dodge',         'me', 'Dodge',  'ffxiv/mnk/riddle_of_earth' },
+  { 'battle 3 3', 'ja', 'Focus',         'me', 'Focus',  'ffxiv/mnk/riddle_of_wind' },
+  { 'battle 3 4', 'ja', 'Chakra',        'me', 'Chakra', 'ffxiv/mnk/meditation' },
+  { 'battle 3 5', 'ja', 'Chi Blast',     't',  'Chi',    'ffxiv/mnk/elixir_field' },
+  { 'battle 3 6', 'ja', 'Counterstance', 'me', 'Ctr',    'ffxiv/mnk/arm_of_the_destroyer' },
 }
 
 xivhotbar_keybinds_job['THF'] = {
@@ -187,16 +187,16 @@ xivhotbar_keybinds_job['WAR'] = {
 
 xivhotbar_keybinds_job['WHM'] = {
   -- Abilities
-  { 'battle 3 12', 'ja', 'Divine Seal', 'me',    'Divine',  'ffxiv/whm/divine_benison' },
+  { 'battle 3 12', 'ja', 'Divine Seal', 'me',   'Divine',  'ffxiv/whm/divine_benison' },
   -- Enfeeblement
   -- { 'battle 3 ',  'ma', 'Paralyze',     'stnpc', 'Para' },
   -- { 'battle 3 ',  'ma', 'Slow',         'stnpc', 'Slow' },
   -- { 'battle 3 ',  'ma', 'Silence',      'stnpc', 'Silence' },
-  { 'battle 3 1',  'ma', 'Dia',         'stnpc', 'Dia' },
+  { 'battle 3 1',  'ma', 'Dia',         't',    'Dia' },
   --{ 'battle 3 2',  'ma', 'Dia II',      'stnpc', 'Dia II' },
   -- { 'battle 3 ',  'ma', 'Repose',       'stnpc', 'Repose' },
   -- { 'battle 3 ',  'ma', 'Flash',        'stnpc', 'Flash',     'ffxiv/pld/flash' },
-  { 'battle 3 3',  'ma', 'Aquaveil',    'me',    'Aquaveil' },
+  { 'battle 3 3',  'ma', 'Aquaveil',    'me',   'Aquaveil' },
   -- Barspells
   -- { 'battle 3 ',  'ma', 'Barsleepra',   'me',    'Sleepra',   '' },
   -- { 'battle 3 ',  'ma', 'Barpoisonra',  'me',    'Poisonra',  '' },
@@ -214,32 +214,32 @@ xivhotbar_keybinds_job['WHM'] = {
   -- Atk
   -- { 'battle 3 ',  'ma', 'Holy',         'stnpc', 'Holy' }, -- mastery
   -- Regen
-  { 'battle 3 5',  'ma', 'Regen',       'stpc',  'Regen' },
-  { 'battle 3 5',  'ma', 'Regen II',    'stpc',  'Regen2' },
+  { 'battle 3 5',  'ma', 'Regen',       'stpc', 'Regen' },
+  { 'battle 3 5',  'ma', 'Regen II',    'stpc', 'Regen2' },
   -- Cure
-  { 'battle 3 4',  'ma', 'Cure',        'stpc',  'Cure' },
-  { 'battle 3 4',  'ma', 'Cure II',     'stpc',  'Cure2' },
-  { 'battle 3 4',  'ma', 'Cure III',    'stpc',  'Cure3' },
-  { 'battle 3 4',  'ma', 'Cure IV',     'stpc',  'Cure4' },
+  { 'battle 3 4',  'ma', 'Cure',        'stpc', 'Cure' },
+  { 'battle 3 4',  'ma', 'Cure II',     'stpc', 'Cure2' },
+  { 'battle 3 4',  'ma', 'Cure III',    'stpc', 'Cure3' },
+  { 'battle 3 4',  'ma', 'Cure IV',     'stpc', 'Cure4' },
   -- Cura
   --{ 'battle 1 ',   'ma', 'Cura',        'me',    'Cura' },
   -- Curaga
-  { 'battle 3 6',  'ma', 'Curaga',      'stpc',  'Curaga' },
-  { 'battle 3 6',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
-  { 'battle 3 6',  'ma', 'Curaga III',  'stpc',  'Curaga3' }, -- mastery
+  { 'battle 3 6',  'ma', 'Curaga',      'stpc', 'Curaga' },
+  { 'battle 3 6',  'ma', 'Curaga II',   'stpc', 'Curaga2' },
+  { 'battle 3 6',  'ma', 'Curaga III',  'stpc', 'Curaga3' }, -- mastery
   -- Supportive
-  { 'battle 3 7',  'ma', 'Poisona',     'stpc',  'Poisona' },
-  { 'battle 3 7',  'ma', 'Paralyna',    'stpc',  'Paralyna' },
-  { 'battle 3 7',  'ma', 'Blindna',     'stpc',  'Blindna' },
-  { 'battle 3 7',  'ma', 'Silena',      'stpc',  'Silena' },
-  { 'battle 3 7',  'ma', 'Blink',       'me',    'Blink' },
-  { 'battle 3 7',  'ma', 'Stoneskin',   'me',    'StnSkin' },
-  { 'battle 3 7',  'ma', 'Cursna',      'stpc',  'Cursna' },
-  { 'battle 3 7',  'ma', 'Erase',       'stpc',  'Erase' },
+  { 'battle 3 7',  'ma', 'Poisona',     'stpc', 'Poisona' },
+  { 'battle 3 7',  'ma', 'Paralyna',    'stpc', 'Paralyna' },
+  { 'battle 3 7',  'ma', 'Blindna',     'stpc', 'Blindna' },
+  { 'battle 3 7',  'ma', 'Silena',      'stpc', 'Silena' },
+  { 'battle 3 7',  'ma', 'Blink',       'me',   'Blink' },
+  { 'battle 3 7',  'ma', 'Stoneskin',   'me',   'StnSkin' },
+  { 'battle 3 7',  'ma', 'Cursna',      'stpc', 'Cursna' },
+  { 'battle 3 7',  'ma', 'Erase',       'stpc', 'Erase' },
   -- { 'battle 3 ',  'ma', 'Viruna',       'stpc',  'Viruna' },
   -- { 'battle 3 ',  'ma', 'Stona',        'stpc',  'Stona' },
-  { 'battle 3 10', 'ma', 'Haste',       'stpc',  'Haste' },
-  { 'battle 3 11', 'ma', 'Auspice',     'me',    'Ausp' }, -- mastery
+  { 'battle 3 10', 'ma', 'Haste',       'stpc', 'Haste' },
+  { 'battle 3 11', 'ma', 'Auspice',     'me',   'Ausp' }, -- mastery
 }
 
 xivhotbar_keybinds_job['RDM'] = {
@@ -250,7 +250,7 @@ xivhotbar_keybinds_job['RDM'] = {
 
   { 'battle 3 1',  'ma', 'Refresh',  'stpc',  'Refresh' },
   { 'battle 3 2',  'ma', 'Haste',    'stpc',  'Haste' },
-  { 'battle 3 3',  'ma', 'Dia',      'stnpc', 'Dia' },
+  { 'battle 3 3',  'ma', 'Dia',      't',     'Dia' },
   --{ 'battle 3 3',  'ma', 'Dia II',   'stnpc', 'Dia2' },
 
   { 'battle 3 4',  'ma', 'Paralyze', 't',     'Paralyze' },

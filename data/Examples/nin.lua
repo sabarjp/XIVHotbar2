@@ -14,12 +14,12 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 2 5',  'ma',    'Gekka: Ichi',    'me',    'Gekka',     'ffxiv/role/chi' },       -- enmity
   { 'battle 2 6',  'ma',    'Yain: Ichi',     'me',    'Yain',      'ffxiv/role/ten' },       -- enmity freeze
   -- Enfeeblement
-  { 'battle 2 7',  'ma',    'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },     -- blind
-  { 'battle 2 8',  'ma',    'Hojo: Ichi',     'stnpc', 'Hojo',      'ffxiv/ast/redraw' },     -- slow
-  { 'battle 2 9',  'ma',    'Hojo: Ni',       'stnpc', 'Hojo2',     'ffxiv/ast/redraw' },     -- slow
-  { 'battle 2 10', 'ma',    'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' }, -- poison
-  { 'battle 2 11', 'ma',    'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },       -- paralyze
-  { 'battle 2 12', 'ma',    'Aisha: Ichi',    'stnpc', 'Aisha',     'ffxiv/role/break' },     -- weaken
+  { 'battle 2 7',  'ma',    'Kurayami: Ichi', 't',     'Kura',      'ffxiv/blu/glower' },     -- blind
+  { 'battle 2 8',  'ma',    'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },     -- slow
+  { 'battle 2 9',  'ma',    'Hojo: Ni',       't',     'Hojo2',     'ffxiv/ast/redraw' },     -- slow
+  { 'battle 2 10', 'ma',    'Dokumori: Ichi', 't',     'Doku',      'ffxiv/blu/exuviation' }, -- poison
+  { 'battle 2 11', 'ma',    'Jubaku: Ichi',   't',     'Jubaku',    'ffxiv/blu/faze' },       -- paralyze
+  { 'battle 2 12', 'ma',    'Aisha: Ichi',    't',     'Aisha',     'ffxiv/role/break' },     -- weaken
   --Hotbar #3
   --sub job abilities; leave blank
 
@@ -32,7 +32,7 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 4 4',  'ja',    'Futae',          'me',    'Futae',     'ffxiv/nin/ninjutsu' },
   { 'battle 4 5',  'ja',    'Issekigan',      'me',    'Isse',      'ffxiv/nin/hakke_mujinsatsu' },
   { 'battle 4 6',  'ja',    'Mikage',         'me',    'Mikage',    'ffxiv/nin/shukuchi' },
-  { 'battle 4 7',  'ma',    'Yurin: Ichi',    'stnpc', 'Yurin',     'ffxiv/role/bhavacakra' },     -- tp reduce
+  { 'battle 4 7',  'ma',    'Yurin: Ichi',    't',     'Yurin',     'ffxiv/role/bhavacakra' },     -- tp reduce
   { 'battle 4 8',  'ma',    'Myoshu: Ichi',   'me',    'Myoshu',    'ffxiv/role/fleeting_raiju' }, -- sub blow
   { 'battle 4 9',  'ma',    'Kakka: Ichi',    'me',    'Kakka',     'ffxiv/role/forked_raiju' },   --  tp gain
   { 'battle 4 12', 'ja',    'Mijin Gakure',   'stnpc', 'Mijin',     'ffxiv/blu/self-destruct' },
@@ -41,40 +41,40 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 5 1',  'input', '/ra <t>',        '',      'RA',        'ffxiv/nin/fuma_shuriken' },
   -- Elements
   -- Fire
-  { 'battle 5 7',  'ma',    'Katon: San',     'stnpc', 'Katon3',    'ffxiv/nin/katon' },
-  { 'battle 5 7',  'ma',    'Katon: Ni',      'stnpc', 'Katon2',    'ffxiv/nin/katon' },
-  { 'battle 5 7',  'ma',    'Katon: Ichi',    'stnpc', 'Katon',     'ffxiv/nin/katon' },
+  { 'battle 5 7',  'ma',    'Katon: San',     't',     'Katon3',    'ffxiv/nin/katon' },
+  { 'battle 5 7',  'ma',    'Katon: Ni',      't',     'Katon2',    'ffxiv/nin/katon' },
+  { 'battle 5 7',  'ma',    'Katon: Ichi',    't',     'Katon',     'ffxiv/nin/katon' },
   -- Water
-  { 'battle 5 8',  'ma',    'Suiton: San',    'stnpc', 'Suiton3',   'ffxiv/nin/suiton' },
-  { 'battle 5 8',  'ma',    'Suiton: Ni',     'stnpc', 'Suiton2',   'ffxiv/nin/suiton' },
-  { 'battle 5 8',  'ma',    'Suiton: Ichi',   'stnpc', 'Suiton',    'ffxiv/nin/suiton' },
+  { 'battle 5 8',  'ma',    'Suiton: San',    't',     'Suiton3',   'ffxiv/nin/suiton' },
+  { 'battle 5 8',  'ma',    'Suiton: Ni',     't',     'Suiton2',   'ffxiv/nin/suiton' },
+  { 'battle 5 8',  'ma',    'Suiton: Ichi',   't',     'Suiton',    'ffxiv/nin/suiton' },
   -- Earth
-  { 'battle 5 9',  'ma',    'Doton: San',     'stnpc', 'Doton3',    'ffxiv/nin/doton' },
-  { 'battle 5 9',  'ma',    'Doton: Ni',      'stnpc', 'Doton2',    'ffxiv/nin/doton' },
-  { 'battle 5 9',  'ma',    'Doton: Ichi',    'stnpc', 'Doton',     'ffxiv/nin/doton' },
+  { 'battle 5 9',  'ma',    'Doton: San',     't',     'Doton3',    'ffxiv/nin/doton' },
+  { 'battle 5 9',  'ma',    'Doton: Ni',      't',     'Doton2',    'ffxiv/nin/doton' },
+  { 'battle 5 9',  'ma',    'Doton: Ichi',    't',     'Doton',     'ffxiv/nin/doton' },
   -- Ice
-  { 'battle 5 10', 'ma',    'Hyoton: San',    'stnpc', 'Hyoton3',   'ffxiv/nin/hyoton' },
-  { 'battle 5 10', 'ma',    'Hyoton: Ni',     'stnpc', 'Hyoton2',   'ffxiv/nin/hyoton' },
-  { 'battle 5 10', 'ma',    'Hyoton: Ichi',   'stnpc', 'Hyoton',    'ffxiv/nin/hyoton' },
+  { 'battle 5 10', 'ma',    'Hyoton: San',    't',     'Hyoton3',   'ffxiv/nin/hyoton' },
+  { 'battle 5 10', 'ma',    'Hyoton: Ni',     't',     'Hyoton2',   'ffxiv/nin/hyoton' },
+  { 'battle 5 10', 'ma',    'Hyoton: Ichi',   't',     'Hyoton',    'ffxiv/nin/hyoton' },
   -- Wind
-  { 'battle 5 11', 'ma',    'Huton: San',     'stnpc', 'Huton3',    'ffxiv/nin/huton' },
-  { 'battle 5 11', 'ma',    'Huton: Ni',      'stnpc', 'Huton2',    'ffxiv/nin/huton' },
-  { 'battle 5 11', 'ma',    'Huton: Ichi',    'stnpc', 'Huton',     'ffxiv/nin/huton' },
+  { 'battle 5 11', 'ma',    'Huton: San',     't',     'Huton3',    'ffxiv/nin/huton' },
+  { 'battle 5 11', 'ma',    'Huton: Ni',      't',     'Huton2',    'ffxiv/nin/huton' },
+  { 'battle 5 11', 'ma',    'Huton: Ichi',    't',     'Huton',     'ffxiv/nin/huton' },
   -- Thunder
-  { 'battle 5 12', 'ma',    'Raiton: San',    'stnpc', 'Raiton3',   'ffxiv/nin/raiton' },
-  { 'battle 5 12', 'ma',    'Raiton: Ni',     'stnpc', 'Raiton2',   'ffxiv/nin/raiton' },
-  { 'battle 5 12', 'ma',    'Raiton: Ichi',   'stnpc', 'Raiton',    'ffxiv/nin/raiton' },
+  { 'battle 5 12', 'ma',    'Raiton: San',    't',     'Raiton3',   'ffxiv/nin/raiton' },
+  { 'battle 5 12', 'ma',    'Raiton: Ni',     't',     'Raiton2',   'ffxiv/nin/raiton' },
+  { 'battle 5 12', 'ma',    'Raiton: Ichi',   't',     'Raiton',    'ffxiv/nin/raiton' },
 }
 
 -- SUBJOBS
 -- Hotbar #3
 xivhotbar_keybinds_job['MNK'] = {
-  { 'battle 3 1', 'ja', 'Boost',         'me',    'Boost',  'ffxiv/mnk/riddle_of_fire' },
-  { 'battle 3 2', 'ja', 'Dodge',         'me',    'Dodge',  'ffxiv/mnk/riddle_of_earth' },
-  { 'battle 3 3', 'ja', 'Focus',         'me',    'Focus',  'ffxiv/mnk/riddle_of_wind' },
-  { 'battle 3 4', 'ja', 'Chakra',        'me',    'Chakra', 'ffxiv/mnk/meditation' },
-  { 'battle 3 5', 'ja', 'Chi Blast',     'stnpc', 'Chi',    'ffxiv/mnk/elixir_field' },
-  { 'battle 3 6', 'ja', 'Counterstance', 'me',    'Ctr',    'ffxiv/mnk/arm_of_the_destroyer' },
+  { 'battle 3 1', 'ja', 'Boost',         'me', 'Boost',  'ffxiv/mnk/riddle_of_fire' },
+  { 'battle 3 2', 'ja', 'Dodge',         'me', 'Dodge',  'ffxiv/mnk/riddle_of_earth' },
+  { 'battle 3 3', 'ja', 'Focus',         'me', 'Focus',  'ffxiv/mnk/riddle_of_wind' },
+  { 'battle 3 4', 'ja', 'Chakra',        'me', 'Chakra', 'ffxiv/mnk/meditation' },
+  { 'battle 3 5', 'ja', 'Chi Blast',     't',  'Chi',    'ffxiv/mnk/elixir_field' },
+  { 'battle 3 6', 'ja', 'Counterstance', 'me', 'Ctr',    'ffxiv/mnk/arm_of_the_destroyer' },
 }
 
 xivhotbar_keybinds_job['WAR'] = {
@@ -159,11 +159,11 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
-  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio II' },
+  { 'battle 3 6', 'ma', 'Bio',           't',     'Bio' },
+  { 'battle 3 6', 'ma', 'Bio II',        't',     'Bio II' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
   { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep II' },
-  { 'battle 3 8', 'ma', 'Stun',          'stnpc', 'Stun' },
+  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
 }
 
 xivhotbar_keybinds_job['RNG'] = {
