@@ -46,31 +46,31 @@ xivhotbar_keybinds_job['Base'] = {
 
   -- Hotbar #3 (CTRL 1-12)
   -- The Big 3 Debuffs first
-  { 'battle 3 1',  'ma', 'Dia II',        'stnpc', 'Dia2' },
-  { 'battle 3 1',  'ma', 'Dia III',       'stnpc', 'Dia3' },
-  { 'battle 3 1',  'ma', 'Dia',           'stnpc', 'Dia' },
-  { 'battle 3 2',  'ma', 'Frazzle',       'stnpc', 'Fzzle' },
-  { 'battle 3 2',  'ma', 'Frazzle II',    'stnpc', 'Fzzle2' },
-  { 'battle 3 2',  'ma', 'Frazzle III',   'stnpc', 'Fzzle3' },
-  { 'battle 3 3',  'ma', 'Distract',      'stnpc', 'Dstrct' },
-  { 'battle 3 3',  'ma', 'Distract II',   'stnpc', 'Dstrct2' },
-  { 'battle 3 3',  'ma', 'Distract III',  'stnpc', 'Dstrct3' },
+  { 'battle 3 1',  'ma', 'Dia II',        't',     'Dia2' },
+  { 'battle 3 1',  'ma', 'Dia III',       't',     'Dia3' },
+  { 'battle 3 1',  'ma', 'Dia',           't',     'Dia' },
+  { 'battle 3 2',  'ma', 'Frazzle',       't',     'Fzzle' },
+  { 'battle 3 2',  'ma', 'Frazzle II',    't',     'Fzzle2' },
+  { 'battle 3 2',  'ma', 'Frazzle III',   't',     'Fzzle3' },
+  { 'battle 3 3',  'ma', 'Distract',      't',     'Dstrct' },
+  { 'battle 3 3',  'ma', 'Distract II',   't',     'Dstrct2' },
+  { 'battle 3 3',  'ma', 'Distract III',  't',     'Dstrct3' },
 
   -- The Minor 4 debuffs next
-  { 'battle 3 4',  'ma', 'Slow',          'stnpc', 'Slow' },
-  { 'battle 3 4',  'ma', 'Slow II',       'stnpc', 'Slow2' },
-  { 'battle 3 5',  'ma', 'Paralyze',      'stnpc', 'Para' },
-  { 'battle 3 5',  'ma', 'Paralyze II',   'stnpc', 'Para2' },
-  { 'battle 3 6',  'ma', 'Blind',         'stnpc', 'Blind' },
-  { 'battle 3 6',  'ma', 'Blind II',      'stnpc', 'Blind2' },
-  { 'battle 3 7',  'ma', 'Addle',         'stnpc', 'Addle' },
-  { 'battle 3 7',  'ma', 'Addle II',      'stnpc', 'Addle2' },
+  { 'battle 3 4',  'ma', 'Slow',          't',     'Slow' },
+  { 'battle 3 4',  'ma', 'Slow II',       't',     'Slow2' },
+  { 'battle 3 5',  'ma', 'Paralyze',      't',     'Para' },
+  { 'battle 3 5',  'ma', 'Paralyze II',   't',     'Para2' },
+  { 'battle 3 6',  'ma', 'Blind',         't',     'Blind' },
+  { 'battle 3 6',  'ma', 'Blind II',      't',     'Blind2' },
+  { 'battle 3 7',  'ma', 'Addle',         't',     'Addle' },
+  { 'battle 3 7',  'ma', 'Addle II',      't',     'Addle2' },
   -- The situation debuffs last
   { 'battle 3 8',  'ma', 'Silence',       'stnpc', 'Silence' },
   { 'battle 3 9',  'ma', 'Gravity',       'stnpc', 'Gravity' },
   { 'battle 3 9',  'ma', 'Gravity II',    'stnpc', 'Gravity2' },
   { 'battle 3 10', 'ma', 'Bind',          'stnpc', 'Bind' },
-  { 'battle 3 11', 'ma', 'Dispel',        'stnpc', 'Dispel' },
+  { 'battle 3 11', 'ma', 'Dispel',        't',     'Dispel' },
   { 'battle 3 12', 'ja', 'Stymie',        'me',    'Stymie' },
 
 
@@ -101,44 +101,44 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 4 12', 'ja', 'Chainspell',    'me',    'C.Spell',  '2Hr' },
 
   -- Hotbar #5 Nukes
-  { 'battle 5 1',  'ma', 'Stone',         'stnpc', 'Stone' },
-  { 'battle 5 1',  'ma', 'Stone II',      'stnpc', 'Stone2' },
-  { 'battle 5 1',  'ma', 'Stone III',     'stnpc', 'Stone3' },
-  { 'battle 5 1',  'ma', 'Stone IV',      'stnpc', 'Stone4' },
-  { 'battle 5 1',  'ma', 'Stone V',       'stnpc', 'Stone5' },
+  { 'battle 5 1',  'ma', 'Stone',         't',     'Stone' },
+  { 'battle 5 1',  'ma', 'Stone II',      't',     'Stone2' },
+  { 'battle 5 1',  'ma', 'Stone III',     't',     'Stone3' },
+  { 'battle 5 1',  'ma', 'Stone IV',      't',     'Stone4' },
+  { 'battle 5 1',  'ma', 'Stone V',       't',     'Stone5' },
 
   --------------------------------------------------------------------------------------
-  { 'battle 5 2',  'ma', 'Water',         'stnpc', 'Water' },
-  { 'battle 5 2',  'ma', 'Water II',      'stnpc', 'Water2' },
-  { 'battle 5 2',  'ma', 'Water III',     'stnpc', 'Water3' },
-  { 'battle 5 2',  'ma', 'Water IV',      'stnpc', 'Water4' },
-  { 'battle 5 2',  'ma', 'Water V',       'stnpc', 'Water5' },
-  --------------------------------------------------------------------------------------
-  { 'battle 5 3',  'ma', 'Aero',          'stnpc', 'Aero' },
-  { 'battle 5 3',  'ma', 'Aero II',       'stnpc', 'Aero2' },
-  { 'battle 5 3',  'ma', 'Aero III',      'stnpc', 'Aero3' },
-  { 'battle 5 3',  'ma', 'Aero IV',       'stnpc', 'Aero4' },
-  { 'battle 5 3',  'ma', 'Aero V',        'stnpc', 'Aero5' },
-  --------------------------------------------------------------------------------------
-  { 'battle 5 4',  'ma', 'Fire',          'stnpc', 'Fire' },
-  { 'battle 5 4',  'ma', 'Fire II',       'stnpc', 'Fire2' },
-  { 'battle 5 4',  'ma', 'Fire III',      'stnpc', 'Fire3' },
-  { 'battle 5 4',  'ma', 'Fire IV',       'stnpc', 'Fire4' },
-  { 'battle 5 4',  'ma', 'Fire V',        'stnpc', 'Fire5' },
-  --------------------------------------------------------------------------------------
-  { 'battle 5 5',  'ma', 'Blizzard',      'stnpc', 'Blizz' },
-  { 'battle 5 5',  'ma', 'Blizzard II',   'stnpc', 'Blizz2' },
-  { 'battle 5 5',  'ma', 'Blizzard III',  'stnpc', 'Blizz3' },
-  { 'battle 5 5',  'ma', 'Blizzard IV',   'stnpc', 'Blizz4' },
-  { 'battle 5 5',  'ma', 'Blizzard V',    'stnpc', 'Blizz5' },
-  --------------------------------------------------------------------------------------
-  { 'battle 5 6',  'ma', 'Thunder',       'stnpc', 'Thund' },
-  { 'battle 5 6',  'ma', 'Thunder II',    'stnpc', 'Thund2' },
-  { 'battle 5 6',  'ma', 'Thunder III',   'stnpc', 'Thund3' },
-  { 'battle 5 6',  'ma', 'Thunder IV',    'stnpc', 'Thund4' },
-  { 'battle 5 6',  'ma', 'Thunder V',     'stnpc', 'Thund5' },
-  --------------------------------------------------------------------------------------
-  { 'battle 5 7',  'ma', 'Break',         'stnpc', 'Break' },
+  { 'battle 5 2',  'ma', 'Water',         't',     'Water' },
+  { 'battle 5 2',  'ma', 'Water II',      't',     'Water2' },
+  { 'battle 5 2',  'ma', 'Water III',     't',     'Water3' },
+  { 'battle 5 2',  'ma', 'Water IV',      't',     'Water4' },
+  { 'battle 5 2',  'ma', 'Water V',       't',     'Water5' },
+  ----------------------------------------------------------------------------------
+  { 'battle 5 3',  'ma', 'Aero',          't',     'Aero' },
+  { 'battle 5 3',  'ma', 'Aero II',       't',     'Aero2' },
+  { 'battle 5 3',  'ma', 'Aero III',      't',     'Aero3' },
+  { 'battle 5 3',  'ma', 'Aero IV',       't',     'Aero4' },
+  { 'battle 5 3',  'ma', 'Aero V',        't',     'Aero5' },
+  ----------------------------------------------------------------------------------
+  { 'battle 5 4',  'ma', 'Fire',          't',     'Fire' },
+  { 'battle 5 4',  'ma', 'Fire II',       't',     'Fire2' },
+  { 'battle 5 4',  'ma', 'Fire III',      't',     'Fire3' },
+  { 'battle 5 4',  'ma', 'Fire IV',       't',     'Fire4' },
+  { 'battle 5 4',  'ma', 'Fire V',        't',     'Fire5' },
+  ----------------------------------------------------------------------------------
+  { 'battle 5 5',  'ma', 'Blizzard',      't',     'Blizz' },
+  { 'battle 5 5',  'ma', 'Blizzard II',   't',     'Blizz2' },
+  { 'battle 5 5',  'ma', 'Blizzard III',  't',     'Blizz3' },
+  { 'battle 5 5',  'ma', 'Blizzard IV',   't',     'Blizz4' },
+  { 'battle 5 5',  'ma', 'Blizzard V',    't',     'Blizz5' },
+  ----------------------------------------------------------------------------------
+  { 'battle 5 6',  'ma', 'Thunder',       't',     'Thund' },
+  { 'battle 5 6',  'ma', 'Thunder II',    't',     'Thund2' },
+  { 'battle 5 6',  'ma', 'Thunder III',   't',     'Thund3' },
+  { 'battle 5 6',  'ma', 'Thunder IV',    't',     'Thund4' },
+  { 'battle 5 6',  'ma', 'Thunder V',     't',     'Thund5' },
+  ----------------------------------------------------------------------------------
+  { 'battle 5 7',  'ma', 'Break',         't',     'Break' },
   -- {'battle 5 8', '', '', '', ''},
   --{'battle 5 9', '', '', '', ''},
   { 'battle 5 10', 'ja', 'Spontaneity',   'me',    'Spont' },
@@ -174,11 +174,11 @@ xivhotbar_keybinds_job['Base'] = {
 }
 
 xivhotbar_keybinds_job['BLM'] = {
-  { 'battle 2 1', 'ma', 'Stun',           't',    'Stun' },
-  { 'battle 2 2', 'ma', 'Sleepga',        'stpc', 'Sleepga' },
-  { 'battle 2 3', 'ma', 'Drain',          'stpc', 'Drain' },
-  { 'battle 2 4', 'ma', 'Aspir',          'stpc', 'Aspir' },
-  { 'battle 2 9', 'ja', 'Elemental Seal', 'me',   'E.Seal' },
+  { 'battle 2 1', 'ma', 'Stun',           't',     'Stun' },
+  { 'battle 2 2', 'ma', 'Sleepga',        'stnpc', 'Sleepga' },
+  { 'battle 2 3', 'ma', 'Drain',          't',     'Drain' },
+  { 'battle 2 4', 'ma', 'Aspir',          't',     'Aspir' },
+  { 'battle 2 9', 'ja', 'Elemental Seal', 'me',    'E.Seal' },
 }
 
 xivhotbar_keybinds_job['SCH'] = {

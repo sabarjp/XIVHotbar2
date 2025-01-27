@@ -1206,7 +1206,7 @@ function ui:update_tp_cost(row, slot, action)
     local skill = nil
     skill = database[action.type][(action.action):lower()]
 
-    if skill.tpcost ~= nil and skill.tpcost ~= 0 and skill.prefix ~= '/pet' then
+    if skill and skill.tpcost ~= nil and skill.tpcost ~= 0 and skill.prefix ~= '/pet' then
       local tp_cost = self:get_true_tp_cost(skill)
       -- update tp cost
       ui.hotbars[row].slot_cost[slot]:text(tostring(tp_cost))
@@ -1250,7 +1250,9 @@ function ui:check_and_set_disable(action)
       elseif is_job_ability_usable(action.action, self.player) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
-      elseif action.type == 'ja' and mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then
+      elseif action.type == 'ja' and database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].type ~= 'Monster' and mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then
+        -- print('Action is JA and not monster ' ..
+        --   action.action .. ' ' .. database[action.type][(action.action):lower()].type)
         -- mostly for smn, who have JAs with mana cost
         self.disabled_slots.no_vitals[action.action] = true
         return true
@@ -1310,6 +1312,7 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
       if bst_charge.charges >= skill.mpcost then
         in_cooldown = false
       else
+        -- print('Not enough charges.')
         self.disabled_slots.on_cooldown[action.action] = true
         in_cooldown = true
         -- determine remaining time to get enough charges
@@ -1319,6 +1322,7 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
       end
     elseif skill ~= nil and action_recasts[tonumber(skill.icon)] ~= nil and action_recasts[tonumber(skill.icon)] > 0 then
       --check if skill is in cooldown
+      -- print('All skills: Not enough charges.' .. action.action)
       self.disabled_slots.on_cooldown[action.action] = true
       in_cooldown = true
       recast_time = action_recasts[tonumber(skill.icon)]

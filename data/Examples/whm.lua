@@ -61,13 +61,13 @@ xivhotbar_keybinds_job['Base'] = {
 
   -- Hotbar #3 (CTRL 1-12)
   --------------------------------------------------------------------------------------
-  { 'battle 3 1',  'ma', 'Dia',             'stnpc', 'Dia' },
-  { 'battle 3 1',  'ma', 'Dia II',          'stnpc', 'Dia2' },
+  { 'battle 3 1',  'ma', 'Dia',             't',     'Dia' },
+  { 'battle 3 1',  'ma', 'Dia II',          't',     'Dia2' },
   --------------------------------------------------------------------------------------
-  { 'battle 3 2',  'ma', 'Paralyze',        'stnpc', 'Paralyze' },
-  { 'battle 3 3',  'ma', 'Slow',            'stnpc', 'Slow' },
+  { 'battle 3 2',  'ma', 'Paralyze',        't',     'Paralyze' },
+  { 'battle 3 3',  'ma', 'Slow',            't',     'Slow' },
   { 'battle 3 4',  'ma', 'Silence',         'stnpc', 'Silence' },
-  { 'battle 3 5',  'ma', 'Addle',           'stnpc', 'Addle' },
+  { 'battle 3 5',  'ma', 'Addle',           't',     'Addle' },
 
   { 'battle 3 12', 'ja', 'Asylum',          'me',    'Asylum' },
 
@@ -107,11 +107,11 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 5 4',  'ma', 'Barfira',         'me',    'Fira',      'Barfira' },
   { 'battle 5 5',  'ma', 'Barblizzara',     'me',    'Blizzara',  'Barblizzara' },
   { 'battle 5 6',  'ma', 'Barthundra',      'me',    'Thundra',   'Barthundra' },
-  { 'battle 5 7',  'ma', 'Banish',          'stnpc', 'Banish' },
-  { 'battle 5 7',  'ma', 'Banish II',       'stnpc', 'Banish2' },
-  { 'battle 5 7',  'ma', 'Banish III',      'stnpc', 'Banish3' },
-  { 'battle 5 8',  'ma', 'Holy',            'stnpc', 'Holy' },
-  { 'battle 5 8',  'ma', 'Holy II',         'stnpc', 'Holy2' },
+  { 'battle 5 7',  'ma', 'Banish',          't',     'Banish' },
+  { 'battle 5 7',  'ma', 'Banish II',       't',     'Banish2' },
+  { 'battle 5 7',  'ma', 'Banish III',      't',     'Banish3' },
+  { 'battle 5 8',  'ma', 'Holy',            't',     'Holy' },
+  { 'battle 5 8',  'ma', 'Holy II',         't',     'Holy2' },
 
   { 'battle 5 10', 'ma', 'Boost-VIT',       'me',    'VIT++' },
   { 'battle 5 11', 'ma', 'Boost-MND',       'me',    'MND++' },
@@ -144,7 +144,7 @@ xivhotbar_keybinds_job['NIN'] = {
 
 xivhotbar_keybinds_job['BLM'] = {
   -- Hotbar #3 (CTRL 1-0)
-  { 'battle 3 6',  'ma', 'Blind',    'stnpc', 'Blind' },
+  { 'battle 3 6',  'ma', 'Blind',    't',     'Blind' },
   { 'battle 3 7',  'ma', 'Bind',     'stnpc', 'Bind' },
   { 'battle 3 8',  'ma', 'Sleep',    'stnpc', 'Sleep' },
   { 'battle 3 9',  'ma', 'Sleep II', 'stnpc', 'Sleep2' },
@@ -154,12 +154,12 @@ xivhotbar_keybinds_job['BLM'] = {
 
 xivhotbar_keybinds_job['RDM'] = {
   -- Hotbar #3 (CTRL 1-0)
-  { 'battle 3 6',  'ma', 'Blind',   'stnpc', 'Blind' },
+  { 'battle 3 6',  'ma', 'Blind',   't',     'Blind' },
   { 'battle 3 7',  'ma', 'Bind',    'stnpc', 'Bind' },
   { 'battle 3 8',  'ma', 'Sleep',   'stnpc', 'Sleep' },
   { 'battle 3 9',  'ma', 'Gravity', 'stnpc', 'Gravity' },
   { 'battle 3 10', 'ma', 'Refresh', 'stnpc', 'Refresh' },
-  { 'battle 3 11', 'ma', 'Dispel',  'stnpc', 'Dispel' },
+  { 'battle 3 11', 'ma', 'Dispel',  't',     'Dispel' },
 }
 
 xivhotbar_keybinds_job['SCH'] = {

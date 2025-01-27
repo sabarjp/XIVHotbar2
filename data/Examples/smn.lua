@@ -274,7 +274,8 @@ xivhotbar_keybinds_job['Siren'] = {
 }
 
 -- SUBJOBS
--- 4, 1-10 available
+-- 3 1-12 available
+-- 4 1-10 available
 xivhotbar_keybinds_job['THF'] = {
   { 'battle 3 3', 'ja', 'Steal',        't',  'Steal', 'ffxiv/nin/dream_within_a_dream' },
   { 'battle 3 1', 'ja', 'Sneak Attack', 'me', 'SAtk',  'ffxiv/nin/spinning_edge' },
@@ -323,96 +324,96 @@ xivhotbar_keybinds_job['COR'] = {
 
 xivhotbar_keybinds_job['RDM'] = {
   -- Abilities
-  { 'battle 3 12', 'ja', 'Convert',    'me',    'Convert',  'ffxiv/rdm/magic_barrier' },
+  { 'battle 4 10', 'ja', 'Convert', 'me',    'Convert', 'ffxiv/rdm/magic_barrier' },
   -- Enspells
-  -- { 'battle 3 7',  'ma', 'Enstone II',    'me',    'Enstone2' }, -- mastery
   -- { 'battle 3 7',  'ma', 'Enstone',       'me',    'Enstone' },
-  -- { 'battle 3 8',  'ma', 'Enwater II',    'me',    'Enwater2' }, -- mastery
+  -- { 'battle 3 7',  'ma', 'Enstone II',    'me',    'Enstone2' }, -- mastery
   -- { 'battle 3 8',  'ma', 'Enwater',       'me',    'Enwater' },
-  -- { 'battle 3 9',  'ma', 'Enaero II',     'me',    'Enaero2' },  -- mastery
+  -- { 'battle 3 8',  'ma', 'Enwater II',    'me',    'Enwater2' }, -- mastery
   -- { 'battle 3 9',  'ma', 'Enaero',        'me',    'Enaero' },
-  -- { 'battle 3 10', 'ma', 'Enfire II',     'me',    'Enfire2' },  -- mastery
+  -- { 'battle 3 9',  'ma', 'Enaero II',     'me',    'Enaero2' },  -- mastery
   -- { 'battle 3 10', 'ma', 'Enfire',        'me',    'Enfire' },
-  -- { 'battle 3 11', 'ma', 'Enblizzard II', 'me',    'Enblizz2' }, -- mastery
+  -- { 'battle 3 10', 'ma', 'Enfire II',     'me',    'Enfire2' },  -- mastery
   -- { 'battle 3 11', 'ma', 'Enblizzard',    'me',    'Enblizz' },
-  -- { 'battle 3 12', 'ma', 'Enthunder II',  'me',    'Enthun2' },  -- mastery
+  -- { 'battle 3 11', 'ma', 'Enblizzard II', 'me',    'Enblizz2' }, -- mastery
   -- { 'battle 3 12', 'ma', 'Enthunder',     'me',    'Enthun' },
+  -- { 'battle 3 12', 'ma', 'Enthunder II',  'me',    'Enthun2' },  -- mastery
   --Enfeeblement
-  { 'battle 4 7',  'ma', 'Dia',        'stnpc', 'Dia' },
-  { 'battle 4 7',  'ma', 'Dia II',     'stnpc', 'Dia2' },
-  -- { 'battle 3 ',  'ma', 'Diaga',         'stnpc', 'Diaga' },
-  -- { 'battle 3 ',  'ma', 'Poison II',     'stnpc', 'Poison2' },
-  -- { 'battle 3 ',  'ma', 'Poison',        'stnpc', 'Poison' },
-  -- { 'battle 3 ',  'ma', 'Paralyze',      'stnpc', 'Paralyze' },
-  -- { 'battle 3 ',  'ma', 'Blind',         'stnpc', 'Blind' },
-  -- { 'battle 3 ',  'ma', 'Bio II',        'stnpc', 'Bio2' },
-  -- { 'battle 3 ',  'ma', 'Bio',           'stnpc', 'Bio' },
-  -- { 'battle 3 ', 'ma', 'Bind',          'stnpc', 'Bind' },
-  -- { 'battle 3 ',  'ma', 'Slow',          'stnpc', 'Slow' },
-  -- { 'battle 3 ',   'ma', 'Silence',    'stnpc', 'Silence' },
-  -- { 'battle 3 ',   'ma', 'Gravity',    'stnpc', 'Gravity' },S
-  { 'battle 4 10', 'ma', 'Sleep II',   'stnpc', 'Sleep2' },
-  { 'battle 4 9',  'ma', 'Sleep',      'stnpc', 'Sleep' },
+  { 'battle 4 1',  'ma', 'Dia',     't',     'Dia' },
+  { 'battle 4 1',  'ma', 'Dia II',  't',     'Dia2' },
+  { 'battle 4 10', 'ma', 'Diaga',   't',     'Diaga' },
+  -- { 'battle 3 ',  'ma', 'Poison',        't', 'Poison' },
+  -- { 'battle 3 ',  'ma', 'Poison II',     't', 'Poison2' },
+  -- { 'battle 3 ',  'ma', 'Paralyze',      't', 'Paralyze' },
+  -- { 'battle 3 ',  'ma', 'Blind',         't', 'Blind' },
+  { 'battle 4 2',  'ma', 'Bio',     't',     'Bio' },
+  { 'battle 4 2',  'ma', 'Bio II',  't',     'Bio2' },
+  { 'battle 4 3',  'ma', 'Bind',    'stnpc', 'Bind' },
+  -- { 'battle 3 ',  'ma', 'Slow',          't', 'Slow' },
+  { 'battle 4 4',  'ma', 'Silence', 'stnpc', 'Silence' },
+  { 'battle 4 5',  'ma', 'Gravity', 'stnpc', 'Gravity' }, S
+{ 'battle 4 6', 'ma', 'Sleep', 'stnpc', 'Sleep' },
+  { 'battle 4 7',  'ma', 'Sleep II',   'stnpc', 'Sleep2' },
   { 'battle 4 8',  'ma', 'Dispel',     'stnpc', 'Dispel' },
-  -- { 'battle 3 ',  'ma', 'Distract',      'stnpc', 'Distract' },
-  -- { 'battle 3 ',  'ma', 'Frazzle',       'stnpc', 'Frazzle' },
+  -- { 'battle 3 ',  'ma', 'Distract',      't', 'Distract' },
+  { 'battle 4 9',  'ma', 'Frazzle',    't',     'Frazzle' },
   -- White Magic
+  { 'battle 3 1',  'ma', 'Cure',       'stpc',  'Cure' },
   { 'battle 3 1',  'ma', 'Cure II',    'stpc',  'Cure2' },
   { 'battle 3 1',  'ma', 'Cure III',   'stpc',  'Cure3' },
   { 'battle 3 1',  'ma', 'Cure IV',    'stpc',  'Cure 4' },
-  { 'battle 3 1',  'ma', 'Cure',       'stpc',  'Cure' },
   { 'battle 3 2',  'ma', 'Regen',      'stpc',  'Regen' },
   -- Black Magic
-  -- { 'battle 3 1',  'ma', 'Stone II',      'stnpc', 'Stone2' },
   -- { 'battle 3 1',  'ma', 'Stone',         'stnpc', 'Stone' },
-  -- { 'battle 3 1',  'ma', 'Water II',      'stnpc', 'Water2' },
+  -- { 'battle 3 1',  'ma', 'Stone II',      'stnpc', 'Stone2' },
   -- { 'battle 3 1',  'ma', 'Water',         'stnpc', 'Water' },
-  -- { 'battle 3 1',  'ma', 'Aero II',       'stnpc', 'Aero2' }, -- mastery
+  -- { 'battle 3 1',  'ma', 'Water II',      'stnpc', 'Water2' },
   -- { 'battle 3 1',  'ma', 'Aero',          'stnpc', 'Aero' },
-  -- { 'battle 3 1',  'ma', 'Fire II',       'stnpc', 'Fire2' }, -- mastery
+  -- { 'battle 3 1',  'ma', 'Aero II',       'stnpc', 'Aero2' }, -- mastery
   -- { 'battle 3 1',  'ma', 'Fire',          'stnpc', 'Fire' },
+  -- { 'battle 3 1',  'ma', 'Fire II',       'stnpc', 'Fire2' }, -- mastery
   -- { 'battle 3 1',  'ma', 'Blizzard',      'stnpc', 'Blizzard' },
   -- { 'battle 3 1',  'ma', 'Thunder',       'stnpc', 'Thunder' },
   -- Buffs
   { 'battle 3 3',  'ma', 'Refresh',    'stpc',  'Refresh' },
   { 'battle 3 4',  'ma', 'Haste',      'stpc',  'Haste' },
   { 'battle 3 5',  'ma', 'Flurry',     'stpc',  'Flurry' },
-  { 'battle 4 1',  'ma', 'Aquaveil',   'me',    'Aquaveil' },
-  { 'battle 4 2',  'ma', 'Blink',      'me',    'Blink' },
-  { 'battle 4 4',  'ma', 'Phalanx',    'me',    'Phalanx' },
-  { 'battle 4 3',  'ma', 'Stoneskin',  'me',    'StnSkin' },
+  { 'battle 4 6',  'ma', 'Aquaveil',   'me',    'Aquaveil' },
+  { 'battle 4 7',  'ma', 'Blink',      'me',    'Blink' },
+  { 'battle 4 8',  'ma', 'Phalanx',    'me',    'Phalanx' },
+  { 'battle 4 9',  'ma', 'Stoneskin',  'me',    'StnSkin' },
   -- { 'battle 3 7',  'ma', 'Blaze Spikes',  'me',    'BlzSpikes' },
-  -- { 'battle 3 8',  'ma', 'Ice Spikes',    'me',    'IceSpikes' },
+  { 'battle 3 10', 'ma', 'Ice Spikes', 'me',    'IceSpikes' },
   -- Barspells
   -- { 'battle 3 7',  'ma', 'Barstone',      'me',    'BStone',    'Barstonra' },
   -- { 'battle 3 8',  'ma', 'Barwater',      'me',    'BWater',    'Barwatera' },
   -- { 'battle 3 9',  'ma', 'Baraero',       'me',    'BAero',     'Baraera' },
   -- { 'battle 3 10', 'ma', 'Barfire',       'me',    'BFire',     'Barfira' },
   -- { 'battle 3 11', 'ma', 'Barblizzard',   'me',    'BBlizzard', 'Barblizzara' },
-  { 'battle 4 5',  'ma', 'Barthunder', 'me',    'BThunder', 'Barthundra' },
+  { 'battle 3 11', 'ma', 'Barthunder', 'me',    'BThunder', 'Barthundra' },
   -- { 'battle 3 5',  'ma', 'Barsleep',      'me',    'BSleep',    '' },
   -- { 'battle 3 6',  'ma', 'Barpoison',     'me',    'BPoison',   '' },
   -- { 'battle 3 7',  'ma', 'Barparalyze',   'me',    'BPara',     '' },
   -- { 'battle 3 8',  'ma', 'Barblind',      'me',    'BBlind',    '' },
-  { 'battle 4 6',  'ma', 'Barsilence', 'me',    'BSilence', '' },
+  { 'battle 3 12', 'ma', 'Barsilence', 'me',    'BSilence', '' },
   -- { 'battle 3 10', 'ma', 'Barvirus',      'me',    'BVirus',    '' },
   -- { 'battle 3 11', 'ma', 'Barpetrify',    'me',    'BPetri',    '' },
 }
 
 xivhotbar_keybinds_job['WHM'] = {
   -- Abilities
-  { 'battle 3 12', 'ja', 'Divine Seal', 'me',    'Divine',   'ffxiv/whm/divine_benison' },
+  { 'battle 4 10', 'ja', 'Divine Seal', 'me',    'Divine',  'ffxiv/whm/divine_benison' },
   -- Enfeeblement
-  -- { 'battle 3 ',  'ma', 'Paralyze',     'stnpc', 'Para' },
-  -- { 'battle 3 ',  'ma', 'Slow',         'stnpc', 'Slow' },
-  -- { 'battle 3 ',  'ma', 'Silence',      'stnpc', 'Silence' },
-  { 'battle 4 7',  'ma', 'Dia',         'stnpc', 'Dia' },
-  { 'battle 4 7',  'ma', 'Dia II',      'stnpc', 'Dia II' },
-  { 'battle 4 9',  'ma', 'Repose',      'stnpc', 'Repose' },
-  -- { 'battle 3 ',  'ma', 'Flash',        'stnpc', 'Flash',     'ffxiv/pld/flash' },
-  { 'battle 4 1',  'ma', 'Aquaveil',    'me',    'Aquaveil' },
+  -- { 'battle 3 2',  'ma', 'Paralyze',     't',     'Para' },
+  -- { 'battle 3 3',  'ma', 'Slow',         't',     'Slow' },
+  { 'battle 4 2',  'ma', 'Silence',     'stnpc', 'Silence' },
+  { 'battle 4 1',  'ma', 'Dia',         't',     'Dia' },
+  { 'battle 4 1',  'ma', 'Dia II',      't',     'Dia II' },
+  { 'battle 4 3',  'ma', 'Repose',      'stnpc', 'Repose' },
+  -- { 'battle 3 9',  'ma', 'Flash',        't',     'Flash',     'ffxiv/pld/flash' },
+  { 'battle 4 9',  'ma', 'Aquaveil',    'me',    'Aquaveil' },
   -- Barspells
-  { 'battle 4 6',  'ma', 'Barsleepra',  'me',    'Sleepra',  '' },
+  -- { 'battle 3 ',  'ma', 'Barsleepra',   'me',    'Sleepra',   '' },
   -- { 'battle 3 ',  'ma', 'Barpoisonra',  'me',    'Poisonra',  '' },
   -- { 'battle 3 ',  'ma', 'Barparalyzra', 'me',    'Paralyzra', '' },
   -- { 'battle 3 ',  'ma', 'Barstonra',    'me',    'Stonra',    'Barstonra' },
@@ -420,13 +421,15 @@ xivhotbar_keybinds_job['WHM'] = {
   -- { 'battle 3 ',  'ma', 'Baraera',      'me',    'Aera',      'Baraera' },
   -- { 'battle 3 ',  'ma', 'Barfira',      'me',    'Fira',      'Barfira' },
   -- { 'battle 3 ',  'ma', 'Barblindra',   'me',    'Blindra',   '' },
-  { 'battle 4 4',  'ma', 'Barblizzara', 'me',    'Blizzara', 'Barblizzara' },
-  -- { 'battle 3 ',  'ma', 'Barsilencera', 'me',    'Silencera' },
-  { 'battle 4 5',  'ma', 'Barthundra',  'me',    'Thundra',  'Barthundra' },
+  -- { 'battle 3 ',  'ma', 'Barblizzara',  'me',    'Blizzara',  'Barblizzara' },
+  -- { 'battle 4 8',  'ma', 'Barsilencera', 'me',    'Silencera' },
+  -- { 'battle 4 7',  'ma', 'Barthundra',   'me',    'Thundra',   'Barthundra' },
   -- { 'battle 3 ',  'ma', 'Barvira',      'me',    'Vira' },
   -- { 'battle 3 ',  'ma', 'Barpetra',     'me',    'Petra' },
   -- Atk
-  -- { 'battle 3 ',  'ma', 'Holy',         'stnpc', 'Holy' }, -- mastery
+  -- { 'battle 3 5',  'ma', 'Banish',       't',     'Banish' },
+  -- { 'battle 3 5',  'ma', 'Banish II',    't',     'Banish2' },
+  -- { 'battle 3 9',  'ma', 'Holy',         't',     'Holy' }, -- mastery
   -- Regen
   { 'battle 3 2',  'ma', 'Regen',       'stpc',  'Regen' },
   { 'battle 3 2',  'ma', 'Regen II',    'stpc',  'Regen2' },
@@ -436,54 +439,54 @@ xivhotbar_keybinds_job['WHM'] = {
   { 'battle 3 1',  'ma', 'Cure III',    'stpc',  'Cure3' },
   { 'battle 3 1',  'ma', 'Cure IV',     'stpc',  'Cure4' },
   -- Cura
-  -- { 'battle 3 ', 'ma', 'Cura',         'me',    'Cura' },
+  { 'battle 1 3',  'ma', 'Cura',        'me',    'Cura' },
   -- Curaga
-  { 'battle 3 3',  'ma', 'Curaga',      'stpc',  'Curaga' },
-  { 'battle 3 3',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
-  { 'battle 3 3',  'ma', 'Curaga III',  'stpc',  'Curaga3' }, -- mastery
+  { 'battle 3 4',  'ma', 'Curaga',      'stpc',  'Curaga' },
+  { 'battle 3 4',  'ma', 'Curaga II',   'stpc',  'Curaga2' },
+  { 'battle 3 4',  'ma', 'Curaga III',  'stpc',  'Curaga3' }, -- mastery
   -- Supportive
-  -- { 'battle 3 4',  'ma', 'Poisona',      'stpc',  'Poisona' },
-  -- { 'battle 3 4',  'ma', 'Paralyna',     'stpc',  'Paralyna' },
-  -- { 'battle 3 4',  'ma', 'Blindna',      'stpc',  'Blindna' },
-  -- { 'battle 3 4',  'ma', 'Silena',       'stpc',  'Silena' },
-  { 'battle 4 2',  'ma', 'Blink',       'me',    'Blink' },
-  { 'battle 4 3',  'ma', 'Stoneskin',   'me',    'StnSkin' },
-  -- { 'battle 3 4',  'ma', 'Cursna',       'stpc',  'Cursna' },
-  { 'battle 3 5',  'ma', 'Erase',       'stpc',  'Erase' },
-  -- { 'battle 3 4',  'ma', 'Viruna',       'stpc',  'Viruna' },
-  -- { 'battle 3 4',  'ma', 'Stona',        'stpc',  'Stona' },
-  { 'battle 3 4',  'ma', 'Haste',       'stpc',  'Haste' },
-  -- { 'battle 3 ',  'ma', 'Auspice',      'me',    'Ausp' }, -- mastery
+  { 'battle 3 5',  'ma', 'Poisona',     'stpc',  'Poisona' },
+  { 'battle 3 6',  'ma', 'Paralyna',    'stpc',  'Paralyna' },
+  { 'battle 3 7',  'ma', 'Blindna',     'stpc',  'Blindna' },
+  { 'battle 3 8',  'ma', 'Silena',      'stpc',  'Silena' },
+  { 'battle 4 7',  'ma', 'Blink',       'me',    'Blink' },
+  { 'battle 4 6',  'ma', 'Stoneskin',   'me',    'StnSkin' },
+  { 'battle 3 9',  'ma', 'Cursna',      'stpc',  'Cursna' },
+  { 'battle 3 10', 'ma', 'Erase',       'stpc',  'Erase' },
+  { 'battle 3 11', 'ma', 'Viruna',      'stpc',  'Viruna' },
+  { 'battle 3 12', 'ma', 'Stona',       'stpc',  'Stona' },
+  { 'battle 4 5',  'ma', 'Haste',       'stpc',  'Haste' },
+  { 'battle 4 8',  'ma', 'Auspice',     'me',    'Ausp' }, -- mastery
 }
 
 xivhotbar_keybinds_job['SCH'] = {
   -- Abilities
-  { 'battle 4 11', 'ja', 'Dark Arts',       'me',   'Dark',     'ffxiv/sch/ruin' },
-  { 'battle 4 10', 'ja', 'Light Arts',      'me',   'Light',    'ffxiv/sch/ruin_II' },
-  { 'battle 3 12', 'ja', 'Sublimation',     'me',   'Sublim',   'ffxiv/sch/aetherflow' },
-  { 'battle 4 5',  'ja', 'Penury',          'me',   'Penury',   'ffxiv/sch/dissipation' },        -- shares A - reduce MP
-  { 'battle 4 5',  'ja', 'Parsimony',       'me',   'Parsmy',   'ffxiv/sch/broil_IV' },           -- shares A - reduce MP
-  { 'battle 4 6',  'ja', 'Celerity',        'me',   'Celrty',   'ffxiv/sch/expedient' },          -- shares B - reduce cast
-  { 'battle 4 6',  'ja', 'Alacrity',        'me',   'Alacty',   'ffxiv/sch/deployment_tactics' }, -- shares B - reduce cast
-  { 'battle 4 7',  'ja', 'Addendum: White', 'me',   'Add.Wht',  'ffxiv/sch/excogitation' },
-  { 'battle 4 7',  'ja', 'Addendum: Black', 'me',   'Add.Blk',  'ffxiv/sch/recitation' },
-  { 'battle 4 8',  'ja', 'Accession',       'me',   'Accssn',   'ffxiv/sch/protraction' },   -- shares C - extend
-  { 'battle 4 8',  'ja', 'Manifestation',   'me',   'Manifst',  'ffxiv/sch/biolysis' },      -- shares C - extend
-  { 'battle 4 9',  'ja', 'Rapture',         'me',   'Raptur',   'ffxiv/sch/art_of_war_II' }, -- shares D - mastery - potency
-  { 'battle 4 9',  'ja', 'Ebullience',      'me',   'Ebull',    'ffxiv/sch/art_of_war' },    -- Shares D - mastery - potency
+  { 'battle 4 10', 'ja', 'Dark Arts',       'me',   'Dark',     'ffxiv/sch/ruin' },
+  { 'battle 4 9',  'ja', 'Light Arts',      'me',   'Light',    'ffxiv/sch/ruin_II' },
+  { 'battle 3 7',  'ja', 'Sublimation',     'me',   'Sublim',   'ffxiv/sch/aetherflow' },
+  { 'battle 3 8',  'ja', 'Penury',          'me',   'Penury',   'ffxiv/sch/dissipation' },        -- shares A - reduce MP
+  { 'battle 3 8',  'ja', 'Parsimony',       'me',   'Parsmy',   'ffxiv/sch/broil_IV' },           -- shares A - reduce MP
+  { 'battle 3 9',  'ja', 'Celerity',        'me',   'Celrty',   'ffxiv/sch/expedient' },          -- shares B - reduce cast
+  { 'battle 3 9',  'ja', 'Alacrity',        'me',   'Alacty',   'ffxiv/sch/deployment_tactics' }, -- shares B - reduce cast
+  { 'battle 3 10', 'ja', 'Addendum: White', 'me',   'Add.Wht',  'ffxiv/sch/excogitation' },
+  { 'battle 3 10', 'ja', 'Addendum: Black', 'me',   'Add.Blk',  'ffxiv/sch/recitation' },
+  { 'battle 3 11', 'ja', 'Accession',       'me',   'Accssn',   'ffxiv/sch/protraction' },   -- shares C - extend
+  { 'battle 3 11', 'ja', 'Manifestation',   'me',   'Manifst',  'ffxiv/sch/biolysis' },      -- shares C - extend
+  { 'battle 3 12', 'ja', 'Rapture',         'me',   'Raptur',   'ffxiv/sch/art_of_war_II' }, -- shares D - mastery - potency
+  { 'battle 3 12', 'ja', 'Ebullience',      'me',   'Ebull',    'ffxiv/sch/art_of_war' },    -- Shares D - mastery - potency
   -- Storms
-  { 'battle 3 4',  'me', 'Sandstorm',       'stpc', 'Sand',     'ffxiv/whm/stone_II' },
-  { 'battle 3 5',  'me', 'Rainstorm',       'stpc', 'Rain',     'ffxiv/whm/fluid_aura' },
-  { 'battle 3 6',  'me', 'Windstorm',       'stpc', 'Wind',     'ffxiv/whm/aero_II' },
-  { 'battle 3 7',  'me', 'Firestorm',       'stpc', 'Fire',     'ffxiv/blm/fire_IV' },
-  { 'battle 3 8',  'me', 'Hailstorm',       'stpc', 'Hail',     'ffxiv/blm/blizzard_II' },
-  { 'battle 3 9',  'me', 'Thunderstorm',    'stpc', 'Thdr',     'ffxiv/blm/thunder_IV' },
-  { 'battle 3 10', 'me', 'Voidstorm',       'stpc', 'Void',     'ffxiv/ast/malefic_III' },
-  { 'battle 3 11', 'me', 'Aurorastorm',     'stpc', 'Aurora',   'ffxiv/whm/glare' },
+  { 'battle 4 1',  'me', 'Sandstorm',       'stpc', 'Sand',     'ffxiv/whm/stone_II' },
+  { 'battle 4 2',  'me', 'Rainstorm',       'stpc', 'Rain',     'ffxiv/whm/fluid_aura' },
+  { 'battle 4 3',  'me', 'Windstorm',       'stpc', 'Wind',     'ffxiv/whm/aero_II' },
+  { 'battle 4 4',  'me', 'Firestorm',       'stpc', 'Fire',     'ffxiv/blm/fire_IV' },
+  { 'battle 4 5',  'me', 'Hailstorm',       'stpc', 'Hail',     'ffxiv/blm/blizzard_II' },
+  { 'battle 4 6',  'me', 'Thunderstorm',    'stpc', 'Thdr',     'ffxiv/blm/thunder_IV' },
+  { 'battle 4 7',  'me', 'Voidstorm',       'stpc', 'Void',     'ffxiv/ast/malefic_III' },
+  { 'battle 4 8',  'me', 'Aurorastorm',     'stpc', 'Aurora',   'ffxiv/whm/glare' },
   -- Buffs (good in either art)
-  { 'battle 4 2',  'ma', 'Blink',           'me',   'Blink' },
-  { 'battle 4 3',  'ma', 'Stoneskin',       'me',   'Stoneskin' },
-  { 'battle 4 1',  'ma', 'Aquaveil',        'me',   'Aquaveil' },
+  { 'battle 3 4',  'ma', 'Blink',           'me',   'Blink' },
+  { 'battle 3 5',  'ma', 'Stoneskin',       'me',   'Stoneskin' },
+  { 'battle 3 6',  'ma', 'Aquaveil',        'me',   'Aquaveil' },
 }
 
 xivhotbar_keybinds_job['Light Arts'] = {
@@ -496,74 +499,74 @@ xivhotbar_keybinds_job['Light Arts'] = {
   { 'battle 3 2', 'ma', 'Regen II',  'stpc', 'Regen2' },
   { 'battle 3 2', 'ma', 'Regen III', 'stpc', 'Regen3' }, -- mastery
   -- Status Removal
-  -- { 'battle 3 2', 'ma', 'Poisona',   'stpc', 'Poisona' },
-  -- { 'battle 3 2', 'ma', 'Paralyna',  'stpc', 'Paralyna' },
-  -- { 'battle 3 2', 'ma', 'Blindna',   'stpc', 'Blindna' },
-  -- { 'battle 3 2', 'ma', 'Silena',    'stpc', 'Silena' },
-  -- { 'battle 3 2', 'ma', 'Cursna',    'stpc', 'Cursna' },
-  -- { 'battle 3 2', 'ma', 'Viruna',    'stpc', 'Viruna' },
-  -- { 'battle 3 2', 'ma', 'Stona',     'stpc', 'Stona' }, -- mastery
+  { 'battle 3 3', 'ma', 'Poisona',   'stpc', 'Poisona' },
+  { 'battle 3 3', 'ma', 'Paralyna',  'stpc', 'Paralyna' },
+  { 'battle 3 3', 'ma', 'Blindna',   'stpc', 'Blindna' },
+  { 'battle 3 3', 'ma', 'Silena',    'stpc', 'Silena' },
+  { 'battle 3 3', 'ma', 'Cursna',    'stpc', 'Cursna' },
+  { 'battle 3 3', 'ma', 'Viruna',    'stpc', 'Viruna' },
+  { 'battle 3 3', 'ma', 'Stona',     'stpc', 'Stona' }, -- mastery
   { 'battle 3 3', 'ma', 'Erase',     'stpc', 'Erase' },
 }
 
 xivhotbar_keybinds_job['Dark Arts'] = {
   -- Black Magic
-  -- { 'battle 3 ', 'ma', 'Stone III',    'stnpc', 'Stone3' }, -- mastery
-  -- { 'battle 3 ', 'ma', 'Stone II',     'stnpc', 'Stone2' },
-  -- { 'battle 3 ', 'ma', 'Stone',        'stnpc', 'Stone' },
-  -- { 'battle 3 ', 'ma', 'Water III',    'stnpc', 'Water3' }, -- mastery
-  -- { 'battle 3 ', 'ma', 'Water II',     'stnpc', 'Water2' },
-  -- { 'battle 3 ', 'ma', 'Water',        'stnpc', 'Water' },
-  -- { 'battle 3 ', 'ma', 'Aero II',      'stnpc', 'Aero2' },
-  -- { 'battle 3 ', 'ma', 'Aero',         'stnpc', 'Aero' },
-  -- { 'battle 3 ', 'ma', 'Fire II',      'stnpc', 'Fire2' },
-  -- { 'battle 3 ', 'ma', 'Fire',         'stnpc', 'Fire' },
-  -- { 'battle 3 ', 'ma', 'Blizzard II',  'stnpc', 'Blizz2' },
-  -- { 'battle 3 ', 'ma', 'Blizzard',     'stnpc', 'Blizz' },
-  -- { 'battle 3 ', 'ma', 'Thunder II',   'stnpc', 'Thund2' }, -- mastery
-  -- { 'battle 3 ', 'ma', 'Thunder',      'stnpc', 'Thund' },
+  -- { 'battle 1 1',  'ma', 'Stone',        't',     'Stone' },
+  -- { 'battle 1 1',  'ma', 'Stone II',     't',     'Stone2' },
+  -- { 'battle 1 1',  'ma', 'Stone III',    't',     'Stone3' }, -- mastery
+  -- { 'battle 1 2',  'ma', 'Water',        't',     'Water' },
+  -- { 'battle 1 2',  'ma', 'Water II',     't',     'Water2' },
+  -- { 'battle 1 2',  'ma', 'Water III',    't',     'Water3' }, -- mastery
+  -- { 'battle 1 3',  'ma', 'Aero',         't',     'Aero' },
+  -- { 'battle 1 3',  'ma', 'Aero II',      't',     'Aero2' },
+  -- { 'battle 1 4',  'ma', 'Fire',         't',     'Fire' },
+  -- { 'battle 1 4',  'ma', 'Fire II',      't',     'Fire2' },
+  -- { 'battle 1 5',  'ma', 'Blizzard',     't',     'Blizz' },
+  -- { 'battle 1 5',  'ma', 'Blizzard II',  't',     'Blizz2' },
+  -- { 'battle 1 6',  'ma', 'Thunder',      't',     'Thund' },
+  -- { 'battle 1 6',  'ma', 'Thunder II',   't',     'Thund2' }, -- mastery
   -- Enfeeblement
-  -- { 'battle 3 ', 'ma', 'Sleep',        'stnpc', 'Sleep' },
-  -- { 'battle 3 ', 'ma', 'Dispel',       'stnpc', 'Dispel' },
+  -- { 'battle 3 7',  'ma', 'Sleep',        'stnpc', 'Sleep' },
+  { 'battle 3 1', 'ma', 'Dispel',       'stnpc', 'Dispel' },
   -- Buffs
-  { 'battle 3 3', 'ma', 'Klimaform', 'me',    'Klima' },
-  -- { 'battle 3 ', 'ma', 'Blaze Spikes', 'me',    'B. Spikes' },
-  -- { 'battle 3 ', 'ma', 'Ice Spikes',   'me',    'I. Spikes' }, -- mastery
+  -- { 'battle 3 11', 'ma', 'Klimaform',    'me',    'Klima' },
+  { 'battle 3 3', 'ma', 'Blaze Spikes', 'me',    'B. Spikes' },
+  { 'battle 3 3', 'ma', 'Ice Spikes',   'me',    'I. Spikes' }, -- mastery
   -- Helix
-  -- { 'battle 3 ', 'ma', 'Geohelix',     'stnpc', 'Geo' },
-  -- { 'battle 3 ', 'ma', 'Hydrohelix',   'stnpc', 'Hydro' },
-  -- { 'battle 3 ', 'ma', 'Anemohelix',   'stnpc', 'Anemo' },
-  -- { 'battle 3 ', 'ma', 'Pyrohelix',    'stnpc', 'Pyro' },
-  { 'battle 3 1', 'ma', 'Cryohelix', 'stnpc', 'Cryo' },
-  { 'battle 3 2', 'ma', 'Ionohelix', 'stnpc', 'Iono' },
-  -- { 'battle 3 ', 'ma', 'Noctohelix',   'stnpc', 'Nocto' },
-  -- { 'battle 3 ', 'ma', 'Luminohelix',  'stnpc', 'Lumino' },
+  -- { 'battle 2 1',  'ma', 'Geohelix',     't',     'Geo' },
+  -- { 'battle 2 2',  'ma', 'Hydrohelix',   't',     'Hydro' },
+  -- { 'battle 2 3',  'ma', 'Anemohelix',   't',     'Anemo' },
+  -- { 'battle 2 4',  'ma', 'Pyrohelix',    't',     'Pyro' },
+  -- { 'battle 2 5',  'ma', 'Cryohelix',    't',     'Cryo' },
+  -- { 'battle 2 6',  'ma', 'Ionohelix',    't',     'Iono' },
+  -- { 'battle 2 7',  'ma', 'Noctohelix',   't',     'Nocto' },
+  -- { 'battle 2 8',  'ma', 'Luminohelix',  't',     'Lumino' },
   -- Absorb
-  -- { 'battle 3 ', 'ma', 'Drain',        'stnpc', 'Drain' },
-  -- { 'battle 3 ', 'ma', 'Aspir',        'stnpc', 'Aspir' },
+  -- { 'battle 3 9',  'ma', 'Drain',        't',     'Drain' },
+  { 'battle 3 2', 'ma', 'Aspir',        't',     'Aspir' },
 }
 
 -- WEAPONSKILL SETS (12)
 xivhotbar_keybinds_job['Club'] = {
   -- Heavy Hit
-  { 'battle 1 12', 'ws', 'True Strike',    't', 'True' },
+  { 'battle 1 12', 'ws', 'True Strike',    't',  'True' },
   -- { 'battle 1 1',  'ws', 'Judgment',       't', 'Judgment' }, -- war whm pld drk sam blu geo
   -- Multi-Hit
   -- { 'battle 1 2',  'ws', 'Hexa Strike',    't', 'Hexa' },     -- whm geo
-  { 'battle 1 12', 'ws', 'Black Halo',     't', 'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 12', 'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
   -- Light
-  { 'battle 1 12', 'ws', 'Shining Strike', 't', 'Shining' },
+  { 'battle 1 12', 'ws', 'Shining Strike', 't',  'Shining' },
   -- { 'battle 1 3',  'ws', 'Seraph Strike',  't', 'Seraph' },  -- war whm pld drk sam blu geo
   -- { 'battle 1 3',  'ws', 'Flash Nova',     't', 'Fl Nova' }, -- war whm pld drk sam blu geo
   -- Specials
-  { 'battle 1 12', 'ws', 'Skullbreaker',   't', 'Skullbrk' },
-  { 'battle 1 12', 'ws', 'Starlight',      't', 'Star' },
-  -- { 'battle 1 5',  'ws', 'Moonlight',      't', 'Moon' },     -- war whm pld drk sam blu geo
+  { 'battle 1 12', 'ws', 'Skullbreaker',   't',  'Skullbrk' },
+  { 'battle 1 12', 'ws', 'Starlight',      'me', 'Star' },
+  -- { 'battle 1 5',  'ws', 'Moonlight',      'me', 'Moon' },     -- war whm pld drk sam blu geo
   -- Class Specific
   -- { 'battle 1 6',  'ws', 'Mystic Boon',    't', 'Mystic' },   -- whm only
   -- { 'battle 1 6',  'ws', 'Exudation',      't', 'Exuda' },    -- geo
   -- Merit Point
-  { 'battle 1 12', 'ws', 'Realmrazer',     't', 'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 12', 'ws', 'Realmrazer',     't',  'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
   -- Empyrean (Abyssea only)  #9
   -- { 'battle 1 9',  'ws', 'Dagan',          't', 'Dagan' },    -- whm
   -- Relic & Prime (only usable with specific weapon equips) #10
@@ -572,7 +575,7 @@ xivhotbar_keybinds_job['Club'] = {
   -- AoE Ws #11
   -- none
   -- Stun WS #12
-  { 'battle 1 12', 'ws', 'Brainshaker',    't', 'Brainshkr' },
+  { 'battle 1 12', 'ws', 'Brainshaker',    't',  'Brainshkr' },
 }
 
 xivhotbar_keybinds_job['Staff'] = {
