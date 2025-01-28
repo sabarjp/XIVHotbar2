@@ -29,18 +29,21 @@
 local defaults = {}
 
 
-defaults.General = {}
-defaults.General.HideEnvironment = false
-defaults.General.HideInventoryCount = false
-defaults.General.EnableWeaponSwitching = true
-defaults.General.HideHotbarNumbers = true
-defaults.General.PlayingHorizonXI = false
+defaults.General                             = {}
+defaults.General.HideEnvironment             = false
+defaults.General.HideInventoryCount          = false
+defaults.General.EnableWeaponSwitching       = true
+defaults.General.HideHotbarNumbers           = true
+defaults.General.PlayingHorizonXI            = false
 
-defaults.Hotbar = {}
-defaults.Hotbar.ShowActionDescription = true
-defaults.Hotbar.HideEmptySlots = true
-defaults.Hotbar.HideActionName = false
-defaults.Hotbar.HideActionCost = false
+defaults.Hotbar                              = {}
+defaults.Hotbar.ShowActionDescription        = true
+defaults.Hotbar.HideEmptySlots               = true
+defaults.Hotbar.HideActionName               = false
+defaults.Hotbar.HideActionCost               = false
+defaults.Hotbar.HighlightMagicBurst          = true
+defaults.Hotbar.HighlightSkillchain          = true
+defaults.Hotbar.UseAnimatedHighlights        = true
 
 defaults.Hotbar.Offsets                      = {}
 defaults.Hotbar.Offsets.First                = { Vertical = false, OffsetX = 675, OffsetY = 1010 }

@@ -64,6 +64,9 @@ local theme_options = theme.apply(settings)
 
 
 -- Addon Dependencies --
+htb_skillchains = require('lib/skillchains')
+htb_bloodpacts = require('lib/bloodpacts')
+htb_blue_spells = require('lib/blue_spells')
 local keyboard = require('lib/keyboard_mapper')
 local box = require('lib/move_box')
 local player = require('lib/player')
@@ -126,6 +129,7 @@ function initialize()
   player:initialize(windower_player, server, theme_options)
   player:load_hotbar()
   keyboard:bind_keys(theme_options.rows, theme_options.columns)
+  skillchains:initialize()
 
   ui:load_player_hotbar(player:get_hotbar_info())
   ui.hotbar.ready = true
@@ -310,6 +314,39 @@ windower.register_event('addon command', function(command, ...)
       config.save(settings)
       print('XIVHOTBAR2: Layout mode disabled, writing new positions to settings.xml.')
       box:disable()
+    end
+  elseif command == 'sc' then
+    -- debugging for skillchain detection
+    local target = windower.ffxi.get_mob_by_target('t')
+    if target then
+      local combos = skillchains:get_potential_skillchains(target.id)
+      local mb_elements = skillchains:get_magic_burst_elements(target.id)
+
+      if combos then
+        windower.add_to_chat(8, '--------COMBOS-------')
+        for key, _ in pairs(combos) do
+          windower.add_to_chat(8, tostring(key))
+        end
+      end
+
+      if mb_elements then
+        windower.add_to_chat(8, '--------MB-------')
+        for key, _ in pairs(mb_elements) do
+          windower.add_to_chat(8, tostring(key))
+        end
+      end
+
+      windower.add_to_chat(8, '--------POT-------')
+      local potential = skillchains:get_potential_skillchains(target.id)
+      printTable(potential)
+
+      if args[1] then
+        local props = {}
+        for i, value in ipairs(args) do
+          table.insert(props, args[i])
+        end
+        skillchains:attempt_skillchain(target.id, props)
+      end
     end
   end
 end)
@@ -814,8 +851,10 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
     if id == 0x068 then                                           -- If the second pet update packet comes in
       if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
         if packet['Pet Index'] ~= 0 then                          -- If the pet has an index of non zero then pet summoned succesfully
-          if ui.theme.dev_mode then log("Pet Summoned " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
-          reload_hotbar(packet['Pet Name'])
+          if player.pet_name ~= packet['Pet Name'] then
+            if ui.theme.dev_mode then log("Pet Summoned/Changed " .. packet['Pet Name'] .. ". Reloading Hotbar.") end
+            reload_hotbar(packet['Pet Name'])
+          end
         end
       end
     end

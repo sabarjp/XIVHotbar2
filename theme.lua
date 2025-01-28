@@ -57,6 +57,9 @@ theme.apply = function(settings)
   options.hide_action_names             = sh.HideActionName
   options.hide_action_cost              = sh.HideActionCost
   options.hide_recast_text              = sh.HideRecastText
+  options.highlight_magic_burst         = sh.HighlightMagicBurst
+  options.highlight_skill_chain         = sh.HighlightSkillchain
+  options.use_animated_highlights       = sh.UseAnimatedHighlights
   options.slot_icon_scale               = sh.SlotIconScale
   options.offsets                       = {
     ['1'] = { Vertical = sh.Offsets.First.Vertical, OffsetX = sh.Offsets.First.OffsetX, OffsetY = sh.Offsets.First.OffsetY },

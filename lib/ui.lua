@@ -71,12 +71,12 @@ local right_text_setup = {
   }
 }
 
-
-
 local playerinv = {}
 local is_silenced = false
 local is_amnesiad = false
 local is_neutralized = false
+local is_burst_affinity = false
+local is_chain_affinity = false
 local can_ws = false
 local can_pet_ws = false
 local current_mp = 0
@@ -107,6 +107,18 @@ ui.overlay_image_width = 24
 ui.player = {}
 ui.recasts = {}
 
+local outline_images_setup = {
+  draggable = false,
+  size = {
+    width  = ui.image_width + 6,
+    height = ui.image_height + 6
+  },
+  texture = {
+    fit = false
+  },
+  visible = false
+}
+
 local images_setup = {
   draggable = false,
   size = {
@@ -118,6 +130,7 @@ local images_setup = {
   },
   visible = false
 }
+
 local overlay_images_setup = {
   draggable = false,
   size = {
@@ -151,8 +164,14 @@ ui.disabled_slots.actions = {}
 ui.disabled_slots.no_vitals = {}
 ui.disabled_slots.on_cooldown = {}
 
+ui.outlined_slots = {}
+
 ui.is_setup = false
 ui.disabled_icons = {}
+ui.current_tick = 0
+
+-- cache the current target
+ui.current_target = nil
 
 ui.default_image_paths = {
   ['default'] = windower.addon_path .. '/images/icons/custom/gear3.png',
@@ -183,6 +202,8 @@ local function update_buffs(id, data)
       local silenced = false
       local amnesiad = false
       local neutralized = false
+      local burst_affinity = false
+      local chain_affinity = false
       for i = 1, 32 do
         local buff_id = data:unpack('H', i * 2 + 7)
         if (buff_id == 2 or buff_id == 10 or buff_id == 19 or buff_id == 28 or buff_id == 193 or buff_id == 14 or buff_id == 17) then neutralized = true end
@@ -190,12 +211,16 @@ local function update_buffs(id, data)
         if (buff_id == 6) then
           silenced = true
         end
+        if (buff_id == 164) then chain_affinity = true end
+        if (buff_id == 165) then burst_affinity = true end
         if (buff_id == 16) then amnesiad = true end
         if (silenced and amnesiad) then break end
       end
       is_neutralized = neutralized
       is_silenced = silenced
       is_amnesiad = amnesiad
+      is_burst_affinity = burst_affinity
+      is_chain_affinity = chain_affinity
     end
   end
 end
@@ -311,7 +336,17 @@ local function setup_image(image, path)
   image:show()
 end
 
-function setup_overlay_image(image, path)
+local function setup_outline_image(image, path)
+  image:path(path)
+  image:repeat_xy(1, 1)
+  image:draggable(false)
+  image:fit(false)
+  image:alpha(255)
+  image:size(ui.image_width + 6, ui.image_height + 6)
+  image:show()
+end
+
+local function setup_overlay_image(image, path)
   image:path(path)
   image:repeat_xy(1, 1)
   image:draggable(false)
@@ -519,6 +554,51 @@ function ui:enable_slot(hotbar_index, index, action)
   end
 end
 
+function ui:outline_path(hotbar_index, index, type)
+  if type then
+    self.hotbars[hotbar_index].slot_outline[index]:path(windower.addon_path ..
+      '/themes/' .. (self.theme.frame_theme:lower()) .. '/outline_' .. type .. '.png')
+  else
+    self.hotbars[hotbar_index].slot_outline[index]:path(windower.addon_path ..
+      '/themes/' .. (self.theme.frame_theme:lower()) .. '/outline.png')
+  end
+
+  if self.theme.use_animated_highlights then
+    local cycle = self.current_tick % 4
+    if cycle == 0 then
+      self.hotbars[hotbar_index].slot_outline[index]:repeat_xy(1, 1)
+    elseif cycle == 1 then
+      self.hotbars[hotbar_index].slot_outline[index]:repeat_xy(-1, 1)
+    elseif cycle == 2 then
+      self.hotbars[hotbar_index].slot_outline[index]:repeat_xy(-1, -1)
+    else
+      self.hotbars[hotbar_index].slot_outline[index]:repeat_xy(1, -1)
+    end
+  end
+end
+
+function ui:color_outline(hotbar_index, index, red, blue, green)
+  self.hotbars[hotbar_index].slot_outline[index]:color(red, blue, green)
+end
+
+function ui:enable_outline(hotbar_index, index, action)
+  if self.outlined_slots[action.action] ~= nil then
+    if self.outlined_slots[action.action] == true then
+      self.hotbars[hotbar_index].slot_outline[index]:show()
+    end
+  end
+end
+
+function ui:disable_outline(hotbar_index, index, action)
+  if self.theme.highlight_magic_burst or self.theme.highlight_skill_chain then
+    if self.outlined_slots[action.action] ~= nil then
+      if self.outlined_slots[action.action] == false then
+        self.hotbars[hotbar_index].slot_outline[index]:hide()
+      end
+    end
+  end
+end
+
 -- clear slot
 function ui:clear_slot(hotbar, slot)
   self.hotbars[hotbar].slot_backgrounds[slot]:alpha(self.theme.slot_opacity)
@@ -568,12 +648,6 @@ function ui:setup_slot_icons(img_path, row, slot)
   self.hotbars[row].slot_icons[slot]:pos(get_slot_x(self, row, slot), get_slot_y(self, row, slot))
   self.hotbars[row].slot_icons[slot]:path(windower.addon_path .. img_path)
   self.hotbars[row].slot_icons[slot]:show()
-end
-
-function ui:setup_slot_overlay(img_path, row, slot)
-  self.hotbars[row].slot_overlay[slot]:pos(get_slot_x(self, row, slot) + 20, get_slot_y(self, row, slot))
-  self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. img_path)
-  self.hotbars[row].slot_overlay[slot]:show()
 end
 
 function ui:setup_default_slot_icons(type, row, slot)
@@ -712,6 +786,7 @@ local function init_slot(ui, row, column, theme_options)
   ui.hotbars[row].slot_cost[column]         = texts.new(table.copy(text_setup), true)
   ui.hotbars[row].slot_recast_texts[column] = texts.new(table.copy(text_setup), true)
   ui.hotbars[row].slot_keys[column]         = texts.new(table.copy(text_setup), true)
+  ui.hotbars[row].slot_outline[column]      = images.new(table.copy(outline_images_setup, true))
 
   setup_image(ui.hotbars[row].slot_backgrounds[column],
     windower.addon_path .. '/themes/' .. (theme_options.slot_theme:lower()) .. '/slot.png')
@@ -719,6 +794,8 @@ local function init_slot(ui, row, column, theme_options)
   setup_image(ui.hotbars[row].slot_frames[column],
     windower.addon_path .. '/themes/' .. (theme_options.frame_theme:lower()) .. '/frame.png')
   setup_overlay_image(ui.hotbars[row].slot_overlay[column], windower.addon_path .. '/images/icon/custom/scroll.png')
+  setup_outline_image(ui.hotbars[row].slot_outline[column],
+    windower.addon_path .. '/images/other/blank.png')
 
 
   -- SLOT TITLE TEXT --
@@ -756,6 +833,9 @@ local function init_slot(ui, row, column, theme_options)
       slot_pos_y - (2 * theme_options.slot_icon_scale))
   end
 
+  -- SLOT OUTLINES --
+  ui.hotbars[row].slot_outline[column]:pos(slot_pos_x - 3, slot_pos_y - 3)
+
   if keyboard.hotbar_rows[row] == nil or keyboard.hotbar_rows[row][column] == nil then
     ui.hotbars[row].slot_keys[column]:text("")
   else
@@ -774,6 +854,7 @@ local function init_hotbar(ui, theme_options, number)
   hotbar.slot_recast_texts = {}
   hotbar.slot_keys         = {}
   hotbar.slot_overlay      = {}
+  hotbar.slot_outline      = {}
   hotbar.number            = texts.new(table.copy(text_setup), true)
 
 
@@ -817,6 +898,7 @@ function ui:load_action(row, slot, environment, action, player_vitals)
 
   self:clear_slot(row, slot)
   self.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/blank.png') -- Set overlay to blank
+  self.hotbars[row].slot_outline[slot]:hide()
 
 
   -- if slot is empty, leave it cleared
@@ -892,6 +974,10 @@ function ui:load_action(row, slot, environment, action, player_vitals)
     if action.icon ~= nil then
       self:setup_slot_icons('/images/icons/custom/' .. action.icon .. '.png', row, slot)
     end
+
+    -- loading the overlay image last so it layers on top
+    self.hotbars[row].slot_outline[slot]:path(windower.addon_path ..
+      '/themes/' .. (self.theme.frame_theme:lower()) .. '/outline.png')
 
     self.hotbars[row].slot_frames[slot]:show()
     self.hotbars[row].slot_texts[slot]:text(action.alias)
@@ -989,6 +1075,7 @@ function ui:hide()
       self.hotbars[h].slot_backgrounds[i]:hide()
       self.hotbars[h].slot_icons[i]:hide()
       self.hotbars[h].slot_overlay[i]:hide()
+      self.hotbars[h].slot_outline[i]:hide()
       self.hotbars[h].slot_frames[i]:hide()
       self.hotbars[h].slot_recasts[i]:hide()
       self.hotbars[h].slot_texts[i]:hide()
@@ -1273,13 +1360,129 @@ function ui:check_and_set_disable(action)
   return false
 end
 
+-- checks if we're eligible to magic burst this action
+function ui:check_if_burstable(action)
+  if not action or not self.theme.highlight_magic_burst then
+    return false
+  end
+
+  if action.type == 'ma' then
+    local skill = database[action.type][(action.action):lower()]
+    local mb_elements = nil
+
+    if skill and (skill.type ~= "BlueMagic" or (skill.type == "BlueMagic" and is_burst_affinity)) then
+      if not skill.targets['Enemy'] then
+        return false
+      end
+
+      if self.current_target then
+        mb_elements = skillchains:get_magic_burst_elements(self.current_target.id)
+        return (mb_elements and mb_elements[skill.element]), skill.element
+      else
+        return false
+      end
+    end
+  elseif action.type == 'ja' then
+    local skill = database[action.type][(action.action):lower()]
+    local mb_elements = nil
+
+    -- if its a avatar skill, need to use data from other table
+    if skill.prefix == '/pet' and skill.type == 'BloodPactRage' then
+      local bloodpact = htb_bloodpacts[tonumber(skill.oid)]
+      if bloodpact and bloodpact.damage == 'magic' then
+        if self.current_target then
+          mb_elements = skillchains:get_magic_burst_elements(self.current_target.id)
+          return (mb_elements and mb_elements[tonumber(skill.element)]), skill.element
+        else
+          return false
+        end
+      end
+    end
+  end
+
+  return false
+end
+
+-- checks if we're eligible to skill chain this action
+function ui:check_if_chainable(action)
+  if not action or not self.theme.highlight_skill_chain then
+    return false
+  end
+
+  -- NOT SUPPORTED YET: sch immanence
+  if action.type == 'ja' or action.type == 'ws' then
+    local skill = database[action.type][(action.action):lower()]
+
+    -- if its a bstpet skill, need to transform to our other table
+    if skill.prefix == '/pet' and skill.type == 'Monster' then
+      skill = database['bstpet'][(action.action):lower()]
+    end
+
+    local potentials = nil
+
+    if skill.sc_a or skill.sc_b or skill.sc_c then
+      if self.current_target then
+        potentials = skillchains:get_potential_skillchains(self.current_target.id)
+      else
+        return false
+      end
+    end
+
+    if potentials and next(potentials) ~= nil then
+      if skill.sc_a and potentials[skill.sc_a] then
+        return true, potentials[skill.sc_a]
+      elseif skill.sc_b and potentials[skill.sc_b] then
+        return true, potentials[skill.sc_b]
+      elseif skill.sc_c and potentials[skill.sc_c] then
+        return true, potentials[skill.sc_c]
+      end
+    end
+  elseif action.type == "ma" then
+    local skill = database[action.type][(action.action):lower()]
+
+    if skill and skill.type == "BlueMagic" and is_chain_affinity then
+      if not skill.targets['Enemy'] then
+        return false
+      end
+
+      print(skill.id)
+      local blue_sc_data = htb_blue_spells[tonumber(skill.id)]
+
+      if blue_sc_data then
+        local potentials = nil
+        if blue_sc_data.skillchain_a or blue_sc_data.skillchain_b or blue_sc_data.skillchain_c then
+          if self.current_target then
+            potentials = skillchains:get_potential_skillchains(self.current_target.id)
+          else
+            return false
+          end
+        end
+
+        if potentials and next(potentials) ~= nil then
+          if blue_sc_data.skillchain_a and potentials[blue_sc_data.skillchain_a] then
+            return true, potentials[blue_sc_data.skillchain_a]
+          elseif blue_sc_data.skillchain_b and potentials[blue_sc_data.skillchain_b] then
+            return true, potentials[blue_sc_data.skillchain_b]
+          elseif blue_sc_data.skillchain_c and potentials[blue_sc_data.skillchain_c] then
+            return true, potentials[blue_sc_data.skillchain_c]
+          end
+        end
+      end
+    end
+  end
+
+  return false
+end
+
 -- this function keeps recast timers up-to-date, along with disabled slots status
--- and other things that can vary with the game state that need updating
+-- and other things that can vary with the game state that need updating.
 function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, slot)
   local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. slot]
   local is_disabled = self:check_and_set_disable(action)
+  local is_magic_burstable, element = self:check_if_burstable(action)
+  local is_skill_chainable, chain_prop = self:check_if_chainable(action)
 
-  -- Disable Check --
+  -- Is this slot active? --
   if action == nil then
     self:clear_recast(row, slot)
     if self.theme.hide_empty_slots == true then
@@ -1291,6 +1494,7 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
     local skill = nil
     local action_recasts = nil
     local in_cooldown = false
+    local is_outlined = true
     local is_in_seconds = false
     local bst_charge = {} -- hold data on bst charges
     local recast_time = 0
@@ -1301,6 +1505,9 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
       action_recasts = self.recasts[action.type]
     end
 
+    ----------------------------
+    -- Check if slot is disabled
+    ----------------------------
     if skill ~= nil and skill.prefix == '/pet' and skill.type == 'Monster' then
       --bstpet abilities "cooldown" depends on if charges exist
       bst_charge.ready_cooldown = windower.ffxi.get_ability_recasts()
@@ -1330,24 +1537,102 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
       in_cooldown = false
     end
 
+    ----------------------------
+    -- Check if slot is outlined
+    ----------------------------
+    if (self.theme.highlight_magic_burst and is_magic_burstable) or (self.theme.highlight_skill_chain and is_skill_chainable) then
+      self.outlined_slots[action.action] = true
+      is_outlined = true
+    else
+      self.outlined_slots[action.action] = false
+      is_outlined = false
+    end
+
     if in_cooldown == true then
       local recast_time = calc_recast_time(recast_time, action.type)
       self:show_recast(row, slot, recast_time)
       self:disable_slot(row, slot, action)
+      self:disable_outline(row, slot, action)
     elseif is_disabled == true then
       self:clear_recast(row, slot)
       self:disable_slot(row, slot, action)
+      self:disable_outline(row, slot, action)
     else
       self:clear_recast(row, slot)
       self:enable_slot(row, slot, action)
+
+      -- not disabled, check outline status properly
+      if is_outlined then
+        self:enable_outline(row, slot, action)
+
+        if self.theme.highlight_skill_chain and is_skill_chainable and chain_prop then
+          if chain_prop.property == 'Transfixion' then
+            self:outline_path(row, slot, 'transfixion')
+          elseif chain_prop.property == 'Compression' then
+            self:outline_path(row, slot, 'compression')
+          elseif chain_prop.property == 'Liquefaction' then
+            self:outline_path(row, slot, 'liquefaction')
+          elseif chain_prop.property == 'Scission' then
+            self:outline_path(row, slot, 'scission')
+          elseif chain_prop.property == 'Reverberation' then
+            self:outline_path(row, slot, 'reverberation')
+          elseif chain_prop.property == 'Detonation' then
+            self:outline_path(row, slot, 'detonation')
+          elseif chain_prop.property == 'Induration' then
+            self:outline_path(row, slot, 'induration')
+          elseif chain_prop.property == 'Impaction' then
+            self:outline_path(row, slot, 'impaction')
+          elseif chain_prop.property == 'Gravitation' then
+            self:outline_path(row, slot, 'gravitation')
+          elseif chain_prop.property == 'Distortion' then
+            self:outline_path(row, slot, 'distortion')
+          elseif chain_prop.property == 'Fusion' then
+            self:outline_path(row, slot, 'fusion')
+          elseif chain_prop.property == 'Fragmentation' then
+            self:outline_path(row, slot, 'fragmentation')
+          elseif chain_prop.property == 'Light' then
+            self:outline_path(row, slot, 'light')
+          elseif chain_prop.property == 'Darkness' then
+            self:outline_path(row, slot, 'darkness')
+          elseif chain_prop.property == 'Double Light' then
+            self:outline_path(row, slot, 'light')
+          elseif chain_prop.property == 'Double Darkness' then
+            self:outline_path(row, slot, 'darkness')
+          end
+        elseif self.theme.highlight_magic_burst and is_magic_burstable and element then
+          if element == 6 then
+            self:outline_path(row, slot, 'transfixion')
+          elseif element == 7 then
+            self:outline_path(row, slot, 'compression')
+          elseif element == 0 then
+            self:outline_path(row, slot, 'liquefaction')
+          elseif element == 3 then
+            self:outline_path(row, slot, 'scission')
+          elseif element == 5 then
+            self:outline_path(row, slot, 'reverberation')
+          elseif element == 2 then
+            self:outline_path(row, slot, 'detonation')
+          elseif element == 1 then
+            self:outline_path(row, slot, 'induration')
+          elseif element == 4 then
+            self:outline_path(row, slot, 'impaction')
+          end
+        end
+      else
+        self:disable_outline(row, slot, action)
+      end
     end
   end
 end
 
 -- check action recasts
 function ui:check_recasts(player_hotbar, environment, player_vitals)
+  self.current_tick = self.current_tick + 1
+
   ui.recasts['ja'] = windower.ffxi.get_ability_recasts()
   ui.recasts['ma'] = windower.ffxi.get_spell_recasts()
+  ui.current_target = windower.ffxi.get_mob_by_target('t')
+
   for h = 1, self.theme.rows, 1 do
     for i = 1, self.theme.columns, 1 do
       self:inner_check_recasts(player_hotbar, environment, player_vitals, h, i)

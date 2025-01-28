@@ -75,10 +75,30 @@ function text_formatter.format_ability_info(database, action, action_target)
     ability_info[1] = string.format("\\cs(255,255,0)[%s]\\cr    Target:\\cs(200,200,255)<%s>\\cr\n", ability.name,
       action_target)
     ability_info[2] = format_description(ability.desc)
+
+    local function generate_string(ws_string)
+      local return_string = ""
+      if (ws_string ~= nil) then
+        return_string = string.format("%s%s%s", database:get_element_color_name(ws_string), ws_string, white)
+      else
+        return_string = nil
+      end
+      return return_string
+    end
+    sc_info = {}
+    sc_info.sc_a = generate_string(ability.sc_a)
+    sc_info.sc_b = generate_string(ability.sc_b)
+    sc_info.sc_c = generate_string(ability.sc_c)
+
+    temp_ws_str = table.concat(sc_info, ", ")
+    if (temp_ws_str ~= "") then
+      ability_info[3] = "SC: " .. table.concat(sc_info, ", ")
+    end
+
     if (ability.range == 255) then
-      ability_info[3] = "Range: \\cs(200,200,255)Self\\cr "
+      table.insert(ability_info, "Range: \\cs(200,200,255)Self\\cr ")
     else
-      ability_info[3] = string.format("Range: \\cs(200,200,255)%.1fy\\cr", ability.range)
+      table.insert(ability_info, string.format("Range: \\cs(200,200,255)%.1fy\\cr", ability.range))
     end
     string_return = table.concat(ability_info, " \n")
   end
