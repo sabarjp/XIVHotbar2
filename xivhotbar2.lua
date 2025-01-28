@@ -34,7 +34,7 @@
 
 _addon.name = 'XIVHotbar2'
 _addon.author = 'Sabarjp, Fethur', 'Edeon, Akirane', 'Technyze'
-_addon.version = '0.2'
+_addon.version = '0.3'
 _addon.language = 'english'
 _addon.commands = { 'xivhotbar', 'htb', 'execute', 'xivhotbar2' }
 
