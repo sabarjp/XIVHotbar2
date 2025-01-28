@@ -47,6 +47,7 @@ local ranges               = {
 database.ma                = {}
 database.ja                = {}
 database.ws                = {}
+database.bstpet            = {}
 
 local wpn_img_ids          = {
   ['H2H']          = 0,
@@ -73,6 +74,7 @@ function database:import()
   self:parse_abilities_lua()
   self:parse_ws_lua()
   self:parse_spells_lua()
+  self:parse_bstpets_lua()
 
   return true
 end
@@ -193,20 +195,28 @@ function database:parse_abilities_lua()
   local contents = res.job_abilities
 
   for key, abil in pairs(contents) do
-    local new_abil                   = {}
-    new_abil.oid                     = tostring(contents[key].id)
-    new_abil.id                      = tostring(contents[key].recast_id)
-    new_abil.icon                    = new_abil.id
-    new_abil.name                    = contents[key].en
-    new_abil.mpcost                  = tonumber(contents[key].mp_cost)
-    new_abil.tpcost                  = tonumber(contents[key].tp_cost)
-    new_abil.range                   = ranges[contents[key].range]
-    new_abil.desc                    = ability_descriptions[contents[key].id + 512].en
-    new_abil.cast                    = tostring(0)
-    new_abil.recast                  = tostring(0)
-    new_abil.element                 = tostring(contents[key].element)
-    new_abil.prefix                  = contents[key].prefix -- useful to detect pet abilities
-    new_abil.type                    = contents[key].type   -- useful to detect pet abilities
+    local new_abil   = {}
+    new_abil.oid     = tostring(contents[key].id)
+    new_abil.id      = tostring(contents[key].recast_id)
+    new_abil.icon    = new_abil.id
+    new_abil.name    = contents[key].en
+    new_abil.mpcost  = tonumber(contents[key].mp_cost)
+    new_abil.tpcost  = tonumber(contents[key].tp_cost)
+    new_abil.range   = ranges[contents[key].range]
+    new_abil.desc    = ability_descriptions[contents[key].id + 512].en
+    new_abil.cast    = tostring(0)
+    new_abil.recast  = tostring(0)
+    new_abil.element = tostring(contents[key].element)
+    new_abil.prefix  = contents[key].prefix -- useful to detect pet abilities
+    new_abil.type    = contents[key].type   -- useful to detect pet abilities
+
+    local function change_sc_string(sc_info)
+      if sc_info == "" then return nil else return sc_info end
+    end
+
+    new_abil.sc_a                    = change_sc_string(contents[key].skillchain_a or "")
+    new_abil.sc_b                    = change_sc_string(contents[key].skillchain_b or "")
+    new_abil.sc_c                    = change_sc_string(contents[key].skillchain_c or "")
 
     self.ja[(new_abil.name):lower()] = new_abil
   end
@@ -241,10 +251,37 @@ function database:parse_spells_lua()
     new_spell.recast                  = contents[key].recast
     new_spell.range                   = ranges[contents[key].range]
     new_spell.desc                    = spell_descriptions[contents[key].id].en
-    new_spell.prefix                  = contents[key].prefix  -- useful to detect pet abilities
+    new_spell.prefix                  = contents[key].prefix -- useful to detect pet abilities
     new_spell.type                    = contents[key].type
+    new_spell.targets                 = contents[key].targets
 
     self.ma[(new_spell.name):lower()] = new_spell
+  end
+end
+
+--[[
+    Parse bstpet abilities (lua) -- this is the raw monster ability, the monster actually uses,
+    not the command the beastmaster gives. Important because true skillchain info exists here.
+]] --
+function database:parse_bstpets_lua()
+  local contents = res.monster_abilities
+
+  for key, _ in pairs(contents) do
+    if key > 3839 and key < 3963 then
+      local new_ability = {}
+      new_ability.id    = tostring(contents[key].id)
+      new_ability.name  = contents[key].en
+
+      local function change_sc_string(sc_info)
+        if sc_info == "" then return nil else return sc_info end
+      end
+
+      new_ability.sc_a                        = change_sc_string(contents[key].skillchain_a or "")
+      new_ability.sc_b                        = change_sc_string(contents[key].skillchain_b or "")
+      new_ability.sc_c                        = change_sc_string(contents[key].skillchain_c or "")
+
+      self.bstpet[(new_ability.name):lower()] = new_ability
+    end
   end
 end
 

@@ -280,6 +280,20 @@ local function reindex_action_table(actions_table)
   actions_table.icon = reindex_table(actions_table.icon)
 end
 
+local function shorten_ability_name(name)
+  local function extractConsonants(word)
+    return word:sub(2):gsub("[aeiouAEIOU]", "") -- Remove vowels from the rest of the word
+  end
+
+  local shortenedName = name:gsub("(%a)([%a]*)", function(firstLetter, restOfWord)
+    local consonants = extractConsonants(restOfWord)
+    return firstLetter:upper() .. consonants
+  end)
+
+  -- Keep the result within 6 characters if needed
+  return shortenedName:sub(1, 6)
+end
+
 local function fill_action_table(file_table, file_key, actions_table)
   -- Slot_key is 'battle 1 2' in a job/general file.
   -- file_table is each slot that contains a list of string. Example (First Key): file_table = {'battle 1 1', 'ma', 'Cure', 'stpc', 'Cure'}
@@ -291,7 +305,7 @@ local function fill_action_table(file_table, file_key, actions_table)
     local ability_name = usable_pet_abilities_name[tonumber(file_table[3])]
     file_table[2] = "ja"
     file_table[3] = ability_name
-    file_table[5] = ability_name
+    file_table[5] = shorten_ability_name(ability_name)
   end
 
   actions_table.environment[file_key] = slot_key[1]   --environment is either battle or field
