@@ -1048,6 +1048,44 @@ function ui:setup(theme_options)
   self.is_setup = true
 end
 
+function ui:destroy()
+  database:destroy()
+
+  self.hotbar = {
+    initialized = false,
+    ready = false,
+    hide_hotbars = false,
+    in_battle = false
+  }
+
+  self.hover_icon = {
+    row = nil,
+    col = nil,
+    prev_row = nil,
+    prev_col = nil
+  }
+
+  self.player = {}
+  self.recasts = {}
+  self.feedback_icon = nil
+  self.hotbars = {}
+  self.theme = {}
+  self.feedback = {}
+  self.feedback.is_active = false
+  self.feedback.current_opacity = 0
+  self.feedback.max_opacity = 0
+  self.feedback.speed = 0
+  self.disabled_slots = {}
+  self.disabled_slots.actions = {}
+  self.disabled_slots.no_vitals = {}
+  self.disabled_slots.on_cooldown = {}
+  self.outlined_slots = {}
+  self.is_setup = false
+  self.disabled_icons = {}
+  self.current_tick = 0
+  self.current_target = nil
+end
+
 function ui:swap_icons(swap_table)
   local source_row     = swap_table.source.row
   local source_slot    = swap_table.source.slot
