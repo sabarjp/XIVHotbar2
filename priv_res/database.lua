@@ -79,6 +79,13 @@ function database:import()
   return true
 end
 
+function database:destroy()
+  self.ma     = {}
+  self.ja     = {}
+  self.ws     = {}
+  self.bstpet = {}
+end
+
 --[[
 
     Map weapon skills

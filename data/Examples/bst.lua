@@ -221,8 +221,8 @@ xivhotbar_keybinds_job['DNC'] = {
   { 'battle 4 3',  'ja', 'Healing Waltz',     'stpc',  'Healing',  'ffxiv/dnc/shield_samba' },
   { 'battle 4 12', 'ja', 'Contradance',       'me',    'Contra',   'ffxiv/dnc/tillana' }, -- mastery
   -- Steps
-  { 'battle 4 4',  'ja', 'Quickstep',         'stnpc', 'Quick',    'ffxiv/dnc/en_avant' },
-  { 'battle 4 5',  'ja', 'Box Step',          'stnpc', 'Box',      'ffxiv/dnc/bladeshower' },
+  { 'battle 4 4',  'ja', 'Quickstep',         't',     'Quick',    'ffxiv/dnc/en_avant' },
+  { 'battle 4 5',  'ja', 'Box Step',          't',     'Box',      'ffxiv/dnc/bladeshower' },
   -- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
   -- Flourishes
   { 'battle 4 6',  'ja', 'Animated Flourish', 'stnpc', 'Voke',     'ffxiv/dnc/closed_position' },
@@ -292,60 +292,52 @@ xivhotbar_keybinds_job['RUN'] = {
 
 -- WEAPONSKILL SETS
 xivhotbar_keybinds_job['Axe'] = {
-  -- Heavy Hit
   { 'battle 2 1',  'ws', 'Avalanche Axe', 't', 'Avlnche' },
-  { 'battle 2 1',  'ws', 'Spinning Axe',  't', 'Spinning' }, -- war drk run bst
-  { 'battle 2 1',  'ws', 'Calamity',      't', 'Calamity' }, -- war bst
-  -- Multi-Hit
-  { 'battle 2 2',  'ws', 'Raging Axe',    't', 'Raging' },
-  { 'battle 2 2',  'ws', 'Rampage',       't', 'Rampage' },
-  { 'battle 2 2',  'ws', 'Decimation',    't', 'Decimate' }, -- war drk bst rng run
-  -- Wind
-  { 'battle 2 3',  'ws', 'Gale Axe',      't', 'Gale' },
-  -- Specials
-  { 'battle 2 4',  'ws', 'Mistral Axe',   't', 'Mistral' },   -- war bst
-  -- Prime #6
-  { 'battle 2 6',  'ws', 'Blitz',         't', 'Blitz' },     -- bst
-  -- Class Specific #7
-  { 'battle 2 7',  'ws', 'Primal Rend',   't', 'Primal' },    -- bst
-  -- Merit Point #8
-  { 'battle 2 8',  'ws', 'Ruinator',      't', 'Ruinator' },  -- war drk bst rng run
-  -- Empyrean (Abyssea only)  #9
-  { 'battle 2 9',  'ws', 'Cloudsplitter', 't', 'Cloudsplt' }, -- war bst
+  { 'battle 2 1',  'ws', 'Ruinator',      't', 'Ruinator' }, -- war drk bst rng run  -- Merit
+
+  { 'battle 2 2',  'ws', 'Spinning Axe',  't', 'Spinning' }, -- war drk run bst
+  { 'battle 2 2',  'ws', 'Primal Rend',   't', 'Primal' },   -- bst   -- Mythic
+
+  { 'battle 2 3',  'ws', 'Calamity',      't', 'Calamity' }, -- war bst
+
+  { 'battle 2 4',  'ws', 'Raging Axe',    't', 'Raging' },
+  { 'battle 2 4',  'ws', 'Blitz',         't', 'Blitz' }, -- bst   -- Prime
+
+  { 'battle 2 5',  'ws', 'Rampage',       't', 'Rampage' },
+
+  { 'battle 2 6',  'ws', 'Decimation',    't', 'Decimate' }, -- war drk bst rng run
+
+  { 'battle 2 7',  'ws', 'Gale Axe',      't', 'Gale' },
+  { 'battle 2 7',  'ws', 'Cloudsplitter', 't', 'Cloudsplt' }, -- war bst  -- Empy
+
+  { 'battle 2 8',  'ws', 'Mistral Axe',   't', 'Mistral' },   -- war bst
+
+  { 'battle 2 9',  'ws', 'Bora Axe',      't', 'Bora' },      -- war drk run bst
+
+  { 'battle 2 10', 'ws', 'Smash Axe',     't', 'Smash' },
+
   -- Relic (only usable with specific weapon equips) #10
-  { 'battle 2 10', 'ws', 'Onslaught',     't', 'Onslaught' }, -- bst relic
-  -- Bind WS #11
-  { 'battle 2 11', 'ws', 'Bora Axe',      't', 'Bora' },      -- war drk run bst
-  -- Bind WS #12
-  { 'battle 2 12', 'ws', 'Smash Axe',     't', 'Smash' },
+  { 'battle 2 11', 'ws', 'Onslaught',     't', 'Onslaught' }, -- bst relic
+
 }
 
 xivhotbar_keybinds_job['Scythe'] = {
   -- Heavy Hit
-  { 'battle 2 1',  'ws', 'Slice',            't', 'Slice' },
-  { 'battle 2 1',  'ws', 'Vorpal Scythe',    't', 'Vorpal' },
-  { 'battle 2 1',  'ws', 'Spiral Hell',      't', 'Spiral' }, -- war drk bst
+  { 'battle 2 1', 'ws', 'Slice',            't', 'Slice' },
+  { 'battle 2 2', 'ws', 'Vorpal Scythe',    't', 'Vorpal' },
+  { 'battle 2 3', 'ws', 'Spiral Hell',      't', 'Spiral' }, -- war drk bst
   -- Multi-Hit
-  { 'battle 2 2',  'ws', 'Cross Reaper',     't', 'Cross' },
-  -- {'battle 1 2', 'ws', 'Insurgency', 't', 'Insurge'}, -- drk
+  { 'battle 2 4', 'ws', 'Cross Reaper',     't', 'Cross' },
   -- Darkness
-  { 'battle 2 3',  'ws', 'Dark Harvest',     't', 'DHvst' },
-  -- {'battle 1 3', 'ws', 'Shadow of Death', 't', 'Shadow'}, -- war drk
-  -- {'battle 1 3', 'ws', 'Infernal Scythe', 't', 'Infernal'}, -- war drk
-  -- Specials
-  -- {'battle 1 4', 'ws', 'Guillotine', 't', 'Guill'}, -- drk
-  -- Prime #6
-  -- {'battle 1 6', 'ws', 'Origin', 't', 'Origin'}, -- drk
+  { 'battle 2 5', 'ws', 'Dark Harvest',     't', 'DHvst' },
   -- Merit Point #8
-  { 'battle 2 8',  'ws', 'Entropy',          't', 'Entropy' }, -- war drk bst
+  { 'battle 2 6', 'ws', 'Entropy',          't', 'Entropy' }, -- war drk bst
   -- Empyrean (Abyssea only)  #9
-  { 'battle 2 9',  'ws', 'Quietus',          't', 'Quietus' },
-  -- Relic (only usable with specific weapon equips) #10
-  -- {'battle 1 10', 'ws', 'Catastrophe', 't', 'Cata'}, -- drk relic
+  { 'battle 2 7', 'ws', 'Quietus',          't', 'Quietus' },
   -- AoE Ws #11
-  { 'battle 2 11', 'ws', 'Spinning Scythe',  't', 'Spinning' },
+  { 'battle 2 8', 'ws', 'Spinning Scythe',  't', 'Spinning' },
   -- Stun WS #12
-  { 'battle 2 12', 'ws', 'Nightmare Scythe', 't', 'Nmare' },
+  { 'battle 2 9', 'ws', 'Nightmare Scythe', 't', 'Nmare' },
 }
 
 return xivhotbar_keybinds_job

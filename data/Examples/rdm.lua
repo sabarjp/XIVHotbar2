@@ -12,6 +12,7 @@ xivhotbar_keybinds_job['Base'] = {
   -- Hotbar #1 Cures, weapon skills
   { 'battle 1 1',  'ma', 'Cure',          'stpc',  'Cure' },
   { 'battle 1 1',  'ma', 'Cure II',       'stpc',  'Cure2' },
+  { 'battle 1 1',  'ma', 'Cure III',      'stpc',  'Cure3' },
   { 'battle 1 2',  'ma', 'Cure III',      'stpc',  'Cure3' },
   { 'battle 1 2',  'ma', 'Cure IV',       'stpc',  'Cure4' },
   { 'battle 1 3',  'ma', 'Refresh',       'stpc',  'Refresh' },
@@ -46,9 +47,9 @@ xivhotbar_keybinds_job['Base'] = {
 
   -- Hotbar #3 (CTRL 1-12)
   -- The Big 3 Debuffs first
-  { 'battle 3 1',  'ma', 'Dia II',        't',     'Dia2' },
-  { 'battle 3 1',  'ma', 'Dia III',       't',     'Dia3' },
-  { 'battle 3 1',  'ma', 'Dia',           't',     'Dia' },
+  { 'battle 3 1',  'ma', 'Dia II',        'stnpc', 'Dia2' },
+  { 'battle 3 1',  'ma', 'Dia III',       'stnpc', 'Dia3' },
+  { 'battle 3 1',  'ma', 'Dia',           'stnpc', 'Dia' },
   { 'battle 3 2',  'ma', 'Frazzle',       't',     'Fzzle' },
   { 'battle 3 2',  'ma', 'Frazzle II',    't',     'Fzzle2' },
   { 'battle 3 2',  'ma', 'Frazzle III',   't',     'Fzzle3' },
@@ -70,7 +71,7 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 3 9',  'ma', 'Gravity',       'stnpc', 'Gravity' },
   { 'battle 3 9',  'ma', 'Gravity II',    'stnpc', 'Gravity2' },
   { 'battle 3 10', 'ma', 'Bind',          'stnpc', 'Bind' },
-  { 'battle 3 11', 'ma', 'Dispel',        't',     'Dispel' },
+  { 'battle 3 11', 'ma', 'Dispel',        'stnpc', 'Dispel' },
   { 'battle 3 12', 'ja', 'Stymie',        'me',    'Stymie' },
 
 
@@ -113,31 +114,31 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 5 2',  'ma', 'Water III',     't',     'Water3' },
   { 'battle 5 2',  'ma', 'Water IV',      't',     'Water4' },
   { 'battle 5 2',  'ma', 'Water V',       't',     'Water5' },
-  ----------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------
   { 'battle 5 3',  'ma', 'Aero',          't',     'Aero' },
   { 'battle 5 3',  'ma', 'Aero II',       't',     'Aero2' },
   { 'battle 5 3',  'ma', 'Aero III',      't',     'Aero3' },
   { 'battle 5 3',  'ma', 'Aero IV',       't',     'Aero4' },
   { 'battle 5 3',  'ma', 'Aero V',        't',     'Aero5' },
-  ----------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------
   { 'battle 5 4',  'ma', 'Fire',          't',     'Fire' },
   { 'battle 5 4',  'ma', 'Fire II',       't',     'Fire2' },
   { 'battle 5 4',  'ma', 'Fire III',      't',     'Fire3' },
   { 'battle 5 4',  'ma', 'Fire IV',       't',     'Fire4' },
   { 'battle 5 4',  'ma', 'Fire V',        't',     'Fire5' },
-  ----------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------
   { 'battle 5 5',  'ma', 'Blizzard',      't',     'Blizz' },
   { 'battle 5 5',  'ma', 'Blizzard II',   't',     'Blizz2' },
   { 'battle 5 5',  'ma', 'Blizzard III',  't',     'Blizz3' },
   { 'battle 5 5',  'ma', 'Blizzard IV',   't',     'Blizz4' },
   { 'battle 5 5',  'ma', 'Blizzard V',    't',     'Blizz5' },
-  ----------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------
   { 'battle 5 6',  'ma', 'Thunder',       't',     'Thund' },
   { 'battle 5 6',  'ma', 'Thunder II',    't',     'Thund2' },
   { 'battle 5 6',  'ma', 'Thunder III',   't',     'Thund3' },
   { 'battle 5 6',  'ma', 'Thunder IV',    't',     'Thund4' },
   { 'battle 5 6',  'ma', 'Thunder V',     't',     'Thund5' },
-  ----------------------------------------------------------------------------------
+  --------------------------------------------------------------------------------------
   { 'battle 5 7',  'ma', 'Break',         't',     'Break' },
   -- {'battle 5 8', '', '', '', ''},
   --{'battle 5 9', '', '', '', ''},
@@ -174,11 +175,11 @@ xivhotbar_keybinds_job['Base'] = {
 }
 
 xivhotbar_keybinds_job['BLM'] = {
-  { 'battle 2 1', 'ma', 'Stun',           't',     'Stun' },
-  { 'battle 2 2', 'ma', 'Sleepga',        'stnpc', 'Sleepga' },
-  { 'battle 2 3', 'ma', 'Drain',          't',     'Drain' },
-  { 'battle 2 4', 'ma', 'Aspir',          't',     'Aspir' },
-  { 'battle 2 9', 'ja', 'Elemental Seal', 'me',    'E.Seal' },
+  { 'battle 2 1', 'ma', 'Stun',           't',    'Stun' },
+  { 'battle 2 2', 'ma', 'Sleepga',        'stpc', 'Sleepga' },
+  { 'battle 2 3', 'ma', 'Drain',          'stpc', 'Drain' },
+  { 'battle 2 4', 'ma', 'Aspir',          'stpc', 'Aspir' },
+  { 'battle 2 9', 'ja', 'Elemental Seal', 'me',   'E.Seal' },
 }
 
 xivhotbar_keybinds_job['SCH'] = {
@@ -243,7 +244,7 @@ xivhotbar_keybinds_job['NIN'] = {
   --more sword WS because we have room
   { 'battle 2 3',  'ws', 'Fast Blade',       't',  'Fast' },
   { 'battle 2 4',  'ws', 'Spirits Within',   't',  'Spirits' },
-  { 'battle 2 5',  'ws', 'Vorpal Blade',     't',  'Vorpal' },   -- war rdm pld drk blu run
+  { 'battle 2 5',  'ws', 'Circle Blade',     't',  'Circle' },   -- war rdm pld drk blu run
   { 'battle 2 6',  'ws', 'Savage Blade',     't',  'Savage' },   -- war rdm pld drk blu cor run
   { 'battle 2 7',  'ws', 'Sanguine Blade',   't',  'Sanguine' }, -- war rdm pld drk blu run
   { 'battle 2 8',  'ws', 'Imperator',        't',  'Imperator' },
@@ -334,8 +335,8 @@ xivhotbar_keybinds_job['DNC'] = {
   { 'battle 2 5',  'ja', 'Healing Waltz',     'stpc',  'Healing',  'ffxiv/dnc/shield_samba' },
   { 'battle 2 8',  'ja', 'Contradance',       'me',    'Contra',   'ffxiv/dnc/tillana' }, -- mastery
   -- Steps
-  { 'battle 2 6',  'ja', 'Quickstep',         'stnpc', 'Quick',    'ffxiv/dnc/en_avant' },
-  { 'battle 2 7',  'ja', 'Box Step',          'stnpc', 'Box',      'ffxiv/dnc/bladeshower' },
+  { 'battle 2 6',  'ja', 'Quickstep',         't',     'Quick',    'ffxiv/dnc/en_avant' },
+  { 'battle 2 7',  'ja', 'Box Step',          't',     'Box',      'ffxiv/dnc/bladeshower' },
   -- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
   -- Flourishes
   { 'battle 2 12', 'ja', 'Animated Flourish', 'stnpc', 'Voke',     'ffxiv/dnc/closed_position' },

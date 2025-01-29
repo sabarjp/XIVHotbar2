@@ -6,13 +6,13 @@ xivhotbar_keybinds_job['Base'] = {
 
   --Hotbar #2
   --main job abilities
-  { 'battle 2 1',  'ja', 'Chi Blast',        't',  'Chi',            'ffxiv/mnk/elixir_field' },
-  { 'battle 2 2',  'ja', 'Boost',            'me', 'Boost',          'ffxiv/mnk/riddle_of_fire' },
-  { 'battle 2 3',  'ja', 'Focus',            'me', 'Focus',          'ffxiv/mnk/riddle_of_wind' },
-  { 'battle 2 4',  'ja', 'Dodge',            'me', 'Dodge',          'ffxiv/mnk/riddle_of_earth' },
-  { 'battle 2 5',  'ja', 'Counterstance',    'me', 'Ctr',            'ffxiv/mnk/arm_of_the_destroyer' },
-  { 'battle 2 6',  'ja', 'Footwork',         'me', 'Footwk',         'ffxiv/mnk/six-sided_star' },
-  { 'battle 2 7',  'ja', 'Perfect Counter',  'me', 'PCtr',           'ffxiv/mnk/perfect_balance' },
+  { 'battle 2 1',  'ja', 'Chi Blast',        'stnpc', 'Chi',            'ffxiv/mnk/elixir_field' },
+  { 'battle 2 2',  'ja', 'Boost',            'me',    'Boost',          'ffxiv/mnk/riddle_of_fire' },
+  { 'battle 2 3',  'ja', 'Focus',            'me',    'Focus',          'ffxiv/mnk/riddle_of_wind' },
+  { 'battle 2 4',  'ja', 'Dodge',            'me',    'Dodge',          'ffxiv/mnk/riddle_of_earth' },
+  { 'battle 2 5',  'ja', 'Counterstance',    'me',    'Ctr',            'ffxiv/mnk/arm_of_the_destroyer' },
+  { 'battle 2 6',  'ja', 'Footwork',         'me',    'Footwk',         'ffxiv/mnk/six-sided_star' },
+  { 'battle 2 7',  'ja', 'Perfect Counter',  'me',    'PCtr',           'ffxiv/mnk/perfect_balance' },
 
   --Hotbar #3
   --sub job abilities; leave blank
@@ -20,12 +20,12 @@ xivhotbar_keybinds_job['Base'] = {
   --Hotbar #4
   --utility or pet bar
   --12 is always 2-hour ability
-  { 'battle 4 1',  'ja', 'Chakra',           'me', 'Chakra',         'ffxiv/mnk/meditation' },
-  { 'battle 4 2',  'ja', 'Mantra',           'me', 'Mantra',         'ffxiv/mnk/mantra' },
-  { 'battle 4 3',  'ja', 'Formless Strikes', 'me', 'Formless',       'ffxiv/mnk/form_shift' },
-  { 'battle 4 4',  'ja', 'Impetus',          'me', 'Impetus',        'ffxiv/mnk/bootshine' },
-  { 'battle 4 4',  'ja', 'Inner Strength',   'me', 'Inner Strength', 'ffxiv/mnk/anatman' },
-  { 'battle 4 12', 'ja', 'Hundred Fists',    'me', 'Hundred F',      'ffxiv/mnk/brotherhood' },
+  { 'battle 4 1',  'ja', 'Chakra',           'me',    'Chakra',         'ffxiv/mnk/meditation' },
+  { 'battle 4 2',  'ja', 'Mantra',           'me',    'Mantra',         'ffxiv/mnk/mantra' },
+  { 'battle 4 3',  'ja', 'Formless Strikes', 'me',    'Formless',       'ffxiv/mnk/form_shift' },
+  { 'battle 4 4',  'ja', 'Impetus',          'me',    'Impetus',        'ffxiv/mnk/bootshine' },
+  { 'battle 4 4',  'ja', 'Inner Strength',   'me',    'Inner Strength', 'ffxiv/mnk/anatman' },
+  { 'battle 4 12', 'ja', 'Hundred Fists',    'me',    'Hundred F',      'ffxiv/mnk/brotherhood' },
 
   -- Hotbar #5
 
@@ -78,8 +78,8 @@ xivhotbar_keybinds_job['COR'] = {
 
 xivhotbar_keybinds_job['NIN'] = {
   -- Shadows
-  { 'battle 3 1',  'ma', 'Utsusemi: Ichi', 'me', 'Utsu:Ichi', 'ffxiv/nin/dream_within_a_dream' },
-  { 'battle 3 2',  'ma', 'Utsusemi: Ni',   'me', 'Utsu:Ni',   'ffxiv/nin/phantom_kamaitachi' },
+  { 'battle 3 1',  'ma', 'Utsusemi: Ichi', 'me',    'Utsu:Ichi', 'ffxiv/nin/dream_within_a_dream' },
+  { 'battle 3 2',  'ma', 'Utsusemi: Ni',   'me',    'Utsu:Ni',   'ffxiv/nin/phantom_kamaitachi' },
   -- Elements
   -- {'battle 3 7', 'ma', 'Katon: Ni', 'stnpc', 'Katon2','ffxiv/nin/katon'}, -- fire
   -- {'battle 3 7', 'ma', 'Katon: Ichi', 'stnpc', 'Katon','ffxiv/nin/katon'}, -- fire
@@ -94,14 +94,14 @@ xivhotbar_keybinds_job['NIN'] = {
   -- {'battle 3 12', 'ma', 'Raiton: Ni', 'stnpc', 'Raiton2','ffxiv/nin/raiton'}, -- thunder
   -- {'battle 3 12', 'ma', 'Raiton: Ichi', 'stnpc', 'Raiton','ffxiv/nin/raiton'}, -- thunder
   -- Enfeeblement
-  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 't',  'Kura',      'ffxiv/blu/glower' },      -- blind
-  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',  'Hojo',      'ffxiv/ast/redraw' },      -- slow
-  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',  'Hojo',      'ffxiv/ast/redraw' },      -- slow
-  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 't',  'Doku',      'ffxiv/blu/exuviation' },  -- poison
-  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   't',  'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
+  { 'battle 3 3',  'ma', 'Kurayami: Ichi', 'stnpc', 'Kura',      'ffxiv/blu/glower' },      -- blind
+  { 'battle 3 4',  'ma', 'Hojo: Ichi',     't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 4',  'ma', 'Hojo: Ni',       't',     'Hojo',      'ffxiv/ast/redraw' },      -- slow
+  { 'battle 3 5',  'ma', 'Dokumori: Ichi', 'stnpc', 'Doku',      'ffxiv/blu/exuviation' },  -- poison
+  { 'battle 3 6',  'ma', 'Jubaku: Ichi',   'stnpc', 'Jubaku',    'ffxiv/blu/faze' },        -- paralyze
   -- Stances
-  { 'battle 3 11', 'ja', 'Yonin',          'me', 'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
-  { 'battle 3 12', 'ja', 'Innin',          'me', 'Innin',     'ffxiv/nin/assassinate' }, -- dps
+  { 'battle 3 11', 'ja', 'Yonin',          'me',    'Yonin',     'ffxiv/nin/shade_shift' }, -- tanky
+  { 'battle 3 12', 'ja', 'Innin',          'me',    'Innin',     'ffxiv/nin/assassinate' }, -- dps
 }
 
 xivhotbar_keybinds_job['DNC'] = {
@@ -118,12 +118,12 @@ xivhotbar_keybinds_job['DNC'] = {
   { 'battle 3 5',  'ja', 'Healing Waltz',     'stpc',  'Healing',  'ffxiv/dnc/shield_samba' },
   { 'battle 3 8',  'ja', 'Contradance',       'me',    'Contra',   'ffxiv/dnc/tillana' }, -- mastery
   -- Steps
-  { 'battle 3 6',  'ja', 'Quickstep',         't',     'Quick',    'ffxiv/dnc/en_avant' },
-  { 'battle 3 7',  'ja', 'Box Step',          't',     'Box',      'ffxiv/dnc/bladeshower' },
+  { 'battle 3 6',  'ja', 'Quickstep',         'stnpc', 'Quick',    'ffxiv/dnc/en_avant' },
+  { 'battle 3 7',  'ja', 'Box Step',          'stnpc', 'Box',      'ffxiv/dnc/bladeshower' },
   -- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
   -- Flourishes
   { 'battle 3 12', 'ja', 'Animated Flourish', 'stnpc', 'Voke',     'ffxiv/dnc/closed_position' },
-  { 'battle 3 9',  'ja', 'Violent Flourish',  't',     'Stun',     'ffxiv/dnc/starfall_dance' },
+  { 'battle 3 9',  'ja', 'Violent Flourish',  'stnpc', 'Stun',     'ffxiv/dnc/starfall_dance' },
   { 'battle 3 10', 'ja', 'Reverse Flourish',  'me',    'Reverse',  'ffxiv/dnc/reverse_cascade' },
   { 'battle 3 11', 'ja', 'Building Flourish', 'me',    'Building', 'ffxiv/dnc/flourish' },
   -- Jigs
@@ -208,9 +208,9 @@ xivhotbar_keybinds_job['Staff'] = {
   { 'battle 1 1',  'ws', 'Full Swing',    't', 'Full' },
   { 'battle 1 1',  'ws', 'Retribution',   't', 'Retrb' }, -- war mnk whm blm pld brd drg smn sch geo
   -- Multi-Hit
-  { 'battle 1 2',  'ws', 'name',          't', 'displayName' },
-  { 'battle 1 2',  'ws', 'name',          't', 'displayName' },
-  { 'battle 1 2',  'ws', 'name',          't', 'displayName' },
+  -- { 'battle 1 2',  'ws', 'name',          't', 'displayName' },
+  -- { 'battle 1 2',  'ws', 'name',          't', 'displayName' },
+  -- { 'battle 1 2',  'ws', 'name',          't', 'displayName' },
   -- Elements
   { 'battle 1 3',  'ws', 'Rock Crusher',  't', 'Rock' },
   { 'battle 1 3',  'ws', 'Starburst',     't', 'Starbrst' },

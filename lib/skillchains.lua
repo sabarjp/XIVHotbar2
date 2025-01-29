@@ -113,6 +113,12 @@ function skillchains:initialize()
   self.is_initialized = true
 end
 
+function skillchains:destroy()
+  self.is_initialized = false
+  self.sc_properties = {}
+  self.target_buffs = {}
+end
+
 ----------------------------------------------------------------------
 -- Handles any incoming action packets that might form or update skillchains.
 -- Logic:
@@ -424,12 +430,14 @@ end)
 -- This runs every frame (~30 FPS). We only do a cleanup check every 30 mins.
 ----------------------------------------------------------------------
 windower.register_event('prerender', function()
-  local now = os.time()
-  local THIRTY_MINUTES = 30 * 60
+  if skillchains.is_initialized then
+    local now = os.time()
+    local THIRTY_MINUTES = 30 * 60
 
-  if (now - skillchains.last_cleanup_check) >= THIRTY_MINUTES then
-    skillchains:cleanup_old_data()
-    skillchains.last_cleanup_check = now
+    if (now - skillchains.last_cleanup_check) >= THIRTY_MINUTES then
+      skillchains:cleanup_old_data()
+      skillchains.last_cleanup_check = now
+    end
   end
 end)
 
