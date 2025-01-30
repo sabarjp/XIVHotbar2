@@ -232,41 +232,65 @@ end
 -- Text/Image related functions --
 ----------------------------------
 
--- get x position for a given hotbar and slot
-local function get_slot_x(ui, h, i)
-  local x
-  if (ui.theme.offsets[tostring(h)] ~= nil) then
-    if (ui.theme.offsets[tostring(h)].Vertical == true) then
-      if (i < math.floor(ui.theme.columns / 2) + 1) then
-        x = ui.theme.offsets[tostring(h)].OffsetX
+----- get xy position for a given hotbar and slot
+function ui:get_slot_xy(h, i)
+  local x, y
+  if (self.theme.offsets[tostring(h)] ~= nil) then
+    if (self.theme.offsets[tostring(h)].Vertical == true) then
+      if (i < math.floor(self.theme.columns / 2) + 1) then
+        x = self.theme.offsets[tostring(h)].OffsetX
+        y = self.theme.offsets[tostring(h)].OffsetY + ((self.image_width + self.slot_spacing) * (i - 1))
       else
-        x = ui.theme.offsets[tostring(h)].OffsetX + (ui.image_width + ui.slot_spacing)
+        x = self.theme.offsets[tostring(h)].OffsetX + (self.image_width + self.slot_spacing)
+        y = self.theme.offsets[tostring(h)].OffsetY +
+            ((self.image_width + self.slot_spacing) * (i - math.floor(self.theme.columns / 2) - 1))
       end
     else
-      x = ui.pos_x + ui.theme.offsets[tostring(h)].OffsetX + ((ui.image_width + ui.slot_spacing) * (i - 1))
+      x = self.pos_x + self.theme.offsets[tostring(h)].OffsetX + ((self.image_width + self.slot_spacing) * (i - 1))
+      y = self.theme.offsets[tostring(h)].OffsetY
     end
   else
-    x = ui.pos_x + ((ui.image_width + ui.slot_spacing) * (i - 1))
+    x = self.pos_x + ((self.image_width + self.slot_spacing) * (i - 1))
+    y = self.pos_y - (((h - 1) * (self.hotbar_spacing - 3)))
+  end
+  return x, y
+end
+
+----- get x position for a given hotbar and slot
+function ui:get_slot_x(h, i)
+  local x
+  if (self.theme.offsets[tostring(h)] ~= nil) then
+    if (self.theme.offsets[tostring(h)].Vertical == true) then
+      if (i < math.floor(self.theme.columns / 2) + 1) then
+        x = self.theme.offsets[tostring(h)].OffsetX
+      else
+        x = self.theme.offsets[tostring(h)].OffsetX + (self.image_width + self.slot_spacing)
+      end
+    else
+      x = self.pos_x + self.theme.offsets[tostring(h)].OffsetX + ((self.image_width + self.slot_spacing) * (i - 1))
+    end
+  else
+    x = self.pos_x + ((self.image_width + self.slot_spacing) * (i - 1))
   end
   return x
 end
 
--- get y position for a given hotbar and slot
-local function get_slot_y(ui, h, i)
+----- get y position for a given hotbar and slot
+function ui:get_slot_y(h, i)
   local y
-  if (ui.theme.offsets[tostring(h)] ~= nil) then
-    if (ui.theme.offsets[tostring(h)].Vertical == true) then
-      if (i < math.floor(ui.theme.columns / 2) + 1) then
-        y = ui.theme.offsets[tostring(h)].OffsetY + ((ui.image_width + ui.slot_spacing) * (i - 1))
+  if (self.theme.offsets[tostring(h)] ~= nil) then
+    if (self.theme.offsets[tostring(h)].Vertical == true) then
+      if (i < math.floor(self.theme.columns / 2) + 1) then
+        y = self.theme.offsets[tostring(h)].OffsetY + ((self.image_width + self.slot_spacing) * (i - 1))
       else
-        y = ui.theme.offsets[tostring(h)].OffsetY +
-            ((ui.image_width + ui.slot_spacing) * (i - math.floor(ui.theme.columns / 2) - 1))
+        y = self.theme.offsets[tostring(h)].OffsetY +
+            ((self.image_width + self.slot_spacing) * (i - math.floor(self.theme.columns / 2) - 1))
       end
     else
-      y = ui.theme.offsets[tostring(h)].OffsetY
+      y = self.theme.offsets[tostring(h)].OffsetY
     end
   else
-    y = ui.pos_y - (((h - 1) * (ui.hotbar_spacing - 3)))
+    y = self.pos_y - (((h - 1) * (self.hotbar_spacing - 3)))
   end
   return y
 end
@@ -366,7 +390,6 @@ local function setup_feedback(ui)
   ui.feedback_icon:hide()
 end
 
-
 local function setup_text(text, theme_options)
   text:bg_alpha(0)
   text:bg_visible(false)
@@ -393,13 +416,13 @@ local function setup_env_text(text, theme_options)
   text:show()
 end
 
-local function setup_names_text(text, theme_options)
+local function setup_names_text(text, theme_options, pos_x, pos_y)
   text:bg_alpha(theme_options.font_bg_opacity_names)
   text:bg_visible(theme_options.font_bg_enable_names)
   text:font(theme_options.font_names)
   text:size(theme_options.font_size_names * theme_options.slot_icon_scale)
-  text:pos(slot_pos_x + (theme_options.font_offset_x_names * theme_options.slot_icon_scale),
-    slot_pos_y + (theme_options.font_offset_y_names * theme_options.slot_icon_scale))
+  text:pos(pos_x + (theme_options.font_offset_x_names * theme_options.slot_icon_scale),
+    pos_y + (theme_options.font_offset_y_names * theme_options.slot_icon_scale))
   text:alpha(255)
   text:color(theme_options.font_color_red_names, theme_options.font_color_green_names,
     theme_options.font_color_blue_names)
@@ -410,10 +433,10 @@ local function setup_names_text(text, theme_options)
   text:show()
 end
 
-local function setup_costs_text(text, theme_options)
+local function setup_costs_text(text, theme_options, pos_x, pos_y)
   text:alpha(255)
-  text:pos(slot_pos_x + (theme_options.text_offset_x_costs * theme_options.slot_icon_scale),
-    slot_pos_y + (theme_options.text_offset_y_costs * theme_options.slot_icon_scale))
+  text:pos(pos_x + (theme_options.text_offset_x_costs * theme_options.slot_icon_scale),
+    pos_y + (theme_options.text_offset_y_costs * theme_options.slot_icon_scale))
   text:bg_alpha(0)
   text:bg_visible(false)
   text:font(theme_options.font_costs)
@@ -427,13 +450,13 @@ local function setup_costs_text(text, theme_options)
   text:show()
 end
 
-local function setup_keys_text(text, theme_options)
+local function setup_keys_text(text, theme_options, pos_x, pos_y)
   text:bg_alpha(0)
   text:bg_visible(false)
   text:font(theme_options.font_keys)
   text:size(theme_options.font_size_keys * theme_options.slot_icon_scale)
-  text:pos(slot_pos_x + (theme_options.text_offset_x_keys * theme_options.slot_icon_scale),
-    slot_pos_y + (theme_options.text_offset_y_keys * theme_options.slot_icon_scale))
+  text:pos(pos_x + (theme_options.text_offset_x_keys * theme_options.slot_icon_scale),
+    pos_y + (theme_options.text_offset_y_keys * theme_options.slot_icon_scale))
   text:color(theme_options.font_color_red_keys, theme_options.font_color_green_keys, theme_options.font_color_blue_keys)
   text:stroke_transparency(theme_options.font_stroke_alpha_keys)
   text:stroke_color(theme_options.font_stroke_color_red_keys, theme_options.font_stroke_color_green_keys,
@@ -442,10 +465,10 @@ local function setup_keys_text(text, theme_options)
   text:show()
 end
 
-local function setup_recasts_text(text, theme_options)
+local function setup_recasts_text(text, theme_options, pos_x, pos_y)
   text:alpha(255)
-  text:pos(slot_pos_x + (theme_options.text_offset_x_recasts * theme_options.slot_icon_scale),
-    slot_pos_y + (theme_options.text_offset_y_recasts * theme_options.slot_icon_scale))
+  text:pos(pos_x + (theme_options.text_offset_x_recasts * theme_options.slot_icon_scale),
+    pos_y + (theme_options.text_offset_y_recasts * theme_options.slot_icon_scale))
   text:bg_alpha(0)
   text:bg_visible(false)
   text:italic()
@@ -646,13 +669,13 @@ local function get_inventory_count(theme, text_box, bag)
 end
 
 function ui:setup_slot_icons(img_path, row, slot)
-  self.hotbars[row].slot_icons[slot]:pos(get_slot_x(self, row, slot), get_slot_y(self, row, slot))
+  self.hotbars[row].slot_icons[slot]:pos(self:get_slot_xy(row, slot))
   self.hotbars[row].slot_icons[slot]:path(windower.addon_path .. img_path)
   self.hotbars[row].slot_icons[slot]:show()
 end
 
 function ui:setup_default_slot_icons(type, row, slot)
-  self.hotbars[row].slot_icons[slot]:pos(get_slot_x(self, row, slot), get_slot_y(self, row, slot))
+  self.hotbars[row].slot_icons[slot]:pos(self:get_slot_xy(row, slot))
   self.hotbars[row].slot_icons[slot]:path(self.default_image_paths[type])
   self.hotbars[row].slot_icons[slot]:show()
 end
@@ -667,8 +690,8 @@ function ui:setup_disabled_icons()
 end
 
 function ui:setup_environment()
-  local env_pos_x = get_slot_x(self, self.theme.hook_onto_bar, self.theme.columns + 1)
-  local env_pos_y = get_slot_y(self, self.theme.hook_onto_bar, 0)
+  local env_pos_x = self:get_slot_x(self.theme.hook_onto_bar, self.theme.columns + 1)
+  local env_pos_y = self:get_slot_y(self.theme.hook_onto_bar, 0)
 
   -- ENVIRONMENT TEXT --
   if self.theme.hide_env == false then
@@ -769,79 +792,77 @@ function ui:setup_sizing()
 end
 
 -- init slot
-local function init_slot(ui, row, column, theme_options)
-  slot_pos_x                                = get_slot_x(ui, row, column)
-  slot_pos_y                                = get_slot_y(ui, row, column)
-  local right_slot_pos_x                    = slot_pos_x - windower.get_windower_settings().x_res + 16
+function ui:init_slot(row, column, theme_options)
+  local slot_pos_x, slot_pos_y                = self:get_slot_xy(row, column)
+  local right_slot_pos_x                      = slot_pos_x - windower.get_windower_settings().x_res + 16
 
-  ui.hotbars[row].slot_backgrounds[column]  = images.new(table.copy(images_setup, true))
-  ui.hotbars[row].slot_icons[column]        = images.new(table.copy(images_setup, true))
-  ui.hotbars[row].slot_overlay[column]      = images.new(table.copy(overlay_images_setup, true))
-  ui.hotbars[row].slot_recasts[column]      = images.new(table.copy(images_setup, true))
-  ui.hotbars[row].slot_frames[column]       = images.new(table.copy(images_setup, true))
+  self.hotbars[row].slot_backgrounds[column]  = images.new(table.copy(images_setup, true))
+  self.hotbars[row].slot_icons[column]        = images.new(table.copy(images_setup, true))
+  self.hotbars[row].slot_overlay[column]      = images.new(table.copy(overlay_images_setup, true))
+  self.hotbars[row].slot_recasts[column]      = images.new(table.copy(images_setup, true))
+  self.hotbars[row].slot_frames[column]       = images.new(table.copy(images_setup, true))
 
-  ui.hotbars[row].slot_texts[column]        = texts.new(table.copy(text_setup), true)
-  ui.hotbars[row].slot_cost[column]         = texts.new(table.copy(text_setup), true)
-  ui.hotbars[row].slot_recast_texts[column] = texts.new(table.copy(text_setup), true)
-  ui.hotbars[row].slot_keys[column]         = texts.new(table.copy(text_setup), true)
-  ui.hotbars[row].slot_outline[column]      = images.new(table.copy(outline_images_setup, true))
+  self.hotbars[row].slot_texts[column]        = texts.new(table.copy(text_setup), true)
+  self.hotbars[row].slot_cost[column]         = texts.new(table.copy(text_setup), true)
+  self.hotbars[row].slot_recast_texts[column] = texts.new(table.copy(text_setup), true)
+  self.hotbars[row].slot_keys[column]         = texts.new(table.copy(text_setup), true)
+  self.hotbars[row].slot_outline[column]      = images.new(table.copy(outline_images_setup, true))
 
-  setup_image(ui.hotbars[row].slot_backgrounds[column],
+  setup_image(self.hotbars[row].slot_backgrounds[column],
     windower.addon_path .. '/themes/' .. (theme_options.slot_theme:lower()) .. '/slot.png')
-  setup_image(ui.hotbars[row].slot_icons[column], windower.addon_path .. '/images/other/blank.png')
-  setup_image(ui.hotbars[row].slot_frames[column],
+  setup_image(self.hotbars[row].slot_icons[column], windower.addon_path .. '/images/other/blank.png')
+  setup_image(self.hotbars[row].slot_frames[column],
     windower.addon_path .. '/themes/' .. (theme_options.frame_theme:lower()) .. '/frame.png')
-  setup_overlay_image(ui.hotbars[row].slot_overlay[column], windower.addon_path .. '/images/icon/custom/scroll.png')
-  setup_outline_image(ui.hotbars[row].slot_outline[column],
+  setup_overlay_image(self.hotbars[row].slot_overlay[column], windower.addon_path .. '/images/icon/custom/scroll.png')
+  setup_outline_image(self.hotbars[row].slot_outline[column],
     windower.addon_path .. '/images/other/blank.png')
 
 
   -- SLOT TITLE TEXT --
-  setup_names_text(ui.hotbars[row].slot_texts[column], theme_options)
-
+  setup_names_text(self.hotbars[row].slot_texts[column], theme_options, slot_pos_x, slot_pos_y)
 
   -- SLOT KEYS TEXT --
-  setup_keys_text(ui.hotbars[row].slot_keys[column], theme_options)
+  setup_keys_text(self.hotbars[row].slot_keys[column], theme_options, slot_pos_x, slot_pos_y)
 
   -- SLOT COST TEXT --
-  setup_costs_text(ui.hotbars[row].slot_cost[column], theme_options)
+  setup_costs_text(self.hotbars[row].slot_cost[column], theme_options, slot_pos_x, slot_pos_y)
 
   -- SLOT RECAST TEXT --
-  setup_recasts_text(ui.hotbars[row].slot_recast_texts[column], theme_options)
+  setup_recasts_text(self.hotbars[row].slot_recast_texts[column], theme_options, slot_pos_x, slot_pos_y)
 
 
   -- SLOT BACKGROUND --
-  ui.hotbars[row].slot_backgrounds[column]:alpha(theme_options.slot_opacity)
-  ui.hotbars[row].slot_backgrounds[column]:pos(slot_pos_x, slot_pos_y)
+  self.hotbars[row].slot_backgrounds[column]:alpha(theme_options.slot_opacity)
+  self.hotbars[row].slot_backgrounds[column]:pos(slot_pos_x, slot_pos_y)
 
 
   -- SLOT RECASTS --
-  ui.hotbars[row].slot_recasts[column]:pos(slot_pos_x, slot_pos_y)
-  ui.hotbars[row].slot_recasts[column]:alpha(5)
+  self.hotbars[row].slot_recasts[column]:pos(slot_pos_x, slot_pos_y)
+  self.hotbars[row].slot_recasts[column]:alpha(5)
 
   -- SLOT FRAMES --
-  ui.hotbars[row].slot_frames[column]:pos(slot_pos_x, slot_pos_y)
+  self.hotbars[row].slot_frames[column]:pos(slot_pos_x, slot_pos_y)
 
   -- SLOT ICONS
-  ui.hotbars[row].slot_icons[column]:pos(slot_pos_x, slot_pos_y)
+  self.hotbars[row].slot_icons[column]:pos(slot_pos_x, slot_pos_y)
 
   -- SLOT OVERLAY --
   if theme_options.disable_scroll == false then
-    ui.hotbars[row].slot_overlay[column]:pos(slot_pos_x + (17 * theme_options.slot_icon_scale),
+    self.hotbars[row].slot_overlay[column]:pos(slot_pos_x + (17 * theme_options.slot_icon_scale),
       slot_pos_y - (2 * theme_options.slot_icon_scale))
   end
 
   -- SLOT OUTLINES --
-  ui.hotbars[row].slot_outline[column]:pos(slot_pos_x - 3, slot_pos_y - 3)
+  self.hotbars[row].slot_outline[column]:pos(slot_pos_x - 3, slot_pos_y - 3)
 
   if keyboard.hotbar_rows[row] == nil or keyboard.hotbar_rows[row][column] == nil then
-    ui.hotbars[row].slot_keys[column]:text("")
+    self.hotbars[row].slot_keys[column]:text("")
   else
-    ui.hotbars[row].slot_keys[column]:text(convert_string(keyboard.hotbar_rows[row][column]))
+    self.hotbars[row].slot_keys[column]:text(convert_string(keyboard.hotbar_rows[row][column]))
   end
 end
 
-local function init_hotbar(ui, theme_options, number)
+function ui:init_hotbar(theme_options, number)
   local hotbar             = {}
   hotbar.slot_backgrounds  = {}
   hotbar.slot_icons        = {}
@@ -857,18 +878,21 @@ local function init_hotbar(ui, theme_options, number)
 
 
   -- HOTBAR NUMBERS TEXT --
-  if ui.theme.hide_hotbar_numbers == false then
+  if self.theme.hide_hotbar_numbers == false then
     setup_hotbar_numbers_text(hotbar.number, theme_options)
     hotbar.number:text(tostring(number))
   end
+
+  local slot_x, slot_y = self:get_slot_xy(number, 1)
+
   if (theme_options.offsets[tostring(number)].Vertical == true) then
     hotbar.number:pos(
-      get_slot_x(ui, number, 1) + (theme_options.text_vert_offset_x_hotbar_nums * theme_options.slot_icon_scale),
-      get_slot_y(ui, number, 1) + (theme_options.text_vert_offset_y_hotbar_nums * theme_options.slot_icon_scale))
+      slot_x + (theme_options.text_vert_offset_x_hotbar_nums * theme_options.slot_icon_scale),
+      slot_y + (theme_options.text_vert_offset_y_hotbar_nums * theme_options.slot_icon_scale))
   else
     hotbar.number:pos(
-      get_slot_x(ui, number, 1) + (theme_options.text_offset_x_hotbar_nums * theme_options.slot_icon_scale),
-      get_slot_y(ui, number, 1) + (theme_options.text_offset_y_hotbar_nums * theme_options.slot_icon_scale))
+      slot_x + (theme_options.text_offset_x_hotbar_nums * theme_options.slot_icon_scale),
+      slot_y + (theme_options.text_offset_y_hotbar_nums * theme_options.slot_icon_scale))
   end
   return hotbar
 end
@@ -877,9 +901,9 @@ end
 function ui:load()
   -- create ui elements for hotbars
   for h = 1, self.theme.hotbar_number, 1 do
-    self.hotbars[h] = init_hotbar(self, self.theme, h)
+    self.hotbars[h] = self:init_hotbar(self.theme, h)
     for i = 1, self.theme.columns, 1 do
-      init_slot(self, h, i, self.theme)
+      self:init_slot(h, i, self.theme)
     end
   end
   self.action_description = texts.new()
@@ -1750,7 +1774,7 @@ end
 
 -- trigger feed back to occur on the next frame
 function ui:trigger_feedback(row, slot)
-  self.feedback_icon:pos(get_slot_x(self, row, slot), get_slot_y(self, row, slot))
+  self.feedback_icon:pos(self:get_slot_xy(row, slot))
   self.feedback.current_opacity = self.feedback.max_opacity -- Reset opacity on activation
   self.feedback.is_active = true
 end
@@ -1783,8 +1807,7 @@ function ui:hovered(x, y)
   -- Check hotbar slots
   for h = 1, #self.hotbars do
     for i = 1, self.theme.columns do
-      pos_x = get_slot_x(self, h, i)
-      pos_y = get_slot_y(self, h, i)
+      pos_x, pos_y = self:get_slot_xy(h, i)
       off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
 
       if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
@@ -1798,8 +1821,7 @@ end
 
 -- this shows the tooltip for an action
 function ui:light_up_action(x, y, row, column, player_hotbar, environment, vitals)
-  local icon_x = get_slot_x(self, row, column)
-  local icon_y = get_slot_y(self, row, column)
+  local icon_x, icon_y = self:get_slot_xy(row, column)
   self.hover_icon:pos(icon_x - 1, icon_y - 1)
   self.hover_icon:alpha(255)
   self.hover_icon:show()
@@ -1846,8 +1868,7 @@ function ui:move_icons(moved_row_info, theme_options)
   self.theme.offsets[tostring(r)].OffsetX = off_x
   self.theme.offsets[tostring(r)].OffsetY = off_y
   for i = 1, self.theme.columns, 1 do
-    local x = get_slot_x(self, r, i)
-    local y = get_slot_y(self, r, i)
+    local x, y = self:get_slot_xy(r, i)
     self.hotbars[r].slot_icons[i]:pos(x, y)
     self.hotbars[r].slot_frames[i]:pos(x, y)
     self.hotbars[r].slot_recasts[i]:pos(x, y)
@@ -1861,28 +1882,29 @@ function ui:move_icons(moved_row_info, theme_options)
     self.hotbars[r].slot_cost[i]:pos(x + (theme_options.text_offset_x_costs * theme_options.slot_icon_scale),
       y + (theme_options.text_offset_y_costs * theme_options.slot_icon_scale))
   end
+  local slot_x, slot_y = self:get_slot_xy(r, 1)
   if (self.theme.offsets[tostring(r)].Vertical == true) then
     self.hotbars[r].number:pos(
-      get_slot_x(self, r, 1) + (theme_options.text_vert_offset_x_hotbar_nums * theme_options.slot_icon_scale),
-      get_slot_y(self, r, 1) + (theme_options.text_vert_offset_y_hotbar_nums * theme_options.slot_icon_scale))
+      slot_x + (theme_options.text_vert_offset_x_hotbar_nums * theme_options.slot_icon_scale),
+      slot_y + (theme_options.text_vert_offset_y_hotbar_nums * theme_options.slot_icon_scale))
   else
     self.hotbars[r].number:pos(
-      get_slot_x(self, r, 1) + (theme_options.text_offset_x_hotbar_nums * theme_options.slot_icon_scale),
-      get_slot_y(self, r, 1) + (theme_options.text_offset_y_hotbar_nums * theme_options.slot_icon_scale))
+      slot_x + (theme_options.text_offset_x_hotbar_nums * theme_options.slot_icon_scale),
+      slot_y + (theme_options.text_offset_y_hotbar_nums * theme_options.slot_icon_scale))
   end
   if (r == self.theme.hook_onto_bar) then
-    local env_pos_x = get_slot_x(self, self.theme.hook_onto_bar, self.theme.columns + 1)
-    local env_pos_y = get_slot_y(self, self.theme.hook_onto_bar, 0)
+    local env_pos_x = self:get_slot_x(self.theme.hook_onto_bar, self.theme.columns + 1)
+    local env_pos_y = self:get_slot_y(self.theme.hook_onto_bar, 0)
 
-    ui.active_environment['battle']:pos(
+    self.active_environment['battle']:pos(
       env_pos_x + (theme_options.font_hook_offset_x_env * theme_options.slot_icon_scale),
       env_pos_y + (theme_options.font_hook_offset_y_env * theme_options.slot_icon_scale))
-    ui.active_environment['field']:pos(
+    self.active_environment['field']:pos(
       env_pos_x +
       ((theme_options.font_hook_offset_x_env + theme_options.font_offset_x_env) * theme_options.slot_icon_scale),
       env_pos_y +
       ((theme_options.font_hook_offset_y_env + theme_options.font_offset_y_env) * theme_options.slot_icon_scale))
-    ui.inventory_count:pos(env_pos_x + (theme_options.font_hook_offset_x_env * theme_options.slot_icon_scale),
+    self.inventory_count:pos(env_pos_x + (theme_options.font_hook_offset_x_env * theme_options.slot_icon_scale),
       env_pos_y + (theme_options.font_hook_offset_y_env * theme_options.slot_icon_scale) +
       (35 * theme_options.slot_icon_scale))
   end
