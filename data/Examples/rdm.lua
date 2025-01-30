@@ -22,7 +22,7 @@ xivhotbar_keybinds_job['Base'] = {
   { 'battle 1 4',  'ma', 'Haste II',      'stpc',  'Haste2' },
   { 'battle 1 5',  'ma', 'Flurry',        'stpc',  'Flurry' },
   { 'battle 1 5',  'ma', 'Flurry II',     'stpc',  'Flurry2' },
-  { 'battle 1 6',  'ma', 'Inundation',    'stpc',  'Inund' },
+  { 'battle 1 6',  'ma', 'Inundation',    'stnpc',  'Inund' },
   --{'battle 1 8', '', '', '', '', ''}, WS - Weapon Switching
   --{'battle 1 9', '', '', '', '', ''}, WS - Weapon Switching
   --{'battle 1 10', '', '', '', '', ''}, WS - Weapon Switching

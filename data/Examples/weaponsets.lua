@@ -673,33 +673,33 @@ xivhotbar_keybinds_job['Club'] = {
 
 xivhotbar_keybinds_job['Club'] = {
   -- No Skillchain
-  { 'battle 1 1',  'ws', 'Starlight',      't', 'Star' },
-  { 'battle 1 1',  'ws', 'Moonlight',      't', 'Moon' },     -- war whm pld drk sam blu geo
-  { 'battle 1 1',  'ws', 'Mystic Boon',    't', 'Mystic' },   -- whm only
-  { 'battle 1 1',  'ws', 'Dagan',          't', 'Dagan' },    -- whm
+  { 'battle 1 1',  'ws', 'Starlight',      'me', 'Star' },
+  { 'battle 1 1',  'ws', 'Moonlight',      'me', 'Moon' },    -- war whm pld drk sam blu geo
+  { 'battle 1 1',  'ws', 'Mystic Boon',    't',  'Mystic' },  -- whm only
+  { 'battle 1 1',  'ws', 'Dagan',          't',  'Dagan' },   -- whm
   -- Impaction
-  { 'battle 1 2',  'ws', 'Judgment',       't', 'Judgment' }, -- war whm pld drk sam blu geo
-  { 'battle 1 2',  'ws', 'Shining Strike', 't', 'Shining' },
-  { 'battle 1 2',  'ws', 'Seraph Strike',  't', 'Seraph' },   -- war whm pld drk sam blu geo
+  { 'battle 1 2',  'ws', 'Judgment',       't',  'Judgment' }, -- war whm pld drk sam blu geo
+  { 'battle 1 2',  'ws', 'Shining Strike', 't',  'Shining' },
+  { 'battle 1 2',  'ws', 'Seraph Strike',  't',  'Seraph' },  -- war whm pld drk sam blu geo
   -- Reverberation
-  { 'battle 1 3',  'ws', 'Brainshaker',    't', 'Brainshkr' },
+  { 'battle 1 3',  'ws', 'Brainshaker',    't',  'Brainshkr' },
   -- Detonation / Impaction
-  { 'battle 1 4',  'ws', 'True Strike',    't', 'True' },
+  { 'battle 1 4',  'ws', 'True Strike',    't',  'True' },
   -- Induration / Reverberation
-  { 'battle 1 5',  'ws', 'Flash Nova',     't', 'Fl Nova' }, -- war whm pld drk sam blu geo
-  { 'battle 1 5',  'ws', 'Skullbreaker',   't', 'Skullbrk' },
+  { 'battle 1 5',  'ws', 'Flash Nova',     't',  'Fl Nova' }, -- war whm pld drk sam blu geo
+  { 'battle 1 5',  'ws', 'Skullbreaker',   't',  'Skullbrk' },
   -- Fusion
-  { 'battle 1 6',  'ws', 'Hexa Strike',    't', 'Hexa' },     -- whm geo
+  { 'battle 1 6',  'ws', 'Hexa Strike',    't',  'Hexa' },    -- whm geo
   -- Fragmentation / Compression
-  { 'battle 1 7',  'ws', 'Black Halo',     't', 'Bl Halo' },  -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 7',  'ws', 'Black Halo',     't',  'Bl Halo' }, -- war mnk whm blm pld smn blu sch geo
   -- Fusion / Impaction
-  { 'battle 1 8',  'ws', 'Realmrazer',     't', 'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
+  { 'battle 1 8',  'ws', 'Realmrazer',     't',  'Realmrzr' }, -- war mnk whm blm pld smn blu sch geo
   -- Transfixion / Scission / Gravitation
-  { 'battle 1 9',  'ws', 'Dagda',          't', 'Dagda' },    -- whm geo recc
+  { 'battle 1 9',  'ws', 'Dagda',          't',  'Dagda' },   -- whm geo recc
   -- Darkness / Fragmentation
-  { 'battle 1 10', 'ws', 'Exudation',      't', 'Exuda' },    -- geo
+  { 'battle 1 10', 'ws', 'Exudation',      't',  'Exuda' },   -- geo
   -- Light / Fragmentation
-  { 'battle 1 11', 'ws', 'Randgrith',      't', 'Randgrt' },  -- whm sch geo relic
+  { 'battle 1 11', 'ws', 'Randgrith',      't',  'Randgrt' }, -- whm sch geo relic
 }
 
 xivhotbar_keybinds_job['Staff'] = {
