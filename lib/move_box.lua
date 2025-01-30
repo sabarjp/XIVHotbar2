@@ -45,21 +45,21 @@ local private_boxes = {
 }
 
 
-local function compute_size(box, sub_conf, is_vertical)
+local function compute_size(move_box, sub_conf, is_vertical)
   if (is_vertical == true) then
     local t_width   = 2 * (scaled_icon_width + move_boxes.theme.slot_spacing) - move_boxes.theme.slot_spacing
     local t_height  = (scaled_icon_height + move_boxes.theme.slot_spacing) * (move_boxes.theme.columns / 2) -
-    move_boxes.theme.slot_spacing
+        move_boxes.theme.slot_spacing
     sub_conf.width  = t_width
     sub_conf.height = t_height
-    box:size(t_width, t_height)
+    move_box:size(t_width, t_height)
   else
     local t_height  = (scaled_icon_height + move_boxes.theme.slot_spacing) - move_boxes.theme.slot_spacing
     local t_width   = (scaled_icon_width + move_boxes.theme.slot_spacing) * move_boxes.theme.columns -
-    move_boxes.theme.slot_spacing
+        move_boxes.theme.slot_spacing
     sub_conf.width  = t_width
     sub_conf.height = t_height
-    box:size(t_width, t_height)
+    move_box:size(t_width, t_height)
   end
 end
 

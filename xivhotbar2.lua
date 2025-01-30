@@ -69,7 +69,7 @@ htb_skillchains = require('lib/skillchains')
 htb_bloodpacts = require('lib/bloodpacts')
 htb_blue_spells = require('lib/blue_spells')
 local keyboard = require('lib/keyboard_mapper')
-local box = require('lib/move_box')
+local move_box = require('lib/move_box')
 local player = require('lib/player')
 local ui = require('lib/ui')
 
@@ -95,7 +95,7 @@ function initialize()
   ui:setup(theme_options)
   ui:set_player(player)
 
-  box:init(theme_options)
+  move_box:init(theme_options)
   local windower_player = windower.ffxi.get_player()
   local windower_info = windower.ffxi.get_info()
 
@@ -248,7 +248,7 @@ end)
 
 local function save_hotbar(hotbar, index)
   if index <= theme_options.rows then
-    local x, y = box:get_pos(index)
+    local x, y = move_box:get_pos(index)
     hotbar.OffsetX = x
     hotbar.OffsetY = y
   end
@@ -300,7 +300,7 @@ windower.register_event('addon command', function(command, ...)
       log("Click between the rows, then drag to move the hotbars.")
       log("To save the changes, type '//htb move' then hit enter.")
       print('XIVHOTBAR2: Layout mode enabled')
-      box:enable()
+      move_box:enable()
     else
       save_hotbar(settings.Hotbar.Offsets.First, 1)
       save_hotbar(settings.Hotbar.Offsets.Second, 2)
@@ -311,7 +311,7 @@ windower.register_event('addon command', function(command, ...)
 
       config.save(settings)
       print('XIVHOTBAR2: Layout mode disabled, writing new positions to settings.xml.')
-      box:disable()
+      move_box:disable()
     end
   elseif command == 'sc' then
     -- debugging for skillchain detection
@@ -421,7 +421,7 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
   return_value = nil
   if state.ready == true and blocked == false then
     if state.demo == true then
-      return_value = box:move_hotbars(type, x, y, delta, blocked)
+      return_value = move_box:move_hotbars(type, x, y, delta, blocked)
     else
       return_value = mouse_hotbars(type, x, y, delta, blocked)
     end
@@ -444,7 +444,7 @@ windower.register_event('prerender', function()
   end
 
   if ui.is_setup and ui.hotbar.hide_hotbars == false then
-    moved_row_info = box:get_move_box_info()
+    moved_row_info = move_box:get_move_box_info()
     if (moved_row_info.swapped_slots.active == true) then
       player:swap_actions(moved_row_info.swapped_slots)
       ui:swap_icons(moved_row_info.swapped_slots)
