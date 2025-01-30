@@ -193,7 +193,7 @@ xivhotbar_keybinds_job['Great Katana'] = {
   { 'battle 1 2',  'ws', 'Tachi: Rana',     't', 'Rana' }, -- sam
   -- Elements
   { 'battle 1 3',  'ws', 'Tachi: Goten',    't', 'Goten' },
-  { 'battle 1 3',  'ws', 'Tachi: Kagero',   't', 'Kagero' },
+  { 'battle 1 4',  'ws', 'Tachi: Kagero',   't', 'Kagero' },
   { 'battle 1 3',  'ws', 'Tachi: Koki',     't', 'Koki' },
   -- Specials
   { 'battle 1 4',  'ws', 'Tachi: Yukikaze', 't', 'Yuki' },  -- sam
