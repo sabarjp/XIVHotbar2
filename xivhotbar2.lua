@@ -34,7 +34,7 @@
 
 _addon.name = 'XIVHotbar2'
 _addon.author = 'Sabarjp, Fethur', 'Edeon, Akirane', 'Technyze'
-_addon.version = '0.2'
+_addon.version = '0.3'
 _addon.language = 'english'
 _addon.commands = { 'xivhotbar', 'htb', 'execute', 'xivhotbar2' }
 
@@ -54,13 +54,14 @@ require('luau')
 
 -- User settings --
 local defaults = require('defaults')
-local settings = config.load(defaults)
-config.save(settings)
-first_0x050 = false
 
 -- Load theme options according to settings --
-local theme = require('theme')
-local theme_options = theme.apply(settings)
+local settings
+local theme
+local theme_options
+
+first_0x050 = false
+
 
 
 -- Addon Dependencies --
@@ -71,14 +72,14 @@ local keyboard = require('lib/keyboard_mapper')
 local box = require('lib/move_box')
 local player = require('lib/player')
 local ui = require('lib/ui')
-local xiv
-local current_zone = 0
+
 local state = {
   ready = false,
   demo = false,
   inventory_ready = false,
   inventory_loading = false
 }
+
 local loaded = windower.ffxi.get_info().logged_in
 local first_load_done = false
 
@@ -260,9 +261,6 @@ local function print_help()
   log("reload: Reloads the hotbar, if you have made changes to the hotbar-file, this is faster for loading.")
   log("mount: either dismounts if mounted, or mounts the indicated mount")
 end
-
-
-
 
 -- ON COMMAND --
 windower.register_event('addon command', function(command, ...)
@@ -500,6 +498,7 @@ windower.register_event('load', function()
     defaults = require('defaults')
     settings = config.load(defaults)
     config.save(settings)
+
     -- Load theme options according to settings --
     theme = require('theme')
     theme_options = theme.apply(settings)
@@ -515,9 +514,11 @@ windower.register_event('login', function()
   local windower_player = windower.ffxi.get_player()
   if windower_player ~= nil then
     windower.send_command('lua load xivhotbar2')
+
     defaults = require('defaults')
     settings = config.load(defaults)
     config.save(settings)
+
     -- Load theme options according to settings --
     theme = require('theme')
     theme_options = theme.apply(settings)
@@ -527,6 +528,40 @@ windower.register_event('login', function()
 
     initialize()
   end
+end)
+
+windower.register_event('logout', function()
+  settings = nil
+  theme = nil
+  theme_options = nil
+  state = {
+    ready = false,
+    demo = false,
+    inventory_ready = false,
+    inventory_loading = false
+  }
+  loaded = false
+  first_load_done = false
+
+  skillchains:destroy()
+  ui:destroy()
+end)
+
+windower.register_event('unload', function()
+  settings = nil
+  theme = nil
+  theme_options = nil
+  state = {
+    ready = false,
+    demo = false,
+    inventory_ready = false,
+    inventory_loading = false
+  }
+  loaded = false
+  first_load_done = false
+
+  skillchains:destroy()
+  ui:destroy()
 end)
 
 -- DARK ARTS / LIGHT ARTS / ADD:BLK / ADD:WHT  set "stance"

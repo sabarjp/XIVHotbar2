@@ -69,12 +69,12 @@ xivhotbar_keybinds_job['Base'] = {
 -- SUBJOBS
 -- Hotbar #3
 xivhotbar_keybinds_job['MNK'] = {
-  { 'battle 3 1', 'ja', 'Boost',         'me', 'Boost',  'ffxiv/mnk/riddle_of_fire' },
-  { 'battle 3 2', 'ja', 'Dodge',         'me', 'Dodge',  'ffxiv/mnk/riddle_of_earth' },
-  { 'battle 3 3', 'ja', 'Focus',         'me', 'Focus',  'ffxiv/mnk/riddle_of_wind' },
-  { 'battle 3 4', 'ja', 'Chakra',        'me', 'Chakra', 'ffxiv/mnk/meditation' },
-  { 'battle 3 5', 'ja', 'Chi Blast',     't',  'Chi',    'ffxiv/mnk/elixir_field' },
-  { 'battle 3 6', 'ja', 'Counterstance', 'me', 'Ctr',    'ffxiv/mnk/arm_of_the_destroyer' },
+  { 'battle 3 1', 'ja', 'Boost',         'me',    'Boost',  'ffxiv/mnk/riddle_of_fire' },
+  { 'battle 3 2', 'ja', 'Dodge',         'me',    'Dodge',  'ffxiv/mnk/riddle_of_earth' },
+  { 'battle 3 3', 'ja', 'Focus',         'me',    'Focus',  'ffxiv/mnk/riddle_of_wind' },
+  { 'battle 3 4', 'ja', 'Chakra',        'me',    'Chakra', 'ffxiv/mnk/meditation' },
+  { 'battle 3 5', 'ja', 'Chi Blast',     'stnpc', 'Chi',    'ffxiv/mnk/elixir_field' },
+  { 'battle 3 6', 'ja', 'Counterstance', 'me',    'Ctr',    'ffxiv/mnk/arm_of_the_destroyer' },
 }
 
 xivhotbar_keybinds_job['WAR'] = {
@@ -133,8 +133,8 @@ xivhotbar_keybinds_job['DNC'] = {
   { 'battle 3 5',  'ja', 'Healing Waltz',     'stpc',  'Healing',  'ffxiv/dnc/shield_samba' },
   { 'battle 3 8',  'ja', 'Contradance',       'me',    'Contra',   'ffxiv/dnc/tillana' }, -- mastery
   -- Steps
-  { 'battle 3 6',  'ja', 'Quickstep',         'stnpc', 'Quick',    'ffxiv/dnc/en_avant' },
-  { 'battle 3 7',  'ja', 'Box Step',          'stnpc', 'Box',      'ffxiv/dnc/bladeshower' },
+  { 'battle 3 6',  'ja', 'Quickstep',         't',     'Quick',    'ffxiv/dnc/en_avant' },
+  { 'battle 3 7',  'ja', 'Box Step',          't',     'Box',      'ffxiv/dnc/bladeshower' },
   -- {'battle 3 9', 'ja', 'Stutter Step', 'stnpc', 'Stutter','ffxiv/dnc/fountainfall'},
   -- Flourishes
   { 'battle 3 12', 'ja', 'Animated Flourish', 'stnpc', 'Voke',     'ffxiv/dnc/closed_position' },
@@ -159,11 +159,11 @@ xivhotbar_keybinds_job['DRK'] = {
   { 'battle 3 3', 'ja', 'Consume Mana',  'me',    'Consume', 'ffxiv/drk/syphon_strike' },
   { 'battle 3 4', 'ja', 'Weapon Bash',   't',     'Bash',    'ffxiv/drk/shadow_wall' },
   { 'battle 3 5', 'ja', 'Arcane Circle', 'me',    'Arcane',  'ffxiv/drk/salted_earth' },
-  { 'battle 3 6', 'ma', 'Bio',           't',     'Bio' },
-  { 'battle 3 6', 'ma', 'Bio II',        't',     'Bio II' },
+  { 'battle 3 6', 'ma', 'Bio',           'stnpc', 'Bio' },
+  { 'battle 3 6', 'ma', 'Bio II',        'stnpc', 'Bio II' },
   { 'battle 3 7', 'ma', 'Sleep',         'stnpc', 'Sleep' },
   { 'battle 3 7', 'ma', 'Sleep II',      'stnpc', 'Sleep II' },
-  { 'battle 3 8', 'ma', 'Stun',          't',     'Stun' },
+  { 'battle 3 8', 'ma', 'Stun',          'stnpc', 'Stun' },
 }
 
 xivhotbar_keybinds_job['RNG'] = {

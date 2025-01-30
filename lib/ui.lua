@@ -77,6 +77,7 @@ local is_amnesiad = false
 local is_neutralized = false
 local is_burst_affinity = false
 local is_chain_affinity = false
+local is_immanence = false
 local can_ws = false
 local can_pet_ws = false
 local current_mp = 0
@@ -213,6 +214,7 @@ local function update_buffs(id, data)
         end
         if (buff_id == 164) then chain_affinity = true end
         if (buff_id == 165) then burst_affinity = true end
+        if (buff_id == 470) then immanence = true end
         if (buff_id == 16) then amnesiad = true end
         if (silenced and amnesiad) then break end
       end
@@ -221,6 +223,7 @@ local function update_buffs(id, data)
       is_amnesiad = amnesiad
       is_burst_affinity = burst_affinity
       is_chain_affinity = chain_affinity
+      is_immanence = immanence
     end
   end
 end
@@ -1045,6 +1048,44 @@ function ui:setup(theme_options)
   self.is_setup = true
 end
 
+function ui:destroy()
+  database:destroy()
+
+  self.hotbar = {
+    initialized = false,
+    ready = false,
+    hide_hotbars = false,
+    in_battle = false
+  }
+
+  self.hover_icon = {
+    row = nil,
+    col = nil,
+    prev_row = nil,
+    prev_col = nil
+  }
+
+  self.player = {}
+  self.recasts = {}
+  self.feedback_icon = nil
+  self.hotbars = {}
+  self.theme = {}
+  self.feedback = {}
+  self.feedback.is_active = false
+  self.feedback.current_opacity = 0
+  self.feedback.max_opacity = 0
+  self.feedback.speed = 0
+  self.disabled_slots = {}
+  self.disabled_slots.actions = {}
+  self.disabled_slots.no_vitals = {}
+  self.disabled_slots.on_cooldown = {}
+  self.outlined_slots = {}
+  self.is_setup = false
+  self.disabled_icons = {}
+  self.current_tick = 0
+  self.current_target = nil
+end
+
 function ui:swap_icons(swap_table)
   local source_row     = swap_table.source.row
   local source_slot    = swap_table.source.slot
@@ -1440,32 +1481,68 @@ function ui:check_if_chainable(action)
   elseif action.type == "ma" then
     local skill = database[action.type][(action.action):lower()]
 
-    if skill and skill.type == "BlueMagic" and is_chain_affinity then
-      if not skill.targets['Enemy'] then
-        return false
-      end
-
-      print(skill.id)
-      local blue_sc_data = htb_blue_spells[tonumber(skill.id)]
-
-      if blue_sc_data then
-        local potentials = nil
-        if blue_sc_data.skillchain_a or blue_sc_data.skillchain_b or blue_sc_data.skillchain_c then
-          if self.current_target then
-            potentials = skillchains:get_potential_skillchains(self.current_target.id)
-          else
-            return false
-          end
+    if skill then
+      if skill.type == "BlueMagic" and is_chain_affinity then
+        if not skill.targets['Enemy'] then
+          return false
         end
 
-        if potentials and next(potentials) ~= nil then
-          if blue_sc_data.skillchain_a and potentials[blue_sc_data.skillchain_a] then
-            return true, potentials[blue_sc_data.skillchain_a]
-          elseif blue_sc_data.skillchain_b and potentials[blue_sc_data.skillchain_b] then
-            return true, potentials[blue_sc_data.skillchain_b]
-          elseif blue_sc_data.skillchain_c and potentials[blue_sc_data.skillchain_c] then
-            return true, potentials[blue_sc_data.skillchain_c]
+        local blue_sc_data = htb_blue_spells[tonumber(skill.id)]
+
+        if blue_sc_data then
+          local potentials = nil
+          if blue_sc_data.skillchain_a or blue_sc_data.skillchain_b or blue_sc_data.skillchain_c then
+            if self.current_target then
+              potentials = skillchains:get_potential_skillchains(self.current_target.id)
+            else
+              return false
+            end
           end
+
+          if potentials and next(potentials) ~= nil then
+            if blue_sc_data.skillchain_a and potentials[blue_sc_data.skillchain_a] then
+              return true, potentials[blue_sc_data.skillchain_a]
+            elseif blue_sc_data.skillchain_b and potentials[blue_sc_data.skillchain_b] then
+              return true, potentials[blue_sc_data.skillchain_b]
+            elseif blue_sc_data.skillchain_c and potentials[blue_sc_data.skillchain_c] then
+              return true, potentials[blue_sc_data.skillchain_c]
+            end
+          end
+        end
+      elseif is_immanence and skill.type == "BlackMagic" and skill.targets["Enemy"] then
+        local potentials = nil
+
+        if self.current_target then
+          potentials = skillchains:get_potential_skillchains(self.current_target.id)
+
+          -- convert elements to properties
+          local property = nil
+
+          if skill.element == 0 then
+            property = "Liquefaction"
+          elseif skill.element == 1 then
+            property = "Induration"
+          elseif skill.element == 2 then
+            property = "Detonation"
+          elseif skill.element == 3 then
+            property = "Scission"
+          elseif skill.element == 4 then
+            property = "Impaction"
+          elseif skill.element == 5 then
+            property = "Reverberation"
+          elseif skill.element == 6 then
+            property = "Transfixion"
+          elseif skill.element == 7 then
+            property = "Compression"
+          end
+
+          if potentials and next(potentials) ~= nil then
+            if property and potentials[property] then
+              return true, potentials[property]
+            end
+          end
+        else
+          return false
         end
       end
     end
