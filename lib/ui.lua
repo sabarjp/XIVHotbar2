@@ -232,7 +232,6 @@ end
 -- Text/Image related functions --
 ----------------------------------
 
-
 -- get x position for a given hotbar and slot
 local function get_slot_x(ui, h, i)
   local x
@@ -461,7 +460,6 @@ local function setup_recasts_text(text, theme_options)
   text:show()
 end
 
-
 local function setup_inv_text(text, theme_options)
   text:bg_alpha(theme_options.font_bg_opacity_inv)
   text:bg_visible(theme_options.font_bg_enable_inv)
@@ -668,109 +666,106 @@ function ui:setup_disabled_icons()
   end
 end
 
-local function setup_environment(ui)
-  local env_pos_x = get_slot_x(ui, ui.theme.hook_onto_bar, ui.theme.columns + 1)
-  local env_pos_y = get_slot_y(ui, ui.theme.hook_onto_bar, 0)
+function ui:setup_environment()
+  local env_pos_x = get_slot_x(self, self.theme.hook_onto_bar, self.theme.columns + 1)
+  local env_pos_y = get_slot_y(self, self.theme.hook_onto_bar, 0)
 
   -- ENVIRONMENT TEXT --
-  if ui.theme.hide_env == false then
-    ui.active_environment['battle']:text(ui.theme.font_battle_text_env)
-    ui.active_environment['battle']:pos(env_pos_x + (ui.theme.font_hook_offset_x_env * ui.theme.slot_icon_scale),
-      env_pos_y + (ui.theme.font_hook_offset_y_env * ui.theme.slot_icon_scale))
-    ui.active_environment['battle']:size(ui.theme.font_size_env * ui.theme.slot_icon_scale)
-    ui.active_environment['battle']:italic(ui.theme.font_italics_env)
-    ui.active_environment['battle']:font(ui.theme.font_env)
-    ui.active_environment['battle']:alpha(ui.theme.font_alpha_env)
-    ui.active_environment['battle']:color(ui.theme.font_color_red_env, ui.theme.font_color_green_env,
-      ui.theme.font_color_blue_env)
-    ui.active_environment['battle']:stroke_transparency(ui.theme.font_stroke_alpha_env)
-    ui.active_environment['battle']:stroke_color(ui.theme.font_stroke_color_red_env, ui.theme
-      .font_stroke_color_green_env, ui.theme.font_stroke_color_blue_env)
-    ui.active_environment['battle']:stroke_width(ui.theme.font_stroke_width_env)
-    ui.active_environment['battle']:show()
+  if self.theme.hide_env == false then
+    self.active_environment['battle']:text(self.theme.font_battle_text_env)
+    self.active_environment['battle']:pos(env_pos_x + (self.theme.font_hook_offset_x_env * self.theme.slot_icon_scale),
+      env_pos_y + (self.theme.font_hook_offset_y_env * self.theme.slot_icon_scale))
+    self.active_environment['battle']:size(self.theme.font_size_env * self.theme.slot_icon_scale)
+    self.active_environment['battle']:italic(self.theme.font_italics_env)
+    self.active_environment['battle']:font(self.theme.font_env)
+    self.active_environment['battle']:alpha(self.theme.font_alpha_env)
+    self.active_environment['battle']:color(self.theme.font_color_red_env, self.theme.font_color_green_env,
+      self.theme.font_color_blue_env)
+    self.active_environment['battle']:stroke_transparency(self.theme.font_stroke_alpha_env)
+    self.active_environment['battle']:stroke_color(self.theme.font_stroke_color_red_env, self.theme
+      .font_stroke_color_green_env, self.theme.font_stroke_color_blue_env)
+    self.active_environment['battle']:stroke_width(self.theme.font_stroke_width_env)
+    self.active_environment['battle']:show()
 
-    ui.active_environment['field']:text(ui.theme.font_field_text_env)
-    ui.active_environment['field']:pos(
-      env_pos_x + ((ui.theme.font_hook_offset_x_env + ui.theme.font_offset_x_env) * ui.theme.slot_icon_scale),
-      env_pos_y + ((ui.theme.font_hook_offset_y_env + ui.theme.font_offset_y_env) * ui.theme.slot_icon_scale))
-    ui.active_environment['field']:size(ui.theme.font_size_env * ui.theme.slot_icon_scale)
-    ui.active_environment['field']:italic(ui.theme.font_italics_env)
-    ui.active_environment['field']:font(ui.theme.font_env)
-    ui.active_environment['field']:alpha(ui.theme.font_alpha_env)
-    ui.active_environment['field']:color(ui.theme.font_color_red_env, ui.theme.font_color_green_env,
-      ui.theme.font_color_blue_env)
-    ui.active_environment['field']:stroke_transparency(ui.theme.font_stroke_alpha_env)
-    ui.active_environment['field']:stroke_color(ui.theme.font_stroke_color_red_env, ui.theme.font_stroke_color_green_env,
-      ui.theme.font_stroke_color_blue_env)
-    ui.active_environment['field']:stroke_width(ui.theme.font_stroke_width_env)
-    ui.active_environment['field']:show()
+    self.active_environment['field']:text(self.theme.font_field_text_env)
+    self.active_environment['field']:pos(
+      env_pos_x + ((self.theme.font_hook_offset_x_env + self.theme.font_offset_x_env) * self.theme.slot_icon_scale),
+      env_pos_y + ((self.theme.font_hook_offset_y_env + self.theme.font_offset_y_env) * self.theme.slot_icon_scale))
+    self.active_environment['field']:size(self.theme.font_size_env * self.theme.slot_icon_scale)
+    self.active_environment['field']:italic(self.theme.font_italics_env)
+    self.active_environment['field']:font(self.theme.font_env)
+    self.active_environment['field']:alpha(self.theme.font_alpha_env)
+    self.active_environment['field']:color(self.theme.font_color_red_env, self.theme.font_color_green_env,
+      self.theme.font_color_blue_env)
+    self.active_environment['field']:stroke_transparency(self.theme.font_stroke_alpha_env)
+    self.active_environment['field']:stroke_color(self.theme.font_stroke_color_red_env,
+      self.theme.font_stroke_color_green_env,
+      self.theme.font_stroke_color_blue_env)
+    self.active_environment['field']:stroke_width(self.theme.font_stroke_width_env)
+    self.active_environment['field']:show()
 
-    if ui.theme.hook_onto_bar == 0 then
-      ui.active_environment['battle']:pos(ui.theme.font_pos_x_env, ui.theme.font_pos_y_env)
-      ui.active_environment['battle']:show()
+    if self.theme.hook_onto_bar == 0 then
+      self.active_environment['battle']:pos(self.theme.font_pos_x_env, self.theme.font_pos_y_env)
+      self.active_environment['battle']:show()
 
-      ui.active_environment['field']:pos(ui.theme.font_pos_x_env + ui.theme.font_offset_x_env,
-        ui.theme.font_pos_y_env + ui.theme.font_offset_y_env)
-      ui.active_environment['field']:show()
+      self.active_environment['field']:pos(self.theme.font_pos_x_env + self.theme.font_offset_x_env,
+        self.theme.font_pos_y_env + self.theme.font_offset_y_env)
+      self.active_environment['field']:show()
     end
   end
 
 
   -- INVENTORY TEXT TEXT --
-  ui.inventory_count = texts.new(inventory_count_setup)
-  setup_inv_text(ui.inventory_count, ui.theme)
+  self.inventory_count = texts.new(inventory_count_setup)
+  setup_inv_text(self.inventory_count, self.theme)
 
-  if ui.theme.hide_inventory_count == false then
-    if ui.theme.unlock_pos_inv == true then
-      ui.inventory_count:pos(ui.theme.font_pos_x_inv, ui.theme.font_pos_y_inv)
-      get_inventory_count(ui.theme, ui.inventory_count, ui.playerinv.inventory)
-      ui.inventory_count:show()
+  if self.theme.hide_inventory_count == false then
+    if self.theme.unlock_pos_inv == true then
+      self.inventory_count:pos(self.theme.font_pos_x_inv, self.theme.font_pos_y_inv)
+      get_inventory_count(self.theme, self.inventory_count, self.playerinv.inventory)
+      self.inventory_count:show()
     else
-      ui.inventory_count:pos(env_pos_x + (ui.theme.text_offset_x_inv * ui.theme.slot_icon_scale),
-        env_pos_y + (ui.theme.text_offset_y_inv * ui.theme.slot_icon_scale))
-      get_inventory_count(ui.theme, ui.inventory_count, ui.playerinv.inventory)
-      ui.inventory_count:show()
+      self.inventory_count:pos(env_pos_x + (self.theme.text_offset_x_inv * self.theme.slot_icon_scale),
+        env_pos_y + (self.theme.text_offset_y_inv * self.theme.slot_icon_scale))
+      get_inventory_count(self.theme, self.inventory_count, self.playerinv.inventory)
+      self.inventory_count:show()
     end
   end
 end
-
 
 function ui:set_player(player)
   self.player = player
 end
 
 -- setup positions and dimensions for ui
-function setup_metrics(ui)
-  ui.playerinv = windower.ffxi.get_items()
-  ui.active_environment = {}
+function ui:setup_sizing()
+  self.playerinv = windower.ffxi.get_items()
+  self.active_environment = {}
 
-  ui.active_environment['battle'] = {}
-  ui.active_environment['field'] = {}
+  self.active_environment['battle'] = {}
+  self.active_environment['field'] = {}
 
-  ui.active_environment['battle'] = texts.new(table.copy(environment_text_setup), true)
-  ui.active_environment['field'] = texts.new(table.copy(environment_text_setup), true)
+  self.active_environment['battle'] = texts.new(table.copy(environment_text_setup), true)
+  self.active_environment['field'] = texts.new(table.copy(environment_text_setup), true)
 
-  setup_env_text(ui.active_environment['battle'], ui.theme)
-  setup_env_text(ui.active_environment['field'], ui.theme)
+  setup_env_text(self.active_environment['battle'], self.theme)
+  setup_env_text(self.active_environment['field'], self.theme)
 
 
-  ui.hotbar_width = ((40 * ui.theme.columns) + ui.theme.slot_spacing * (ui.theme.columns - 1))
-  ui.scaled_pos_x = windower.get_windower_settings().ui_x_res
-  ui.scaled_pos_y = windower.get_windower_settings().ui_y_res
-  ui.pos_x = 0
-  ui.pos_y = 0
+  self.hotbar_width = ((40 * self.theme.columns) + self.theme.slot_spacing * (self.theme.columns - 1))
+  self.scaled_pos_x = windower.get_windower_settings().ui_x_res
+  self.scaled_pos_y = windower.get_windower_settings().ui_y_res
+  self.pos_x = 0
+  self.pos_y = 0
 
-  ui.slot_spacing = ui.theme.slot_spacing
+  self.slot_spacing = self.theme.slot_spacing
 
-  if ui.theme.hide_action_names == true then
-    ui.theme.hotbar_spacing = ui.theme.hotbar_spacing - 10
-    ui.pos_y = ui.pos_y + 10
+  if self.theme.hide_action_names == true then
+    self.theme.hotbar_spacing = self.theme.hotbar_spacing - 10
+    self.pos_y = self.pos_y + 10
   end
 
-
-
-  ui.hotbar_spacing = ui.theme.hotbar_spacing
-  setup_environment(ui)
+  self.hotbar_spacing = self.theme.hotbar_spacing
 end
 
 -- init slot
@@ -879,21 +874,20 @@ local function init_hotbar(ui, theme_options, number)
 end
 
 -- load the images and text
-local function load(ui)
+function ui:load()
   -- create ui elements for hotbars
-  for h = 1, ui.theme.hotbar_number, 1 do
-    ui.hotbars[h] = init_hotbar(ui, ui.theme, h)
-    for i = 1, ui.theme.columns, 1 do
-      init_slot(ui, h, i, ui.theme)
+  for h = 1, self.theme.hotbar_number, 1 do
+    self.hotbars[h] = init_hotbar(self, self.theme, h)
+    for i = 1, self.theme.columns, 1 do
+      init_slot(self, h, i, self.theme)
     end
   end
-  ui.action_description = texts.new()
-  setup_action_description_text(ui.action_description, ui.theme)
+  self.action_description = texts.new()
+  setup_action_description_text(self.action_description, self.theme)
 
   -- load feedback icon last so it stays above everything else
-  setup_feedback(ui)
+  setup_feedback(self)
 end
-
 
 -- load action into a hotbar slot
 function ui:load_action(row, slot, environment, action, player_vitals)
@@ -1042,9 +1036,10 @@ function ui:setup(theme_options)
   self.theme.tp_cost_color_red = theme_options.font_color_red_costs_tp
   self.theme.tp_cost_color_green = theme_options.font_color_green_costs_tp
   self.theme.tp_cost_color_blue = theme_options.font_color_blue_costs_tp
-  setup_metrics(self)
+  self:setup_sizing()
+  self:setup_environment()
   self:setup_disabled_icons()
-  load(self)
+  self:load()
   self.is_setup = true
 end
 
