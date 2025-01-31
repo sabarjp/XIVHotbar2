@@ -1137,10 +1137,14 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       -- if action is an item/gearswap
     elseif S { 'gs', 'macro' }:contains(action.type) then
       self:setup_default_slot_icons(action.type, row, slot)
-      -- If no custom icon is defined, just put on a cog.
     elseif action.type == 'item' then
-      self:setup_slot_icons('/images/icons/custom/item.png', row, slot)
+      local itemCount = player.item_count[action.action]
+      if itemCount then
+        self.hotbars[row].slot_cost[slot]:text(tostring(itemCount))
+      end
+      self:setup_item_slot_icons(action.action, row, slot)
     else
+      -- If no custom icon is defined, just put on a cog.
       self:setup_default_slot_icons('default', row, slot)
     end
 
@@ -1199,6 +1203,36 @@ end
 function ui:setup_default_slot_icons(type, row, slot)
   self.hotbars[row].slot_icons[slot]:pos(self:get_slot_xy(row, slot))
   self.hotbars[row].slot_icons[slot]:path(self.default_image_paths[type])
+  self.hotbars[row].slot_icons[slot]:show()
+end
+
+function ui:setup_item_slot_icons(name, row, slot)
+  local img_path = '/images/icons/custom/item.png'
+  name = name:lower()
+
+  local function fileExists(filename)
+    local file = io.open(filename, "r")
+    if file then
+      file:close()
+      return true
+    else
+      return false
+    end
+  end
+
+  if database.items[name] ~= nil then
+    local id = database.items[name].id
+
+    if id then
+      local temp_path = 'images/icons/items/' .. id .. '.bmp'
+      if fileExists(windower.addon_path .. temp_path) then
+        img_path = 'images/icons/items/' .. id .. '.bmp'
+      end
+    end
+  end
+
+  self.hotbars[row].slot_icons[slot]:pos(self:get_slot_xy(row, slot))
+  self.hotbars[row].slot_icons[slot]:path(windower.addon_path .. img_path)
   self.hotbars[row].slot_icons[slot]:show()
 end
 
