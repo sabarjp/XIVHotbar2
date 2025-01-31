@@ -1,34 +1,9 @@
---[[
-        Copyright © 2020, Akirane, Technyze
-        All rights reserved.
-
-        Redistribution and use in source and binary forms, with or without
-        modification, are permitted provided that the following conditions are met:
-
-            * Redistributions of source code must retain the above copyright
-              notice, this list of conditions and the following disclaimer.
-            * Redistributions in binary form must reproduce the above copyright
-              notice, this list of conditions and the following disclaimer in the
-              documentation and/or other materials provided with the distribution.
-            * Neither the name of xivhotbar nor the
-              names of its contributors may be used to endorse or promote products
-              derived from this software without specific prior written permission.
-
-        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-        ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-        WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-        DISCLAIMED. IN NO EVENT SHALL SirEdeonX OR Akirane BE LIABLE FOR ANY
-        DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-        (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-        ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-        SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-]]
-
 local keyboard = {}
 
-keyboard.hotbar_rows = require('../data/keybinds')
+keyboard.default_keybinds = require('../data/default_keybinds')
+
+keyboard.hotbar_rows = {}
+
 keyboard.parsed_keybinds = {}
 
 --[[
@@ -46,6 +21,182 @@ keyboard.parsed_keybinds = {}
 --]]
 --
 
+function keyboard:set_bindings(bindings)
+  keyboard.hotbar_rows = {}
+
+  -- transform to format we expect
+  local row1 = {}
+
+  table.insert(row1, bindings.R1.C01)
+  table.insert(row1, bindings.R1.C02)
+  table.insert(row1, bindings.R1.C03)
+  table.insert(row1, bindings.R1.C04)
+  table.insert(row1, bindings.R1.C05)
+  table.insert(row1, bindings.R1.C06)
+  table.insert(row1, bindings.R1.C07)
+  table.insert(row1, bindings.R1.C08)
+  table.insert(row1, bindings.R1.C09)
+  table.insert(row1, bindings.R1.C10)
+  table.insert(row1, bindings.R1.C11)
+  table.insert(row1, bindings.R1.C12)
+
+  local row2 = {}
+
+  table.insert(row2, bindings.R2.C01)
+  table.insert(row2, bindings.R2.C02)
+  table.insert(row2, bindings.R2.C03)
+  table.insert(row2, bindings.R2.C04)
+  table.insert(row2, bindings.R2.C05)
+  table.insert(row2, bindings.R2.C06)
+  table.insert(row2, bindings.R2.C07)
+  table.insert(row2, bindings.R2.C08)
+  table.insert(row2, bindings.R2.C09)
+  table.insert(row2, bindings.R2.C10)
+  table.insert(row2, bindings.R2.C11)
+  table.insert(row2, bindings.R2.C12)
+
+  local row3 = {}
+
+  table.insert(row3, bindings.R3.C01)
+  table.insert(row3, bindings.R3.C02)
+  table.insert(row3, bindings.R3.C03)
+  table.insert(row3, bindings.R3.C04)
+  table.insert(row3, bindings.R3.C05)
+  table.insert(row3, bindings.R3.C06)
+  table.insert(row3, bindings.R3.C07)
+  table.insert(row3, bindings.R3.C08)
+  table.insert(row3, bindings.R3.C09)
+  table.insert(row3, bindings.R3.C10)
+  table.insert(row3, bindings.R3.C11)
+  table.insert(row3, bindings.R3.C12)
+
+  local row4 = {}
+
+  table.insert(row4, bindings.R4.C01)
+  table.insert(row4, bindings.R4.C02)
+  table.insert(row4, bindings.R4.C03)
+  table.insert(row4, bindings.R4.C04)
+  table.insert(row4, bindings.R4.C05)
+  table.insert(row4, bindings.R4.C06)
+  table.insert(row4, bindings.R4.C07)
+  table.insert(row4, bindings.R4.C08)
+  table.insert(row4, bindings.R4.C09)
+  table.insert(row4, bindings.R4.C10)
+  table.insert(row4, bindings.R4.C11)
+  table.insert(row4, bindings.R4.C12)
+
+  local row5 = {}
+
+  table.insert(row5, bindings.R5.C01)
+  table.insert(row5, bindings.R5.C02)
+  table.insert(row5, bindings.R5.C03)
+  table.insert(row5, bindings.R5.C04)
+  table.insert(row5, bindings.R5.C05)
+  table.insert(row5, bindings.R5.C06)
+  table.insert(row5, bindings.R5.C07)
+  table.insert(row5, bindings.R5.C08)
+  table.insert(row5, bindings.R5.C09)
+  table.insert(row5, bindings.R5.C10)
+  table.insert(row5, bindings.R5.C11)
+  table.insert(row5, bindings.R5.C12)
+
+  local row6 = {}
+
+  table.insert(row6, bindings.R6.C01)
+  table.insert(row6, bindings.R6.C02)
+  table.insert(row6, bindings.R6.C03)
+  table.insert(row6, bindings.R6.C04)
+  table.insert(row6, bindings.R6.C05)
+  table.insert(row6, bindings.R6.C06)
+  table.insert(row6, bindings.R6.C07)
+  table.insert(row6, bindings.R6.C08)
+  table.insert(row6, bindings.R6.C09)
+  table.insert(row6, bindings.R6.C10)
+  table.insert(row6, bindings.R6.C11)
+  table.insert(row6, bindings.R6.C12)
+
+  table.insert(keyboard.hotbar_rows, row1)
+  table.insert(keyboard.hotbar_rows, row2)
+  table.insert(keyboard.hotbar_rows, row3)
+  table.insert(keyboard.hotbar_rows, row4)
+  table.insert(keyboard.hotbar_rows, row5)
+  table.insert(keyboard.hotbar_rows, row6)
+end
+
+function keyboard:cast_all_to_strings(settings)
+  settings.Keybinds.R1.C01 = tostring(settings.Keybinds.R1.C01)
+  settings.Keybinds.R1.C02 = tostring(settings.Keybinds.R1.C02)
+  settings.Keybinds.R1.C03 = tostring(settings.Keybinds.R1.C03)
+  settings.Keybinds.R1.C04 = tostring(settings.Keybinds.R1.C04)
+  settings.Keybinds.R1.C05 = tostring(settings.Keybinds.R1.C05)
+  settings.Keybinds.R1.C06 = tostring(settings.Keybinds.R1.C06)
+  settings.Keybinds.R1.C07 = tostring(settings.Keybinds.R1.C07)
+  settings.Keybinds.R1.C08 = tostring(settings.Keybinds.R1.C08)
+  settings.Keybinds.R1.C09 = tostring(settings.Keybinds.R1.C09)
+  settings.Keybinds.R1.C10 = tostring(settings.Keybinds.R1.C10)
+  settings.Keybinds.R1.C11 = tostring(settings.Keybinds.R1.C11)
+  settings.Keybinds.R1.C12 = tostring(settings.Keybinds.R1.C12)
+  settings.Keybinds.R2.C01 = tostring(settings.Keybinds.R2.C01)
+  settings.Keybinds.R2.C02 = tostring(settings.Keybinds.R2.C02)
+  settings.Keybinds.R2.C03 = tostring(settings.Keybinds.R2.C03)
+  settings.Keybinds.R2.C04 = tostring(settings.Keybinds.R2.C04)
+  settings.Keybinds.R2.C05 = tostring(settings.Keybinds.R2.C05)
+  settings.Keybinds.R2.C06 = tostring(settings.Keybinds.R2.C06)
+  settings.Keybinds.R2.C07 = tostring(settings.Keybinds.R2.C07)
+  settings.Keybinds.R2.C08 = tostring(settings.Keybinds.R2.C08)
+  settings.Keybinds.R2.C09 = tostring(settings.Keybinds.R2.C09)
+  settings.Keybinds.R2.C10 = tostring(settings.Keybinds.R2.C10)
+  settings.Keybinds.R2.C11 = tostring(settings.Keybinds.R2.C11)
+  settings.Keybinds.R2.C12 = tostring(settings.Keybinds.R2.C12)
+  settings.Keybinds.R3.C01 = tostring(settings.Keybinds.R3.C01)
+  settings.Keybinds.R3.C02 = tostring(settings.Keybinds.R3.C02)
+  settings.Keybinds.R3.C03 = tostring(settings.Keybinds.R3.C03)
+  settings.Keybinds.R3.C04 = tostring(settings.Keybinds.R3.C04)
+  settings.Keybinds.R3.C05 = tostring(settings.Keybinds.R3.C05)
+  settings.Keybinds.R3.C06 = tostring(settings.Keybinds.R3.C06)
+  settings.Keybinds.R3.C07 = tostring(settings.Keybinds.R3.C07)
+  settings.Keybinds.R3.C08 = tostring(settings.Keybinds.R3.C08)
+  settings.Keybinds.R3.C09 = tostring(settings.Keybinds.R3.C09)
+  settings.Keybinds.R3.C10 = tostring(settings.Keybinds.R3.C10)
+  settings.Keybinds.R3.C11 = tostring(settings.Keybinds.R3.C11)
+  settings.Keybinds.R3.C12 = tostring(settings.Keybinds.R3.C12)
+  settings.Keybinds.R4.C01 = tostring(settings.Keybinds.R4.C01)
+  settings.Keybinds.R4.C02 = tostring(settings.Keybinds.R4.C02)
+  settings.Keybinds.R4.C03 = tostring(settings.Keybinds.R4.C03)
+  settings.Keybinds.R4.C04 = tostring(settings.Keybinds.R4.C04)
+  settings.Keybinds.R4.C05 = tostring(settings.Keybinds.R4.C05)
+  settings.Keybinds.R4.C06 = tostring(settings.Keybinds.R4.C06)
+  settings.Keybinds.R4.C07 = tostring(settings.Keybinds.R4.C07)
+  settings.Keybinds.R4.C08 = tostring(settings.Keybinds.R4.C08)
+  settings.Keybinds.R4.C09 = tostring(settings.Keybinds.R4.C09)
+  settings.Keybinds.R4.C10 = tostring(settings.Keybinds.R4.C10)
+  settings.Keybinds.R4.C11 = tostring(settings.Keybinds.R4.C11)
+  settings.Keybinds.R4.C12 = tostring(settings.Keybinds.R4.C12)
+  settings.Keybinds.R5.C01 = tostring(settings.Keybinds.R5.C01)
+  settings.Keybinds.R5.C02 = tostring(settings.Keybinds.R5.C02)
+  settings.Keybinds.R5.C03 = tostring(settings.Keybinds.R5.C03)
+  settings.Keybinds.R5.C04 = tostring(settings.Keybinds.R5.C04)
+  settings.Keybinds.R5.C05 = tostring(settings.Keybinds.R5.C05)
+  settings.Keybinds.R5.C06 = tostring(settings.Keybinds.R5.C06)
+  settings.Keybinds.R5.C07 = tostring(settings.Keybinds.R5.C07)
+  settings.Keybinds.R5.C08 = tostring(settings.Keybinds.R5.C08)
+  settings.Keybinds.R5.C09 = tostring(settings.Keybinds.R5.C09)
+  settings.Keybinds.R5.C10 = tostring(settings.Keybinds.R5.C10)
+  settings.Keybinds.R5.C11 = tostring(settings.Keybinds.R5.C11)
+  settings.Keybinds.R5.C12 = tostring(settings.Keybinds.R5.C12)
+  settings.Keybinds.R6.C01 = tostring(settings.Keybinds.R6.C01)
+  settings.Keybinds.R6.C02 = tostring(settings.Keybinds.R6.C02)
+  settings.Keybinds.R6.C03 = tostring(settings.Keybinds.R6.C03)
+  settings.Keybinds.R6.C04 = tostring(settings.Keybinds.R6.C04)
+  settings.Keybinds.R6.C05 = tostring(settings.Keybinds.R6.C05)
+  settings.Keybinds.R6.C06 = tostring(settings.Keybinds.R6.C06)
+  settings.Keybinds.R6.C07 = tostring(settings.Keybinds.R6.C07)
+  settings.Keybinds.R6.C08 = tostring(settings.Keybinds.R6.C08)
+  settings.Keybinds.R6.C09 = tostring(settings.Keybinds.R6.C09)
+  settings.Keybinds.R6.C10 = tostring(settings.Keybinds.R6.C10)
+  settings.Keybinds.R6.C11 = tostring(settings.Keybinds.R6.C11)
+  settings.Keybinds.R6.C12 = tostring(settings.Keybinds.R6.C12)
+end
 
 function keyboard:parse_keybinds()
   for row_key, row_value in pairs(keyboard.hotbar_rows) do
@@ -73,6 +224,10 @@ function keyboard:parse_keybinds()
         else
           col_value = "%" .. col_value
         end
+      end
+      if col_value then
+        col_value = col_value:gsub('eq', '=')
+        col_value = col_value:gsub('#', '')
       end
       row_value[col_key] = col_value
     end

@@ -129,4 +129,19 @@ function text_formatter.format_spell_info(database, action, action_target)
   return string_return
 end
 
+function text_formatter.format_item_info(database, action, action_target)
+  local string_return = ""
+
+  if database.items[(action):lower()] ~= nil then
+    local item = database.items[(action):lower()]
+    local item_info = {}
+    item_info[1] = string.format("\\cs(255,255,0)[%s]\\cr    \\cs(200,200,255)Target:<%s>\\cr\n", item.name,
+      action_target)
+    item_info[2] = format_description(item.desc:gsub("\n", " "))
+
+    string_return = table.concat(item_info, "\n")
+  end
+  return string_return
+end
+
 return text_formatter

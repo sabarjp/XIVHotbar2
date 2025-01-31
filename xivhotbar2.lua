@@ -68,10 +68,13 @@ first_0x050 = false
 htb_skillchains = require('lib/skillchains')
 htb_bloodpacts = require('lib/bloodpacts')
 htb_blue_spells = require('lib/blue_spells')
+
+player = require('lib/player')
+ui = require('lib/ui')
+
 local keyboard = require('lib/keyboard_mapper')
-local box = require('lib/move_box')
-local player = require('lib/player')
-local ui = require('lib/ui')
+
+local move_box = require('lib/move_box')
 
 local state = {
   ready = false,
@@ -90,12 +93,13 @@ nil_equip_bool = false
 
 -- initialize addon --
 function initialize()
+  keyboard:set_bindings(settings.Keybinds)
   keyboard:parse_keybinds()
 
   ui:setup(theme_options)
   ui:set_player(player)
 
-  box:init(theme_options)
+  move_box:init(theme_options)
   local windower_player = windower.ffxi.get_player()
   local windower_info = windower.ffxi.get_info()
 
@@ -248,7 +252,7 @@ end)
 
 local function save_hotbar(hotbar, index)
   if index <= theme_options.rows then
-    local x, y = box:get_pos(index)
+    local x, y = move_box:get_pos(index)
     hotbar.OffsetX = x
     hotbar.OffsetY = y
   end
@@ -300,7 +304,7 @@ windower.register_event('addon command', function(command, ...)
       log("Click between the rows, then drag to move the hotbars.")
       log("To save the changes, type '//htb move' then hit enter.")
       print('XIVHOTBAR2: Layout mode enabled')
-      box:enable()
+      move_box:enable()
     else
       save_hotbar(settings.Hotbar.Offsets.First, 1)
       save_hotbar(settings.Hotbar.Offsets.Second, 2)
@@ -311,7 +315,7 @@ windower.register_event('addon command', function(command, ...)
 
       config.save(settings)
       print('XIVHOTBAR2: Layout mode disabled, writing new positions to settings.xml.')
-      box:disable()
+      move_box:disable()
     end
   elseif command == 'sc' then
     -- debugging for skillchain detection
@@ -421,7 +425,7 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
   return_value = nil
   if state.ready == true and blocked == false then
     if state.demo == true then
-      return_value = box:move_hotbars(type, x, y, delta, blocked)
+      return_value = move_box:move_hotbars(type, x, y, delta, blocked)
     else
       return_value = mouse_hotbars(type, x, y, delta, blocked)
     end
@@ -444,7 +448,7 @@ windower.register_event('prerender', function()
   end
 
   if ui.is_setup and ui.hotbar.hide_hotbars == false then
-    moved_row_info = box:get_move_box_info()
+    moved_row_info = move_box:get_move_box_info()
     if (moved_row_info.swapped_slots.active == true) then
       player:swap_actions(moved_row_info.swapped_slots)
       ui:swap_icons(moved_row_info.swapped_slots)
@@ -496,14 +500,14 @@ windower.register_event('load', function()
   local windower_player = windower.ffxi.get_player()
   if windower_player ~= nil then
     defaults = require('defaults')
+    defaults.Keybinds = keyboard.default_keybinds
     settings = config.load(defaults)
+    keyboard:cast_all_to_strings(settings)
     config.save(settings)
 
     -- Load theme options according to settings --
     theme = require('theme')
     theme_options = theme.apply(settings)
-    local settings = config.load(defaults)
-    config.save(settings)
     player.id = windower_player.id
     initialize()
     coroutine.sleep(2)
@@ -516,14 +520,14 @@ windower.register_event('login', function()
     windower.send_command('lua load xivhotbar2')
 
     defaults = require('defaults')
+    defaults.Keybinds = keyboard.default_keybinds
     settings = config.load(defaults)
+    keyboard:cast_all_to_strings(settings)
     config.save(settings)
 
     -- Load theme options according to settings --
     theme = require('theme')
     theme_options = theme.apply(settings)
-    local settings = config.load(defaults)
-    config.save(settings)
     player.id = windower_player.id
 
     initialize()
@@ -692,6 +696,7 @@ end
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
   if state.ready == true then
     ui:update_inventory_count()
+    player:update_inventory_items()
   end
 end)
 
@@ -937,7 +942,6 @@ end)
 
 
 
-
 --- HELPERS
 function printTable(tbl, indent)
   indent = indent or 0
@@ -951,4 +955,36 @@ function printTable(tbl, indent)
       windower.add_to_chat(8, indentString .. tostring(key) .. ": " .. tostring(value))
     end
   end
+end
+
+function shorten_ability_name(name)
+  local function shortenWord(word)
+    local result = ""
+    local vowelPreserved = false
+
+    for char in word:gmatch(".") do
+      if #result < 3 then
+        if char:match("[aeiouAEIOU]") then
+          if not vowelPreserved then
+            result = result .. char -- Keep the first vowel
+            vowelPreserved = true
+          end
+        else
+          result = result .. char -- Always keep consonants
+        end
+      else
+        break -- Stop once we hit 4 characters
+      end
+    end
+
+    return result
+  end
+
+  -- Process each word and combine them into camelCase
+  local shortenedName = name:gsub("(%a)([%a]*)", function(firstLetter, restOfWord)
+    return firstLetter:upper() .. shortenWord(restOfWord)
+  end):gsub("%s+", "") -- Remove spaces to form camelCase
+
+  -- Trim the overall name if it's still too long
+  return shortenedName:sub(1, 6)
 end
