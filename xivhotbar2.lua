@@ -73,6 +73,7 @@ player = require('lib/player')
 ui = require('lib/ui')
 
 local keyboard = require('lib/keyboard_mapper')
+
 local move_box = require('lib/move_box')
 
 local state = {
@@ -92,6 +93,7 @@ nil_equip_bool = false
 
 -- initialize addon --
 function initialize()
+  keyboard:set_bindings(settings.Keybinds)
   keyboard:parse_keybinds()
 
   ui:setup(theme_options)
@@ -498,14 +500,14 @@ windower.register_event('load', function()
   local windower_player = windower.ffxi.get_player()
   if windower_player ~= nil then
     defaults = require('defaults')
+    defaults.Keybinds = keyboard.default_keybinds
     settings = config.load(defaults)
+    keyboard:cast_all_to_strings(settings)
     config.save(settings)
 
     -- Load theme options according to settings --
     theme = require('theme')
     theme_options = theme.apply(settings)
-    local settings = config.load(defaults)
-    config.save(settings)
     player.id = windower_player.id
     initialize()
     coroutine.sleep(2)
@@ -518,14 +520,14 @@ windower.register_event('login', function()
     windower.send_command('lua load xivhotbar2')
 
     defaults = require('defaults')
+    defaults.Keybinds = keyboard.default_keybinds
     settings = config.load(defaults)
+    keyboard:cast_all_to_strings(settings)
     config.save(settings)
 
     -- Load theme options according to settings --
     theme = require('theme')
     theme_options = theme.apply(settings)
-    local settings = config.load(defaults)
-    config.save(settings)
     player.id = windower_player.id
 
     initialize()

@@ -272,5 +272,6 @@ defaults.Controls.ToggleBattleMode = 43
 
 defaults.Dev = {}
 defaults.Dev.DevMode = false
+defaults.Keybinds = {}
 
 return defaults
