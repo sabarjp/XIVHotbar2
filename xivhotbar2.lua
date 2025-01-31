@@ -68,10 +68,12 @@ first_0x050 = false
 htb_skillchains = require('lib/skillchains')
 htb_bloodpacts = require('lib/bloodpacts')
 htb_blue_spells = require('lib/blue_spells')
+
+player = require('lib/player')
+ui = require('lib/ui')
+
 local keyboard = require('lib/keyboard_mapper')
 local move_box = require('lib/move_box')
-local player = require('lib/player')
-local ui = require('lib/ui')
 
 local state = {
   ready = false,
@@ -692,6 +694,7 @@ end
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
   if state.ready == true then
     ui:update_inventory_count()
+    player:update_inventory_items()
   end
 end)
 
@@ -937,7 +940,6 @@ end)
 
 
 
-
 --- HELPERS
 function printTable(tbl, indent)
   indent = indent or 0
@@ -951,4 +953,36 @@ function printTable(tbl, indent)
       windower.add_to_chat(8, indentString .. tostring(key) .. ": " .. tostring(value))
     end
   end
+end
+
+function shorten_ability_name(name)
+  local function shortenWord(word)
+    local result = ""
+    local vowelPreserved = false
+
+    for char in word:gmatch(".") do
+      if #result < 3 then
+        if char:match("[aeiouAEIOU]") then
+          if not vowelPreserved then
+            result = result .. char -- Keep the first vowel
+            vowelPreserved = true
+          end
+        else
+          result = result .. char -- Always keep consonants
+        end
+      else
+        break -- Stop once we hit 4 characters
+      end
+    end
+
+    return result
+  end
+
+  -- Process each word and combine them into camelCase
+  local shortenedName = name:gsub("(%a)([%a]*)", function(firstLetter, restOfWord)
+    return firstLetter:upper() .. shortenWord(restOfWord)
+  end):gsub("%s+", "") -- Remove spaces to form camelCase
+
+  -- Trim the overall name if it's still too long
+  return shortenedName:sub(1, 6)
 end

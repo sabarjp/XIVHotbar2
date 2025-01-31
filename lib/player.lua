@@ -53,6 +53,7 @@ player.has_apogee = false
 player.has_trance = false
 player.has_sekko = false
 player.set_blue_magic = nil -- nil here means that we do not know yet!
+player.items = {}
 
 local debug = false
 
@@ -293,6 +294,68 @@ function player:execute_action(slot)
     windower.chat.input('//input ' .. action.action)
   else
     windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>') -- This is for JA, WS and MA
+  end
+end
+
+--------------------------------------------------------------------
+-- Auto item functions
+--------------------------------------------------------------------
+function player:update_inventory_items()
+  self.items = {}
+  local bag = windower.ffxi.get_items(0)
+
+  if bag then
+    for _, item in ipairs(bag) do
+      if item.id and item.id ~= 0 then
+        local res_item = resources.items[item.id]
+
+        if res_item.category == 'Usable' then
+          local target = ''
+
+          -- Highest priority: Self-only targeting
+          if res_item.targets['Self'] and not (res_item.targets['Player'] or res_item.targets['Party'] or res_item.targets['Ally'] or res_item.targets['Enemy'] or res_item.targets['Object'] or res_item.targets['Corpse']) then
+            target = 'me'
+
+            -- Second priority: Friendly targeting (Player/Party/Ally), but no enemies or objects
+          elseif (res_item.targets['Player'] or res_item.targets['Party'] or res_item.targets['Ally']) and not (res_item.targets['Enemy'] or res_item.targets['Object'] or res_item.targets['Corpse']) then
+            target = 'stpc'
+
+            -- Third priority: Enemy targeting, but no objects or corpses
+          elseif (res_item.targets['Enemy'] or res_item.targets['NPC']) and not (res_item.targets['Object'] or res_item.targets['Corpse']) then
+            target = 'stnpc'
+
+            -- Lowest priority: Objects, corpses, mixed targets
+          else
+            target = 'st'
+          end
+
+          table.insert(self.items, { name = res_item.en, target = target })
+        end
+      end
+    end
+  end
+end
+
+function player:get_item_from_filter(filter)
+  if filter then
+    if tonumber(filter) then
+      -- number means to explicitly use an item slot instead
+      local matched_item = self.items[tonumber(filter)]
+      if matched_item then
+        return matched_item
+      end
+    else
+      -- no number means to filter by name, getting first match
+      local matched_item
+
+      for _, item in ipairs(self.items) do
+        if string.find(item.name, filter) then
+          matched_item = item
+          break
+        end
+      end
+      return matched_item
+    end
   end
 end
 

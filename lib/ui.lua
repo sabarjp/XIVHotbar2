@@ -638,7 +638,6 @@ function ui:setup_hotbar_numbers_text(text, theme_options)
   text:show()
 end
 
--- init slot
 function ui:init_slot(row, column, theme_options)
   local slot_pos_x, slot_pos_y                = self:get_slot_xy(row, column)
   local right_slot_pos_x                      = slot_pos_x - windower.get_windower_settings().x_res + 16
@@ -1037,9 +1036,9 @@ function ui:show(player_hotbar, environment)
   end
 end
 
-----------------
+------------------------------------------------------
 -- Actions UI --
-----------------
+------------------------------------------------------
 
 -- This function loads up the actions from a specific hotbar. This is
 -- called after all the preliminary setup has been done to parse and load the
@@ -1136,9 +1135,11 @@ function ui:load_action(row, slot, environment, action, player_vitals)
         self.theme.tp_cost_color_blue)
       self.hotbars[row].slot_cost[slot]:text(tostring(math.max(1000, player_vitals.tp)))
       -- if action is an item/gearswap
-    elseif S { 'item', 'gs', 'macro' }:contains(action.type) then
+    elseif S { 'gs', 'macro' }:contains(action.type) then
       self:setup_default_slot_icons(action.type, row, slot)
       -- If no custom icon is defined, just put on a cog.
+    elseif action.type == 'item' then
+      self:setup_slot_icons('/images/icons/custom/item.png', row, slot)
     else
       self:setup_default_slot_icons('default', row, slot)
     end
@@ -1153,7 +1154,9 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       '/themes/' .. (self.theme.frame_theme:lower()) .. '/outline.png')
 
     self.hotbars[row].slot_frames[slot]:show()
-    self.hotbars[row].slot_texts[slot]:text(action.alias)
+    if action.alias and #action.alias > 0 then
+      self.hotbars[row].slot_texts[slot]:text(action.alias)
+    end
     self.hotbars[row].slot_keys[slot]:show()
 
 
@@ -1878,7 +1881,7 @@ function ui:light_up_action(x, y, row, column, player_hotbar, environment, vital
   self.hover_icon:show()
   local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. column]
   if (self.theme.show_description == true and action ~= nil) then
-    if (S { 'ma', 'ja', 'ws', 'pet' }:contains(action.type)) then
+    if (S { 'ma', 'ja', 'ws', 'pet', 'item' }:contains(action.type)) then
       if (self.current_row ~= row or self.current_column ~= column) then
         local text_msg = ""
         local line_space = 6
@@ -1890,6 +1893,9 @@ function ui:light_up_action(x, y, row, column, player_hotbar, environment, vital
           self.action_description:text(text_msg)
         elseif (action.type == "ws") then
           text_msg = formatter.format_ws_info(database, action.action, action.target)
+          self.action_description:text(text_msg)
+        elseif (action.type == "item") then
+          text_msg = formatter.format_item_info(database, action.action, action.target)
           self.action_description:text(text_msg)
         end
         local _, count = text_msg:gsub('\n', '\n')
@@ -1916,7 +1922,5 @@ end
     Register events
 ]] --
 windower.register_event('incoming chunk', update_buffs)
-
-
 
 return ui

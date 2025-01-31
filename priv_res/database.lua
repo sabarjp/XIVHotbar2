@@ -48,6 +48,7 @@ database.ma                = {}
 database.ja                = {}
 database.ws                = {}
 database.bstpet            = {}
+database.items             = {}
 
 local wpn_img_ids          = {
   ['H2H']          = 0,
@@ -75,6 +76,7 @@ function database:import()
   self:parse_ws_lua()
   self:parse_spells_lua()
   self:parse_bstpets_lua()
+  self:parse_items()
 
   return true
 end
@@ -83,6 +85,7 @@ function database:destroy()
   self.ma     = {}
   self.ja     = {}
   self.ws     = {}
+  self.items  = {}
   self.bstpet = {}
 end
 
@@ -289,6 +292,20 @@ function database:parse_bstpets_lua()
 
       self.bstpet[(new_ability.name):lower()] = new_ability
     end
+  end
+end
+
+function database:parse_items()
+  local items = res.items
+  local item_desc = res.item_descriptions
+
+  for key, _ in pairs(items) do
+    local new_item                      = {}
+    new_item.id                         = tostring(items[key].id)
+    new_item.name                       = items[key].en
+    new_item.desc                       = (item_desc[key] and item_desc[key].en) or ""
+
+    self.items[(new_item.name):lower()] = new_item
   end
 end
 

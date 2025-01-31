@@ -89,6 +89,8 @@ action_manager.hotbar_settings = {}
 action_manager.hotbar_settings.max = 1
 action_manager.hotbar_settings.active_hotbar = 1
 action_manager.hotbar_settings.active_environment = 'battle'
+-- tracks usable inventory items for autoitem slots
+action_manager.items = {}
 
 _job_fileG = {}
 _job_fileG.xivhotbar_keybinds_job = {}
@@ -257,7 +259,29 @@ local function add_action(am, action, environment, hotbar, slot)
       status = false
     end
 
-    am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = action
+    if action.type == 'autoitem' then
+      -- AUTO ITEM is the only type of action that gets loaded at runtime, as opposed to at parse time,
+      -- due to the dynamic nature of detecting the items.
+      local filter = action.action or ""
+      local item = player:get_item_from_filter(filter)
+
+      if item then
+        local new_action = {
+          alias = shorten_ability_name(item.name),
+          type = 'item',
+          target = item.target,
+          icon = action.icon,
+          action = item.name
+        }
+
+        am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = new_action
+      else
+        -- Couldn't load item, blank out the slot
+        am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = nil
+      end
+    else
+      am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = action
+    end
   end
 end
 
@@ -278,20 +302,6 @@ local function reindex_action_table(actions_table)
   actions_table.target = reindex_table(actions_table.target)
   actions_table.alias = reindex_table(actions_table.alias)
   actions_table.icon = reindex_table(actions_table.icon)
-end
-
-local function shorten_ability_name(name)
-  local function extractConsonants(word)
-    return word:sub(2):gsub("[aeiouAEIOU]", "") -- Remove vowels from the rest of the word
-  end
-
-  local shortenedName = name:gsub("(%a)([%a]*)", function(firstLetter, restOfWord)
-    local consonants = extractConsonants(restOfWord)
-    return firstLetter:upper() .. consonants
-  end)
-
-  -- Keep the result within 6 characters if needed
-  return shortenedName:sub(1, 6)
 end
 
 local function fill_action_table(file_table, file_key, actions_table)
@@ -427,7 +437,7 @@ function action_req_check(action_array)
 
     -- Check if weapon skill is learned.
     return is_weaponskill_learned(action_name)
-  elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' then
+  elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' or action_type == 'autoitem' then
     -- Always allow these action types.
     return true
   else
@@ -1061,6 +1071,9 @@ end
 -- This function is responsible for actually loading the LUA file definitions
 -- and transforming them to be ready to be mapped to the hotbars.
 function action_manager:load(player)
+  -- First time load of the inventory
+  player:update_inventory_items()
+
   action_manager:init_action_tables() -- Create/Initialize MainJob, SubJob, Stance, Weaponskill, Stance Tables
 
   local basepath = windower.addon_path .. 'data/' .. player.name .. '/'
