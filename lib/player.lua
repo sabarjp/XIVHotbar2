@@ -63,6 +63,12 @@ function player:get_finishing_moves()
   return self.finishing_moves
 end
 
+function player:get_hotbar_info_without_vitals()
+  local hotbar = action_manager.hotbar
+  local active_environment = action_manager.hotbar_settings.active_environment
+  return hotbar, active_environment
+end
+
 function player:get_hotbar_info()
   local hotbar = action_manager.hotbar
   local active_environment = action_manager.hotbar_settings.active_environment

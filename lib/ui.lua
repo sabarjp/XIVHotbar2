@@ -1888,17 +1888,22 @@ function ui:hovered(x, y)
   local off_x, off_y = pos_x + 60, pos_y + 100
 
   if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
-    return nil, 100 -- Immediate return when in battle area
+    return nil, 100 -- Immediate return when in environment toggle area
   end
+
+  local player_hotbar, environment = player:get_hotbar_info_without_vitals()
 
   -- Check hotbar slots
   for h = 1, #self.hotbars do
     for i = 1, self.theme.columns do
-      pos_x, pos_y = self:get_slot_xy(h, i)
-      off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
+      local action = player_hotbar[environment]['hotbar_' .. h]['slot_' .. i]
+      if action ~= nil then
+        pos_x, pos_y = self:get_slot_xy(h, i)
+        off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
 
-      if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
-        return h, i -- Return immediately once a slot is found
+        if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
+          return h, i -- Return immediately once a slot is found
+        end
       end
     end
   end
@@ -1907,12 +1912,15 @@ function ui:hovered(x, y)
 end
 
 -- this shows the tooltip for an action
-function ui:light_up_action(x, y, row, column, player_hotbar, environment, vitals)
+function ui:light_up_action(x, y, row, column)
   local icon_x, icon_y = self:get_slot_xy(row, column)
   self.hover_icon:pos(icon_x - 1, icon_y - 1)
   self.hover_icon:alpha(255)
   self.hover_icon:show()
+
+  local player_hotbar, environment = player:get_hotbar_info_without_vitals()
   local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. column]
+
   if (self.theme.show_description == true and action ~= nil) then
     if (S { 'ma', 'ja', 'ws', 'pet', 'item' }:contains(action.type)) then
       if (self.current_row ~= row or self.current_column ~= column) then

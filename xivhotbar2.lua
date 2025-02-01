@@ -373,8 +373,6 @@ end)
 local current_hotbar = -1
 local current_action = -1
 
-
-
 local function mouse_hotbars(type, x, y, delta, blocked)
   return_value = false
 
@@ -408,7 +406,7 @@ local function mouse_hotbars(type, x, y, delta, blocked)
     elseif type == 0 then -- Mouse move
       local hotbar, action = ui:hovered(x, y)
       if (action ~= nil and hotbar ~= nil) then
-        ui:light_up_action(x, y, hotbar, action, player:get_hotbar_info())
+        ui:light_up_action(x, y, hotbar, action)
         return_value = true
       else
         ui:hide_hover()
