@@ -1,20 +1,20 @@
 -- Load and initialize the include file.
 xivhotbar_keybinds_job["Base"] = {
   -- Hotbar #1   Buffs
-  { "battle 1 1",  "ma", "Advancing March",    "me",    "March1" },  -- haste
-  { "battle 1 2",  "ma", "Victory March",      "me",    "March2" },  -- haste
-  { "battle 1 3",  "ma", "Valor Minuet",       "me",    "Minuet1" }, -- attack up
-  { "battle 1 4",  "ma", "Valor Minuet II",    "me",    "Minuet2" }, -- attack up
-  { "battle 1 3",  "ma", "Valor Minuet III",   "me",    "Minuet3" }, -- attack up
-  { "battle 1 4",  "ma", "Valor Minuet IV",    "me",    "Minuet4" }, -- attack up
-  { "battle 1 3",  "ma", "Valor Minuet V",     "me",    "Minuet5" }, -- attack up
-  { "battle 1 5",  "ma", "Sword Madrigal",     "me",    "Madrgl1" }, -- acc up
-  { "battle 1 6",  "ma", "Blade Madrigal",     "me",    "Madrgl2" }, -- acc up
-  { "battle 1 7",  "ma", "Hunter's Prelude",   "me",    "Preld1" },  -- racc up
-  { "battle 1 8",  "ma", "Archer's Prelude",   "me",    "Preld2" },  -- racc up
-  { "battle 1 9",  "ma", "Mage's Ballad",      "me",    "Ballad1" }, -- refresh
-  { "battle 1 10", "ma", "Mage's Ballad II",   "me",    "Ballad2" }, -- refresh
-  { "battle 1 9",  "ma", "Mage's Ballad III",  "me",    "Ballad3" }, -- refresh
+  { "battle 1 1",  "ma", "Advancing March",    "stpc",  "March1" },  -- haste
+  { "battle 1 2",  "ma", "Victory March",      "stpc",  "March2" },  -- haste
+  { "battle 1 3",  "ma", "Valor Minuet",       "stpc",  "Minuet1" }, -- attack up
+  { "battle 1 4",  "ma", "Valor Minuet II",    "stpc",  "Minuet2" }, -- attack up
+  { "battle 1 3",  "ma", "Valor Minuet III",   "stpc",  "Minuet3" }, -- attack up
+  { "battle 1 4",  "ma", "Valor Minuet IV",    "stpc",  "Minuet4" }, -- attack up
+  { "battle 1 3",  "ma", "Valor Minuet V",     "stpc",  "Minuet5" }, -- attack up
+  { "battle 1 5",  "ma", "Sword Madrigal",     "stpc",  "Madrgl1" }, -- acc up
+  { "battle 1 6",  "ma", "Blade Madrigal",     "stpc",  "Madrgl2" }, -- acc up
+  { "battle 1 7",  "ma", "Hunter's Prelude",   "stpc",  "Preld1" },  -- racc up
+  { "battle 1 8",  "ma", "Archer's Prelude",   "stpc",  "Preld2" },  -- racc up
+  { "battle 1 9",  "ma", "Mage's Ballad",      "stpc",  "Ballad1" }, -- refresh
+  { "battle 1 10", "ma", "Mage's Ballad II",   "stpc",  "Ballad2" }, -- refresh
+  { "battle 1 9",  "ma", "Mage's Ballad III",  "stpc",  "Ballad3" }, -- refresh
   -- 11
   { "battle 1 12", "ja", "Clarion Call",       "me",    "Clarion" },
 
@@ -47,26 +47,26 @@ xivhotbar_keybinds_job["Base"] = {
   { "battle 4 1",  "ma", "Magic Finale",       "t",     "Finale" },  -- dispel
   { "battle 4 2",  "ma", "Pining Nocturne",    "t",     "Noctrn" },  -- addle
 
-  { "battle 4 3",  "ma", "Honor March",        "me",    "March3" },  -- only with Marsyas equipped
-  { "battle 4 3",  "ma", "Aria of Passion",    "me",    "Aria P." }, -- only with Loughnashade equipped
+  { "battle 4 3",  "ma", "Honor March",        "stpc",  "March3" },  -- only with Marsyas equipped
+  { "battle 4 3",  "ma", "Aria of Passion",    "stpc",  "Aria P." }, -- only with Loughnashade equipped
 
-  { "battle 4 4",  "ma", "Raptor Mazurka",     "me",    "Mzrka1" },  -- run speed
-  { "battle 4 4",  "ma", "Chocobo Mazurka",    "me",    "Mzrka2" },  -- run speed
+  { "battle 4 4",  "ma", "Raptor Mazurka",     "stpc",  "Mzrka1" },  -- run speed
+  { "battle 4 4",  "ma", "Chocobo Mazurka",    "stpc",  "Mzrka2" },  -- run speed
 
   -- Hotbar #5  Other Buffs
-  { "battle 5 1",  "ma", "Herb Pastoral",      "me",    "Herb P." }, -- poison resist
-  { "battle 5 2",  "ma", "Scop's Operetta",    "me",    "Scop Op" }, -- silence resist
-  { "battle 5 3",  "ma", "Fowl Aubade",        "me",    "Fowl A." }, -- sleep resist
-  { "battle 5 4",  "ma", "Goblin Gavotte",     "me",    "GobGav" },  -- bind resist
-  { "battle 5 5",  "ma", "Puppet's Operetta",  "me",    "PupOpp" },  -- silence resist
-  { "battle 5 6",  "ma", "Gold Capriccio",     "me",    "GldCap" },  -- petrify resist
-  { "battle 5 7",  "ma", "Shining Fantasia",   "me",    "ShnFan" },  -- blind resist
-  { "battle 5 8",  "ma", "Warding Round",      "me",    "WrdRnd" },  -- curse resist
+  { "battle 5 1",  "ma", "Herb Pastoral",      "stpc",  "Herb P." }, -- poison resist
+  { "battle 5 2",  "ma", "Scop's Operetta",    "stpc",  "Scop Op" }, -- silence resist
+  { "battle 5 3",  "ma", "Fowl Aubade",        "stpc",  "Fowl A." }, -- sleep resist
+  { "battle 5 4",  "ma", "Goblin Gavotte",     "stpc",  "GobGav" },  -- bind resist
+  { "battle 5 5",  "ma", "Puppet's Operetta",  "stpc",  "PupOpp" },  -- silence resist
+  { "battle 5 6",  "ma", "Gold Capriccio",     "stpc",  "GldCap" },  -- petrify resist
+  { "battle 5 7",  "ma", "Shining Fantasia",   "stpc",  "ShnFan" },  -- blind resist
+  { "battle 5 8",  "ma", "Warding Round",      "stpc",  "WrdRnd" },  -- curse resist
 
-  { "battle 5 10", "ma", "Sentinel's Scherzo", "ne",    "Schrzo" },  -- protect against hp loss
+  { "battle 5 10", "ma", "Sentinel's Scherzo", "stpc",  "Schrzo" },  -- protect against hp loss
   { "battle 5 11", "ma", "Foe Sirvente",       "stpc",  "Srvnte" },  -- emnity up
   { "battle 5 11", "ma", "Adventurer's Dirge", "stpc",  "Dirge" },   -- emnity down
-  { "battle 5 12", "ma", "Goddess's Hymnus",   "me",    "Hymnus" },  -- reraise
+  { "battle 5 12", "ma", "Goddess's Hymnus",   "stpc",  "Hymnus" },  -- reraise
 
   -- { "battle 5 1",  "ma", "Enchanting Etude",   "me",    "Chr Et1" }, -- chr
   -- { "battle 5 2",  "ma", "Bewitching Etude",   "me",    "Chr Et2" }, -- chr
@@ -100,21 +100,21 @@ xivhotbar_keybinds_job["Base"] = {
   { "battle 6 6",  "ma", "Fire Threnody",      "t",     "FireTr." },
   { "battle 6 7",  "ma", "Ice Threnody",       "t",     "IceTr." },
   { "battle 6 8",  "ma", "Ltng. Threnody",     "t",     "LitTr." },
-  { "battle 6 1",  "ma", "Light Carol",        "t",     "LightCr." },
-  { "battle 6 2",  "ma", "Dark Carol",         "t",     "DarkCr." },
-  { "battle 6 3",  "ma", "Earth Carol",        "t",     "EartCr." },
-  { "battle 6 4",  "ma", "Water Carol",        "t",     "WatCr." },
-  { "battle 6 5",  "ma", "Wind Carol",         "t",     "WindCr." },
-  { "battle 6 6",  "ma", "Fire Carol",         "t",     "FireCr." },
-  { "battle 6 7",  "ma", "Ice Carol",          "t",     "IceCr." },
-  { "battle 6 8",  "ma", "Lightning Carol",    "t",     "LitCr." },
-  { "battle 6 9",  "ma", "Sheepfoe Mambo",     "me",    "Mmbo1" },
-  { "battle 6 10", "ma", "Dragonfoe Mambo",    "me",    "Mmbo2" },
-  { "battle 6 11", "ma", "Knight's Minne",     "me",    "Minne1" }, -- defense up
-  { "battle 6 12", "ma", "Knight's Minne II",  "me",    "Minne2" }, -- defense up
-  { "battle 6 11", "ma", "Knight's Minne III", "me",    "Minne3" }, -- defense up
-  { "battle 6 12", "ma", "Knight's Minne IV",  "me",    "Minne4" }, -- defense up
-  { "battle 6 11", "ma", "Knight's Minne V",   "me",    "Minne5" }, -- defense up
+  { "battle 6 1",  "ma", "Light Carol",        "stpc",  "LightCr." },
+  { "battle 6 2",  "ma", "Dark Carol",         "stpc",  "DarkCr." },
+  { "battle 6 3",  "ma", "Earth Carol",        "stpc",  "EartCr." },
+  { "battle 6 4",  "ma", "Water Carol",        "stpc",  "WatCr." },
+  { "battle 6 5",  "ma", "Wind Carol",         "stpc",  "WindCr." },
+  { "battle 6 6",  "ma", "Fire Carol",         "stpc",  "FireCr." },
+  { "battle 6 7",  "ma", "Ice Carol",          "stpc",  "IceCr." },
+  { "battle 6 8",  "ma", "Lightning Carol",    "stpc",  "LitCr." },
+  { "battle 6 9",  "ma", "Sheepfoe Mambo",     "stpc",  "Mmbo1" },
+  { "battle 6 10", "ma", "Dragonfoe Mambo",    "stpc",  "Mmbo2" },
+  { "battle 6 11", "ma", "Knight's Minne",     "stpc",  "Minne1" }, -- defense up
+  { "battle 6 12", "ma", "Knight's Minne II",  "stpc",  "Minne2" }, -- defense up
+  { "battle 6 11", "ma", "Knight's Minne III", "stpc",  "Minne3" }, -- defense up
+  { "battle 6 12", "ma", "Knight's Minne IV",  "stpc",  "Minne4" }, -- defense up
+  { "battle 6 11", "ma", "Knight's Minne V",   "stpc",  "Minne5" }, -- defense up
 }
 
 
