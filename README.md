@@ -15,6 +15,10 @@ Why use this fork over any other hotbar?
 * Robust Blue Mage support
 * Ranged and Melee WS both work for ranged jobs
 * Spells and abilities have the same priority now, listed from least priority to highest priority.
+* Skillchain and magic burst highlights.
+* Usable items with count.
+* Auto item slots: automatically placing usable items into specified slots.
+* Subtarget over-ride: if a sub-target is being done, pressing an action acts as if the enter key was pressed.
 
 ## Hide Unusable skills
 Skills that cannot be used, such as from level syncing, level capping, a pet dying, etc, will not show up on the hot bar.

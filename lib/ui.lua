@@ -1004,14 +1004,11 @@ function ui:show(player_hotbar, environment)
     self.active_environment['field']:show()
   end
 
-
   self.inventory_count:show()
 
   for h = 1, self.theme.rows, 1 do
     for i = 1, self.theme.columns, 1 do
       local slot = i
-      pos_x, pos_y = self.hotbars[h].slot_recasts[i]:pos()
-
       local action = player_hotbar[environment]['hotbar_' .. h]['slot_' .. slot]
 
       self.hotbars[h].slot_icons[i]:show()
@@ -1042,7 +1039,7 @@ end
 
 -- This function loads up the actions from a specific hotbar. This is
 -- called after all the preliminary setup has been done to parse and load the
--- files.
+-- files. This function is called on all hotbar reloads and on environment toggle.
 function ui:load_player_hotbar(player_hotbar, environment, player_vitals)
   if environment == 'field' then
     self.active_environment['field']:color(255, 255, 255)
@@ -1093,9 +1090,11 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       end
     end
 
+    self.hotbars[row].slot_backgrounds[slot]:show()
+
     -- if slot has a skill (ma, ja or ws)
     if S { 'ma', 'ja' }:contains(action.type) then
-      self.hotbars[row].slot_backgrounds[slot]:alpha(200)
+      self.hotbars[row].slot_backgrounds[slot]:alpha(200) -- ma/ja will have a more solid background
       local skill = nil
       local slot_image = nil
       if database[action.type][(action.action):lower()] ~= nil then

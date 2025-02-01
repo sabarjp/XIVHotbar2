@@ -925,6 +925,7 @@ function action_manager:build_custom(action, alias, icon)
   return self:build(CUSTOM_TYPE, action, nil, alias, icon)
 end
 
+-- This is done when the MOVE interface is enabled.
 function action_manager:swap_actions(player, swap_table)
   local s_row  = swap_table.source.row
   local s_slot = swap_table.source.slot
@@ -984,6 +985,7 @@ function action_manager:swap_actions(player, swap_table)
   end
 end
 
+-- This is done when the MOVE interface is enabled.
 function action_manager:remove_action(player, remove_table)
   local row = remove_table.source.row
   local slot = remove_table.source.slot
