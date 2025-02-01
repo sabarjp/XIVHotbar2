@@ -1004,14 +1004,11 @@ function ui:show(player_hotbar, environment)
     self.active_environment['field']:show()
   end
 
-
   self.inventory_count:show()
 
   for h = 1, self.theme.rows, 1 do
     for i = 1, self.theme.columns, 1 do
       local slot = i
-      pos_x, pos_y = self.hotbars[h].slot_recasts[i]:pos()
-
       local action = player_hotbar[environment]['hotbar_' .. h]['slot_' .. slot]
 
       self.hotbars[h].slot_icons[i]:show()
@@ -1042,7 +1039,7 @@ end
 
 -- This function loads up the actions from a specific hotbar. This is
 -- called after all the preliminary setup has been done to parse and load the
--- files.
+-- files. This function is called on all hotbar reloads and on environment toggle.
 function ui:load_player_hotbar(player_hotbar, environment, player_vitals)
   if environment == 'field' then
     self.active_environment['field']:color(255, 255, 255)
@@ -1093,9 +1090,11 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       end
     end
 
+    self.hotbars[row].slot_backgrounds[slot]:show()
+
     -- if slot has a skill (ma, ja or ws)
     if S { 'ma', 'ja' }:contains(action.type) then
-      self.hotbars[row].slot_backgrounds[slot]:alpha(200)
+      self.hotbars[row].slot_backgrounds[slot]:alpha(200) -- ma/ja will have a more solid background
       local skill = nil
       local slot_image = nil
       if database[action.type][(action.action):lower()] ~= nil then
@@ -1137,10 +1136,14 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       -- if action is an item/gearswap
     elseif S { 'gs', 'macro' }:contains(action.type) then
       self:setup_default_slot_icons(action.type, row, slot)
-      -- If no custom icon is defined, just put on a cog.
     elseif action.type == 'item' then
-      self:setup_slot_icons('/images/icons/custom/item.png', row, slot)
+      local itemCount = player.item_count[action.action]
+      if itemCount then
+        self.hotbars[row].slot_cost[slot]:text(tostring(itemCount))
+      end
+      self:setup_item_slot_icons(action.action, row, slot)
     else
+      -- If no custom icon is defined, just put on a cog.
       self:setup_default_slot_icons('default', row, slot)
     end
 
@@ -1199,6 +1202,36 @@ end
 function ui:setup_default_slot_icons(type, row, slot)
   self.hotbars[row].slot_icons[slot]:pos(self:get_slot_xy(row, slot))
   self.hotbars[row].slot_icons[slot]:path(self.default_image_paths[type])
+  self.hotbars[row].slot_icons[slot]:show()
+end
+
+function ui:setup_item_slot_icons(name, row, slot)
+  local img_path = '/images/icons/custom/item.png'
+  name = name:lower()
+
+  local function fileExists(filename)
+    local file = io.open(filename, "r")
+    if file then
+      file:close()
+      return true
+    else
+      return false
+    end
+  end
+
+  if database.items[name] ~= nil then
+    local id = database.items[name].id
+
+    if id then
+      local temp_path = 'images/icons/items/' .. id .. '.bmp'
+      if fileExists(windower.addon_path .. temp_path) then
+        img_path = 'images/icons/items/' .. id .. '.bmp'
+      end
+    end
+  end
+
+  self.hotbars[row].slot_icons[slot]:pos(self:get_slot_xy(row, slot))
+  self.hotbars[row].slot_icons[slot]:path(windower.addon_path .. img_path)
   self.hotbars[row].slot_icons[slot]:show()
 end
 
@@ -1855,17 +1888,22 @@ function ui:hovered(x, y)
   local off_x, off_y = pos_x + 60, pos_y + 100
 
   if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
-    return nil, 100 -- Immediate return when in battle area
+    return nil, 100 -- Immediate return when in environment toggle area
   end
+
+  local player_hotbar, environment = player:get_hotbar_info_without_vitals()
 
   -- Check hotbar slots
   for h = 1, #self.hotbars do
     for i = 1, self.theme.columns do
-      pos_x, pos_y = self:get_slot_xy(h, i)
-      off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
+      local action = player_hotbar[environment]['hotbar_' .. h]['slot_' .. i]
+      if action ~= nil then
+        pos_x, pos_y = self:get_slot_xy(h, i)
+        off_x, off_y = pos_x + self.image_width, pos_y + self.image_height
 
-      if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
-        return h, i -- Return immediately once a slot is found
+        if x >= pos_x and x <= off_x and y >= pos_y and y <= off_y then
+          return h, i -- Return immediately once a slot is found
+        end
       end
     end
   end
@@ -1874,12 +1912,15 @@ function ui:hovered(x, y)
 end
 
 -- this shows the tooltip for an action
-function ui:light_up_action(x, y, row, column, player_hotbar, environment, vitals)
+function ui:light_up_action(x, y, row, column)
   local icon_x, icon_y = self:get_slot_xy(row, column)
   self.hover_icon:pos(icon_x - 1, icon_y - 1)
   self.hover_icon:alpha(255)
   self.hover_icon:show()
+
+  local player_hotbar, environment = player:get_hotbar_info_without_vitals()
   local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. column]
+
   if (self.theme.show_description == true and action ~= nil) then
     if (S { 'ma', 'ja', 'ws', 'pet', 'item' }:contains(action.type)) then
       if (self.current_row ~= row or self.current_column ~= column) then

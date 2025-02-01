@@ -44,6 +44,7 @@ defaults.Hotbar.HideActionCost               = false
 defaults.Hotbar.HighlightMagicBurst          = true
 defaults.Hotbar.HighlightSkillchain          = true
 defaults.Hotbar.UseAnimatedHighlights        = true
+defaults.Hotbar.ConfirmSubtargetIfNecessary  = true
 
 defaults.Hotbar.Offsets                      = {}
 defaults.Hotbar.Offsets.First                = { Vertical = false, OffsetX = 675, OffsetY = 1010 }

@@ -51,17 +51,18 @@ theme.apply = function(settings)
 
 
   -- Hotbar
-  local sh                              = settings.Hotbar
-  options.show_description              = sh.ShowActionDescription
-  options.hide_empty_slots              = sh.HideEmptySlots
-  options.hide_action_names             = sh.HideActionName
-  options.hide_action_cost              = sh.HideActionCost
-  options.hide_recast_text              = sh.HideRecastText
-  options.highlight_magic_burst         = sh.HighlightMagicBurst
-  options.highlight_skill_chain         = sh.HighlightSkillchain
-  options.use_animated_highlights       = sh.UseAnimatedHighlights
-  options.slot_icon_scale               = sh.SlotIconScale
-  options.offsets                       = {
+  local sh                               = settings.Hotbar
+  options.show_description               = sh.ShowActionDescription
+  options.hide_empty_slots               = sh.HideEmptySlots
+  options.hide_action_names              = sh.HideActionName
+  options.hide_action_cost               = sh.HideActionCost
+  options.hide_recast_text               = sh.HideRecastText
+  options.highlight_magic_burst          = sh.HighlightMagicBurst
+  options.highlight_skill_chain          = sh.HighlightSkillchain
+  options.use_animated_highlights        = sh.UseAnimatedHighlights
+  options.confirm_subtarget_if_necessary = sh.ConfirmSubtargetIfNecessary
+  options.slot_icon_scale                = sh.SlotIconScale
+  options.offsets                        = {
     ['1'] = { Vertical = sh.Offsets.First.Vertical, OffsetX = sh.Offsets.First.OffsetX, OffsetY = sh.Offsets.First.OffsetY },
     ['2'] = { Vertical = sh.Offsets.Second.Vertical, OffsetX = sh.Offsets.Second.OffsetX, OffsetY = sh.Offsets.Second.OffsetY },
     ['3'] = { Vertical = sh.Offsets.Third.Vertical, OffsetX = sh.Offsets.Third.OffsetX, OffsetY = sh.Offsets.Third.OffsetY },
@@ -70,42 +71,42 @@ theme.apply = function(settings)
     ['6'] = { Vertical = sh.Offsets.Sixth.Vertical, OffsetX = sh.Offsets.Sixth.OffsetX, OffsetY = sh.Offsets.Sixth.OffsetY }
   }
   -- [Hotbar - Theme]
-  options.slot_theme                    = sh.Theme.Slot
-  options.frame_theme                   = sh.Theme.Frame
+  options.slot_theme                     = sh.Theme.Slot
+  options.frame_theme                    = sh.Theme.Frame
   -- [Hotbar - Style]
-  options.hotbar_number                 = sh.Style.HotbarCount
-  options.rows                          = sh.Style.HotbarCount
-  options.columns                       = sh.Style.HotbarLength
-  options.slot_opacity                  = sh.Style.SlotAlpha
-  options.slot_spacing                  = sh.Style.SlotSpacing
-  options.hotbar_spacing                = sh.Style.HotbarSpacing
-  options.offset_x                      = sh.Style.OffsetX
-  options.offset_y                      = sh.Style.OffsetY
-  options.slot_icon_scale               = sh.Style.SlotIconScale
+  options.hotbar_number                  = sh.Style.HotbarCount
+  options.rows                           = sh.Style.HotbarCount
+  options.columns                        = sh.Style.HotbarLength
+  options.slot_opacity                   = sh.Style.SlotAlpha
+  options.slot_spacing                   = sh.Style.SlotSpacing
+  options.hotbar_spacing                 = sh.Style.HotbarSpacing
+  options.offset_x                       = sh.Style.OffsetX
+  options.offset_y                       = sh.Style.OffsetY
+  options.slot_icon_scale                = sh.Style.SlotIconScale
   -- [Hotbar - Misc]
-  options.feedback_max_opacity          = sh.Misc.Feedback.Opacity
-  options.feedback_speed                = sh.Misc.Feedback.Speed
-  options.disabled_slot_opacity         = sh.Misc.Disabled.Opacity
+  options.feedback_max_opacity           = sh.Misc.Feedback.Opacity
+  options.feedback_speed                 = sh.Misc.Feedback.Speed
+  options.disabled_slot_opacity          = sh.Misc.Disabled.Opacity
 
   -- Texts
-  local st                              = settings.Texts
+  local st                               = settings.Texts
 
   -- [Texts - Action Names] --
-  options.font_names                    = st.ActionName.Font
-  options.font_size_names               = st.ActionName.Size
-  options.font_alpha_names              = st.ActionName.Color.Alpha
-  options.font_color_red_names          = st.ActionName.Color.Red
-  options.font_color_green_names        = st.ActionName.Color.Green
-  options.font_color_blue_names         = st.ActionName.Color.Blue
-  options.font_stroke_width_names       = st.ActionName.Stroke.Width
-  options.font_stroke_alpha_names       = st.ActionName.Stroke.Alpha
-  options.font_stroke_color_red_names   = st.ActionName.Stroke.Red
-  options.font_stroke_color_green_names = st.ActionName.Stroke.Green
-  options.font_stroke_color_blue_names  = st.ActionName.Stroke.Blue
-  options.font_offset_x_names           = st.ActionName.Pos.OffsetX
-  options.font_offset_y_names           = st.ActionName.Pos.OffsetY
-  options.font_bg_enable_names          = st.ActionName.Background.Enable
-  options.font_bg_opacity_names         = st.ActionName.Background.Opacity
+  options.font_names                     = st.ActionName.Font
+  options.font_size_names                = st.ActionName.Size
+  options.font_alpha_names               = st.ActionName.Color.Alpha
+  options.font_color_red_names           = st.ActionName.Color.Red
+  options.font_color_green_names         = st.ActionName.Color.Green
+  options.font_color_blue_names          = st.ActionName.Color.Blue
+  options.font_stroke_width_names        = st.ActionName.Stroke.Width
+  options.font_stroke_alpha_names        = st.ActionName.Stroke.Alpha
+  options.font_stroke_color_red_names    = st.ActionName.Stroke.Red
+  options.font_stroke_color_green_names  = st.ActionName.Stroke.Green
+  options.font_stroke_color_blue_names   = st.ActionName.Stroke.Blue
+  options.font_offset_x_names            = st.ActionName.Pos.OffsetX
+  options.font_offset_y_names            = st.ActionName.Pos.OffsetY
+  options.font_bg_enable_names           = st.ActionName.Background.Enable
+  options.font_bg_opacity_names          = st.ActionName.Background.Opacity
 
 
   -- [Texts - Keys] --

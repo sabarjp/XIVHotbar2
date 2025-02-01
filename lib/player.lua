@@ -55,10 +55,18 @@ player.has_sekko = false
 player.set_blue_magic = nil -- nil here means that we do not know yet!
 player.items = {}
 
-local debug = false
+-- quick lookup for item count
+player.item_count = {}
+
 
 function player:get_finishing_moves()
   return self.finishing_moves
+end
+
+function player:get_hotbar_info_without_vitals()
+  local hotbar = action_manager.hotbar
+  local active_environment = action_manager.hotbar_settings.active_environment
+  return hotbar, active_environment
 end
 
 function player:get_hotbar_info()
@@ -269,7 +277,7 @@ function player:get_active_hotbar()
   return action_manager.hotbar_settings.active_hotbar
 end
 
--- execute action from given slot
+-- Actually execute action from given slot
 function player:execute_action(slot)
   action = action_manager:get_action(slot)
 
@@ -286,14 +294,26 @@ function player:execute_action(slot)
     return
   elseif action.type == 'macro' then -- Single line macro in the JOB.lua file. Seperated by semicolons.
     windower.chat.input('//' .. action.action)
-  elseif action.type == 'gs' then    -- Gear Swap
+  elseif action.type == 'gs' then    -- Gear Swap Addon
     windower.chat.input('//gs ' .. action.action)
-  elseif action.type == 's' then
+  elseif action.type == 's' then     -- Send Addon
     windower.chat.input('//send ' .. action.action)
   elseif action.type == 'input' then
     windower.chat.input('//input ' .. action.action)
   else
-    windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>') -- This is for JA, WS and MA
+    local confirmed_st = false
+    if action_manager.theme_options.confirm_subtarget_if_necessary then
+      local st = windower.ffxi.get_mob_by_target('st')
+      if st then
+        windower.send_command('setkey enter down')
+        coroutine.sleep(0.1)
+        windower.send_command('setkey enter up')
+        confirmed_st = true
+      end
+    end
+    if not confirmed_st then
+      windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>') -- This is for JA, WS and MA
+    end
   end
 end
 
@@ -302,14 +322,17 @@ end
 --------------------------------------------------------------------
 function player:update_inventory_items()
   self.items = {}
-  local bag = windower.ffxi.get_items(0)
+  self.item_count = {}
 
-  if bag then
+  local inv_bag = windower.ffxi.get_items(0)
+  local temp_bag = windower.ffxi.get_items(3)
+
+  local function add_from_bag(bag, items, items_count)
     for _, item in ipairs(bag) do
       if item.id and item.id ~= 0 then
         local res_item = resources.items[item.id]
 
-        if res_item.category == 'Usable' then
+        if res_item.targets and next(res_item.targets) then
           local target = ''
 
           -- Highest priority: Self-only targeting
@@ -329,10 +352,27 @@ function player:update_inventory_items()
             target = 'st'
           end
 
-          table.insert(self.items, { name = res_item.en, target = target })
+          table.insert(items, {
+            name = res_item.en,
+            target = target
+          })
+
+          if items_count[res_item.en] then
+            items_count[res_item.en] = items_count[res_item.en] + item.count
+          else
+            items_count[res_item.en] = item.count
+          end
         end
       end
     end
+  end
+
+  if temp_bag then
+    add_from_bag(temp_bag, self.items, self.item_count)
+  end
+
+  if inv_bag then
+    add_from_bag(inv_bag, self.items, self.item_count)
   end
 end
 
