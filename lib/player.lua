@@ -52,7 +52,7 @@ player.has_parsimony = false
 player.has_apogee = false
 player.has_trance = false
 player.has_sekko = false
-player.set_blue_magic = nil -- nil here means that we do not know yet!
+player.set_blue_magic = nil -- nil here means that we do not know yet, otherwise, acts as a simple list of set spell ids
 player.items = {}
 
 -- quick lookup for item count
@@ -102,6 +102,7 @@ end
 
 -- update player jobs
 function player:update_job(main_id, main, sub_id, sub)
+  self.set_blue_magic = nil
   self.main_job = main
   self.sub_job = sub
   self.main_job_id = main_id
@@ -147,6 +148,22 @@ end
 
 function player:update_blue_magic(blue_spells)
   self.set_blue_magic = blue_spells
+end
+
+function player:get_blue_magic()
+  if self.set_blue_magic then
+    return self.set_blue_magic
+  else
+    -- not available yet, we _might_ be able to get the raw list if we main blu
+    if windower.ffxi.get_player().main_job_id == 16 then
+      local mjobdata = windower.ffxi.get_mjob_data()
+      if mjobdata and mjobdata.spells then
+        return mjobdata.spells
+      end
+    end
+  end
+
+  return {}
 end
 
 function player:update_costs()
@@ -333,24 +350,7 @@ function player:update_inventory_items()
         local res_item = resources.items[item.id]
 
         if res_item.targets and next(res_item.targets) then
-          local target = ''
-
-          -- Highest priority: Self-only targeting
-          if res_item.targets['Self'] and not (res_item.targets['Player'] or res_item.targets['Party'] or res_item.targets['Ally'] or res_item.targets['Enemy'] or res_item.targets['Object'] or res_item.targets['Corpse']) then
-            target = 'me'
-
-            -- Second priority: Friendly targeting (Player/Party/Ally), but no enemies or objects
-          elseif (res_item.targets['Player'] or res_item.targets['Party'] or res_item.targets['Ally']) and not (res_item.targets['Enemy'] or res_item.targets['Object'] or res_item.targets['Corpse']) then
-            target = 'stpc'
-
-            -- Third priority: Enemy targeting, but no objects or corpses
-          elseif (res_item.targets['Enemy'] or res_item.targets['NPC']) and not (res_item.targets['Object'] or res_item.targets['Corpse']) then
-            target = 'stnpc'
-
-            -- Lowest priority: Objects, corpses, mixed targets
-          else
-            target = 'st'
-          end
+          local target = get_tgt_cmd_for_targets(res_item.targets)
 
           table.insert(items, {
             name = res_item.en,

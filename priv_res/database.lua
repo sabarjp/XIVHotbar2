@@ -152,6 +152,7 @@ function database:parse_ws_lua()
     new_weapon_skill.recast  = new_weapon_skill.cast
     new_weapon_skill.element = tostring(contents[key].element)
     new_weapon_skill.range   = ranges[contents[key].range]
+    new_weapon_skill.targets = contents[key].targets
 
     local function change_sc_string(sc_info)
       if sc_info == "" then return nil else return sc_info end
@@ -219,6 +220,7 @@ function database:parse_abilities_lua()
     new_abil.element = tostring(contents[key].element)
     new_abil.prefix  = contents[key].prefix -- useful to detect pet abilities
     new_abil.type    = contents[key].type   -- useful to detect pet abilities
+    new_abil.targets = contents[key].targets
 
     local function change_sc_string(sc_info)
       if sc_info == "" then return nil else return sc_info end
@@ -304,6 +306,7 @@ function database:parse_items()
     new_item.id                         = tostring(items[key].id)
     new_item.name                       = items[key].en
     new_item.desc                       = (item_desc[key] and item_desc[key].en) or ""
+    new_item.targets                    = items[key].targets
 
     self.items[(new_item.name):lower()] = new_item
   end

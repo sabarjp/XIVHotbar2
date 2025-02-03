@@ -206,6 +206,7 @@ local function init_action_table(actions_table)
   actions_table.target = {}
   actions_table.alias = {}
   actions_table.icon = {}
+  actions_table.custom_description = {}
 end
 
 function action_manager:init_action_tables()
@@ -267,7 +268,7 @@ local function add_action(am, action, environment, hotbar, slot)
 
       if item then
         local new_action = {
-          alias = shorten_ability_name(item.name),
+          alias = shorten_name(item.name, 6),
           type = 'item',
           target = item.target,
           icon = action.icon,
@@ -310,12 +311,62 @@ local function fill_action_table(file_table, file_key, actions_table)
   -- file_key is the number for that slot. Example (First Key): 1
   local slot_key = T(file_table[1]:split(' ')) -- Splits 'battle 1 1' into a list {'battle','1','1'}
 
-  -- convert bst cmds to real cmds
   if (file_table[2] == "bstpet") then
+    -- convert bstpet cmds to real cmds
     local ability_name = usable_pet_abilities_name[tonumber(file_table[3])]
     file_table[2] = "ja"
     file_table[3] = ability_name
-    file_table[5] = shorten_ability_name(ability_name)
+    file_table[5] = shorten_name(ability_name, 6)
+  elseif (file_table[2] == "autoblu") then
+    -- convert autoblu cmds to real cmds
+    local blu_spells = player:get_blue_magic()
+    if blu_spells then
+      local blue_spell = blu_spells[tonumber(file_table[3])]
+      if blue_spell then
+        local ability = resources.spells[tonumber(blue_spell)]
+        if ability then
+          local ability_name = ability.en
+
+          file_table[2] = "ma"
+          file_table[3] = ability_name
+          file_table[4] = get_tgt_cmd_for_targets(ability.targets)
+          file_table[5] = shorten_name(ability_name, 6)
+        end
+      end
+    end
+  end
+
+  -- Auto-fill target, if needed
+  if (file_table[4] == 'auto' or file_table[4] == nil) and file_table[3] then
+    local targets
+    local action_name = file_table[3]:lower()
+    local pref
+
+    -- note that we can only auto-target certain things
+    if file_table[2] == 'ma' then
+      targets = htb_database['ma'][action_name].targets
+      pref = 'st'
+    elseif file_table[2] == 'ja' then
+      targets = htb_database['ja'][action_name].targets
+      pref = 't'
+    elseif file_table[2] == 'ws' then
+      targets = htb_database['ws'][action_name].targets
+      pref = 't'
+    elseif file_table[2] == 'item' then
+      targets = htb_database['item'][action_name].targets
+      pref = 't'
+    end
+
+    if targets then
+      file_table[4] = get_tgt_cmd_for_targets(targets, pref)
+    else
+      file_table[4] = 'st'
+    end
+  end
+
+  -- Auto-fill alias, if needed
+  if (file_table[5] == 'auto' or file_table[5] == nil) and file_table[3] then
+    file_table[5] = shorten_name(file_table[3], 6)
   end
 
   actions_table.environment[file_key] = slot_key[1]   --environment is either battle or field
@@ -330,6 +381,12 @@ local function fill_action_table(file_table, file_key, actions_table)
     actions_table.icon[file_key] = file_table[6]      -- name of icon image in images/icons/custom folder
   else
     actions_table.icon[file_key] = ''
+  end
+
+  if (file_table[7] ~= nil) then
+    actions_table.custom_description = file_table[7] -- custom description / tooltip
+  else
+    actions_table.custom_description = ''
   end
 end
 
@@ -430,11 +487,13 @@ function action_req_check(action_array)
   elseif action_type == 'bstpet' then
     -- Check if Beastmaster pet ability is usable.
     return is_pet_ability_usable(action_name)
+  elseif action_type == 'autoblu' then
+    -- for now always assume it can be used
+    return is_blu_spell_usable(action_name)
   elseif action_type == 'ws' then
     if not meets_weaponskill_level_req(action_name) then
       return false
     end
-
     -- Check if weapon skill is learned.
     return is_weaponskill_learned(action_name)
   elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' or action_type == 'autoitem' then
@@ -635,17 +694,18 @@ function is_spell_usable(spell_name_en, player)
   return usable_by_job and usable_by_blu
 end
 
--- help determine if blue magic is set
+-- Help determine if blue magic is set
 function is_blu_spell_set(spell, player)
   -- check if blue magic
   if spell['type'] == 'BlueMagic' then
-    if player.set_blue_magic == nil then
+    local blu_spells = player:get_blue_magic()
+    if blu_spells == nil then
       -- in this scenario, we haven't gotten a packet to know what is set yet,
       -- so we will just assume everything is set until then.
       return true
     end
 
-    for k, v in pairs(player.set_blue_magic) do
+    for k, v in pairs(blu_spells) do
       if v == spell['id'] then
         return true
       end
@@ -656,7 +716,7 @@ function is_blu_spell_set(spell, player)
   end
 end
 
--- helps determine which job or subjob is capable of casting a spell, this mostly applies
+-- Helps determine which job or subjob is capable of casting a spell, this mostly applies
 -- to scholar which has spell casting restrictions due to the addenda.
 function is_spell_usable_by_a_job(spell, player)
   -- Cache player data to avoid redundant calls
@@ -744,6 +804,15 @@ function is_pet_ability_usable(ability_index)
   return false
 end
 
+function is_blu_spell_usable(ability_index)
+  -- really just need to see if index exists
+  local ndx = tonumber(ability_index)
+  if ndx >= 1 and ndx <= #player:get_blue_magic() then
+    return true
+  end
+  return false
+end
+
 function is_weaponskill_learned(ws_name_en)
   for key, val in pairs(ws_list) do
     if ws_list[key]['en'] == ws_name_en then
@@ -805,6 +874,10 @@ local function parse_binds(theme_options, player, job_root)
       end
     end
   end
+
+  -- Blue magic is not done here, it has to be done globally since blue magic can change at any time.
+
+  -- Current items is not done here, it has to be done globally since items can change at any time.
 
   -- Create Learned Weaponskills List
   weaponskills = ws_list

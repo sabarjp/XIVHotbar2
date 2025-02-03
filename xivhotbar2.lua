@@ -68,6 +68,7 @@ first_0x050 = false
 htb_skillchains = require('lib/skillchains')
 htb_bloodpacts = require('lib/bloodpacts')
 htb_blue_spells = require('lib/blue_spells')
+htb_database = require('priv_res/database')
 
 player = require('lib/player')
 ui = require('lib/ui')
@@ -96,6 +97,7 @@ function initialize()
   keyboard:set_bindings(settings.Keybinds)
   keyboard:parse_keybinds()
 
+  htb_database:import()
   ui:setup(theme_options)
   ui:set_player(player)
 
@@ -547,6 +549,7 @@ windower.register_event('logout', function()
 
   skillchains:destroy()
   ui:destroy()
+  htb_database:destroy()
 end)
 
 windower.register_event('unload', function()
@@ -564,6 +567,7 @@ windower.register_event('unload', function()
 
   skillchains:destroy()
   ui:destroy()
+  htb_database:destroy()
 end)
 
 -- DARK ARTS / LIGHT ARTS / ADD:BLK / ADD:WHT  set "stance"
@@ -767,6 +771,7 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
         end
         -- print("  " .. table.concat(binary_dump, "  "))  -- debugging, dump binary
         -- print(table.concat(set_blu_spells, "  ")) -- debugging, dump blu spells
+        if ui.theme.dev_mode then log("Updating blu spells") end
         player:update_blue_magic(set_blu_spells)
       end
     end
@@ -939,8 +944,9 @@ windower.register_event('incoming text', function(text)
 end)
 
 
-
---- HELPERS
+-----------------------------------------------------------------------------
+--- HELPERS / UTILITY FUNCTIONS
+-----------------------------------------------------------------------------
 function printTable(tbl, indent)
   indent = indent or 0
   local indentString = string.rep("  ", indent)
@@ -955,34 +961,204 @@ function printTable(tbl, indent)
   end
 end
 
-function shorten_ability_name(name)
-  local function shortenWord(word)
-    local result = ""
-    local vowelPreserved = false
+--[[
+  shorten_name(name, availableWidth)
 
-    for char in word:gmatch(".") do
-      if #result < 3 then
-        if char:match("[aeiouAEIOU]") then
-          if not vowelPreserved then
-            result = result .. char -- Keep the first vowel
-            vowelPreserved = true
-          end
-        else
-          result = result .. char -- Always keep consonants
-        end
+  This function shortens an ability name to fit within a specified maximum display width,
+  where different characters have varying widths.
+
+  The function works as follows:
+    1. It calculates the total width of the given ability name.
+    2. If the width is already within the available width, it returns the original name.
+    3. If the width exceeds the limit, it processes each word:
+       - Preserves consonants and the first vowel while respecting the width limit.
+       - Dynamically balances the width allocation across multiple words.
+       - Ensures the final shortened name fits within the specified constraint.
+       - Prioritizes rank or quality indicators like roman numerals and modifiers.
+
+  Parameters:
+    - name (string): The ability name to be shortened.
+    - availableWidth (number): The maximum width allowed for the shortened name.
+
+  Example behavior:
+    - shorten_name("Poison Breath", 6) → "PoiBre"
+    - shorten_name("Cocoon", 6) → "Cocoon"
+    - shorten_name("Curaga III", 6) → "Curag3"
+    - shorten_name("Plate Mail +2", 6) → "PlaM+2"
+]]
+function shorten_name(name, availableWidth)
+  -- Width tiers
+  local tier1Chars = { I = true, i = true, j = true, l = true }
+  local tier2Chars = { J = true, L = true, f = true, r = true, t = true }
+  local tier4Chars = {
+    S = true,
+    T = true,
+    U = true,
+    V = true,
+    X = true,
+    Y = true,
+    Z = true,
+    b = true,
+    d = true,
+    h = true,
+    k = true,
+    n = true,
+    p = true,
+    q = true
+  }
+  local tier5Chars = { M = true, W = true, m = true, w = true }
+
+  -- Roman numeral to arabic converter
+  local romanToArabic = { I = 1, II = 2, III = 3, IV = 4, V = 5, VI = 6, VII = 7, VIII = 8, IX = 9, X = 10 }
+
+  -- Function to determine the width of a character
+  local function charWidth(char)
+    if tier1Chars[char] then
+      return 0.443
+    elseif tier2Chars[char] then
+      return 0.722
+    elseif tier4Chars[char] then
+      return 1.165
+    elseif tier5Chars[char] then
+      return 1.329
+    else
+      return 1.00 -- Default width for everything else
+    end
+  end
+
+  -- Function to calculate the total width of a given string
+  local function calculateWidth(str)
+    local totalWidth = 0
+    for char in str:gmatch(".") do
+      totalWidth = totalWidth + charWidth(char)
+    end
+    return totalWidth
+  end
+
+  -- Shortens a word while considering the width budget
+  local function shortenWord(word, maxWidth)
+    local result = ""
+    local widthUsed = 0
+
+    for i = 1, #word do
+      local char = word:sub(i, i)
+      local width = charWidth(char)
+
+      -- Only add the character if it fits within the remaining width
+      if widthUsed + width <= maxWidth then
+        result = result .. char
+        widthUsed = widthUsed + width
       else
-        break -- Stop once we hit 4 characters
+        break
       end
     end
 
     return result
   end
 
-  -- Process each word and combine them into camelCase
-  local shortenedName = name:gsub("(%a)([%a]*)", function(firstLetter, restOfWord)
-    return firstLetter:upper() .. shortenWord(restOfWord)
-  end):gsub("%s+", "") -- Remove spaces to form camelCase
+  -- Function to handle special cases for ranks or modifiers
+  local function extractRankOrModifier(words)
+    local lastWord = words[#words]
 
-  -- Trim the overall name if it's still too long
-  return shortenedName:sub(1, 6)
+    -- Check for roman numerals or modifiers
+    if romanToArabic[lastWord] then
+      return "" .. romanToArabic[lastWord], #lastWord -- Return arabic numeral and width used
+    elseif lastWord:match("^[%+%-]%d+$") then
+      return lastWord, #lastWord                      -- Return modifier as-is
+    end
+    return nil, 0                                     -- No special case found
+  end
+
+  -- Split name into words
+  local words = {}
+  for word in name:gmatch("%S+") do
+    table.insert(words, word)
+  end
+
+  -- Handle special case for rank or modifier
+  local specialSuffix, suffixWidth = extractRankOrModifier(words)
+  if specialSuffix then
+    table.remove(words)                                             -- Remove the suffix from the main shortening process
+    availableWidth = availableWidth - calculateWidth(specialSuffix) -- Reserve space for the suffix
+  end
+
+  -- Calculate initial width
+  local initialWidth = calculateWidth(name)
+  if initialWidth <= availableWidth then
+    return name -- If the width is already under the limit, return as-is
+  end
+
+  local shortenedName = ""
+  local remainingWidth = availableWidth
+
+  if #words == 1 then
+    -- Single-word case: use the full width budget
+    local shortenedWord = shortenWord(words[1], remainingWidth)
+    shortenedName = shortenedWord
+  else
+    -- Multi-word case: dynamically allocate widths based on remaining budget
+    for i, word in ipairs(words) do
+      local isLastWord = (i == #words)
+      local maxWidth = isLastWord and remainingWidth or (remainingWidth / (#words - i + 1))
+      local shortenedWord = shortenWord(word, maxWidth)
+
+      if i == 1 then
+        shortenedName = shortenedWord -- Keep the first word as is
+      else
+        -- Convert the first character of subsequent words to uppercase (camel case)
+        shortenedName = shortenedName .. shortenedWord:sub(1, 1):upper() .. shortenedWord:sub(2)
+      end
+
+      remainingWidth = remainingWidth - calculateWidth(shortenedWord)
+    end
+  end
+
+  -- Append special suffix if present
+  if specialSuffix then
+    shortenedName = shortenedName .. specialSuffix
+  end
+
+  return shortenedName
+end
+
+--[[
+  get_tgt_cmd_for_targets(targets, target_preference)
+
+  This function will take a targetting array and return the target string that can target
+  all of the valid targets. The target array is used in abilities and items windower output
+  to indicate what can be targeted, E.g. targets['Self'] indicates self is targetable.
+
+  The target string to me returned is appropriate to use between angle brackets for
+  targeting, such as <me>, <t>, etc.
+
+  The optional target_preference param is used to change the default target preference of 'st'
+  to anything else, most typically, 't'.
+]]
+function get_tgt_cmd_for_targets(targets, target_preference)
+  local target = 'st'
+
+  if target_preference ~= nil then
+    target = target_preference
+  end
+
+
+  if targets == nil then
+    return target
+  end
+
+
+  -- Highest priority: Self-only targeting
+  if targets['Self'] and not (targets['Player'] or targets['Party'] or targets['Ally'] or targets['Enemy'] or targets['Object'] or targets['Corpse']) then
+    target = 'me'
+
+    -- Second priority: Friendly targeting (Player/Party/Ally), but no enemies or objects
+  elseif (targets['Player'] or targets['Party'] or targets['Ally']) and not (targets['Enemy'] or targets['Object'] or targets['Corpse']) then
+    target = 'stpc'
+
+    -- Third priority: Enemy targeting, but no objects or corpses
+  elseif (targets['Enemy'] or targets['NPC']) and not (targets['Object'] or targets['Corpse']) then
+    target = 'stnpc'
+  end
+
+  return target
 end

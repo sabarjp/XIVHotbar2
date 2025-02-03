@@ -26,7 +26,6 @@
         SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ]]
 
-local database = require('priv_res/database') -- TODO: IMPORT FROM RES
 local formatter = require('lib/text_formatter')
 local keyboard = require('lib/keyboard_mapper')
 
@@ -396,7 +395,6 @@ end
 ---------------------------------------------------------------
 
 function ui:setup(theme_options)
-  database:import()
   self.theme                  = theme_options
   self.theme.hide_action_cost = theme_options.hide_action_cost
   self.image_width            = math.floor(self.image_width * self.theme.slot_icon_scale)
@@ -857,8 +855,6 @@ end
 ---------------------------------------------------------------
 
 function ui:destroy()
-  database:destroy()
-
   self.hotbar = {
     initialized = false,
     ready = false,
@@ -1097,8 +1093,8 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       self.hotbars[row].slot_backgrounds[slot]:alpha(200) -- ma/ja will have a more solid background
       local skill = nil
       local slot_image = nil
-      if database[action.type][(action.action):lower()] ~= nil then
-        skill = database[action.type][(action.action):lower()]
+      if htb_database[action.type][(action.action):lower()] ~= nil then
+        skill = htb_database[action.type][(action.action):lower()]
 
         -- set the icon image
         self.hotbars[row].slot_icons[slot]:path(windower.addon_path ..
@@ -1126,7 +1122,7 @@ function ui:load_action(row, slot, environment, action, player_vitals)
       self.hotbars[row].slot_icons[slot]:show()
       self.hotbars[row].slot_overlay[slot]:show()
     elseif action.type == 'ws' then
-      local ws = database[action.type][(action.action):lower()]
+      local ws = htb_database[action.type][(action.action):lower()]
       self:setup_slot_icons('/images/icons/weapons/' .. string.format("%02d", ws.icon) .. '.png', row, slot)
 
       -- show cost of WS
@@ -1219,8 +1215,8 @@ function ui:setup_item_slot_icons(name, row, slot)
     end
   end
 
-  if database.items[name] ~= nil then
-    local id = database.items[name].id
+  if htb_database.items[name] ~= nil then
+    local id = htb_database.items[name].id
 
     if id then
       local temp_path = 'images/icons/items/' .. id .. '.bmp'
@@ -1346,7 +1342,7 @@ function ui:update_mp_cost(row, slot, action)
   -- some ja have mp cost, like blood pacts
   if action.type == 'ma' or action.type == 'ja' then
     local skill = nil
-    skill = database[action.type][(action.action):lower()]
+    skill = htb_database[action.type][(action.action):lower()]
 
     if skill and skill.mpcost ~= nil and skill.mpcost ~= 0 then
       local mp_cost = self:get_true_mp_cost(skill)
@@ -1370,7 +1366,7 @@ function ui:update_tp_cost(row, slot, action)
     end
   elseif action.type == 'ja' then
     local skill = nil
-    skill = database[action.type][(action.action):lower()]
+    skill = htb_database[action.type][(action.action):lower()]
 
     if skill and skill.tpcost ~= nil and skill.tpcost ~= 0 and skill.prefix ~= '/pet' then
       local tp_cost = self:get_true_tp_cost(skill)
@@ -1411,7 +1407,7 @@ function ui:check_and_set_disable(action)
       elseif is_spell_usable(action.action, self.player) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
-      elseif mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then
+      elseif mp < self:get_true_mp_cost(htb_database[action.type][(action.action):lower()]) then
         self.disabled_slots.no_vitals[action.action] = true
         return true
       else
@@ -1429,13 +1425,13 @@ function ui:check_and_set_disable(action)
       elseif is_job_ability_usable(action.action, self.player) ~= true then
         self.disabled_slots.actions[action.action] = true
         return true
-      elseif action.type == 'ja' and database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].type ~= 'Monster' and mp < self:get_true_mp_cost(database[action.type][(action.action):lower()]) then
+      elseif action.type == 'ja' and htb_database[action.type] and htb_database[action.type][(action.action):lower()] and htb_database[action.type][(action.action):lower()].type ~= 'Monster' and mp < self:get_true_mp_cost(htb_database[action.type][(action.action):lower()]) then
         -- print('Action is JA and not monster ' ..
-        --   action.action .. ' ' .. database[action.type][(action.action):lower()].type)
+        --   action.action .. ' ' .. htb_database[action.type][(action.action):lower()].type)
         -- mostly for smn, who have JAs with mana cost
         self.disabled_slots.no_vitals[action.action] = true
         return true
-      elseif database[action.type] and database[action.type][(action.action):lower()] and database[action.type][(action.action):lower()].oid == "72" and not can_pet_ws then
+      elseif htb_database[action.type] and htb_database[action.type][(action.action):lower()] and htb_database[action.type][(action.action):lower()].oid == "72" and not can_pet_ws then
         -- disable sic when pet tp is too low
         self.disabled_slots.actions[action.action] = true
         return true
@@ -1459,7 +1455,7 @@ function ui:check_if_burstable(action)
   end
 
   if action.type == 'ma' then
-    local skill = database[action.type][(action.action):lower()]
+    local skill = htb_database[action.type][(action.action):lower()]
     local mb_elements = nil
 
     if skill and (skill.type ~= "BlueMagic" or (skill.type == "BlueMagic" and is_burst_affinity)) then
@@ -1475,7 +1471,7 @@ function ui:check_if_burstable(action)
       end
     end
   elseif action.type == 'ja' then
-    local skill = database[action.type][(action.action):lower()]
+    local skill = htb_database[action.type][(action.action):lower()]
     local mb_elements = nil
 
     -- if its a avatar skill, need to use data from other table
@@ -1503,11 +1499,11 @@ function ui:check_if_chainable(action)
 
   -- NOT SUPPORTED YET: sch immanence
   if action.type == 'ja' or action.type == 'ws' then
-    local skill = database[action.type][(action.action):lower()]
+    local skill = htb_database[action.type][(action.action):lower()]
 
     -- if its a bstpet skill, need to transform to our other table
     if skill.prefix == '/pet' and skill.type == 'Monster' then
-      skill = database['bstpet'][(action.action):lower()]
+      skill = htb_database['bstpet'][(action.action):lower()]
     end
 
     local potentials = nil
@@ -1530,7 +1526,7 @@ function ui:check_if_chainable(action)
       end
     end
   elseif action.type == "ma" then
-    local skill = database[action.type][(action.action):lower()]
+    local skill = htb_database[action.type][(action.action):lower()]
 
     if skill then
       if skill.type == "BlueMagic" and is_chain_affinity then
@@ -1629,7 +1625,7 @@ function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, 
 
     -- if its magic, look for it in spells
     if (action.type == 'ja' or action.type == 'ma') then
-      skill = database[action.type][(action.action):lower()]
+      skill = htb_database[action.type][(action.action):lower()]
       action_recasts = self.recasts[action.type]
     end
 
@@ -1927,16 +1923,16 @@ function ui:light_up_action(x, y, row, column)
         local text_msg = ""
         local line_space = 6
         if (action.type == "ma") then
-          text_msg = formatter.format_spell_info(database, action.action, action.target)
+          text_msg = formatter.format_spell_info(htb_database, action.action, action.target)
           self.action_description:text(text_msg)
         elseif (action.type == "ja") then
-          text_msg = formatter.format_ability_info(database, action.action, action.target)
+          text_msg = formatter.format_ability_info(htb_database, action.action, action.target)
           self.action_description:text(text_msg)
         elseif (action.type == "ws") then
-          text_msg = formatter.format_ws_info(database, action.action, action.target)
+          text_msg = formatter.format_ws_info(htb_database, action.action, action.target)
           self.action_description:text(text_msg)
         elseif (action.type == "item") then
-          text_msg = formatter.format_item_info(database, action.action, action.target)
+          text_msg = formatter.format_item_info(htb_database, action.action, action.target)
           self.action_description:text(text_msg)
         end
         local _, count = text_msg:gsub('\n', '\n')
