@@ -1385,6 +1385,19 @@ function ui:update_inventory_count()
   end
 end
 
+function ui:update_item_counts()
+  local am = player:get_action_manager()
+  -- update items
+  for _, item_def in ipairs(am:get_item_slot_data()) do
+    if item_def.location.environment == am.hotbar_settings.active_environment then
+      local itemCount = player.item_count[item_def.item] or 0
+      local hotbar = ui.hotbars[tonumber(item_def.location.hotbar)]
+      local slot_cost = hotbar.slot_cost[tonumber(item_def.location.slot)]
+      slot_cost:text(tostring(itemCount))
+    end
+  end
+end
+
 --------------------------------------------------------------------
 -- Recast timers, disabled updates, and other frame-by-frame things
 --------------------------------------------------------------------

@@ -546,7 +546,9 @@ windower.register_event('logout', function()
   }
   loaded = false
   first_load_done = false
-
+  player = nil
+  keyboard = nil
+  move_box = nil
   skillchains:destroy()
   ui:destroy()
   htb_database:destroy()
@@ -564,7 +566,9 @@ windower.register_event('unload', function()
   }
   loaded = false
   first_load_done = false
-
+  player = nil
+  keyboard = nil
+  move_box = nil
   skillchains:destroy()
   ui:destroy()
   htb_database:destroy()
@@ -697,8 +701,9 @@ end
 
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
   if state.ready == true then
-    ui:update_inventory_count()
-    player:update_inventory_items()
+    ui:update_inventory_count()                    -- update inv count
+    player:update_inventory_items()                -- updates player's item arrays
+    player:get_action_manager():update_all_items() -- updates items on the hot bar
   end
 end)
 

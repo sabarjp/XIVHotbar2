@@ -51,6 +51,7 @@ local learned_spells_name = {}
 local learned_ws_id = {}
 local learned_abilities_id = {}
 local usable_pet_abilities_name = {}
+local item_slots = {} -- we need to track item slots so we can update them dynamically
 
 -- global that is used by the UI to indicate where learnable abilities exist
 not_learned_spells_row_slot = {}
@@ -218,7 +219,7 @@ function action_manager:init_action_tables()
   init_action_table(stance_actions)
 end
 
--- build action
+-- Build action
 function action_manager:build(type, action, target, alias, icon)
   local new_action  = {}
 
@@ -237,7 +238,11 @@ function action_manager:build(type, action, target, alias, icon)
   return new_action
 end
 
--- add given action to a hotbar
+function action_manager:get_item_slot_data()
+  return item_slots
+end
+
+-- Add given action to a hotbar
 local function add_action(am, action, environment, hotbar, slot)
   status = true
   if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
@@ -260,29 +265,7 @@ local function add_action(am, action, environment, hotbar, slot)
       status = false
     end
 
-    if action.type == 'autoitem' then
-      -- AUTO ITEM is the only type of action that gets loaded at runtime, as opposed to at parse time,
-      -- due to the dynamic nature of detecting the items.
-      local filter = action.action or ""
-      local item = player:get_item_from_filter(filter)
-
-      if item then
-        local new_action = {
-          alias = shorten_name(item.name, 6),
-          type = 'item',
-          target = item.target,
-          icon = action.icon,
-          action = item.name
-        }
-
-        am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = new_action
-      else
-        -- Couldn't load item, blank out the slot
-        am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = nil
-      end
-    else
-      am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = action
-    end
+    am.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = action
   end
 end
 
@@ -312,13 +295,13 @@ local function fill_action_table(file_table, file_key, actions_table)
   local slot_key = T(file_table[1]:split(' ')) -- Splits 'battle 1 1' into a list {'battle','1','1'}
 
   if (file_table[2] == "bstpet") then
-    -- convert bstpet cmds to real cmds
+    -- Convert bstpet cmds to real cmds
     local ability_name = usable_pet_abilities_name[tonumber(file_table[3])]
     file_table[2] = "ja"
     file_table[3] = ability_name
     file_table[5] = shorten_name(ability_name, 6)
   elseif (file_table[2] == "autoblu") then
-    -- convert autoblu cmds to real cmds
+    -- Convert autoblu cmds to real cmds
     local blu_spells = player:get_blue_magic()
     if blu_spells then
       local blue_spell = blu_spells[tonumber(file_table[3])]
@@ -334,6 +317,39 @@ local function fill_action_table(file_table, file_key, actions_table)
         end
       end
     end
+  elseif (file_table[2] == 'autoitem') then
+    -- Note: AUTO ITEM is tricky due to the dynamic nature of detecting the items.
+    local filter = file_table[3] or ""
+    local item = player:get_item_from_filter(filter)
+
+    table.insert(item_slots, {
+      auto = true,
+      item = item and item.name,
+      filter = file_table[3],
+      location = {
+        environment = slot_key[1],
+        hotbar = slot_key[2],
+        slot = slot_key[3]
+      }
+    })
+
+    if item then
+      file_table[2] = 'item'
+      file_table[3] = item.name
+      file_table[4] = item.target
+      file_table[5] = shorten_name(item.name, 6)
+    end
+  elseif (file_table[2] == 'item') then
+    table.insert(item_slots, {
+      auto = false,
+      item = file_table[3],
+      filter = nil,
+      location = {
+        environment = slot_key[1],
+        hotbar = slot_key[2],
+        slot = slot_key[3]
+      }
+    })
   end
 
   -- Auto-fill target, if needed
@@ -353,7 +369,7 @@ local function fill_action_table(file_table, file_key, actions_table)
       targets = htb_database['ws'][action_name].targets
       pref = 't'
     elseif file_table[2] == 'item' then
-      targets = htb_database['item'][action_name].targets
+      targets = htb_database['items'][action_name].targets
       pref = 't'
     end
 
@@ -398,7 +414,7 @@ function action_manager:get_stance()
   return current_stance or ""
 end
 
--- create a default hotbar
+-- Create a default hotbar
 local function create_default_hotbar()
   windower.console.write('XIVHotbar: no hotbar found. Creating a default hotbar.')
   --add default actions to the new hotbar
@@ -485,18 +501,18 @@ function action_req_check(action_array)
     -- Check if job ability is learned.
     return is_job_ability_learned(action_name)
   elseif action_type == 'bstpet' then
-    -- Check if Beastmaster pet ability is usable.
     return is_pet_ability_usable(action_name)
   elseif action_type == 'autoblu' then
-    -- for now always assume it can be used
     return is_blu_spell_usable(action_name)
+  elseif action_type == 'autoitem' then
+    return is_item_usable(action_name)
   elseif action_type == 'ws' then
     if not meets_weaponskill_level_req(action_name) then
       return false
     end
     -- Check if weapon skill is learned.
     return is_weaponskill_learned(action_name)
-  elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' or action_type == 'autoitem' then
+  elseif action_type == 'ct' or action_type == 'pet' or action_type == 'input' or action_type == 'macro' or action_type == 'gs' or action_type == 'item' then
     -- Always allow these action types.
     return true
   else
@@ -813,6 +829,13 @@ function is_blu_spell_usable(ability_index)
   return false
 end
 
+function is_item_usable(item_filter)
+  if player:get_item_from_filter(item_filter) then
+    return true
+  end
+  return false
+end
+
 function is_weaponskill_learned(ws_name_en)
   for key, val in pairs(ws_list) do
     if ws_list[key]['en'] == ws_name_en then
@@ -991,6 +1014,39 @@ function action_manager:reset_hotbar()
   end
 
   self.hotbar_settings.active_hotbar = 1
+end
+
+function action_manager:update_all_items()
+  -- update items
+  for _, item_def in ipairs(item_slots) do
+    local slot = self.hotbar[item_def.location.environment]['hotbar_' .. item_def.location.hotbar]
+        ['slot_' .. item_def.location.slot]
+    if slot then
+      if item_def.auto then
+        -- remove the auto item, so we can re-define it
+        self.hotbar[item_def.location.environment]['hotbar_' .. item_def.location.hotbar]['slot_' .. item_def.location.slot] = nil
+
+        local filter = item_def.filter or ""
+        local item = player:get_item_from_filter(filter)
+
+        if item then
+          local new_action = {
+            target = item.target,
+            type = 'item',
+            action = item.name,
+            alias = shorten_name(item.name, 6)
+          }
+
+          self.hotbar[item_def.location.environment]['hotbar_' .. item_def.location.hotbar]['slot_' .. item_def.location.slot] =
+              new_action
+        end
+      else
+        -- manual item, nothing to do
+      end
+    end
+  end
+
+  ui:update_item_counts()
 end
 
 -- build a custom action

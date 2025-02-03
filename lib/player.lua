@@ -58,6 +58,9 @@ player.items = {}
 -- quick lookup for item count
 player.item_count = {}
 
+function player:get_items()
+  return self.items
+end
 
 function player:get_finishing_moves()
   return self.finishing_moves
@@ -74,6 +77,10 @@ function player:get_hotbar_info()
   local active_environment = action_manager.hotbar_settings.active_environment
   local vitals = windower.ffxi.get_player().vitals
   return hotbar, active_environment, vitals
+end
+
+function player:get_action_manager()
+  return action_manager
 end
 
 -- initialize player
