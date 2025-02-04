@@ -83,6 +83,8 @@ theme.apply = function(settings)
   options.offset_x                       = sh.Style.OffsetX
   options.offset_y                       = sh.Style.OffsetY
   options.slot_icon_scale                = sh.Style.SlotIconScale
+  options.slot_width                     = sh.Style.SlotWidth
+  options.slot_height                    = sh.Style.SlotHeight
   -- [Hotbar - Misc]
   options.feedback_max_opacity           = sh.Misc.Feedback.Opacity
   options.feedback_speed                 = sh.Misc.Feedback.Speed

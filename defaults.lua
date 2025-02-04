@@ -65,6 +65,8 @@ defaults.Hotbar.Style.SlotIconScale          = 1
 defaults.Hotbar.Style.SlotAlpha              = 100
 defaults.Hotbar.Style.SlotSpacing            = 14
 defaults.Hotbar.Style.HotbarSpacing          = 56
+defaults.Hotbar.Style.SlotWidth              = 40
+defaults.Hotbar.Style.SlotHeight             = 40
 defaults.Hotbar.Style.OffsetX                = 0
 defaults.Hotbar.Style.OffsetY                = 0
 

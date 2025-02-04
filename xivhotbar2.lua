@@ -61,6 +61,7 @@ defaults.Keybinds = keyboard.default_keybinds
 local settings_path = 'data/settings.xml'
 settings = config.load(settings_path, defaults)
 keyboard:cast_all_to_strings(settings)
+config.save(settings) -- save globals/missing defaults
 
 -- Load theme options according to settings --
 local theme = require('theme')
@@ -101,11 +102,6 @@ function initialize()
 
   if windower_player ~= nil and state.loading == false and state.ready == false then
     state.loading = true
-
-    -- Generate base file on the first time
-    if not fileExists(windower.addon_path .. settings_path) then
-      config.save(settings, 'all')
-    end
 
     -- Load Theme
     theme_options = theme.apply(settings)
@@ -1202,5 +1198,14 @@ function fileExists(filename)
     return true
   else
     return false
+  end
+end
+
+function get_max_char_width(space)
+  if theme_options then
+    local size = math.floor(space / (theme_options.font_size_names * 0.6))
+    return size
+  else
+    return 6
   end
 end

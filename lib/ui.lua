@@ -102,6 +102,7 @@ ui.current_text_size = 0
 
 ui.image_height = 40
 ui.image_width = 40
+
 ui.overlay_image_height = 24
 ui.overlay_image_width = 24
 ui.player = {}
@@ -110,10 +111,7 @@ ui.playerinv = {}
 
 local outline_images_setup = {
   draggable = false,
-  size = {
-    width  = ui.image_width + 6,
-    height = ui.image_height + 6
-  },
+  size = {},
   texture = {
     fit = false
   },
@@ -122,10 +120,7 @@ local outline_images_setup = {
 
 local images_setup = {
   draggable = false,
-  size = {
-    width  = ui.image_width,
-    height = ui.image_height
-  },
+  size = {},
   texture = {
     fit = false
   },
@@ -134,17 +129,12 @@ local images_setup = {
 
 local overlay_images_setup = {
   draggable = false,
-  size = {
-    overlay_width  = ui.overlay_image_width,
-    overlay_height = ui.overlay_image_height
-  },
+  size = {},
   texture = {
     fit = true
   },
   visible = false
 }
-
-
 
 -- ui variables
 ui.feedback_icon = nil
@@ -398,10 +388,27 @@ end
 function ui:setup(theme_options)
   self.theme                  = theme_options
   self.theme.hide_action_cost = theme_options.hide_action_cost
-  self.image_width            = math.floor(self.image_width * self.theme.slot_icon_scale)
-  self.image_height           = math.floor(self.image_height * self.theme.slot_icon_scale)
-  self.overlay_image_width    = math.floor(self.overlay_image_width * self.theme.slot_icon_scale)
-  self.overlay_image_height   = math.floor(self.overlay_image_height * self.theme.slot_icon_scale)
+
+  self.image_width            = math.floor(self.theme.slot_width * self.theme.slot_icon_scale)
+  self.image_height           = math.floor(self.theme.slot_height * self.theme.slot_icon_scale)
+  self.overlay_image_width    = math.floor(self.theme.slot_width * 0.6 * self.theme.slot_icon_scale)
+  self.overlay_image_height   = math.floor(self.theme.slot_height * 0.6 * self.theme.slot_icon_scale)
+
+  images_setup.size           = {
+    width  = self.image_width,
+    height = self.image_height
+  }
+
+  outline_images_setup.size   = {
+    width  = self.image_width + 6,
+    height = self.image_height + 6
+  }
+
+  overlay_images_setup.size   = {
+    overlay_width  = self.overlay_image_width,
+    overlay_height = self.overlay_image_height
+  }
+
   self.hover_icon             = images.new(table.copy(images_setup, true))
   self:setup_image(self.hover_icon,
     windower.addon_path .. '/themes/' .. (theme_options.frame_theme:lower()) .. '/frame.png')
@@ -441,8 +448,11 @@ function ui:setup_sizing()
   self:setup_env_text(self.active_environment['battle'], self.theme)
   self:setup_env_text(self.active_environment['field'], self.theme)
 
+  self.image_width = self.theme.slot_width
+  self.image_height = self.theme.slot_height
 
-  self.hotbar_width = ((40 * self.theme.columns) + self.theme.slot_spacing * (self.theme.columns - 1))
+
+  self.hotbar_width = ((self.image_width * self.theme.columns) + self.theme.slot_spacing * (self.theme.columns - 1))
   self.scaled_pos_x = windower.get_windower_settings().ui_x_res
   self.scaled_pos_y = windower.get_windower_settings().ui_y_res
   self.pos_x = 0

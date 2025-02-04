@@ -299,7 +299,7 @@ local function fill_action_table(file_table, file_key, actions_table)
     local ability_name = usable_pet_abilities_name[tonumber(file_table[3])]
     file_table[2] = "ja"
     file_table[3] = ability_name
-    file_table[5] = shorten_name(ability_name, 6)
+    file_table[5] = shorten_name(ability_name, get_max_char_width(action_manager.theme_options.slot_width))
   elseif (file_table[2] == "autoblu") then
     -- Convert autoblu cmds to real cmds
     local blu_spells = player:get_blue_magic()
@@ -313,7 +313,7 @@ local function fill_action_table(file_table, file_key, actions_table)
           file_table[2] = "ma"
           file_table[3] = ability_name
           file_table[4] = get_tgt_cmd_for_targets(ability.targets)
-          file_table[5] = shorten_name(ability_name, 6)
+          file_table[5] = shorten_name(ability_name, get_max_char_width(action_manager.theme_options.slot_width))
         end
       end
     end
@@ -337,7 +337,7 @@ local function fill_action_table(file_table, file_key, actions_table)
       file_table[2] = 'item'
       file_table[3] = item.name
       file_table[4] = item.target
-      file_table[5] = shorten_name(item.name, 6)
+      file_table[5] = shorten_name(item.name, get_max_char_width(action_manager.theme_options.slot_width))
     end
   elseif (file_table[2] == 'item') then
     table.insert(item_slots, {
@@ -382,7 +382,7 @@ local function fill_action_table(file_table, file_key, actions_table)
 
   -- Auto-fill alias, if needed
   if (file_table[5] == 'auto' or file_table[5] == nil) and file_table[3] then
-    file_table[5] = shorten_name(file_table[3], 6)
+    file_table[5] = shorten_name(file_table[3], get_max_char_width(action_manager.theme_options.slot_width))
   end
 
   actions_table.environment[file_key] = slot_key[1]   --environment is either battle or field
@@ -1091,7 +1091,7 @@ function action_manager:update_all_items()
             target = item.target,
             type = 'item',
             action = item.name,
-            alias = shorten_name(item.name, 6)
+            alias = shorten_name(item.name, get_max_char_width(self.theme_options.slot_width))
           }
 
           self.hotbar[item_def.location.environment]['hotbar_' .. item_def.location.hotbar]['slot_' .. item_def.location.slot] =

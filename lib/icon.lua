@@ -32,6 +32,8 @@ icon.height = 40
 
 function icon:init(theme_options)
   self.theme = theme_options
+  self.width = theme_options.slot_width
+  self.height = theme_options.slot_height
   self.width = math.floor(self.width * self.theme.slot_icon_scale)
   self.height = math.floor(self.height * self.theme.slot_icon_scale)
 end
@@ -72,7 +74,7 @@ function icon:get_slot_y(h, i)
         y = self.theme.offsets[tostring(h)].OffsetY + ((self.width + self.theme.slot_spacing) * (i - 1))
       else
         y = self.theme.offsets[tostring(h)].OffsetY +
-        ((self.width + self.theme.slot_spacing) * (i - math.floor(self.theme.columns / 2) - 1))
+            ((self.width + self.theme.slot_spacing) * (i - math.floor(self.theme.columns / 2) - 1))
       end
     else
       y = self.theme.offsets[tostring(h)].OffsetY
