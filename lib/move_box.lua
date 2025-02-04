@@ -114,6 +114,16 @@ function move_boxes:init(theme_options)
   end
 end
 
+function move_boxes:destroy()
+  move_boxes.theme = {}
+  box_config = {
+    count = 0,
+    rows = {},
+    icons = {},
+    sub_config = {}
+  }
+end
+
 function move_boxes:enable()
   for i = 1, self.theme.rows do
     box_config.rows[i]:show()

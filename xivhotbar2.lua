@@ -43,41 +43,40 @@ _addon.commands = { 'xivhotbar', 'htb', 'execute', 'xivhotbar2' }
 ----------------------------------------
 
 -- Libs --
+defaults = require('defaults')
 config = require('config')
-file = require('files')
 texts = require('texts')
 images = require('images')
+file = require('files')
 tables = require('tables')
 packets = require('packets')
 resources = require('resources')
+
 require('luau')
 
 -- User settings --
 local defaults = require('defaults')
+local keyboard = require('lib/keyboard_mapper')
+defaults.Keybinds = keyboard.default_keybinds
+local settings_path = 'data/settings.xml'
+settings = config.load(settings_path, defaults)
+keyboard:cast_all_to_strings(settings)
 
 -- Load theme options according to settings --
-local settings
-local theme
+local theme = require('theme')
 local theme_options
 
-first_0x050 = false
-
-
-
--- Addon Dependencies --
+-- Our Own Addon Dependencies and Globals
 htb_skillchains = require('lib/skillchains')
 htb_bloodpacts = require('lib/bloodpacts')
 htb_blue_spells = require('lib/blue_spells')
 htb_database = require('priv_res/database')
-
 player = require('lib/player')
 ui = require('lib/ui')
-
-local keyboard = require('lib/keyboard_mapper')
-
-local move_box = require('lib/move_box')
+move_box = require('lib/move_box')
 
 local state = {
+  loading = false,
   ready = false,
   demo = false,
   inventory_ready = false,
@@ -94,70 +93,126 @@ nil_equip_bool = false
 
 -- initialize addon --
 function initialize()
-  keyboard:set_bindings(settings.Keybinds)
-  keyboard:parse_keybinds()
-
-  htb_database:import()
-  ui:setup(theme_options)
-  ui:set_player(player)
-
-  move_box:init(theme_options)
   local windower_player = windower.ffxi.get_player()
-  local windower_info = windower.ffxi.get_info()
 
-  local server = resources.servers[windower_info.server]
-      and resources.servers[windower_info.server].en
-      or "PrivateServer_" .. tostring(windower_info.server)
+  if state.ready == true then
+    return -- already loaded
+  end
 
-  if theme_options.enable_weapon_switching == true then
-    -- unlikely to be available unless the world has already been loaded in
-    local items = windower.ffxi.get_items()
-    if items ~= nil then
-      if not (items.equipment.main_bag == 0 and items.equipment.main == 0) then
-        set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
-      end
-      if not (items.equipment.range_bag == 0 and items.equipment.range == 0) then
-        set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
+  if windower_player ~= nil and state.loading == false and state.ready == false then
+    state.loading = true
+
+    -- Generate base file on the first time
+    if not fileExists(windower.addon_path .. settings_path) then
+      config.save(settings, 'all')
+    end
+
+    -- Load Theme
+    theme_options = theme.apply(settings)
+    player.id = windower_player.id
+
+    if keyboard then
+      keyboard:set_bindings(settings.Keybinds)
+      keyboard:parse_keybinds()
+    end
+
+    htb_database:import()
+    ui:setup(theme_options)
+    ui:set_player(player)
+
+    if ui.theme.dev_mode then log("Initializing XIVHotbar2.") end
+
+    move_box:init(theme_options)
+    local windower_info = windower.ffxi.get_info()
+
+    local server = resources.servers[windower_info.server]
+        and resources.servers[windower_info.server].en
+        or "PrivateServer_" .. tostring(windower_info.server)
+
+    if theme_options.enable_weapon_switching == true then
+      -- unlikely to be available unless the world has already been loaded in
+      local items = windower.ffxi.get_items()
+      if items ~= nil then
+        if not (items.equipment.main_bag == 0 and items.equipment.main == 0) then
+          set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
+        end
+        if not (items.equipment.range_bag == 0 and items.equipment.range == 0) then
+          set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
+        end
       end
     end
+
+    local current_mp = windower_player.vitals.mp
+    local current_tp = windower_player.vitals.tp
+
+    ui:update_mp(current_mp)
+    ui:update_tp(current_tp)
+
+    local pet = windower.ffxi.get_mob_by_target('pet') or nil
+    if pet ~= nil then
+      player:update_pet(pet.name)
+    end
+
+    player:initialize(windower_player, server, theme_options)
+    player:load_hotbar()
+    keyboard:bind_keys(theme_options.rows, theme_options.columns)
+    skillchains:initialize()
+
+    ui:load_player_hotbar(player:get_hotbar_info())
+    ui.hotbar.ready = true
+    ui.hotbar.initialized = true
+    state.loading = false
+    state.ready = true
+
+    if ui.theme.dev_mode then log("Done initializing XIVHotbar2.") end
+  else
+    -- Not ready yet, try again in a moment
+    coroutine.sleep(0.2)
+    initialize()
   end
+end
 
-  local current_mp = windower_player.vitals.mp
-  local current_tp = windower_player.vitals.tp
-
-  ui:update_mp(current_mp)
-  ui:update_tp(current_tp)
-
-  local pet = windower.ffxi.get_mob_by_target('pet') or nil
-  if pet ~= nil then
-    player:update_pet(pet.name)
-  end
-
-  player:initialize(windower_player, server, theme_options)
-  player:load_hotbar()
-  keyboard:bind_keys(theme_options.rows, theme_options.columns)
-  skillchains:initialize()
-
-  ui:load_player_hotbar(player:get_hotbar_info())
-  ui.hotbar.ready = true
-  ui.hotbar.initialized = true
-  state.ready = true
+function destroy()
+  if ui and ui.theme.dev_mode then log("Destroying XIVHotbar2.") end
+  if ui then ui:hide() end
+  if keyboard then keyboard:unbind_keys(theme_options.rows, theme_options.columns) end
+  theme_options = nil
+  state = {
+    loading = false,
+    ready = false,
+    demo = false,
+    inventory_ready = false,
+    inventory_loading = false
+  }
+  loaded = false
+  first_load_done = false
+  if skillchains then skillchains:destroy() end
+  if ui then ui:destroy() end
+  if htb_database then htb_database:destroy() end
+  if move_box then move_box:destroy() end
+  if player then player:destroy() end
 end
 
 -- some things can't be accessed until world is loaded
 function on_world_load()
-  if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
+  if ui and state.ready then
+    if ui.theme.dev_mode then log("Zoning. Reloading Hotbar.") end
 
-  if theme_options.enable_weapon_switching == true then
-    local items = windower.ffxi.get_items()
-    set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
-    set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
+    if theme_options.enable_weapon_switching == true then
+      local items = windower.ffxi.get_items()
+      set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
+      set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
+    end
+
+    ui.hotbar.hide_hotbars = false
+    ui:show(player:get_hotbar_info())
+
+    reload_hotbar()
+  else
+    print('Not ready for world load, retrying.')
+    coroutine.sleep(1)
+    on_world_load()
   end
-
-  ui.hotbar.hide_hotbars = false
-  ui:show(player:get_hotbar_info())
-
-  reload_hotbar()
 end
 
 -- trigger hotbar action --
@@ -241,16 +296,6 @@ end
 -- Bind Events --
 -----------------
 
--- ON LOGOUT --
-windower.register_event('logout', function()
-  coroutine.sleep(3)
-  if windower.ffxi.get_player() == nil then
-    windower.send_command('lua reload xivhotbar2')
-    ui:hide()
-    keyboard:unbind_keys(theme_options.rows, theme_options.columns)
-  end
-end)
-
 
 local function save_hotbar(hotbar, index)
   if index <= theme_options.rows then
@@ -273,6 +318,7 @@ windower.register_event('addon command', function(command, ...)
   command = command and command:lower() or 'help'
   local args = { ... }
 
+  --if ui and player and state.ready then
   if command == 'reload' then
     if ui.theme.dev_mode then log('Reloading Hotbar.') end
     reload_hotbar()
@@ -315,7 +361,9 @@ windower.register_event('addon command', function(command, ...)
       save_hotbar(settings.Hotbar.Offsets.Fifth, 5)
       save_hotbar(settings.Hotbar.Offsets.Sixth, 6)
 
-      config.save(settings)
+      local windower_player = windower.ffxi.get_player()
+      config.save(settings, windower_player.name)
+
       print('XIVHOTBAR2: Layout mode disabled, writing new positions to settings.xml.')
       move_box:disable()
     end
@@ -352,12 +400,21 @@ windower.register_event('addon command', function(command, ...)
         skillchains:attempt_skillchain(target.id, props)
       end
     end
+  elseif command == 'logout' then
+    destroy()
+  elseif command == 'login' then
+    initialize()
   end
+  --end
 end)
 
 
 -- ON KEY --
 windower.register_event('keyboard', function(dik, flags, blocked)
+  if not ui or not player or not state.ready then
+    return
+  end
+
   if ui.hotbar.ready == false or windower.ffxi.get_info().chat_open then
     return
   end
@@ -378,7 +435,7 @@ local current_action = -1
 local function mouse_hotbars(type, x, y, delta, blocked)
   return_value = false
 
-  if not ui.hotbar.hide_hotbars then
+  if ui and state.ready == true and not ui.hotbar.hide_hotbars then
     if type == 1 then -- Mouse left click
       local hotbar, action = ui:hovered(x, y)
       if (action ~= nil) then
@@ -423,7 +480,8 @@ end
 -- Mouse Events
 windower.register_event('mouse', function(type, x, y, delta, blocked)
   return_value = nil
-  if state.ready == true and blocked == false then
+
+  if ui and state.ready == true and blocked == false then
     if state.demo == true then
       return_value = move_box:move_hotbars(type, x, y, delta, blocked)
     else
@@ -439,148 +497,96 @@ local frame_counter = 0
 windower.register_event('prerender', function()
   frame_counter = frame_counter + 1
 
-  if ui.hotbar.ready == false then
-    return
-  end
-
-  if ui.feedback.is_active then
-    ui:show_feedback()
-  end
-
-  if ui.is_setup and ui.hotbar.hide_hotbars == false then
-    moved_row_info = move_box:get_move_box_info()
-    if (moved_row_info.swapped_slots.active == true) then
-      player:swap_actions(moved_row_info.swapped_slots)
-      ui:swap_icons(moved_row_info.swapped_slots)
-      moved_row_info.swapped_slots.active = false
-      ui:load_player_hotbar(player:get_hotbar_info())
-    elseif (moved_row_info.row_active == true) then
-      ui:move_icons(moved_row_info, ui.theme)
-    elseif (moved_row_info.removed_slot.active == true) then
-      player:remove_action(moved_row_info.removed_slot)
-      moved_row_info.removed_slot.active = false
-      ui:load_player_hotbar(player:get_hotbar_info())
+  if ui and state.ready then
+    if ui.hotbar.ready == false then
+      return
     end
 
-    -- Only execute the expensive recast logic every 3 ticks
-    if frame_counter % 3 == 0 then
-      ui:check_recasts(player:get_hotbar_info())
+    if ui.feedback.is_active then
+      ui:show_feedback()
     end
 
-    ui:check_hover()
+    if ui.is_setup and ui.hotbar.hide_hotbars == false then
+      moved_row_info = move_box:get_move_box_info()
+      if (moved_row_info.swapped_slots.active == true) then
+        player:swap_actions(moved_row_info.swapped_slots)
+        ui:swap_icons(moved_row_info.swapped_slots)
+        moved_row_info.swapped_slots.active = false
+        ui:load_player_hotbar(player:get_hotbar_info())
+      elseif (moved_row_info.row_active == true) then
+        ui:move_icons(moved_row_info, ui.theme)
+      elseif (moved_row_info.removed_slot.active == true) then
+        player:remove_action(moved_row_info.removed_slot)
+        moved_row_info.removed_slot.active = false
+        ui:load_player_hotbar(player:get_hotbar_info())
+      end
+
+      -- Only execute the expensive recast logic every 3 ticks
+      if frame_counter % 3 == 0 then
+        ui:check_recasts(player:get_hotbar_info())
+      end
+
+      ui:check_hover()
+    end
   end
 end)
 
 -- ON MP CHANGE --
 windower.register_event('mp change', function(new, old)
-  player.vitals.mp = new
-  ui:update_mp(new)
+  if ui and player and state.ready then
+    player.vitals.mp = new
+    ui:update_mp(new)
+  end
 end)
 
 -- OM TP CHANGE --
 windower.register_event('tp change', function(new, old)
-  player.vitals.tp = new
-  ui:update_tp(new)
+  if ui and player and state.ready then
+    player.vitals.tp = new
+    ui:update_tp(new)
+  end
 end)
 
 -- ON STATUS CHANGE --
 windower.register_event('status change', function(new_status_id)
-  -- hide/show bar in cutscenes --
-  if ui.hotbar.hide_hotbars == false and new_status_id == 4 then
-    ui.hotbar.hide_hotbars = true
-    ui:hide()
-  elseif ui.hotbar.hide_hotbars and new_status_id ~= 4 then
-    ui.hotbar.hide_hotbars = false
-    ui:show(player:get_hotbar_info())
+  if ui and player and state.ready then
+    -- hide/show bar in cutscenes --
+    if ui.hotbar.hide_hotbars == false and new_status_id == 4 then
+      ui.hotbar.hide_hotbars = true
+      ui:hide()
+    elseif ui.hotbar.hide_hotbars and new_status_id ~= 4 then
+      ui.hotbar.hide_hotbars = false
+      ui:show(player:get_hotbar_info())
+    end
   end
 end)
 
 -- ON LOGIN/LOAD --
 windower.register_event('load', function()
-  local windower_player = windower.ffxi.get_player()
-  if windower_player ~= nil then
-    defaults = require('defaults')
-    defaults.Keybinds = keyboard.default_keybinds
-    settings = config.load(defaults)
-    keyboard:cast_all_to_strings(settings)
-    config.save(settings)
-
-    -- Load theme options according to settings --
-    theme = require('theme')
-    theme_options = theme.apply(settings)
-    player.id = windower_player.id
-    initialize()
-    coroutine.sleep(2)
-  end
+  initialize()
 end)
 
 windower.register_event('login', function()
-  local windower_player = windower.ffxi.get_player()
-  if windower_player ~= nil then
-    windower.send_command('lua load xivhotbar2')
-
-    defaults = require('defaults')
-    defaults.Keybinds = keyboard.default_keybinds
-    settings = config.load(defaults)
-    keyboard:cast_all_to_strings(settings)
-    config.save(settings)
-
-    -- Load theme options according to settings --
-    theme = require('theme')
-    theme_options = theme.apply(settings)
-    player.id = windower_player.id
-
-    initialize()
-  end
+  initialize()
 end)
 
 windower.register_event('logout', function()
-  settings = nil
-  theme = nil
-  theme_options = nil
-  state = {
-    ready = false,
-    demo = false,
-    inventory_ready = false,
-    inventory_loading = false
-  }
-  loaded = false
-  first_load_done = false
-  player = nil
-  keyboard = nil
-  move_box = nil
-  skillchains:destroy()
-  ui:destroy()
-  htb_database:destroy()
+  destroy()
 end)
 
 windower.register_event('unload', function()
-  settings = nil
-  theme = nil
-  theme_options = nil
-  state = {
-    ready = false,
-    demo = false,
-    inventory_ready = false,
-    inventory_loading = false
-  }
-  loaded = false
-  first_load_done = false
-  player = nil
-  keyboard = nil
-  move_box = nil
-  skillchains:destroy()
-  ui:destroy()
-  htb_database:destroy()
+  destroy()
 end)
 
 -- DARK ARTS / LIGHT ARTS / ADD:BLK / ADD:WHT  set "stance"
 windower.register_event('action', function(act)
-  if state.ready == true then
-    if (act.param == 211 or act.param == 212 or act.param == 234 or act.param == 235) then
-      if (act.actor_id == player.id and act.category == 0x06) then
-        player:load_job_ability_actions(act.param)
-        ui:load_player_hotbar(player:get_hotbar_info())
+  if ui and player and state.ready then
+    if state.ready == true then
+      if (act.param == 211 or act.param == 212 or act.param == 234 or act.param == 235) then
+        if (act.actor_id == player.id and act.category == 0x06) then
+          player:load_job_ability_actions(act.param)
+          ui:load_player_hotbar(player:get_hotbar_info())
+        end
       end
     end
   end
@@ -599,8 +605,11 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
   if id == 0x00B then -- unload old zone
     --print("dezone")
     loaded = false
-    ui.hotbar.hide_hotbars = true
-    ui:hide()
+
+    if ui and state.ready then
+      ui.hotbar.hide_hotbars = true
+      ui:hide()
+    end
   elseif id == 0x00A then -- load new zone
     --print("begin load")
     loaded = false
@@ -621,52 +630,54 @@ end)
 
 -- Equip / Unequip
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if id == 0x050 then -- Equip/Unequip
-    local packet = packets.parse('incoming', original)
-    local slot = packet['Equipment Slot']
+  if ui and player and state.ready then
+    if id == 0x050 then -- Equip/Unequip
+      local packet = packets.parse('incoming', original)
+      local slot = packet['Equipment Slot']
 
-    -- slot 0 main, slot 2 ranged
-    if slot == 0 or slot == 2 then
-      local evt_inv_index = packet['Inventory Index']
-      local evt_bag_index = packet['Inventory Bag']
+      -- slot 0 main, slot 2 ranged
+      if slot == 0 or slot == 2 then
+        local evt_inv_index = packet['Inventory Index']
+        local evt_bag_index = packet['Inventory Bag']
 
-      -- index > 0 means equipping
-      if evt_inv_index ~= 0 then
-        local weapon_changed = false
-        local items = windower.ffxi.get_items()
-        if slot == 0 then
-          weapon_changed = set_weapon_type(false, evt_bag_index, items.equipment.main)
-        elseif slot == 2 then
-          weapon_changed = set_weapon_type(true, evt_bag_index, items.equipment.range)
-        end
-
-        if not zoning and weapon_changed then
-          if ui.theme.dev_mode then log("Weapon Changed. Reloading Hotbar.") end
-          reload_hotbar()
-        end
-
-        return
-        -- index = 0 means unequipping
-      else
-        local weapon_changed = false
-        if slot == 0 then
-          if player.current_weapon ~= 0 then
-            player:update_weapon_type(0)
-            weapon_changed = true
+        -- index > 0 means equipping
+        if evt_inv_index ~= 0 then
+          local weapon_changed = false
+          local items = windower.ffxi.get_items()
+          if slot == 0 then
+            weapon_changed = set_weapon_type(false, evt_bag_index, items.equipment.main)
+          elseif slot == 2 then
+            weapon_changed = set_weapon_type(true, evt_bag_index, items.equipment.range)
           end
-        elseif slot == 2 then
-          if player.current_range_weapon ~= 0 then
-            player:update_range_weapon_type(0)
-            weapon_changed = true
+
+          if not zoning and weapon_changed then
+            if ui.theme.dev_mode then log("Weapon Changed. Reloading Hotbar.") end
+            reload_hotbar()
           end
-        end
 
-        if not zoning and weapon_changed then
-          if ui.theme.dev_mode then log("Weapon Unequipped. Reloading Hotbar.") end
-          reload_hotbar()
-        end
+          return
+          -- index = 0 means unequipping
+        else
+          local weapon_changed = false
+          if slot == 0 then
+            if player.current_weapon ~= 0 then
+              player:update_weapon_type(0)
+              weapon_changed = true
+            end
+          elseif slot == 2 then
+            if player.current_range_weapon ~= 0 then
+              player:update_range_weapon_type(0)
+              weapon_changed = true
+            end
+          end
 
-        return
+          if not zoning and weapon_changed then
+            if ui.theme.dev_mode then log("Weapon Unequipped. Reloading Hotbar.") end
+            reload_hotbar()
+          end
+
+          return
+        end
       end
     end
   end
@@ -674,22 +685,24 @@ end)
 
 -- Returns whether or not the weapon type was changed
 function set_weapon_type(is_ranged, bag, index)
-  local item = resources.items[windower.ffxi.get_items(bag, index).id]
+  if ui and player and state.ready then
+    local item = resources.items[windower.ffxi.get_items(bag, index).id]
 
-  if item ~= nil then
-    local new_skill_type = item.skill
+    if item ~= nil then
+      local new_skill_type = item.skill
 
-    if theme_options.enable_weapon_switching == true then
-      if new_skill_type ~= nil then
-        if is_ranged then
-          if player.current_range_weapon ~= new_skill_type then
-            player:update_range_weapon_type(new_skill_type)
-            return true -- Weapon type was changed
-          end
-        else
-          if player.current_weapon ~= new_skill_type then
-            player:update_weapon_type(new_skill_type)
-            return true -- Weapon type was changed
+      if theme_options.enable_weapon_switching == true then
+        if new_skill_type ~= nil then
+          if is_ranged then
+            if player.current_range_weapon ~= new_skill_type then
+              player:update_range_weapon_type(new_skill_type)
+              return true -- Weapon type was changed
+            end
+          else
+            if player.current_weapon ~= new_skill_type then
+              player:update_weapon_type(new_skill_type)
+              return true -- Weapon type was changed
+            end
           end
         end
       end
@@ -700,7 +713,7 @@ function set_weapon_type(is_ranged, bag, index)
 end
 
 windower.register_event('add item', 'remove item', function(id, bag, index, count)
-  if state.ready == true then
+  if ui and player and state.ready then
     ui:update_inventory_count()                    -- update inv count
     player:update_inventory_items()                -- updates player's item arrays
     player:get_action_manager():update_all_items() -- updates items on the hot bar
@@ -709,7 +722,7 @@ end)
 
 -- Updates on job change (moogle) and waits for abilities to be updated.
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if state.ready == true then
+  if ui and player and state.ready then
     if id == 0x0AC and changing_job == true then
       changing_job = false
       if old_main ~= new_main or old_sub ~= new_sub then
@@ -732,12 +745,14 @@ end)
 
 -- Updates on blu spell setting
 windower.register_event('outgoing chunk', function(id, original, modified, injected, blocked)
-  if id == 0x102 then
-    if player.main_job_id == 16 or player.sub_job_id == 16 then
-      if ui.theme.dev_mode then log("Set blue magic. Reloading Hotbar.") end
-      -- takes time after setting blu magic for abilities to drop off
-      coroutine.sleep(1.5)
-      reload_hotbar()
+  if ui and player and state.ready then
+    if id == 0x102 then
+      if player.main_job_id == 16 or player.sub_job_id == 16 then
+        if ui.theme.dev_mode then log("Set blue magic. Reloading Hotbar.") end
+        -- takes time after setting blu magic for abilities to drop off
+        coroutine.sleep(1.5)
+        reload_hotbar()
+      end
     end
   end
 end)
@@ -753,31 +768,33 @@ end
 
 -- Updates on blu spell list
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if id == 0x044 then
-    if player.main_job_id == 16 or player.sub_job_id == 16 then
-      local packet = packets.parse('incoming', original)
-      if packet['Job'] == 16 then
-        -- Iterate over each character in the string and convert to binary
-        local binary_dump = {}
-        local set_blu_spells = {}
+  if ui and player and state.ready then
+    if id == 0x044 then
+      if player.main_job_id == 16 or player.sub_job_id == 16 then
+        local packet = packets.parse('incoming', original)
+        if packet['Job'] == 16 then
+          -- Iterate over each character in the string and convert to binary
+          local binary_dump = {}
+          local set_blu_spells = {}
 
-        -- blu spells live in the region 0x08 through 0x1B
-        -- (or decimal 8 through 27)
-        for i = 9, 28 do
-          local byte = string.byte(original, i)
-          --table.insert(binary_dump, byte_to_binary(byte)) -- debugging
-          if byte ~= 0x0 then
-            table.insert(set_blu_spells, string.byte(original, i) + 512)
+          -- blu spells live in the region 0x08 through 0x1B
+          -- (or decimal 8 through 27)
+          for i = 9, 28 do
+            local byte = string.byte(original, i)
+            --table.insert(binary_dump, byte_to_binary(byte)) -- debugging
+            if byte ~= 0x0 then
+              table.insert(set_blu_spells, string.byte(original, i) + 512)
+            end
+            -- Add a line break every 8 bytes
+            if i % 4 == 0 then
+              table.insert(binary_dump, "\n")
+            end
           end
-          -- Add a line break every 8 bytes
-          if i % 4 == 0 then
-            table.insert(binary_dump, "\n")
-          end
+          -- print("  " .. table.concat(binary_dump, "  "))  -- debugging, dump binary
+          -- print(table.concat(set_blu_spells, "  ")) -- debugging, dump blu spells
+          if ui.theme.dev_mode then log("Updating blu spells") end
+          player:update_blue_magic(set_blu_spells)
         end
-        -- print("  " .. table.concat(binary_dump, "  "))  -- debugging, dump binary
-        -- print(table.concat(set_blu_spells, "  ")) -- debugging, dump blu spells
-        if ui.theme.dev_mode then log("Updating blu spells") end
-        player:update_blue_magic(set_blu_spells)
       end
     end
   end
@@ -785,108 +802,115 @@ end)
 
 -- Reloads hotbar if new weaponskill is learned.
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
-  if message_id == 45 then
-    if actor_id == player.id then
-      if ui.theme.dev_mode then log("Learned Weaponskill. Reloading Hotbar.") end
-      reload_hotbar()
+  if ui and player and state.ready then
+    if message_id == 45 then
+      if actor_id == player.id then
+        if ui.theme.dev_mode then log("Learned Weaponskill. Reloading Hotbar.") end
+        reload_hotbar()
+      end
     end
   end
 end)
 
 -- Reloads hotbar if new spell is learned.
 windower.register_event('action message', function(actor_id, target_id, actor_index, target_index, message_id)
-  if message_id == 23 then
-    if actor_id == player.id then
-      if ui.theme.dev_mode then log("Learned Spell. Reloading Hotbar.") end
-      reload_hotbar()
+  if ui and player and state.ready then
+    if message_id == 23 then
+      if actor_id == player.id then
+        if ui.theme.dev_mode then log("Learned Spell. Reloading Hotbar.") end
+        reload_hotbar()
+      end
     end
   end
 end)
 
 -- Reloads hotbar when gaining or losing specified buffs
 windower.register_event('gain buff', function(id)
-  if id == 143 or id == 269 then -- Level Cap / Level Sync, Status Effect
-    if ui.theme.dev_mode then log("Level Capped/Sync'd. Reloading Hotbar.") end
-    reload_hotbar()
-  elseif id == 55 then                                         -- Astral Flow - Status Effect
-    reload_hotbar()
-  elseif id == 377 then                                        -- Tabula Rasa- Status Effect
-    reload_hotbar()
-  elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White for stratagems
-    reload_hotbar()
-  elseif (id >= 381 and id <= 385) or id == 588 then           -- finishing move 1/2/3/4/5/6+
-    player:update_finishing_moves(id)
-  elseif id == 47 or id == 360 or id == 361 or id == 229 or id == 583 then
-    -- manafont, penury, parsimony, manawell, apogee
-    player:add_buff(id)
-    ui:update_mp_costs(player:get_hotbar_info())
-  elseif id == 376 or id == 408 then
-    -- trance, sekkanoki
-    player:add_buff(id)
-    ui:update_tp_costs(player:get_hotbar_info())
+  if ui and player and state.ready then
+    if id == 143 or id == 269 then -- Level Cap / Level Sync, Status Effect
+      if ui.theme.dev_mode then log("Level Capped/Sync'd. Reloading Hotbar.") end
+      reload_hotbar()
+    elseif id == 55 then                                         -- Astral Flow - Status Effect
+      reload_hotbar()
+    elseif id == 377 then                                        -- Tabula Rasa- Status Effect
+      reload_hotbar()
+    elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White for stratagems
+      reload_hotbar()
+    elseif (id >= 381 and id <= 385) or id == 588 then           -- finishing move 1/2/3/4/5/6+
+      player:update_finishing_moves(id)
+    elseif id == 47 or id == 360 or id == 361 or id == 229 or id == 583 then
+      -- manafont, penury, parsimony, manawell, apogee
+      player:add_buff(id)
+      ui:update_mp_costs(player:get_hotbar_info())
+    elseif id == 376 or id == 408 then
+      -- trance, sekkanoki
+      player:add_buff(id)
+      ui:update_tp_costs(player:get_hotbar_info())
+    end
   end
 end)
 
 windower.register_event('lose buff', function(id)
-  if id == 269 then -- Level Cap / Level Sync - Status Effect
-    log("Leve Sync'd Removed. Reloading Hotbar.")
-    reload_hotbar()
-  elseif id == 55 then                                         -- Astral Flow - Status Effect
-    reload_hotbar()
-  elseif id == 377 then                                        -- Tabula Rasa - Status Effect
-    reload_hotbar()
-  elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White
-    reload_hotbar()
-  elseif (id >= 381 and id <= 385) or id == 588 then           -- finishing move 1/2/3/4/5/6+
-    player:reset_finishing_moves()
-  elseif id == 47 or id == 360 or id == 361 or id == 229 or id == 583 then
-    -- manafont, penury, parsimony, manawell, apogee
-    player:remove_buff(id)
-    ui:update_mp_costs(player:get_hotbar_info())
-  elseif id == 376 or id == 408 then
-    -- trance, sekkanoki
-    player:remove_buff(id)
-    ui:update_tp_costs(player:get_hotbar_info())
+  if ui and player and state.ready then
+    if id == 269 then -- Level Cap / Level Sync - Status Effect
+      log("Level Sync'd Removed. Reloading Hotbar.")
+      reload_hotbar()
+    elseif id == 55 then                                         -- Astral Flow - Status Effect
+      reload_hotbar()
+    elseif id == 377 then                                        -- Tabula Rasa - Status Effect
+      reload_hotbar()
+    elseif id == 359 or id == 402 or id == 358 or id == 401 then -- Dark Arts/Add Black/White Arts/Add White
+      reload_hotbar()
+    elseif (id >= 381 and id <= 385) or id == 588 then           -- finishing move 1/2/3/4/5/6+
+      player:reset_finishing_moves()
+    elseif id == 47 or id == 360 or id == 361 or id == 229 or id == 583 then
+      -- manafont, penury, parsimony, manawell, apogee
+      player:remove_buff(id)
+      ui:update_mp_costs(player:get_hotbar_info())
+    elseif id == 376 or id == 408 then
+      -- trance, sekkanoki
+      player:remove_buff(id)
+      ui:update_tp_costs(player:get_hotbar_info())
+    end
   end
 end)
 
 -- This event updates hotbar when you level up or delevel
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if id == 0x02D then -- Kill Message
-    mob_killed = true
-    old_level = player.main_job_level
-  elseif mob_killed and id == 0x061 then -- Mob Killed and Char Stats Message
-    local packet = packets.parse('incoming', original)
-    --print("Packet: ", packet)
-    new_level = packet['Main Job Level']
+  if ui and player and state.ready then
+    if id == 0x02D then -- Kill Message
+      mob_killed = true
+      old_level = player.main_job_level
+    elseif mob_killed and id == 0x061 then -- Mob Killed and Char Stats Message
+      local packet = packets.parse('incoming', original)
+      --print("Packet: ", packet)
+      new_level = packet['Main Job Level']
 
-    S { 'ws' }:contains('ws')
-    if new_level ~= old_level then
-      if ui.theme.dev_mode then log("Leveled up! Reloading Hotbar.") end
-      reload_hotbar()
+      S { 'ws' }:contains('ws')
+      if new_level ~= old_level then
+        if ui.theme.dev_mode then log("Leveled up! Reloading Hotbar.") end
+        reload_hotbar()
+      end
+
+      mob_killed = false
     end
-
-    mob_killed = false
   end
 end)
-
-
-
-
-
 
 ----------------------------- PET EVENT STUFF ----------------------------------------------------
 
 --This event is reloading hotbar if a pet dies or released
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  local packet = packets.parse('incoming', original)
-  if id == 0x068 then                       -- Pet Status Packet Update
-    if packet['Owner ID'] == player.id then -- If player.id and pet owner ID are the same
-      if packet['Pet Index'] == 0 then      -- If there is no pet. Meaning it died or was released.
-        if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
-        -- takes time after a pet dies for its abilities to drop off
-        coroutine.sleep(2.5)
-        reload_hotbar('')
+  if ui and player and state.ready then
+    local packet = packets.parse('incoming', original)
+    if id == 0x068 then                       -- Pet Status Packet Update
+      if packet['Owner ID'] == player.id then -- If player.id and pet owner ID are the same
+        if packet['Pet Index'] == 0 then      -- If there is no pet. Meaning it died or was released.
+          if ui.theme.dev_mode then log("Pet Died or was Released. Reloading Hotbar.") end
+          -- takes time after a pet dies for its abilities to drop off
+          coroutine.sleep(2.5)
+          reload_hotbar('')
+        end
       end
     end
   end
@@ -894,7 +918,7 @@ end)
 
 --This event is confirming that pet summons cast are not cancel/interupted and pet was succesfully summoned before updating the hotbar with specific pet abilities
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if state.ready == true then
+  if ui and player and state.ready then
     local packet = packets.parse('incoming', original)
     if id == 0x068 then                                           -- If the second pet update packet comes in
       if packet['Owner ID'] == windower.ffxi.get_player().id then -- If player.id and pet owner ID are the same
@@ -911,7 +935,7 @@ end)
 
 --Pet status update
 windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if state.ready == true then
+  if ui and player and state.ready then
     local packet = packets.parse('incoming', original)
     if id == 0x068 then
       if packet['Owner ID'] == windower.ffxi.get_player().id then
@@ -923,27 +947,34 @@ windower.register_event('incoming chunk', function(id, original, modified, injec
 end)
 
 windower.register_event('incoming text', function(text)
-  if string.find(text, windower.ffxi.get_player().name) and string.find(text, " learns a new spell") then
-    if ui.theme.dev_mode then log("Learned a new spell. Reloading Hotbar.") end
-    reload_hotbar()
-  end
-end)
-
---- Reloads hotbar when using GM command. ** For development only **
-windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
-  if ui.theme.dev_mode then
-    if id == 0x0AC and gm_command == true then
-      if ui.theme.dev_mode then log("GM Command. Reloading Hotbar.", count) end
-      gm_command = false
+  if ui and player and state.ready then
+    local windower_player = windower.ffxi.get_player()
+    if windower_player and string.find(text, windower_player.name) and string.find(text, " learns a new spell") then
+      if ui.theme.dev_mode then log("Learned a new spell. Reloading Hotbar.") end
       reload_hotbar()
     end
   end
 end)
 
+--- Reloads hotbar when using GM command. ** For development only **
+windower.register_event('incoming chunk', function(id, original, modified, injected, blocked)
+  if ui and player and state.ready then
+    if ui.theme.dev_mode then
+      if id == 0x0AC and gm_command == true then
+        if ui.theme.dev_mode then log("GM Command. Reloading Hotbar.", count) end
+        gm_command = false
+        reload_hotbar()
+      end
+    end
+  end
+end)
+
 windower.register_event('incoming text', function(text)
-  if ui.theme.dev_mode then
-    if string.find(text, "!changejob") or string.find(text, "!changesjob") then
-      gm_command = true
+  if ui and player and state.ready then
+    if ui.theme.dev_mode then
+      if string.find(text, "!changejob") or string.find(text, "!changesjob") then
+        gm_command = true
+      end
     end
   end
 end)
@@ -1166,4 +1197,14 @@ function get_tgt_cmd_for_targets(targets, target_preference)
   end
 
   return target
+end
+
+function fileExists(filename)
+  local file = io.open(filename, "r")
+  if file then
+    file:close()
+    return true
+  else
+    return false
+  end
 end

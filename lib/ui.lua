@@ -57,6 +57,7 @@ local inventory_count_setup = {
     draggable = true
   }
 }
+
 local sack_count_setup = {
   flags = {
     draggable = false
@@ -70,7 +71,6 @@ local right_text_setup = {
   }
 }
 
-local playerinv = {}
 local is_silenced = false
 local is_amnesiad = false
 local is_neutralized = false
@@ -106,6 +106,7 @@ ui.overlay_image_height = 24
 ui.overlay_image_width = 24
 ui.player = {}
 ui.recasts = {}
+ui.playerinv = {}
 
 local outline_images_setup = {
   draggable = false,
@@ -855,6 +856,40 @@ end
 ---------------------------------------------------------------
 
 function ui:destroy()
+  if self.hover_icon then self.hover_icon:destroy() end
+  if self.feedback_icon then self.feedback_icon:destroy() end
+
+  for h = 1, self.theme.hotbar_number, 1 do
+    local hotbar = self.hotbars[h]
+    if hotbar then
+      for i = 1, self.theme.columns, 1 do
+        if hotbar.slot_backgrounds[i] then self.hotbars[h].slot_backgrounds[i]:destroy() end
+        if hotbar.slot_icons[i] then self.hotbars[h].slot_icons[i]:destroy() end
+        if hotbar.slot_overlay[i] then self.hotbars[h].slot_overlay[i]:destroy() end
+        if hotbar.slot_recasts[i] then self.hotbars[h].slot_recasts[i]:destroy() end
+        if hotbar.slot_frames[i] then self.hotbars[h].slot_frames[i]:destroy() end
+        if hotbar.slot_texts[i] then self.hotbars[h].slot_texts[i]:destroy() end
+        if hotbar.slot_cost[i] then self.hotbars[h].slot_cost[i]:destroy() end
+        if hotbar.slot_recast_texts[i] then self.hotbars[h].slot_recast_texts[i]:destroy() end
+        if hotbar.slot_keys[i] then self.hotbars[h].slot_keys[i]:destroy() end
+        if hotbar.slot_outline[i] then self.hotbars[h].slot_outline[i]:destroy() end
+      end
+
+      self.hotbars[h] = nil
+    end
+  end
+
+  if self.active_environment['battle'] then self.active_environment['battle']:destroy() end
+  if self.active_environment['field'] then self.active_environment['field']:destroy() end
+  self.active_environment = nil
+
+  if self.action_description then self.action_description:destroy() end
+  self.action_description = nil
+
+  if self.inventory_count then self.inventory_count:destroy() end
+  self.inventory_count = nil
+
+
   self.hotbar = {
     initialized = false,
     ready = false,
@@ -888,6 +923,21 @@ function ui:destroy()
   self.disabled_icons = {}
   self.current_tick = 0
   self.current_target = nil
+
+  self.playerinv = {}
+  buffs = {}
+  is_silenced = false
+  is_amnesiad = false
+  is_neutralized = false
+  is_burst_affinity = false
+  is_chain_affinity = false
+  is_immanence = false
+  can_ws = false
+  can_pet_ws = false
+  current_mp = 0
+  current_pet_mp = 0
+  current_tp = 0
+  bst_charge_time = 30
 end
 
 ---------------------------------------------------------------
@@ -1205,16 +1255,6 @@ function ui:setup_item_slot_icons(name, row, slot)
   local img_path = '/images/icons/custom/item.png'
   name = name:lower()
 
-  local function fileExists(filename)
-    local file = io.open(filename, "r")
-    if file then
-      file:close()
-      return true
-    else
-      return false
-    end
-  end
-
   if htb_database.items[name] ~= nil then
     local id = htb_database.items[name].id
 
@@ -1439,8 +1479,6 @@ function ui:check_and_set_disable(action)
         self.disabled_slots.actions[action.action] = true
         return true
       elseif action.type == 'ja' and htb_database[action.type] and htb_database[action.type][(action.action):lower()] and htb_database[action.type][(action.action):lower()].type ~= 'Monster' and mp < self:get_true_mp_cost(htb_database[action.type][(action.action):lower()]) then
-        -- print('Action is JA and not monster ' ..
-        --   action.action .. ' ' .. htb_database[action.type][(action.action):lower()].type)
         -- mostly for smn, who have JAs with mana cost
         self.disabled_slots.no_vitals[action.action] = true
         return true

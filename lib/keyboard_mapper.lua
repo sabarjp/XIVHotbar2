@@ -4,8 +4,6 @@ keyboard.default_keybinds = require('../data/default_keybinds')
 
 keyboard.hotbar_rows = {}
 
-keyboard.parsed_keybinds = {}
-
 --[[
 	Parse Keybinds:
 
@@ -199,6 +197,7 @@ function keyboard:cast_all_to_strings(settings)
 end
 
 function keyboard:parse_keybinds()
+  keyboard.hotbar_rows = {}
   for row_key, row_value in pairs(keyboard.hotbar_rows) do
     for col_key, col_value in pairs(row_value) do
       col_value = string.lower(col_value)

@@ -152,7 +152,6 @@ local function write_swap(file_location, action, d_row, d_slot, s_row, s_slot, e
   return found_row
 end
 
-
 function file_manager:update_file_path(player_name, player_job)
   local basepath = windower.addon_path .. 'data/' .. player_name .. '/'
   local job_name = player_job
@@ -198,8 +197,9 @@ local function find_in_file(file_content, action, environment, pattern)
       end
       if (found_in_section == false) then
         new_row = "\t{'" ..
-        environment ..
-        "', '" .. action.type .. "', '" .. action.action .. "', '" .. action.target .. "', '" .. action.alias .. "'},"
+            environment ..
+            "', '" ..
+            action.type .. "', '" .. action.action .. "', '" .. action.target .. "', '" .. action.alias .. "'},"
         log(string.format("Writing new: %s", new_row))
         table.insert(file_content, pattern_end + 1, new_row)
       end

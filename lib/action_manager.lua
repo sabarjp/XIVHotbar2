@@ -1002,6 +1002,49 @@ function action_manager:initialize(theme_options)
   self.hotbar_rows         = theme_options.rows
 end
 
+function action_manager:destroy()
+  self.theme_options = {}
+
+  self.hotbar = {}
+  self.hotbar_settings = {}
+  self.hotbar_settings.max = 1
+  self.hotbar_settings.active_hotbar = 1
+  self.hotbar_settings.active_environment = 'battle'
+
+  self.items = {}
+
+  self.hotbar_rows = {}
+
+  spells = {}
+  abilities = {}
+  weaponskills = {}
+
+  mainjob_actions = {}
+  subjob_actions = {}
+  petname_actions = {}
+  general_actions = {}
+  stance_actions = {}
+  weaponskill_actions = {}
+
+  current_stance = nil
+  learned_spells_name = {}
+  learned_ws_id = {}
+  learned_abilities_id = {}
+  usable_pet_abilities_name = {}
+  item_slots = {}
+
+  not_learned_spells_row_slot = {}
+
+  weaponskill_actions.xivhotbar_keybinds_job = {}
+  subjob_actions.xivhotbar_keybinds_job = {}
+  petname_actions.xivhotbar_keybinds_job = {}
+
+  _job_fileG = {}
+  _job_fileG.xivhotbar_keybinds_job = {}
+  _general_fileG = {}
+  _general_fileG.xivhotbar_keybinds_general = {}
+end
+
 function action_manager:reset_hotbar()
   self.hotbar = {
     ['battle'] = {},

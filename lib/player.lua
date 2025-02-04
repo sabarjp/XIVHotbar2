@@ -29,7 +29,6 @@
 local action_manager = require('lib/action_manager')
 local player = {}
 
-
 player.name = ''
 player.main_job = ''
 player.sub_job = ''
@@ -101,6 +100,33 @@ function player:initialize(windower_player, server, theme_options)
   self:load_default_stance()
   action_manager:initialize(theme_options)
   action_manager:update_file_path(player.name, player.main_job)
+end
+
+function player:destroy()
+  self.name = ''
+  self.main_job = ''
+  self.sub_job = ''
+  self.server = ''
+  self.pet_name = ''
+  self.finishing_moves = 0
+  self.main_job_level = 0
+  self.sub_job_level = 0
+  self.vitals = {}
+  self.buffs = {}
+  self.set_blue_magic = nil
+  self.items = {}
+  self.item_count = {}
+  self.id = 0
+  self.current_weapon = 0
+  self.current_range_weapon = 0
+  self.has_free_spell = false
+  self.has_penury = false
+  self.has_parsimony = false
+  self.has_apogee = false
+  self.has_trance = false
+  self.has_sekko = false
+
+  action_manager:destroy()
 end
 
 function player:remove_action(remove_table)
