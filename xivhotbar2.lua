@@ -133,12 +133,8 @@ function initialize()
       -- unlikely to be available unless the world has already been loaded in
       local items = windower.ffxi.get_items()
       if items ~= nil then
-        if not (items.equipment.main_bag == 0 and items.equipment.main == 0) then
-          set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
-        end
-        if not (items.equipment.range_bag == 0 and items.equipment.range == 0) then
-          set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
-        end
+        set_weapon_type(false, items.equipment.main_bag, items.equipment.main)
+        set_weapon_type(true, items.equipment.range_bag, items.equipment.range)
       end
     end
 
@@ -685,7 +681,7 @@ end)
 
 -- Returns whether or not the weapon type was changed
 function set_weapon_type(is_ranged, bag, index)
-  if ui and player and state.ready then
+  if ui and player then
     local item = resources.items[windower.ffxi.get_items(bag, index).id]
 
     if item ~= nil then

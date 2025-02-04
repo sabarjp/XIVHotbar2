@@ -1442,7 +1442,8 @@ end
 -- Recast timers, disabled updates, and other frame-by-frame things
 --------------------------------------------------------------------
 
--- checks and sets disabled slot state
+-- Checks and sets disabled slot state.
+-- Overall O(1) access due to heavy use of lookup tables.
 function ui:check_and_set_disable(action)
   local mp = self.player.vitals.mp
 
@@ -1452,6 +1453,7 @@ function ui:check_and_set_disable(action)
   elseif action ~= nil then
     if action.type == 'ma' then
       if is_spell_learned(action.action) ~= true then
+        -- is_spell_learned is a direct lookup table, O(1)
         self.disabled_slots.actions[action.action] = true
         return true
       elseif is_silenced == true then
@@ -1499,7 +1501,8 @@ function ui:check_and_set_disable(action)
   return false
 end
 
--- checks if we're eligible to magic burst this action
+-- Checks if we're eligible to magic burst this action.
+-- Overall O(1) access due to precomputed data on the skillchain target.
 function ui:check_if_burstable(action)
   if not action or not self.theme.highlight_magic_burst then
     return false
@@ -1542,7 +1545,8 @@ function ui:check_if_burstable(action)
   return false
 end
 
--- checks if we're eligible to skill chain this action
+-- Checks if we're eligible to skill chain this action.
+-- Overall O(1) access due to precomputed data on the skillchain target.
 function ui:check_if_chainable(action)
   if not action or not self.theme.highlight_skill_chain then
     return false
@@ -1649,7 +1653,7 @@ function ui:check_if_chainable(action)
   return false
 end
 
--- this function keeps recast timers up-to-date, along with disabled slots status
+-- This function keeps recast timers up-to-date, along with disabled slots status
 -- and other things that can vary with the game state that need updating.
 function ui:inner_check_recasts(player_hotbar, environment, player_vitals, row, slot)
   local action = player_hotbar[environment]['hotbar_' .. row]['slot_' .. slot]

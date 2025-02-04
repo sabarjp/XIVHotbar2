@@ -51,7 +51,8 @@ player.has_parsimony = false
 player.has_apogee = false
 player.has_trance = false
 player.has_sekko = false
-player.set_blue_magic = nil -- nil here means that we do not know yet, otherwise, acts as a simple list of set spell ids
+player.set_blue_magic = nil     -- nil here means that we do not know yet, otherwise, acts as either a simple list of set spell ids
+player.set_blue_magic_map = nil -- nil here means that we do not know yet, otherwise, acts as either a map from spell id to true
 player.items = {}
 
 -- quick lookup for item count
@@ -114,6 +115,7 @@ function player:destroy()
   self.vitals = {}
   self.buffs = {}
   self.set_blue_magic = nil
+  self.set_blue_magic_map = nil
   self.items = {}
   self.item_count = {}
   self.id = 0
@@ -181,6 +183,11 @@ end
 
 function player:update_blue_magic(blue_spells)
   self.set_blue_magic = blue_spells
+
+  self.set_blue_magic_map = {}
+  for _, blue_spell in pairs(blue_spells) do
+    self.set_blue_magic_map[blue_spell] = true
+  end
 end
 
 function player:get_blue_magic()
@@ -191,7 +198,31 @@ function player:get_blue_magic()
     if windower.ffxi.get_player().main_job_id == 16 then
       local mjobdata = windower.ffxi.get_mjob_data()
       if mjobdata and mjobdata.spells then
-        return mjobdata.spells
+        self.set_blue_magic = {}
+        for key, blue_spell in pairs(mjobdata.spells) do
+          self.set_blue_magic[key] = blue_spell
+        end
+        return self.set_blue_magic
+      end
+    end
+  end
+
+  return {}
+end
+
+function player:get_blue_magic_map()
+  if self.set_blue_magic_map then
+    return self.set_blue_magic_map
+  else
+    -- not available yet, we _might_ be able to transform the raw list if we main blu
+    if windower.ffxi.get_player().main_job_id == 16 then
+      local mjobdata = windower.ffxi.get_mjob_data()
+      if mjobdata and mjobdata.spells then
+        self.set_blue_magic_map = {}
+        for _, blue_spell in pairs(mjobdata.spells) do
+          self.set_blue_magic_map[blue_spell] = true
+        end
+        return self.set_blue_magic_map
       end
     end
   end

@@ -228,6 +228,8 @@ function skillchains:attempt_skillchain(target_id, incoming_properties)
       props = {},
       last_update = 0,
       chain_formed_time = 0,
+      cached_magic_burst = nil,
+      cached_potential_chains = nil,
     }
   end
 
@@ -238,6 +240,8 @@ function skillchains:attempt_skillchain(target_id, incoming_properties)
   if time_diff >= 10 then
     data.props = {}
     data.chain_formed_time = 0
+    data.cached_magic_burst = nil
+    data.cached_potential_chains = nil
   end
 
   -- Attempt chain only if time between 3s and 10s
@@ -276,6 +280,81 @@ function skillchains:attempt_skillchain(target_id, incoming_properties)
   end
 
   data.last_update = now
+
+  -- Precompute and cache skillchain and magic burst elements
+  self:compute_and_cache_magic_burst(target_id)
+  self:compute_and_cache_potential_chains(target_id)
+end
+
+----------------------------------------------------------------------
+-- Precomputes the magic burst results so it can be quickly accessed
+-- by clients without constantly reforming the table.
+----------------------------------------------------------------------
+function skillchains:compute_and_cache_magic_burst(target_id)
+  local data = self.sc_properties[target_id]
+  if not data or #data.props == 0 then
+    data.cached_magic_burst = nil
+    return
+  end
+
+  local sc_property = data.props[1]
+  local alignments = self.sc_alignments[sc_property]
+  if alignments then
+    local result_set = {}
+    for _, element in ipairs(alignments) do
+      result_set[element] = true
+    end
+    data.cached_magic_burst = result_set
+  else
+    data.cached_magic_burst = nil
+  end
+end
+
+----------------------------------------------------------------------
+-- Returns a set of elements that can magic burst on the target
+-- if we're within 10 seconds of a successfully formed skillchain.
+-- Example: if the target's property is "Fusion" and chain_formed_time is within 10s,
+--   this returns { [0] = true, [6] = true }. Otherwise returns nil or empty set.
+----------------------------------------------------------------------
+function skillchains:get_magic_burst_elements(target_id)
+  local data = self.sc_properties[target_id]
+  if not data or not data.cached_magic_burst then
+    return nil
+  end
+
+  -- Only within 10s of an actual chain formation
+  local now = os.time()
+  if (now - data.chain_formed_time) > 10 then
+    return nil
+  end
+
+  return data.cached_magic_burst
+end
+
+----------------------------------------------------------------------
+-- Precomputes the potential skillchains so it can be quickly accessed
+-- by clients without constantly reforming the table.
+----------------------------------------------------------------------
+function skillchains:compute_and_cache_potential_chains(target_id)
+  local data = self.sc_properties[target_id]
+  if not data or #data.props == 0 then
+    data.cached_potential_chains = {}
+    return
+  end
+
+  local potential_chains = {}
+
+  -- Build a list of all potential combos for the existing props.
+  for _, oldprop in ipairs(data.props) do
+    local combos_for_old = self.sc_combos[oldprop]
+    if combos_for_old then
+      for incprop, combo_result in pairs(combos_for_old) do
+        potential_chains[incprop] = combo_result
+      end
+    end
+  end
+
+  data.cached_potential_chains = potential_chains
 end
 
 ----------------------------------------------------------------------
@@ -290,65 +369,20 @@ end
 --   If no valid combos exist, returns {}.
 ----------------------------------------------------------------------
 function skillchains:get_potential_skillchains(target_id)
-  local info = {}
   local data = self.sc_properties[target_id]
-  if not data or #data.props == 0 then
-    return info
+  if not data or not data.cached_potential_chains then
+    return {}
   end
 
   local now = os.time()
   local time_diff = now - data.last_update
 
-  -- If it's been <3s or >10s, no valid chain combos are possible.
+  -- If the data is stale, return an empty table
   if time_diff < 3 or time_diff > 10 then
-    -- Optionally clear stale data if >10s
-    if time_diff > 10 then
-      self.sc_properties[target_id] = nil
-    end
-    return info
+    return {}
   end
 
-  -- Otherwise, build a list of all potential combos for the existing props.
-  for _, oldprop in ipairs(data.props) do
-    local combos_for_old = self.sc_combos[oldprop]
-    if combos_for_old then
-      for incprop, combo_result in pairs(combos_for_old) do
-        info[incprop] = combo_result
-      end
-    end
-  end
-
-  return info
-end
-
-----------------------------------------------------------------------
--- Returns a set of elements that can magic burst on the target
--- if we're within 10 seconds of a successfully formed skillchain.
--- Example: if the target's property is "Fusion" and chain_formed_time is within 10s,
---   this returns { [0] = true, [6] = true }. Otherwise returns nil or empty set.
-----------------------------------------------------------------------
-function skillchains:get_magic_burst_elements(target_id)
-  local data = self.sc_properties[target_id]
-  if not data or #data.props == 0 then
-    return nil
-  end
-
-  -- Only within 10s of an actual chain formation
-  local now = os.time()
-  if (now - data.chain_formed_time) > 10 then
-    return nil
-  end
-
-  local sc_property = data.props[1]
-  local alignments = self.sc_alignments[sc_property]
-  if alignments then
-    local result_set = {}
-    for _, element in ipairs(alignments) do
-      result_set[element] = true
-    end
-    return result_set
-  end
-  return nil
+  return data.cached_potential_chains
 end
 
 ----------------------------------------------------------------------

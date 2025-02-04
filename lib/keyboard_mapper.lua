@@ -3,7 +3,7 @@ local keyboard = {}
 keyboard.default_keybinds = require('../data/default_keybinds')
 
 keyboard.hotbar_rows = {}
-
+keyboard.parsed_keybinds = {}
 --[[
 	Parse Keybinds:
 
@@ -20,7 +20,7 @@ keyboard.hotbar_rows = {}
 --
 
 function keyboard:set_bindings(bindings)
-  keyboard.hotbar_rows = {}
+  self.hotbar_rows = {}
 
   -- transform to format we expect
   local row1 = {}
@@ -113,12 +113,12 @@ function keyboard:set_bindings(bindings)
   table.insert(row6, bindings.R6.C11)
   table.insert(row6, bindings.R6.C12)
 
-  table.insert(keyboard.hotbar_rows, row1)
-  table.insert(keyboard.hotbar_rows, row2)
-  table.insert(keyboard.hotbar_rows, row3)
-  table.insert(keyboard.hotbar_rows, row4)
-  table.insert(keyboard.hotbar_rows, row5)
-  table.insert(keyboard.hotbar_rows, row6)
+  table.insert(self.hotbar_rows, row1)
+  table.insert(self.hotbar_rows, row2)
+  table.insert(self.hotbar_rows, row3)
+  table.insert(self.hotbar_rows, row4)
+  table.insert(self.hotbar_rows, row5)
+  table.insert(self.hotbar_rows, row6)
 end
 
 function keyboard:cast_all_to_strings(settings)
@@ -197,8 +197,8 @@ function keyboard:cast_all_to_strings(settings)
 end
 
 function keyboard:parse_keybinds()
-  keyboard.hotbar_rows = {}
-  for row_key, row_value in pairs(keyboard.hotbar_rows) do
+  self.parsed_keybinds = {}
+  for row_key, row_value in pairs(self.hotbar_rows) do
     for col_key, col_value in pairs(row_value) do
       col_value = string.lower(col_value)
       col_value = string.gsub(col_value, " ", "")
@@ -230,7 +230,7 @@ function keyboard:parse_keybinds()
       end
       row_value[col_key] = col_value
     end
-    keyboard.hotbar_rows[row_key] = row_value
+    self.parsed_keybinds[row_key] = row_value
   end
 end
 
@@ -238,8 +238,8 @@ end
 function keyboard:bind_keys(rows, columns)
   for r = 1, rows do
     for s = 1, columns do
-      if (self.hotbar_rows[r] ~= nil and self.hotbar_rows[r][s] ~= nil) then
-        windower.send_command('bind ' .. keyboard.hotbar_rows[r][s] .. ' htb execute ' .. r .. ' ' .. s)
+      if (self.parsed_keybinds[r] ~= nil and self.parsed_keybinds[r][s] ~= nil) then
+        windower.send_command('bind ' .. keyboard.parsed_keybinds[r][s] .. ' htb execute ' .. r .. ' ' .. s)
       end
     end
   end
@@ -248,8 +248,8 @@ end
 function keyboard:unbind_keys(rows, columns)
   for r = 1, rows do
     for s = 1, columns do
-      if (keyboard.hotbar_rows[r] ~= nil and keyboard.hotbar_rows[r][s] ~= nil) then
-        windower.send_command('unbind ' .. keyboard.hotbar_rows[r][s])
+      if (keyboard.parsed_keybinds[r] ~= nil and keyboard.parsed_keybinds[r][s] ~= nil) then
+        windower.send_command('unbind ' .. keyboard.parsed_keybinds[r][s])
       end
     end
   end

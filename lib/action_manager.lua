@@ -684,11 +684,14 @@ function meets_weaponskill_level_req(weaponskill_name_en)
   return true
 end
 
+-- Checks if a spell is learned.
+-- O(1) access
 function is_spell_learned(spell_name_en)
   return learned_spells_name[spell_name_en] == true
 end
 
--- ONLY USED TO CHECK IF SPELL IS GREYED OUT
+-- ONLY USED TO CHECK IF SPELL IS GREYED OUT.
+-- O(1) access
 function is_spell_usable(spell_name_en, player)
   -- Use the reverse lookup table to get the spell ID
   local spell_id = en_to_spell_id[spell_name_en]
@@ -710,23 +713,19 @@ function is_spell_usable(spell_name_en, player)
   return usable_by_job and usable_by_blu
 end
 
--- Help determine if blue magic is set
+-- Help determine if blue magic is set.
+-- O(1) access
 function is_blu_spell_set(spell, player)
   -- check if blue magic
   if spell['type'] == 'BlueMagic' then
-    local blu_spells = player:get_blue_magic()
+    local blu_spells = player:get_blue_magic_map()
     if blu_spells == nil then
       -- in this scenario, we haven't gotten a packet to know what is set yet,
       -- so we will just assume everything is set until then.
       return true
     end
 
-    for k, v in pairs(blu_spells) do
-      if v == spell['id'] then
-        return true
-      end
-    end
-    return false
+    return blu_spells[spell['id']]
   else
     return true
   end
@@ -734,6 +733,9 @@ end
 
 -- Helps determine which job or subjob is capable of casting a spell, this mostly applies
 -- to scholar which has spell casting restrictions due to the addenda.
+--
+-- O(1) access, assuming player properties (main_job_id, etc.) and spell data (levels, requirements) are accessed in constant time.
+-- The only additional overhead comes from the nested conditions, which don't depend on input size.
 function is_spell_usable_by_a_job(spell, player)
   -- Cache player data to avoid redundant calls
   local main_job_id = player.main_job_id
@@ -767,6 +769,8 @@ function is_spell_usable_by_a_job(spell, player)
   return can_cast(main_job_id, main_job_level) or can_cast(sub_job_id, sub_job_level)
 end
 
+-- Helps determine if a job ability is learned.
+-- O(1) access
 function is_job_ability_learned(ability_name_en)
   -- Use the reverse lookup table to get the ability ID
   local ability_id = en_to_ability_id[ability_name_en]
@@ -779,31 +783,37 @@ function is_job_ability_learned(ability_name_en)
 end
 
 -- ONLY USED TO CHECK IF SPELL IS GREYED OUT
--- helps determine if an ability can be used, for abilities that are conditional. example are dancer tp moves, dancer finishers.
+-- Helps determine if an ability can be used, for abilities that are conditional. example are dancer tp moves, dancer finishers.
+-- O(1) access.
 function is_job_ability_usable(ability_name_en, player)
   local current_tp = windower.ffxi.get_player().vitals.tp
 
-  for key, val in pairs(ability_list) do
-    if ability_list[key]['en'] == ability_name_en then
-      if ability_list[key]['tp_cost'] >= 0 then
-        -- this has a tp cost, so need to see if we have enough!
-        if current_tp < ability_list[key]['tp_cost'] then
-          return false
-        end
-      end
+  -- Use the reverse lookup table to get the ability ID
+  local ability_id = en_to_ability_id[ability_name_en]
+  if not ability_id then
+    return true -- Ability does not exist, assume its a patch skill
+  end
 
-      if ability_list[key]['id'] == 209 or ability_list[key]['id'] == 313 then -- wild flourish/striking flourish
-        if player:get_finishing_moves() < 2 then
-          return false
-        end
-      elseif ability_list[key]['id'] == 314 then -- ternary flourish
-        if player:get_finishing_moves() < 3 then
-          return false
-        end
-      elseif ability_list[key]['type'] == 'Flourish1' or ability_list[key]['type'] == 'Flourish2' or ability_list[key]['type'] == 'Flourish3' then -- other flourishes
-        if player:get_finishing_moves() < 1 then
-          return false
-        end
+  local ability = ability_list[ability_id]
+  if ability then
+    if ability['tp_cost'] >= 0 then
+      -- this has a tp cost, so need to see if we have enough!
+      if current_tp < ability['tp_cost'] then
+        return false
+      end
+    end
+
+    if ability_id == 209 or ability_id == 313 then -- wild flourish/striking flourish
+      if player:get_finishing_moves() < 2 then
+        return false
+      end
+    elseif ability_id == 314 then -- ternary flourish
+      if player:get_finishing_moves() < 3 then
+        return false
+      end
+    elseif ability['type'] == 'Flourish1' or ability['type'] == 'Flourish2' or ability['type'] == 'Flourish3' then -- other flourishes
+      if player:get_finishing_moves() < 1 then
+        return false
       end
     end
   end
@@ -811,8 +821,9 @@ function is_job_ability_usable(ability_name_en, player)
   return true --assume otherwise we are OK
 end
 
+-- Checks that the pet ability by index exists.
+-- O(1) access.
 function is_pet_ability_usable(ability_index)
-  -- really just need to see if index exists
   local ndx = tonumber(ability_index)
   if ndx >= 1 and ndx <= #usable_pet_abilities_name then
     return true
@@ -820,8 +831,9 @@ function is_pet_ability_usable(ability_index)
   return false
 end
 
+-- Checks that the blu spell by index exists.
+-- O(1) access.
 function is_blu_spell_usable(ability_index)
-  -- really just need to see if index exists
   local ndx = tonumber(ability_index)
   if ndx >= 1 and ndx <= #player:get_blue_magic() then
     return true
@@ -829,6 +841,8 @@ function is_blu_spell_usable(ability_index)
   return false
 end
 
+-- Checks that an item is usable, used for autoitem with the filter.
+-- O(1) access or O(n) access, depending on the filter.
 function is_item_usable(item_filter)
   if player:get_item_from_filter(item_filter) then
     return true
@@ -836,17 +850,17 @@ function is_item_usable(item_filter)
   return false
 end
 
+-- Checks if a weapon skill has been learned.
+-- O(1) access.
 function is_weaponskill_learned(ws_name_en)
-  for key, val in pairs(ws_list) do
-    if ws_list[key]['en'] == ws_name_en then
-      for k, v in pairs(learned_ws_id) do
-        if v == ws_list[key]['id'] then
-          return true
-        end
-      end
-      return false
-    end
+  -- Use the reverse lookup table to get the ws ID
+  local ws_id = en_to_weaponskill_id[ws_name_en]
+
+  if not ws_id then
+    return true -- Ability does not exist, assume its a patch skill
   end
+
+  return learned_ws_id[ws_id] == true
 end
 
 local function parse_binds(theme_options, player, job_root)
@@ -905,9 +919,9 @@ local function parse_binds(theme_options, player, job_root)
   -- Create Learned Weaponskills List
   weaponskills = ws_list
   for key, val in pairs(windower.ffxi.get_abilities().weapon_skills) do
-    for k, v in pairs(weaponskills) do
+    for k, ws_data in pairs(weaponskills) do
       if val == k then
-        table.insert(learned_ws_id, weaponskills[k]['id'])
+        learned_ws_id[ws_data.id] = true
       end
     end
   end
