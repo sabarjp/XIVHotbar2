@@ -361,7 +361,7 @@ local function fill_action_table(file_table, file_key, actions_table)
     -- note that we can only auto-target certain things
     if file_table[2] == 'ma' then
       targets = htb_database['ma'][action_name].targets
-      pref = 'st'
+      pref = 'stnpc'
     elseif file_table[2] == 'ja' then
       targets = htb_database['ja'][action_name].targets
       pref = 't'
