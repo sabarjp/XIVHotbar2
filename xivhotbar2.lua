@@ -421,53 +421,111 @@ windower.register_event('keyboard', function(dik, flags, blocked)
 end)
 
 
-local current_hotbar = -1
-local current_action = -1
+-- Tracks current capture state
+local is_capturing      = false
+local is_mouse_down     = false
+local mouse_down_hotbar = nil
+local mouse_down_action = nil
+
+-- Counts how many old captures we forcibly ended and need to consume leftover mouse-up events for
+local forced_end_count  = 0
 
 local function mouse_hotbars(type, x, y, delta, blocked)
-  return_value = false
+  local is_captured = false
 
-  if ui and state.ready == true and not ui.hotbar.hide_hotbars then
-    if type == 1 then -- Mouse left click
-      local hotbar, action = ui:hovered(x, y)
-      if (action ~= nil) then
-        current_hotbar = hotbar
-        current_action = action
-        return_value = true
-      else
-        return_value = false
-      end
-    elseif type == 2 then -- Mouse left release
-      if (current_action ~= -1) then
+  -- If UI isn't ready, bail out
+  if not (ui and state.ready == true and not ui.hotbar.hide_hotbars) then
+    return false
+  end
+
+  if type == 1 then ------------------------------------------------------
+    -- [MOUSE DOWN]
+
+    -- If we're still capturing from a previous click, forcibly end it
+    if is_capturing then
+      is_capturing      = false
+      is_mouse_down     = false
+      mouse_down_hotbar = nil
+      mouse_down_action = nil
+
+      -- We'll need to consume that old release when it shows up
+      forced_end_count  = forced_end_count + 1
+    end
+
+    -- Now handle this new mouse down
+    local hotbar, action = ui:hovered(x, y)
+
+    if hotbar and action then
+      -- Capturing new click on UI.
+      is_capturing      = true
+      is_mouse_down     = true
+      mouse_down_hotbar = hotbar
+      mouse_down_action = action
+      is_captured       = true -- block from game
+    else
+      -- Not capturing: clicked outside UI.
+      is_capturing      = false
+      is_mouse_down     = false
+      mouse_down_hotbar = nil
+      mouse_down_action = nil
+    end
+  elseif type == 2 then -------------------------------------------------
+    -- [MOUSE UP]
+
+    -- 1) Check if this release is a leftover from an old forcibly ended capture
+    if forced_end_count > 0 then
+      -- We must consume it so it doesn't leak to the game,
+      -- but do no action.
+      forced_end_count = forced_end_count - 1
+      return true -- consume event, do nothing else
+    end
+
+    -- 2) Normal release for a valid capture
+    if is_capturing then
+      -- We definitely capture the release if we were capturing
+      is_captured = true
+
+      if is_mouse_down and mouse_down_hotbar then
         local hotbar, action = ui:hovered(x, y)
-        if (action ~= nil) then
-          if (action == 100) then
+
+        -- Only trigger action if user is still over the same UI element
+        if hotbar == mouse_down_hotbar and action == mouse_down_action then
+          if action == 100 then
             toggle_environment()
-          elseif (hotbar == current_hotbar and action == current_action) then
+          else
             player:change_active_hotbar(hotbar)
             trigger_action(action)
           end
+        else
+          -- Moved off original UI element, skipping action.
         end
-        current_hotbar = -1
-        current_action = -1
-        return_value = true
       else
-        return_value = false
+        -- is_mouse_down or hotbar nil, skipping action.
       end
-    elseif type == 0 then -- Mouse move
-      local hotbar, action = ui:hovered(x, y)
-      if (action ~= nil and hotbar ~= nil) then
-        ui:light_up_action(x, y, hotbar, action)
-        return_value = true
-      else
-        ui:hide_hover()
-        return_value = false
-      end
+
+      -- Stopping capture for normal click release.
+      is_capturing      = false
+      is_mouse_down     = false
+      mouse_down_hotbar = nil
+      mouse_down_action = nil
+    else
+      -- Not capturing, so pass it along
+    end
+  elseif type == 0 then -------------------------------------------------
+    -- [MOUSE MOVE]
+    local hotbar, action = ui:hovered(x, y)
+    if hotbar and action then
+      ui:light_up_action(x, y, hotbar, action)
+      -- Optionally block the game if you want no mouse-move to propagate
+      -- (e.g. if is_capturing then is_captured = true end)
+    else
+      ui:hide_hover()
     end
   end
 
-  return return_value
+  return is_captured
 end
+
 
 -- Mouse Events
 windower.register_event('mouse', function(type, x, y, delta, blocked)
@@ -1159,16 +1217,15 @@ end
   The target string to me returned is appropriate to use between angle brackets for
   targeting, such as <me>, <t>, etc.
 
-  The optional target_preference param is used to change the default target preference of 'st'
+  The optional target_preference param is used to change the default target preference of 'stnpc'
   to anything else, most typically, 't'.
 ]]
 function get_tgt_cmd_for_targets(targets, target_preference)
   local target = 'st'
 
-  if target_preference ~= nil then
-    target = target_preference
+  if target_preference == nil then
+    target_preference = 'stnpc'
   end
-
 
   if targets == nil then
     return target
@@ -1185,7 +1242,7 @@ function get_tgt_cmd_for_targets(targets, target_preference)
 
     -- Third priority: Enemy targeting, but no objects or corpses
   elseif (targets['Enemy'] or targets['NPC']) and not (targets['Object'] or targets['Corpse']) then
-    target = 'stnpc'
+    target = target_preference
   end
 
   return target
